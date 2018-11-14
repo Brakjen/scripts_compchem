@@ -70,14 +70,11 @@ class MrchemOut(object):
     def walltime(self):
         """This function returns the total walltime for the job (float) in seconds"""
         output = self.content
-        w_tot = None
-        w_int = []
+        w = None
         for line in output:
-            if line.strip().startswith("Wall time"):
-                w_int.append(float(line.split()[2]))
-            elif ' '.join(line.strip().split()).startswith("*** Wall time"):
+            if ' '.join(line.strip().split()).startswith("*** Wall time"):
                 w_tot = float(line.strip().split()[3])
-        return w_tot, w_int
+        return w
 
 
 
