@@ -9,8 +9,8 @@ import pandas as pd
 files = glob.glob("*_*_*_*_.out")
 error_files = filter(lambda f: not MrchemOut(f).normaltermination(), files)
 
- Test if all jobs terminated normally
-#assert len(error_files) == 0, "Error! These jobs did not terminate normally: {}".format(' '.join([MrchemOut(f).filename for f in files if not MrchemOut(f).normaltermination()]))
+#Test if all jobs terminated normally
+assert len(error_files) == 0, "Error! These {} job(s) did not terminate normally: {}".format(len(error_files), ' '.join([MrchemOut(f).filename for f in files if not MrchemOut(f).normaltermination()]))
 
 # now we construct the dict and fill with information from filenames
 data = {}
