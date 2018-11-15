@@ -2,7 +2,6 @@
 
 from class_mrchem import MrchemOut
 import glob
-import sys
 import pandas as pd
 
 # Get all relevant output files in a list
