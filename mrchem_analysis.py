@@ -12,6 +12,8 @@ error_files = filter(lambda f: not MrchemOut(f).normaltermination(), files)
 #Test if all jobs terminated normally
 assert len(error_files) == 0, "Error! These {} job(s) did not terminate normally: {}".format(len(error_files), ' '.join([MrchemOut(f).filename for f in files if not MrchemOut(f).normaltermination()]))
 
+print("All jobs terminated normally")
+
 # now we construct the dict and fill with information from filenames
 data = {}
 data["molecule"] =    [f.split("_")[0] for f in files if f not in error_files]
