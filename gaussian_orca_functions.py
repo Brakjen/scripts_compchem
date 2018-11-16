@@ -1,14 +1,3 @@
-
-# coding: utf-8
-
-# # TO DO LIST
-# ### - Merge the ORCA and Gaussian specific programs, and make the script "detect" which type of file is loaded. Then I have less options in the program menu.
-# 
-# ### - Make a script that checks that the fixed atoms did not move during the optimization. Perhaps extract only the fixed atoms and play a trajectory? Or print to the terminal the distances between the fixed atoms?
-
-# In[1]:
-
-
 #! /usr/bin/env python
 
 import numpy as np

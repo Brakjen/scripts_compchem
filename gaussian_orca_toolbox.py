@@ -1,13 +1,3 @@
-
-# coding: utf-8
-
-# # TO DO LIST
-# ### Allow to set "option" as argument to program.py and automatically run the script?
-# ### Get Gaussian trajectory with energies (energies missing)
-
-# In[1]:
-
-
 #! /usr/bin/env python
 
 from gaussian_orca_functions import *
