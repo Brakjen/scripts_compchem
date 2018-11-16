@@ -10,7 +10,7 @@
 
 #! /usr/bin/env python
 
-from utilities import *
+from gaussian_orca_functions import *
 
 option = sys.argv[1]
 
@@ -25,6 +25,8 @@ if option == "help":
     print("|---------------------------------------|")
     print("| 1: Get ORCA optimized geometry \t|")
     print("| 3: Get normalmodes from .hess \t|")
+    print("| 5: Convert .xyz to .com \t\t|")
+    print("| 6: Convert .com to .xyz \t\t|")
     print("|=======================================|")
     sys.exit()
     
@@ -38,3 +40,10 @@ if option == "3":
     get_normalmodes_orca(filename)
     sys.exit()
 
+if option == "5":
+    convert_xyz_com(filename)
+    sys.exit()
+
+if option == "6":
+    convert_com_xyz(filename)
+    sys.exit()
