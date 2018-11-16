@@ -10,7 +10,7 @@
 
 #! /usr/bin/env python
 
-from utilities import *
+from gaussian_orca_functions import *
 
 option = None
 while option != "0":
