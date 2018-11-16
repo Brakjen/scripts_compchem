@@ -1,4 +1,3 @@
-#test
 #!/bin/bash -i
 
 # This script will collect geometry convergence data from a Gaussian output file,
