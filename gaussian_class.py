@@ -1,50 +1,56 @@
 #! /usr/bin/env python
-import sys
+
 
 # Define the class GaussianOut, which will be Gaussian output files.
 class GaussianOut(object):
     def __init__(self, filename):
         self.filename = filename
 
-    def content(self):
-        """Returns a list of list, where each sublist is one line in the output.
-        Same readlines()"""
-        with open(self.filename, "r") as f:
-            content = f.readlines()
-        return content
+    def __repr__(self):
+        return "<GaussianOut(filename={})>".format(self.filename)
 
+    def content(self):
+        """Return a generator that iterates over lines in the file, one by one."""
+        with open(self.filename, "r") as f:
+            while True:
+                yield f.next()
+    
+    def source(self):
+        """Return the file content as a string."""
+        with open(self.filename, "r") as f:
+            return f.read()
 
     def normaltermination(self):
-        """This method evaluates whether the job
-        terminated normally, and returns a Boolean:
-        True if termination was notmal, False if not."""
+        """Evaluate whether the job
+        terminated normally, and return a Boolean:
+        True if termination was normal, False if not."""
         if self.content()[-1].strip().startswith("Normal termination"):
             return True
         return False
 
     def scf_energy(self):
-        """Returns a list of floats containing the optimized SCF energies"""
+        """Return a list of floats containing the optimized SCF energies"""
         energies = filter(lambda x: x.strip().startswith("SCF Done:"), self.content())
         return map(lambda x: float(x.split()[4]), energies)
 
     def no_scfcycles(self):
-        """Returns the number of SCF cycles performed before convergence (float)"""
+        """Return the number of SCF cycles performed before convergence (float)"""
         return len(self.scf_energy())
 
     def walltime(self):
-        """Returns the total walltime for the job (float) in seconds"""
+        """Return the total walltime for the job (float) in seconds"""
         w = filter(lambda x: x.strip().startswith("Elapsed time:"), self.content())[0].strip().split()
         return float(w[2])*24*60*60 + float(w[4])*60*60 + float(w[6])*60 + float(w[8])
 
 
     def no_atoms(self):
-        """Returns the number of atoms of the system (integer)"""
+        """Return the number of atoms of the system (integer)"""
         for line in self.content():
             if line.strip().startswith("NAtoms="):
                 return int(line.strip().split()[1])
 
     def geometry_trajectory(self):
-        """This method returns the optimized geometry from a geometry optimization"""
+        """Return list of all geometry steps from a geometry optimization. The last step is the optimized geometry"""
         natoms = self.no_atoms()
 
         # list of elements used to replace atomic number with atomic symbol. Dummy to shift up by 1
@@ -56,8 +62,10 @@ class GaussianOut(object):
         # the number of atoms to decide how many lines to append to the variable containing
         # all the geometries.
         traj = []
-        content = self.content()
-        for i,line in enumerate(content):
+
+        # Convert the generator to a list to be used in the inner loop. We can still use the generator for the outer loop
+        content = list(self.content())
+        for i,line in enumerate(self.content()):
             if line.strip().startswith("Input orientation"):
                 for j in range(natoms):
                     traj.append(content[i+j+5].strip())
@@ -80,9 +88,13 @@ class GaussianOut(object):
                 atom[0]  = elements[int(atom[0])]
         return traj
 
+    def no_geomcycles(self):
+        """Return the number of geometry cycles needed for convergence. Return an integer."""
+        return len(list(self.geometry_trajectory()))
 
-
-
+    def keywords(self):
+        """Return a list of strings containing all keywords used in the input."""
+        pass
 
 
 
