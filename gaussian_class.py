@@ -95,9 +95,19 @@ class GaussianOut(object):
         """Return the number of geometry cycles needed for convergence. Return an integer."""
         return len(list(self.geometry_trajectory()))
 
-    def keywords(self):
-        """Return a list of strings containing all keywords used in the input."""
-        pass
+    def no_basisfunctions(self):
+        """Return the number of basis functions (integer)."""
+        nbasis = None
+        for line in self.content():
+            if line.strip().startswith("NBasis="):
+                nbasis = int(line.strip().split()[1])
+                break
+        return nbasis
+
+
+
+
+
 
 
 
