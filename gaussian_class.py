@@ -34,8 +34,9 @@ class GaussianOut(object):
         return map(lambda x: float(x.split()[4]), energies)
 
     def no_scfcycles(self):
-        """Return the number of SCF cycles performed before convergence (float)"""
-        return len(self.scf_energy())
+        """Return a list of floats containing the number of SCF iterations needed for converging each geom step"""
+        cycles = filter(lambda x: x.strip().startswith("SCF Done:"), self.content())
+        return map(int, map(lambda x: x.strip().split()[7], cycles))
 
     def walltime(self):
         """Return the total walltime for the job (float) in seconds"""
@@ -86,7 +87,9 @@ class GaussianOut(object):
                 
                 # Now we replace the atomic number with the corresponding atomic symbol
                 atom[0]  = elements[int(atom[0])]
-        return traj
+        
+        # We discard the last geometry because it will be a duplicate
+        return traj[:-1]
 
     def no_geomcycles(self):
         """Return the number of geometry cycles needed for convergence. Return an integer."""
