@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 import time
-#test
 
 # Define the class GaussianOut, which will be Gaussian output files.
 class GaussianOut(object):
