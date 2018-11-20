@@ -104,6 +104,77 @@ class GaussianOut(object):
                 break
         return nbasis
 
+    def maxforce(self):
+        """Return a list of floats containing all Max Forces for each geometry iteration"""
+        l = filter(lambda x: ' '.join(x.split()).startswith("Maximum Force"), self.content())
+        l = map(lambda x: x.split()[2], l)
+        return map(float, l)
+
+    def rmsforce(self):
+        """Return a list of floats containing all RMS Forces for each geometry iteration"""
+        l = filter(lambda x: ' '.join(x.split()).startswith("RMS Force"), self.content())
+        l = map(lambda x: x.split()[2], l)
+        return map(float, l)
+
+    def maxstep(self):
+        """Return a list of floats containing all Max Steps for each geometry iteration"""
+        l = filter(lambda x: ' '.join(x.split()).startswith("Maximum Displacement"), self.content())
+        l = map(lambda x: x.split()[2], l)
+        return map(float, l)
+
+    def rmsstep(self):
+        """Return a list of floats containing all RMS Steps for each geometry iteration"""
+        l = filter(lambda x: ' '.join(x.split()).startswith("RMS Displacement"), self.content())
+        l = map(lambda x: x.split()[2], l)
+        return map(float, l)
+
+    def tol_maxforce(self):
+        """Return the Max Force convergence tolerance as float"""
+        t = None
+        for line in self.content():
+            if line.strip().startswith("Maximum Force"):
+                t = float(line.strip().split()[3])
+                break
+        return t
+
+    def tol_rmsforce(self):
+        """Return the RMSD Force convergence tolerance as float"""
+        t = None
+        for line in self.content():
+            if ' '.join(line.strip().split()).startswith("RMS Force"):
+                t = float(line.strip().split()[3])
+                break
+        return t
+
+    def tol_maxstep(self):
+        """Return the Max Step convergence tolerance as float"""
+        t = None
+        for line in self.content():
+            if line.strip().startswith("Maximum Displacement"):
+                t = float(line.strip().split()[3])
+                break
+        return t
+
+    def tol_rmsstep(self):
+        """Return the RMSD Step convergence tolerance as float"""
+        t = None
+        for line in self.content():
+            if ' '.join(line.strip().split()).startswith("RMS Displacement"):
+                t = float(line.strip().split()[3])
+                break
+        return t
+
+
+# This class may not be useful for anything.....
+class GaussianIn(object):
+    def __init__(self, filename):
+        self.filename = filename
+
+    def keywords(self):
+        pass
+
+    def linkzero(self):
+        pass
 
 
 
