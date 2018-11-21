@@ -29,7 +29,7 @@ rawdata["precision"] = []
 # and add them to the dict
 for f in files:
     output = MrchemOut(f)
-    rawdata["energy"].append(output.energy_pot())
+    rawdata["energy"].append(output.final_energy_pot())
     rawdata["dipole"].append(output.dipole_au())
     rawdata["filename"].append(output.filename)
     rawdata["precision"].append(output.precision())
@@ -75,8 +75,8 @@ for f in nullfield_files:
 minus, plus, field, null, mol, func, prec = (zip(*sorted(triplet)))
 
 # then map the energy/diple moment to the list, and convert to string
-plus = map(str, map(lambda f: MrchemOut(f).energy_pot(), plus))
-minus = map(str, map(lambda f: MrchemOut(f).energy_pot(), minus))
+plus = map(str, map(lambda f: MrchemOut(f).final_energy_pot(), plus))
+minus = map(str, map(lambda f: MrchemOut(f).final_energy_pot(), minus))
 null = map(str, map(lambda f: MrchemOut(f).dipole_au(), null))
 
 # then zip back
