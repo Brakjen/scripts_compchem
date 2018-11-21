@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import sys
 import matplotlib.pyplot as plt
+import time
 
 # Define the class MrchemOut, which will be MRChem output files.
 class MrchemOut(object):
