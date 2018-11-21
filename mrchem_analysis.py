@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from class_mrchem import MrchemOut
+from MRChem import MrchemOut
 import glob
 import pandas as pd
 
