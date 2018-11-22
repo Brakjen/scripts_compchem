@@ -19,24 +19,28 @@ class OrcaOut(object):
             return result
         return timed
 
-    @timeit
+    #@timeit
     def __repr__(self):
         return "<OrcaOut(filename={})>".format(self.filename)
 
-    @timeit
+    #@timeit
     def content(self):
         """Return a generator that iterates over lines in the file, one by one."""
         with open(self.filename, "r") as f:
             while True:
                 yield f.next()
     
-    @timeit
+    #@timeit
     def source(self):
         """Return the file content as a string."""
         with open(self.filename, "r") as f:
             return f.read()
-    
-    @timeit
+   
+    def inputfile(self):
+        """Return the input file as a string"""
+        pass
+
+    #@timeit
     def normaltermination(self):
         """Evaluate whether the job
         terminated normally, and return a Boolean:
@@ -45,85 +49,132 @@ class OrcaOut(object):
             return True
         return False
     
-    @timeit
+    #@timeit
     def scf_energy(self):
         """Return a list of floats containing the optimized SCF energies"""
         e = filter(lambda x: x.strip().startswith("FINAL SINGLE POINT ENERGY"), self.content())
         return map(float, map(lambda x: x.split()[4], e))
 
-    @timeit
+    #@timeit
     def no_scfcycles(self):
         """Return a list of floats containing the number of SCF iterations needed for converging each geom step"""
         c = filter(lambda x: ' '.join(x.split()).startswith("* SCF CONVERGED AFTER"), self.content())
         return map(int, map(lambda x: x.split()[4], c))
 
-    @timeit
+    #@timeit
     def walltime(self):
         """Return the total walltime for the job (float) in seconds"""
-        pass
+        w = filter(lambda x: x.strip().startswith("TOTAL RUN TIME:"), self.content())[0].split()
+        return float(w[3])*86400 + float(w[5])*3600 + float(w[7])*60 + float(w[9]) + float(w[11])/1000
 
-    @timeit
+    #@timeit
     def no_atoms(self):
         """Return the number of atoms of the system (integer)"""
-        pass
+        natoms = None
+        for line in self.content():
+            if line.strip().startswith("Number of atoms"):
+                natoms = line.strip().split()[-1]
+                break
+        return int(natoms)
+             
 
-    @timeit
+    #@timeit
     def geometry_trajectory(self):
         """Return list of all geometry steps from a geometry optimization. The last step is the optimized geometry"""
         pass
-    @timeit
+
+    #@timeit
     def no_geomcycles(self):
         """Return the number of geometry cycles needed for convergence. Return an integer."""
-        pass
+        return len(geometry_trjectory(self))
     
-    @timeit
+    #@timeit
     def no_basisfunctions(self):
         """Return the number of basis functions (integer)."""
-        pass
+        nbasis = None
+        for line in self.content():
+            if line.strip().startswith("Basis Dimension"):
+                nbasis = int(line.strip().split()[-1])
+                break
+        return nbasis
 
-    @timeit
+    #@timeit
     def maxforce(self):
         """Return a list of floats containing all Max Forces for each geometry iteration"""
-        pass
+        l = filter(lambda x: x.strip().startswith("MAX gradient"), self.content())
+        l = filter(lambda x: len(x.split()) > 4, l)
+        return map(float, map(lambda x: x.strip().split()[2], l))
 
-    @timeit
+    #@timeit
     def rmsforce(self):
         """Return a list of floats containing all RMS Forces for each geometry iteration"""
-        pass
-
-    @timeit
+        l = filter(lambda x: x.strip().startswith("RMS gradient"), self.content())
+        l = filter(lambda x: len(x.split()) > 4, l)
+        return map(float, map(lambda x: x.strip().split()[2], l))
+    
+    #@timeit
     def maxstep(self):
         """Return a list of floats containing all Max Steps for each geometry iteration"""
-        pass
-
-    @timeit
+        l = filter(lambda x: x.strip().startswith("MAX step"), self.content())
+        return map(float, map(lambda x: x.strip().split()[2], l))
+    
+    #@timeit
     def rmsstep(self):
         """Return a list of floats containing all RMS Steps for each geometry iteration"""
-        pass
-    
-    @timeit
+        l = filter(lambda x: x.strip().startswith("RMS step"), self.content())
+        return map(float, map(lambda x: x.strip().split()[2], l))
+
+    #@timeit
     def tol_maxforce(self):
         """Return the Max Force convergence tolerance as float"""
-        pass
+        tol = None
+        for line in self.content():
+            if line.strip().startswith("MAX gradient") and len(line.split()) > 4:
+                tol = float(line.strip().split()[3])
+                break
+        return tol
 
-    @timeit
+    #@timeit
     def tol_rmsforce(self):
         """Return the RMSD Force convergence tolerance as float"""
+        tol = None
+        for line in self.content():
+            if line.strip().startswith("RMS gradient") and len(line.split()) > 4:
+                tol = float(line.strip().split()[3])
+                break
+        return tol
         pass
 
-    @timeit
+    #@timeit
     def tol_maxstep(self):
         """Return the Max Step convergence tolerance as float"""
+        tol = None
+        for line in self.content():
+            if line.strip().startswith("MAX step"):
+                tol = float(line.strip().split()[3])
+                break
+        return tol
         pass
 
-    @timeit
+    #@timeit
     def tol_rmsstep(self):
         """Return the RMSD Step convergence tolerance as float"""
+        tol = None
+        for line in self.content():
+            if line.strip().startswith("RMS step"):
+                tol = float(line.strip().split()[3])
+                break
+        return tol
         pass
 
-    @timeit
+    #@timeit
     def orcaversion(self):
-        pass
+        v = None
+        for line in self.content():
+            if line.strip().startswith("Program Version"):
+                v = line.strip()
+                break
+        return v
 
 
 # This class may not be useful for anything.....
