@@ -145,7 +145,9 @@ echo "Submitted batch job $pid"
 
 # Removing old pid files
 for file in $1.[0-9][0-9][0-9][0-9][0-9][0-9][0-9]; do
-    rmm $file
+    if [ -f $file ]; then
+        rmm $file
+    fi
 done
 touch $1.$pid
 echo "Process ID for $1: $pid" > $1.$pid
