@@ -54,9 +54,9 @@ for i in range(len(user)):
     if len(user[i]) > 6:
         print("{} \t {} \t\t {}".format(user[i], cpu[i], oftotal[i][0:5]))
     elif len(user[i]) < 7:
-        print("{} \t\t {} \t\t {}".format(user[i], cpu[i], oftotal[i][0:5])))
+        print("{} \t\t {} \t\t {}".format(user[i], cpu[i], oftotal[i][0:5]))
     elif len(user[i]) > 12:
-        print("{} \t\t {} \t\t {}".format(user[i], cpu[i], oftotal[i][0:5])))
+        print("{} \t\t {} \t\t {}".format(user[i], cpu[i], oftotal[i][0:5]))
         
 
 
