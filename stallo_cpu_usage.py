@@ -47,16 +47,16 @@ oftotal = map(lambda x: float(x) / cpu_total * 100, cpu)
 user = [u for u in user]
 for i,u in enumerate([u for u in user]):
     if u == "ambr":
-        user[i] += " <--------"
+        user[i] += "-------->" + user[i]
 
 print("User \t\t No. of CPUs \t % of total")
 for i in range(len(user)):
     if len(user[i]) > 6:
-        print("{} \t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
+        print("\t\t\t{} \t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
     elif len(user[i]) < 7:
-        print("{} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
+        print("\t\t\t{} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
     elif len(user[i]) > 12:
-        print("{} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
+        print("\t\t\t{} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
         
 
 
