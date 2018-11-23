@@ -12,7 +12,7 @@ q = process.stdout.read().splitlines()
 
 # Total number of CPU on Stallo, taken from
 # https://www.sigma2.no/content/stallo
-cpu_total = float(14116)
+cpu_pendingal = float(14116)
 
 q = map(lambda x: x.split(), q)
 r = filter(lambda x: x[-1] == "R", q)
@@ -27,8 +27,6 @@ for i,job in enumerate(p):
        if j == 1:
            p[i][j] = int(p[i][j])
 
-tot = r+p
-
 # Initialize list to contain the users from all running jobs
 users = []
 for job in r:
@@ -38,34 +36,32 @@ for job in r:
 
 # Initialize a idct in which the sum of all CPUs will be accumulated
 cpu = {usr: 0 for usr in set(users)}
-cpu_tot = {usr: 0 for usr in set(users)}
+cpu_pending = {usr: 0 for usr in set(users)}
 
 #perform the sum
 for job in r:
     for u in cpu.keys():
         if u in job:
             cpu[u] += job[1]
-print("")
-for job in tot:
+for job in p:
     for u in cpu.keys():
         if u in job:
-            cpu_tot[u] += job[1]
+            cpu_pending[u] += job[1]
 
 
 # zipping and sorting
-zipped = sorted(zip(cpu.keys(), [c for user, c in cpu.items()], [c for user, c in cpu_tot.items()]), key=lambda x: x[1], reverse=True)
+zipped = sorted(zip(cpu.keys(), [c for user, c in cpu.items()], [c for user, c in cpu_pending.items()]), key=lambda x: x[1], reverse=True)
 
 # unzipping 
-user, cpu, cpu_tot = zip(*zipped)
+user, cpu, cpu_pending = zip(*zipped)
 # get ratio of running cpus to stallo's total
-oftotal = map(lambda x: float(x) / cpu_total * 100, cpu)
+oftotal = map(lambda x: float(x) / cpu_pendingal * 100, cpu)
 
 # adding arrow to username.. First convert from tuple to list
 user = [u for u in user]
 for i,u in enumerate(user):
     if u == "ambr":
         user[i] += " <--------"
-
 
 # How many rows to print?
 if len(sys.argv[1:]) < 1:
@@ -88,14 +84,9 @@ print("User \t\t No. of CPUs \t % of total \t Pending CPUs")
 print("-----------------------------------------------------------------")
 for i in range(num):
     if len(user[i]) > 6:
-        print("{} \t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_tot[i]))
+        print("{} \t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_pending[i]))
     elif len(user[i]) < 7:
-        print("{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_tot[i]))
+        print("{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_pending[i]))
     elif len(user[i]) > 12:
-        print("{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_tot[i]))
+        print("{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_pending[i]))
 print("-----------------------------------------------------------------")
-        
-
-
-
-
