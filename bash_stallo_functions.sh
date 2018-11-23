@@ -185,9 +185,9 @@ function updatescripts() {
 DIR=/home/ambr/scripts_compchem
 CURR_DIR=$PWD
 cd $DIR
+git checkout .
 git pull origin master
 cd $CURR_DIR
-git checkout .
 for file in $DIR/*.py $DIR/*.sh; do
     if [ -L $HOME/bin/$(basename $file) ]; then
         unlink $HOME/bin/$(basename $file)
