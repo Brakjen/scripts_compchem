@@ -47,7 +47,7 @@ oftotal = map(lambda x: float(x) / cpu_total * 100, cpu)
 user = [u for u in user]
 for i,u in enumerate([u for u in user]):
     if u == "ambr":
-        user[i] += "-------->" + user[i]
+        user[i] = "-------->" + user[i]
 
 print("User \t\t No. of CPUs \t % of total")
 for i in range(len(user)):
