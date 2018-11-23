@@ -2,6 +2,7 @@
 
 from MRChem import MrchemOut
 import glob
+import pandas as pd
 
 # Get all relevant output files in a list
 files = glob.glob("*_*_*_*_.out")
