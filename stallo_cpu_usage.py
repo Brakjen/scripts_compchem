@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 
 import subprocess as sub
+import sys
 
-cmd = ["squeue", "-o", "%u %C %m %t"]
+
+ 
+
+cmd = ["squeue", "-o", "%u %C %t"]
 process = sub.Popen(cmd, stdout=sub.PIPE)
 q = process.stdout.read().splitlines()
 
@@ -12,13 +16,18 @@ cpu_total = float(14116)
 
 q = map(lambda x: x.split(), q)
 r = filter(lambda x: x[-1] == "R", q)
+p = filter(lambda x: x[-1] == "PD", q)
 
 for i,job in enumerate(r):
     for j,c in enumerate(job):
        if j == 1:
            r[i][j] = int(r[i][j])
-       if j == 2:
-           r[i][j] = int(r[i][j][0:-1])
+for i,job in enumerate(p):
+    for j,c in enumerate(job):
+       if j == 1:
+           p[i][j] = int(p[i][j])
+
+tot = r+p
 
 # Initialize list to contain the users from all running jobs
 users = []
@@ -29,37 +38,62 @@ for job in r:
 
 # Initialize a idct in which the sum of all CPUs will be accumulated
 cpu = {usr: 0 for usr in set(users)}
+cpu_tot = {usr: 0 for usr in set(users)}
 
-# perform the sum
+#perform the sum
 for job in r:
     for u in cpu.keys():
         if u in job:
             cpu[u] += job[1]
+print("")
+for job in tot:
+    for u in cpu.keys():
+        if u in job:
+            cpu_tot[u] += job[1]
+
 
 # zipping and sorting
-zipped = sorted(zip(cpu.keys(),    [c for user, c in cpu.items()]), key=lambda x: x[1], reverse=True)
+zipped = sorted(zip(cpu.keys(), [c for user, c in cpu.items()], [c for user, c in cpu_tot.items()]), key=lambda x: x[1], reverse=True)
 
 # unzipping 
-user, cpu = zip(*zipped)
+user, cpu, cpu_tot = zip(*zipped)
+# get ratio of running cpus to stallo's total
 oftotal = map(lambda x: float(x) / cpu_total * 100, cpu)
 
 # adding arrow to username.. First convert from tuple to list
 user = [u for u in user]
-for i,u in enumerate([u for u in user]):
+for i,u in enumerate(user):
     if u == "ambr":
         user[i] += " <--------"
 
-print("--------------------------------------------")
-print("User \t\t No. of CPUs \t % of total")
-print("--------------------------------------------")
-for i in range(len(user)):
+
+# How many rows to print?
+if len(sys.argv[1:]) < 1:
+    num = len(set(user))
+elif len(sys.argv[1:]) > 1:
+    sys.exit("Error! Only give one argument")
+elif sys.argv[1:] == ["0"]:
+    sys.exit("Error! Number must be greater than zero")
+else:
+    try:
+        num = int(sys.argv[1])
+        if num > len(set(user)):
+            sys.exit("Error! Number must be smaller or equal to {}".format(len(set(user))))
+    except ValueError:
+        sys.exit("Error! Number must be an integer!")
+
+
+print("-----------------------------------------------------------------")
+print("User \t\t No. of CPUs \t % of total \t Pending CPUs")
+print("-----------------------------------------------------------------")
+for i in range(num):
     if len(user[i]) > 6:
-        print("{} \t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
+        print("{} \t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_tot[i]))
     elif len(user[i]) < 7:
-        print("{} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
+        print("{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_tot[i]))
     elif len(user[i]) > 12:
-        print("{} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5]))
-print("--------------------------------------------")
+        print("{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_tot[i]))
+print("-----------------------------------------------------------------")
         
 
 
