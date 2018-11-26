@@ -59,9 +59,10 @@ oftotal = map(lambda x: float(x) / cpu_pendingal * 100, cpu)
 
 # adding arrow to username.. First convert from tuple to list
 user = [u for u in user]
+choco = ["ambr", "mobst", "ljilja", "diego", "kathrin"]
 for i,u in enumerate(user):
-    if u == "ambr":
-        user[i] += " <--------"
+    if u in choco:
+        user[i] += " <<<<<<"
 
 # How many rows to print?
 if len(sys.argv[1:]) < 1:
@@ -82,11 +83,14 @@ else:
 print("-----------------------------------------------------------------")
 print("User \t\t No. of CPUs \t % of total \t Pending CPUs")
 print("-----------------------------------------------------------------")
+
 for i in range(num):
     if len(user[i]) > 6:
         print("{} \t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_pending[i]))
     elif len(user[i]) < 7:
         print("{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_pending[i]))
-    elif len(user[i]) > 12:
+    elif len(user[i]) > 16:
         print("{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu[i], str(oftotal[i])[0:5], cpu_pending[i]))
+print("-----------------------------------------------------------------")
+print("SUM: \t\t {} \t\t {} \t\t {}".format(sum(cpu[:num]), str(sum(oftotal[:num]))[0:5], sum(cpu_pending[:num])))
 print("-----------------------------------------------------------------")
