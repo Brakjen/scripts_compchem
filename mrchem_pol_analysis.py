@@ -57,7 +57,6 @@ for i, trip in enumerate([el for trip in triplet for el in trip if "+" in el]):
     triplet[i].append(trip.split("_")[0])
     triplet[i].append(trip.split("_")[1])
     triplet[i].append(str(MrchemOut(trip).precision()))
-    triplet[i].append(str(MrchemOut(trip).filename))
     triplet[i].append(trip.split("_")[4].split(".")[0])
 
 
