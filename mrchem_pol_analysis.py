@@ -62,17 +62,17 @@ for i, trip in enumerate([el for trip in triplet for el in trip if "+" in el]):
 
 
 # first unzip the sorted list (the order has been triple checked)
-minus, plus, field, mol, func, prec, filename, direction = (zip(*sorted(triplet)))
+minus, plus, field, mol, func, prec, direction = (zip(*sorted(triplet)))
 
 # then map the energy/diple moment to the list, and convert to string
-plus = map(str, map(lambda f: MrchemOut(f).dipole_au(), plus))
-minus = map(str, map(lambda f: MrchemOut(f).dipole_au(), minus))
+#plus = map(str, map(lambda f: MrchemOut(f).dipole_au(), plus))
+#minus = map(str, map(lambda f: MrchemOut(f).dipole_au(), minus))
 
 # then zip back
-triplet = zip(filename, mol, func, prec, field, direction, plus, minus)
+triplet = zip(mol, func, prec, field, direction, plus, minus)
 
 # now insert header
-triplet.insert(0, ("Filename", "molecule", "functional", "precision", "field_strength", "direction", "u+", "u-"))
+triplet.insert(0, ("molecule", "functional", "precision", "field_strength", "direction", "u+", "u-"))
 
 # finally print to terminal in a format easily copied to Excel
 for i in triplet:
