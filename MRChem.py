@@ -37,9 +37,9 @@ class MrchemOut(object):
 
 
     #@timeit
-    def dipole_debye(self):
-        """This method returns the calculated
-        dipole moment in Debye (float)"""
+    def dipole_norm_debye(self):
+        """Return the norm of the calculated
+        dipole moment vector in Debye (float)"""
         output = list(self.content())
         dipmom = None
 
@@ -50,9 +50,9 @@ class MrchemOut(object):
         return float(dipmom.split()[-1])
     
     #@timeit
-    def dipole_au(self):
-        """This method returns the calculated
-        dipole moment in atomic units (float)"""
+    def dipole_norm_au(self):
+        """Return the norm of the calculated
+        dipole moment vector in atomic units (float)"""
         output = list(self.content())
         dipmom = None
 
@@ -61,6 +61,18 @@ class MrchemOut(object):
                 dipmom = float(output[i].split()[-1])
 
         return dipmom
+
+    def dipole_vector(self):
+        """Return a list of the three components of the dipole moment, in au"""
+        content = list(self.content())
+        vec = None
+        for i, line in enumerate(content):
+            if line.strip().startswith("Length of vector"):
+                vec = content[i+5].split()
+                break
+
+        return map(float, vec)
+
 
     #@timeit
     def final_energy_pot(self):
