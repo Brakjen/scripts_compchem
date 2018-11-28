@@ -73,7 +73,7 @@ else:
 
 
 print("-----------------------------------------------------------------")
-print("User \t\t No. of CPUs \t % of total \t Pending CPUs")
+print("User \t\t Running CPUs \t % of total \t Pending CPUs")
 print("-----------------------------------------------------------------")
 
 for i in range(num):
