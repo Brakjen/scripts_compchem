@@ -33,7 +33,7 @@ rawdata["precision"] = []
 for f in files:
     output = MrchemOut(f)
     rawdata["energy"].append(output.final_energy_pot())
-    rawdata["dipole"].append(output.dipole_au())
+    rawdata["dipole"].append(output.dipole_vector())
     rawdata["filename"].append(output.filename)
     rawdata["precision"].append(output.precision())
     
@@ -59,7 +59,7 @@ for i, trip in enumerate([el for trip in triplet for el in trip if "+" in el]):
     triplet[i].append(str(MrchemOut(trip).precision()))
     triplet[i].append(trip.split("_")[4].split(".")[0])
 
-
+print(triplet)
 # first unzip the sorted list (the order has been triple checked)
 minus, plus, field, mol, func, prec, direction = (zip(*sorted(triplet)))
 
@@ -67,6 +67,16 @@ minus, plus, field, mol, func, prec, direction = (zip(*sorted(triplet)))
 #plus = map(str, map(lambda f: MrchemOut(f).dipole_au(), plus))
 #minus = map(str, map(lambda f: MrchemOut(f).dipole_au(), minus))
 
+for i, f in enumerate(plus):
+    if "x" in f:
+        plus[i] = MrchemOut(f).dipole_vector()[0]
+    elif "y" in f:
+        plus[i] = MrchemOut(f).dipole_vector()[1]
+    elif "z" in f:
+        plus[i] = MrchemOut(f).dipole_vector()[2]
+
+print(plus)
+sys.exit()
 # then zip back
 triplet = zip(mol, func, prec, field, direction, plus, minus)
 
