@@ -59,7 +59,6 @@ for i, trip in enumerate([el for trip in triplet for el in trip if "+" in el]):
     triplet[i].append(str(MrchemOut(trip).precision()))
     triplet[i].append(trip.split("_")[4].split(".")[0])
 
-print(triplet)
 # first unzip the sorted list (the order has been triple checked)
 minus, plus, field, mol, func, prec, direction = (zip(*sorted(triplet)))
 
@@ -67,16 +66,26 @@ minus, plus, field, mol, func, prec, direction = (zip(*sorted(triplet)))
 #plus = map(str, map(lambda f: MrchemOut(f).dipole_au(), plus))
 #minus = map(str, map(lambda f: MrchemOut(f).dipole_au(), minus))
 
+# First comvert tuple to list
+plus = [x for x in plus]
+minus = [x for x in minus]
+
+# Now replace filename with the correct dipole component
 for i, f in enumerate(plus):
     if "x" in f:
-        plus[i] = MrchemOut(f).dipole_vector()[0]
+        plus[i] = str(MrchemOut(f).dipole_vector()[0])
     elif "y" in f:
-        plus[i] = MrchemOut(f).dipole_vector()[1]
+        plus[i] = str(MrchemOut(f).dipole_vector()[1])
     elif "z" in f:
-        plus[i] = MrchemOut(f).dipole_vector()[2]
+        plus[i] = str(MrchemOut(f).dipole_vector()[2])
+for i, f in enumerate(minus):
+    if "x" in f:
+        minus[i] = str(MrchemOut(f).dipole_vector()[0])
+    elif "y" in f:
+        minus[i] = str(MrchemOut(f).dipole_vector()[1])
+    elif "z" in f:
+        minus[i] = str(MrchemOut(f).dipole_vector()[2])
 
-print(plus)
-sys.exit()
 # then zip back
 triplet = zip(mol, func, prec, field, direction, plus, minus)
 
