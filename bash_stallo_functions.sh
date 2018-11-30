@@ -184,7 +184,7 @@ ls $job* | egrep '.*\.[0-9]{2,}'
 
 # Do git pull in order to update the local git repo on stallo, and then make symlinks to bin
 function updatescripts() {
-DIR=/home/ambr/scripts_compchem
+DIR=$HOME/scripts_compchem
 CURR_DIR=$PWD
 cd $DIR
 git checkout .
