@@ -35,7 +35,7 @@ def com_to_xyz(comfile):
     # get rid of special characters such as tabs and newlines
     coords = map(lambda x: ' '.join(x.strip().split()), coords)
     
-    with open(job+"_test.xyz", "w") as o:
+    with open(job+".xyz", "w") as o:
         o.write("{}\n".format(len(coords)))
         o.write("\n")
         for atom in coords:
