@@ -1,4 +1,3 @@
-#encoding utf-8
 #! /usr/bin/env python
 
 from Tkinter import *
@@ -145,6 +144,6 @@ class convertme(object):
 
 
 root = Tk()
-root.geometry("500x200")
+root.geometry("500x230")
 app = convertme(root)
 root.mainloop()
