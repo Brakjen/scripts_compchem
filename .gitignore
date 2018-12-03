@@ -1,7 +1,12 @@
 
 
-testfiles/*
+testfiles/
+*.xyz
+*.com
+*.swp
 *.out
+*.pyc
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
