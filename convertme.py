@@ -1,4 +1,4 @@
-#! /bin/usr/env python
+#! /usr/bin/env python
 
 import Tkinter as tk
 from datetime import datetime
