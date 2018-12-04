@@ -3,7 +3,6 @@
 import Tkinter as tk
 from datetime import datetime
 import os
-import sys
 
 class ConvertMe(object):
     """Docstring"""
@@ -24,6 +23,9 @@ class ConvertMe(object):
         self.bottomframe = tk.Frame()
         self.bottomframe.pack(side="top", fill="both", expand=False)
 
+        self.place_widgets()
+
+    def place_widgets(self):
         # create the buttons and place them in the mainframe
         b_xyzcom = tk.Button(self.bottomframe, text=".xyz -> .com", font=self.buttonfont, width=10, command=self.xyz_to_com)
         b_xyzcom.grid(row=0, column = 0, pady=5, padx=5)
@@ -80,6 +82,11 @@ class ConvertMe(object):
             return
 
         job = xyzfile.split(".")[0]
+        ext = xyzfile.split(".")[-1]
+        if ext != "xyz":
+            self.log_update("Error: You must specify an XYZ file!")
+            return
+
 
         with open(xyzfile,"r") as infile:
            inlines = infile.readlines()[2:]
@@ -110,6 +117,11 @@ class ConvertMe(object):
             return
 
         job = comfile.split(".")[0]
+        ext = comfile.split(".")[-1]
+        if ext != "com":
+            self.log_update("Error: You must specify a COM file!")
+            return
+        
         with open(comfile, "r") as infile:
             coords = infile.read().split("\n\n")[2].split("\n")[1:]
 
@@ -133,6 +145,11 @@ class ConvertMe(object):
             return
 
         job = xyzfile.split(".")[0]
+        ext = xyzfile.split(".")[-1]
+        if ext != "xyz":
+            self.log_update("Error: You must specify an XYZ file!")
+            return
+
         with open(xyzfile, "r") as infile:
             coords = infile.readlines()[2:]
         elements = map(lambda x: x.split()[0], coords)
@@ -159,6 +176,11 @@ class ConvertMe(object):
             return
 
         job = xyzfile.split(".")[0]
+        ext = xyzfile.split(".")[-1]
+        if ext != "xyz":
+            self.log_update("Error: You must specify an XYZ file!")
+            return
+
         with open(xyzfile, "r") as infile:
             coords = infile.readlines()[2:]
         elements = map(lambda x: x.split()[0], coords)
