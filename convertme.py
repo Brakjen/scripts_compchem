@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import Tkinter as tk
+import tkFileDialog
 from datetime import datetime
 import os
 
@@ -39,7 +40,7 @@ class ConvertMe(object):
         b_bohrang = tk.Button(self.bottomframe, text=".bohr -> .ang", font=self.buttonfont, width=10, command=self.bohr_to_ang)
         b_bohrang.grid(row=0, column = 3, pady=5, padx=5)
 
-        b_browse = tk.Button(self.topframe, text="Browse File", font=self.buttonfont, width=10, command=self.file_browse)
+        b_browse = tk.Button(self.topframe, text="Browse File", font=self.buttonfont, width=10, command=self.browse_file)
         b_browse.grid(row=0, column = 1, sticky="e", pady=5, padx=5)
 
         b_quit = tk.Button(self.bottomframe, text="Quit", font=self.buttonfont, width=10, bg="black", fg="red", command=master.destroy)
@@ -216,6 +217,15 @@ class ConvertMe(object):
         self.log_update("Welcome to ConvertMe!")
         self.log_update("You are in {}".format(os.getcwd()))
         return None
+
+    def browse_file(self):
+        ftypes = [("All files", "*"),
+                  ("XYZ files", "*.xyz"),
+                  ("Gaussian input files", "*.com")]
+
+        self.entry_file.delete(0, tk.END)
+        self.entry_file.insert(0, tkFileDialog.askopenfilenames(parent=self.master, title = "Select File", filetypes=ftypes))
+
 
 
 ##########################################################
