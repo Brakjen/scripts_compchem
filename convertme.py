@@ -8,7 +8,7 @@ class convertme(object):
         self.frame = Frame(root)
         self.frame.pack()
         
-        self.title = Label(self.frame, text="Ready to be converted?", font=("Helvetica", 16))
+        self.title = Label(self.frame, text="Ready to be converted?", font=("Helvetica", 12))
         self.title.grid(row=0, column=0)
 
         self.button_xyzcom =  Button(self.frame, text=".xyz ->.com", width=20)
@@ -37,12 +37,12 @@ class convertme(object):
         try:
             t = open(f, "r")
             t.close()
-            status = Label(root, text="File Exists :)")
+            status = Label(root, text="File Exists :)", fg="green")
             status.pack()
             root.after(1000, status.destroy)
             return True
         except IOError:
-            status = Label(root, text="File Not Found :(")
+            status = Label(root, text="File Not Found :(", fg="red")
             status.pack()
             root.after(1000, status.destroy)
             return None
@@ -71,7 +71,9 @@ class convertme(object):
             for atom in coords:
                 o.write(atom+"\n")
             o.write('\n')
-        print("File converted!")
+        status = Label(root, text="File converted successfully", fg="green")
+        status.pack()
+        root.after(1000, status.destroy)
         return None
 
     def com_to_xyz(self, comfile):
@@ -91,7 +93,9 @@ class convertme(object):
             o.write("\n")
             for atom in coords:
                 o.write(atom+"\n")
-        print("File converted!")
+        status = Label(root, text="File converted successfully", fg="green")
+        status.pack()
+        root.after(1000, status.destroy)
         return None
 
 
