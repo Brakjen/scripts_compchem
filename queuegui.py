@@ -8,8 +8,8 @@ import subprocess as sub
 class QueueGui(object):
     """Docstring"""
 
-    buttonfont = tk.Font(family="Arial", size=10)
-    qfont = tk.Font(family="Arial", size=8)
+    buttonfont = tk.font.Font(family="Arial", size=10)
+    qfont = tk.font.Font(family="Arial", size=8)
 
     def __init__(self, master):
         self.master = master
