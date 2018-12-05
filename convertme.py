@@ -208,9 +208,6 @@ class ConvertMe(object):
             return False
 
 
-    def file_browse(self):
-        self.log_update("Browsing for file...")
-
     def clear_log(self):
         self.log.config(state=tk.NORMAL)
         self.log.delete(1.0, tk.END)
