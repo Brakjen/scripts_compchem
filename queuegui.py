@@ -82,13 +82,28 @@ class QueueGui(object):
             cmd = ["squeue", "-u", "{}".format(self.user.get()), "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
-        q = process.stdout.read().splitlines()
+        q_all = process.stdout.read().splitlines()
 
+        header = q[0]
+        q_run = filter(lambda x: x.split()[4] == "RUNNING", q)
+        q_pen = filter(lambda x: x.split()[4] == "PENDING", q)
+
+        self.status.set(self.statusfilter.get())
 
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
-        for line in q:
-            self.txt.insert(tk.END, line + "\n")
+        
+        if self.status == "All":
+            for line in q_all:
+                self.txt.insert(tk.END, line + "\n")
+        elif self.status == "Running":
+            for line in q_run:
+                self.txt.insert(tk.END, line + "\n")
+        elif self.status == "Pending":
+            for line in q_pen:
+                self.txt.insert(tk.END, line + "\n")
+
+
         self.txt.config(state=tk.DISABLED)
 
     def cpu_usage(self):
