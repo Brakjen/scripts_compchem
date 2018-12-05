@@ -85,8 +85,8 @@ class QueueGui(object):
         q_all = process.stdout.read().splitlines()
 
         header = q_all[0]
-        q_run = filter(lambda x: x.split()[4] == "RUNNING", q)
-        q_pen = filter(lambda x: x.split()[4] == "PENDING", q)
+        q_run = filter(lambda x: x.split()[4] == "RUNNING", q_all)
+        q_pen = filter(lambda x: x.split()[4] == "PENDING", q_all)
 
         self.status.set(self.statusfilter.get())
 
