@@ -4,6 +4,7 @@ import Tkinter as tk
 import tkFileDialog
 import subprocess as sub
 import glob
+from datetime import datetime
 
 class QueueGui(object):
     """Docstring"""
@@ -36,6 +37,13 @@ class QueueGui(object):
 
         self.get_q()
 
+        self.log_update("Welcome to QueueGui!")
+
+
+
+
+
+
     def place_widgets(self):
         # top frame widgets
 
@@ -55,7 +63,7 @@ class QueueGui(object):
         b_cpu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
         
         b_quepasa = tk.Button(self.topframe, text="Que Pasa?", command=self.quepasa, font=self.buttonfont)
-        b_quepasa.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
+        b_quepasa.grid(row=1, column=3, sticky="ew", pady=5, padx=5)
         
         b_moldenout = tk.Button(self.topframe, text="Molden Output", command=self.molden_output, font=self.buttonfont)
         b_moldenout.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
@@ -68,7 +76,7 @@ class QueueGui(object):
 
         yscroll_log = tk.Scrollbar(self.topframe)
         yscroll_log.grid(row=0, rowspan=2, column=5, pady=2, padx=2, sticky="ns")
-        self.log = tk.Text(self.topframe, yscrollcommand=yscroll_log.set, bg="black", height=7, width=90)
+        self.log = tk.Text(self.topframe, yscrollcommand=yscroll_log.set, bg="black", fg="white", height=7, width=90)
         self.log.grid(row=0, rowspan=2, column=4, pady=5, padx=5, sticky="nsew")
         yscroll_log.config(command=self.log.yview)
 
@@ -76,7 +84,7 @@ class QueueGui(object):
         yscrollbar = tk.Scrollbar(self.midframe)
         yscrollbar.grid(row=0, column=1, sticky="ns", pady=2, padx=2)
 
-        self.txt = tk.Text(self.midframe, wrap=tk.NONE, yscrollcommand=yscrollbar.set)
+        self.txt = tk.Text(self.midframe, wrap=tk.NONE, yscrollcommand=yscrollbar.set, bg="black", fg="white")
         self.txt.grid(row=0, column=0, sticky="nsew", pady=5, padx=5)
         self.txt.config(state=tk.DISABLED)
 
@@ -180,7 +188,7 @@ class QueueGui(object):
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
-        self.txt.insert(tk.END, "User Running CPUs % of total Pending CPUs\n")
+        self.txt.insert(tk.END, "User    Run     %     Pending\n")
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
         
 
@@ -198,29 +206,21 @@ class QueueGui(object):
         
         # convert back to floats for the summation
         oftotal = map(float, oftotal)
-        self.txt.insert(tk.END, "SUM: {} {} {}\n".format(sum(cpu_running), sum(oftotal), sum(cpu_pending)))
+        self.txt.insert(tk.END, "SUM: {} {} {} {} {} {}\n".format((maxlen[0] - 4) * " ",
+                                                                  sum(cpu_running),
+                                                                  (maxlen[1] - len(str(sum(cpu_running)))) * " ",
+                                                                  sum(oftotal),
+                                                                  (maxlen[2] - len(str(sum(oftotal)))) * " ",
+                                                                  sum(cpu_pending)))
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
         self.txt.config(state=tk.DISABLED)
 
     def open_output(self):
-        if self.txt.tag_ranges(tk.SEL):
-            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
-        else:
-            return
+        outputfile = self.eval_workfile("out")
+        f = open(outputfile, "r")
+        lines = f.readlines()
+        f.close()
 
-        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
-
-        outputfile = glob.glob(workdir+"*.out")
-        if len(outputfile) > 1:
-            print("More than one output file found in work dir.")
-            return
-        
-        try:
-            lines = open(outputfile[0], "r").readlines()
-        except (IOError, IndexError):
-            print("File not found.")
-            return
-        
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         for line in lines:
@@ -228,24 +228,11 @@ class QueueGui(object):
         self.txt.config(state=tk.DISABLED)
 
     def open_input(self):
-        if self.txt.tag_ranges(tk.SEL):
-            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
-        else:
-            return
+        inputfile = self.eval_workfile("com")
+        f = open(inputfile, "r")
+        lines = f.readlines()
+        f.close()
 
-        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
-
-        inputfile = glob.glob(workdir+"*.com")
-        if len(inputfile) > 1:
-            print("More than one input file found in work dir.")
-            return
-        
-        try:
-            lines = open(inputfile[0], "r").readlines()
-        except (IOError, IndexError):
-            print("File not found.")
-            return
-        
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         for line in lines:
@@ -253,44 +240,66 @@ class QueueGui(object):
         self.txt.config(state=tk.DISABLED)
 
     def quepasa(self):
-        if self.txt.tag_ranges(tk.SEL):
-            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
-        else:
-            return
-
-        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
-
-        outputfile = glob.glob(workdir+"*.out")
-        if len(outputfile) > 1:
-            print("More than one output file found in work dir.")
-            return
-
-        sub.call(["bash", "/home/ambr/bin/gaussian_howsitgoing.sh", "{}".format(outputfile[0])])
+        outputfile = self.eval_workfile("out")
+        if outputfile == "error":
+            return "error"
+        self.log_update("Que Pasa? {}".format(outputfile))
+        sub.call(["bash", "/home/ambr/bin/gaussian_howsitgoing.sh", "{}".format(outputfile)])
 
     def molden_output(self):
+        outputfile = self.eval_workfile("out")
+        if outputfile == "error":
+            return "error"
+        self.log_update("molden {}".format(outputfile))
+        sub.call(["molden", "{}".format(outputfile)])
+
+    def select_text(self):
         if self.txt.tag_ranges(tk.SEL):
-            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
+            return self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
         else:
-            return
+            self.log_update("No PID selected. Please select a job PID with the cursor.")
+            return "error"
 
-        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
+    def eval_workfile(self,ext):
+        pid = self.select_text()
+        workdir = "/global/work/{}/{}".format(self.user.get(), pid)
+        f = glob.glob("{}/*.{}".format(workdir, ext))
 
-        outputfile = glob.glob(workdir+"*.out")
-        if len(outputfile) > 1:
-            print("More than one output file found in work dir.")
-            return
+        if len(f) > 1: # might be several files with relevant extension in workdir
+            self.log_update("More than one {} file found in work dir. I don't know which one to use.".format(ext))
+            return "error"
 
-        sub.call(["molden", "{}".format(outputfile[0])])
+        try:
+            int(pid)
+        except ValueError:
+            self.log_update("Selected PID not valid. PID must be integer.")
+            return "error"
+
+        try:
+            s = open(f[0], "r")
+            s.close()
+            return f[0]
+        except (IOError, IndexError):
+            self.log_update("File not found!")
+            return "error"
 
     def kill_job(self):
-        if self.txt.tag_ranges(tk.SEL):
-            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
-        else:
-            return
-
+        pid = self.select_text()
         sub.call(["scancel", "{}".format(pid)])
 
+    def clear_log(self):
+        self.log.config(state=tk.NORMAL)
+        self.log.delete(1.0, tk.END)
+        self.log_update("Welcome to QueueGui!")
+        return None
 
+    def log_update(self, msg):
+        logmsg = "[{}] {}\n".format(str(datetime.now().time()).split(".")[0], msg)
+        self.log.config(state=tk.NORMAL)
+        self.log.insert(tk.END, logmsg)
+        self.log.config(state=tk.DISABLED)
+        self.log.see("end")
+        return None
 
 
 ##########################################################
