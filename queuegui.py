@@ -8,8 +8,8 @@ import tkFont
 class QueueGui(object):
     """Docstring"""
 
-    buttonfont = tkFont(family="Arial", size=10)
-    qfont = tkFont(family="Arial", size=8)
+    buttonfont = tkFont.Font(family="Arial", size=10)
+    qfont = tkFont.Font(family="Arial", size=8)
 
     def __init__(self, master):
         self.master = master
