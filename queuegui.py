@@ -76,9 +76,8 @@ class QueueGui(object):
     def get_q(self):
         
         self.user.set(self.entry_user.get())
-        self.status.set(self.status_menu.get())
 
-        if user == "":
+        if self.user.get().strip() == "":
             cmd = ["squeue", "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
         else:
             cmd = ["squeue", "-u", "{}".format(self.user.get()), "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
