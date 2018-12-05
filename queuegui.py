@@ -42,7 +42,7 @@ class QueueGui(object):
         b_refresh.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
 
 
-        self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options)
+        self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options, command=self.get_q)
         self.status_menu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
 
         b_userfilter = tk.Button(self.topframe, text="Filter by user", width=10, font=self.buttonfont)
@@ -73,7 +73,7 @@ class QueueGui(object):
         b_exit.grid(row=0, column=0, pady=5, padx=5)
 
 
-    def get_q(self):
+    def get_q(self, stat):
         
         self.user.set(self.entry_user.get())
         if self.user.get() == "":
@@ -88,19 +88,17 @@ class QueueGui(object):
         q_run = filter(lambda x: x.split()[4] == "RUNNING", q_all)
         q_pen = filter(lambda x: x.split()[4] == "PENDING", q_all)
 
-        self.status.set(self.status_menu.get())
-
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         
-        if self.status == "All":
+        if stat == "All":
             for line in q_all:
                 self.txt.insert(tk.END, line + "\n")
-        elif self.status == "Running":
+        elif stat == "Running":
             self.txt.insert(tk.END, header + "\n")
             for line in q_run:
                 self.txt.insert(tk.END, line + "\n")
-        elif self.status == "Pending":
+        elif stat == "Pending":
             self.txt.insert(tk.END, header + "\n")
             for line in q_pen:
                 self.txt.insert(tk.END, line + "\n")
