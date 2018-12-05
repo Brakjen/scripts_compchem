@@ -24,7 +24,7 @@ class QueueGui(object):
         self.botframe = tk.Frame()
         self.botframe.pack(side="top", fill="both", expand=False)
 
-        self.status_options = ("All", "Running", "Pending")
+        self.status_options = ("All jobs", "Running jobs", "Pending jobs")
         self.status = tk.StringVar()
         self.status.set(self.status_options[0]) # set default value to "All"
 
@@ -92,14 +92,14 @@ class QueueGui(object):
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         
-        if self.status.get() == "All":
+        if self.status.get() == "All jobs":
             for line in q_all:
                 self.txt.insert(tk.END, line + "\n")
-        elif self.status.get() == "Running":
+        elif self.status.get() == "Running jobs":
             self.txt.insert(tk.END, header + "\n")
             for line in q_run:
                 self.txt.insert(tk.END, line + "\n")
-        elif self.status.get() == "Pending":
+        elif self.status.get() == "Pending jobs":
             self.txt.insert(tk.END, header + "\n")
             for line in q_pen:
                 self.txt.insert(tk.END, line + "\n")
