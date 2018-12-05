@@ -3,6 +3,7 @@
 import Tkinter as tk
 import tkFileDialog
 import subprocess as sub
+import glob
 
 class QueueGui(object):
     """Docstring"""
@@ -39,21 +40,30 @@ class QueueGui(object):
         # top frame widgets
 
         b_refresh = tk.Button(self.topframe, text="Update Queue", width=10, command=self.get_q, font=self.buttonfont)
-        b_refresh.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
+        b_refresh.grid(row=1, column=0, sticky="ew", pady=5, padx=5)
 
+        b_openoutput = tk.Button(self.topframe, text="Open Output", width=10, command=self.open_output, font=self.buttonfont)
+        b_openoutput.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
+
+        b_openinput = tk.Button(self.topframe, text="Open Input", width=10, command=self.open_input, font=self.buttonfont)
+        b_openinput.grid(row=1, column=2, sticky="ew", pady=5, padx=5)
 
         self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options)
-        self.status_menu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
+        self.status_menu.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
 
-        b_cpu = tk.Button(self.topframe, text="Check CPU usage", command=self.cpu_usage, font=self.buttonfont)
-        b_cpu.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
+        b_cpu = tk.Button(self.topframe, text="Check CPU Usage", command=self.cpu_usage, font=self.buttonfont)
+        b_cpu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
         
-        b_statusfilter = tk.Button(self.topframe, text="Filter by status", font=self.buttonfont)
-        b_statusfilter.grid(row=1, column=2, sticky="ew", pady=5, padx=5)
-
+        b_quepasa = tk.Button(self.topframe, text="Que Pasa?", command=self.quepasa, font=self.buttonfont)
+        b_quepasa.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
+        
+        b_moldenout = tk.Button(self.topframe, text="Molden Output", command=self.molden_output, font=self.buttonfont)
+        b_moldenout.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
+        
         self.entry_user = tk.Entry(self.topframe, width=10)
-        self.entry_user.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
+        self.entry_user.grid(row=0, column=0, sticky="ew", pady=5, padx=5)
         self.entry_user.insert(0, self.user.get()) 
+       # self.entry_user.bind("<Return>", self.get_q())
         
         # mid frame widgets
         yscrollbar = tk.Scrollbar(self.midframe)
@@ -69,6 +79,8 @@ class QueueGui(object):
         b_exit = tk.Button(self.botframe, text="Quit", bg="black", fg="red", command=self.master.destroy, font=self.buttonfont)
         b_exit.grid(row=0, column=0, pady=5, padx=5)
 
+        b_killjob = tk.Button(self.botframe, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
+        b_killjob.grid(row=0, column=1, pady=5, padx=5)
 
     def get_q(self):
         
@@ -183,8 +195,94 @@ class QueueGui(object):
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
         self.txt.config(state=tk.DISABLED)
 
+    def open_output(self):
+        if self.txt.tag_ranges(tk.SEL):
+            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
+        else:
+            return
+
+        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
+
+        outputfile = glob.glob(workdir+"*.out")
+        if len(outputfile) > 1:
+            print("More than one output file found in work dir.")
+            return
+        
+        try:
+            lines = open(outputfile[0], "r").readlines()
+        except (IOError, IndexError):
+            print("File not found.")
+            return
+        
+        self.txt.config(state=tk.NORMAL)
+        self.txt.delete(1.0, tk.END)
+        for line in lines:
+            self.txt.insert(tk.END, line)
+        self.txt.config(state=tk.DISABLED)
+
+    def open_input(self):
+        if self.txt.tag_ranges(tk.SEL):
+            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
+        else:
+            return
+
+        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
+
+        inputfile = glob.glob(workdir+"*.com")
+        if len(inputfile) > 1:
+            print("More than one input file found in work dir.")
+            return
+        
+        try:
+            lines = open(inputfile[0], "r").readlines()
+        except (IOError, IndexError):
+            print("File not found.")
+            return
+        
+        self.txt.config(state=tk.NORMAL)
+        self.txt.delete(1.0, tk.END)
+        for line in lines:
+            self.txt.insert(tk.END, line)
+        self.txt.config(state=tk.DISABLED)
+
     def quepasa(self):
-        pass
+        if self.txt.tag_ranges(tk.SEL):
+            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
+        else:
+            return
+
+        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
+
+        outputfile = glob.glob(workdir+"*.out")
+        if len(outputfile) > 1:
+            print("More than one output file found in work dir.")
+            return
+
+        sub.call(["bash", "/home/ambr/bin/gaussian_howsitgoing.sh", "{}".format(outputfile[0])])
+
+    def molden_output(self):
+        if self.txt.tag_ranges(tk.SEL):
+            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
+        else:
+            return
+
+        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
+
+        outputfile = glob.glob(workdir+"*.out")
+        if len(outputfile) > 1:
+            print("More than one output file found in work dir.")
+            return
+
+        sub.call(["molden", "{}".format(outputfile[0])])
+
+    def kill_job(self):
+        if self.txt.tag_ranges(tk.SEL):
+            pid = self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
+        else:
+            return
+
+        sub.call(["scancel", "{}".format(pid)])
+
 
 
 
