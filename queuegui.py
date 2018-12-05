@@ -9,6 +9,7 @@ class QueueGui(object):
     """Docstring"""
 
     buttonfont = ("Arial", 10)
+    qfont = ("Arial". 8)
 
     def __init__(self, master):
         self.master = master
@@ -38,17 +39,17 @@ class QueueGui(object):
     def place_widgets(self):
         # top frame widgets
 
-        b_refresh = tk.Button(self.topframe, text="Refresh", width=10, command=self.get_q)
+        b_refresh = tk.Button(self.topframe, text="Refresh", width=10, command=self.get_q, font=buttonfont)
         b_refresh.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
 
 
         self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options)
         self.status_menu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
 
-        b_userfilter = tk.Button(self.topframe, text="Filter by user", width=10)
+        b_userfilter = tk.Button(self.topframe, text="Filter by user", width=10, font=buttonfont)
         b_userfilter.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
 
-        b_cpu = tk.Button(self.topframe, text="Check CPU usage", command=self.test)
+        b_cpu = tk.Button(self.topframe, text="Check CPU usage", command=self.test, font=buttonfont)
         b_cpu.grid(row=1, column=3, sticky="ew", pady=5, padx=5)
         
         b_statusfilter = tk.Button(self.topframe, text="Filter by status")
@@ -69,7 +70,7 @@ class QueueGui(object):
         yscrollbar.config(command=self.txt.yview)
 
         # bottom frame widgets
-        b_exit = tk.Button(self.botframe, text="Quit", bg="black", fg="red", command=self.master.destroy)
+        b_exit = tk.Button(self.botframe, text="Quit", bg="black", fg="red", command=self.master.destroy, font=buttonfont)
         b_exit.grid(row=0, column=0, pady=5, padx=5)
 
 
@@ -88,7 +89,7 @@ class QueueGui(object):
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         for line in q:
-            self.txt.insert(tk.END, line + "\n")
+            self.txt.insert(tk.END, line + "\n". font=self.qfont)
         self.txt.config(state=tk.DISABLED)
 
     def cpu_usage(self):
