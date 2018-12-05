@@ -9,7 +9,7 @@ class QueueGui(object):
     """Docstring"""
 
     buttonfont = ("Arial", 10)
-    qfont = ("Arial". 8)
+    qfont = ("Arial", 8)
 
     def __init__(self, master):
         self.master = master
