@@ -170,13 +170,11 @@ class QueueGui(object):
                 self.txt.insert(tk.END, "{} {} {} {} {} {} {}\n".format(user[i], 
                                                                  (maxlen[0] - len(user[i])) * " ",
                                                                  cpu_running[i],
-                                                                 (maxlen[1] - len(cpu_running[i])) * " ",
+                                                                 (maxlen[1] - len(str(cpu_running[i]))) * " ",
                                                                  oftotal[i],
                                                                  (maxlen[2] - len(oftotal[i])) * " ",
                                                                  cpu_pending[i]))
                 
-                self.txt.insert(tk.END, "{} {} {} {}\n".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
-                self.txt.insert(tk.END, "{} {} {} {}\n".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
         
         # convert back to floats for the summation
