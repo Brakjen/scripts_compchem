@@ -3,13 +3,13 @@
 import Tkinter as tk
 import tkFileDialog
 import subprocess as sub
-from Tkinter.font import Font
+import tkFont
 
 class QueueGui(object):
     """Docstring"""
 
-    buttonfont = Font(family="Arial", size=10)
-    qfont = Font(family="Arial", size=8)
+    buttonfont = tkFont(family="Arial", size=10)
+    qfont = tkFont(family="Arial", size=8)
 
     def __init__(self, master):
         self.master = master
