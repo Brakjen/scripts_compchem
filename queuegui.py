@@ -159,6 +159,7 @@ class QueueGui(object):
                 user[i] += " <<<<<<"
         
         self.txt.config(state=tk.NORMAL)
+        self.txt.delete(1.0, tk.END)
         self.txt.insert(tk.END, "-----------------------------------------------------------------")
         self.txt.insert(tk.END, "User \t\t Running CPUs \t % of total \t Pending CPUs")
         self.txt.insert(tk.END, "-----------------------------------------------------------------")
@@ -171,7 +172,7 @@ class QueueGui(object):
             elif len(user[i]) > 16:
                 self.txt.insert(tk.END, "{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
         self.txt.insert(tk.END, "-----------------------------------------------------------------")
-        self.txt.insert(tk.END, "SUM: \t\t {} \t\t {} \t\t {}".format(sum(cpu_running[:num]), str(sum(oftotal[:num]))[0:5], sum(cpu_pending[:num])))
+        self.txt.insert(tk.END, "SUM: \t\t {} \t\t {} \t\t {}".format(sum(cpu_running), str(sum(oftotal))[0:5], sum(cpu_pending)))
         self.txt.insert(tk.END, "-----------------------------------------------------------------")
         self.txt.config(state=tk.DISABLED)
 
