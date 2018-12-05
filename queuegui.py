@@ -38,18 +38,15 @@ class QueueGui(object):
     def place_widgets(self):
         # top frame widgets
 
-        b_refresh = tk.Button(self.topframe, text="Refresh", width=10, command=self.get_q, font=self.buttonfont)
-        b_refresh.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
+        b_refresh = tk.Button(self.topframe, text="Update Queue", width=10, command=self.get_q, font=self.buttonfont)
+        b_refresh.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
 
 
         self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options)
         self.status_menu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
 
-        b_userfilter = tk.Button(self.topframe, text="Filter by user", width=10, font=self.buttonfont)
-        b_userfilter.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
-
-        b_cpu = tk.Button(self.topframe, text="Check CPU usage", command=self.test, font=self.buttonfont)
-        b_cpu.grid(row=1, column=3, sticky="ew", pady=5, padx=5)
+        b_cpu = tk.Button(self.topframe, text="Check CPU usage", command=self.cpu_usage, font=self.buttonfont)
+        b_cpu.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
         
         b_statusfilter = tk.Button(self.topframe, text="Filter by status", font=self.buttonfont)
         b_statusfilter.grid(row=1, column=2, sticky="ew", pady=5, padx=5)
@@ -108,17 +105,79 @@ class QueueGui(object):
         self.txt.config(state=tk.DISABLED)
 
     def cpu_usage(self):
-        self.txt.delete(1.0, tk.END)
+        cmd = ["squeue", "-o", "%u %C %t"]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        q = process.stdout.read().splitlines()
+        
+        # Total number of CPU on Stallo, taken from
+        # https://www.sigma2.no/content/stallo
+        cpu_stallo_total = float(14116)
+        
+        # all jobs in queue
+        q = map(lambda x: x.split(), q)
+        # only running jobs
+        r = filter(lambda x: x[-1] == "R", q)
+        # only pending jobs
+        p = filter(lambda x: x[-1] == "PD", q)
+        
+        # Initialize list to contain the users from all jobs
+        users = []
+        for job in q:
+            for j,el in enumerate(job):
+                if j == 0:
+                    users.append(el)
+        
+        # Initialize a dict in which the sum of all CPUs will be accumulated
+        cpu_running = {usr: 0 for usr in set(users)}
+        cpu_pending = {usr: 0 for usr in set(users)}
+        
+        # perform the sum for running cpus
+        for job in r:
+            for u in cpu_running.keys():
+                if u in job:
+                    cpu_running[u] += int(job[1])
+        # and for pending cpus. Getting users from same list as above, to keep the order consistent
+        for job in p:
+            for u in cpu_running.keys():
+                if u in job:
+                    cpu_pending[u] += int(job[1])
+        
+        
+        # zipping and sorting
+        zipped = sorted(zip(cpu_running.keys(), [c for user, c in cpu_running.items()], [c for user, c in cpu_pending.items()]), key=lambda x: x[1], reverse=True)
+        
+        # unzipping
+        user, cpu_running, cpu_pending = zip(*zipped)
+        # get ratio of running cpus to stallo's total
+        oftotal = map(lambda x: float(x) / cpu_stallo_total * 100, cpu_running)
+        
+        # adding arrow to username.. First convert from tuple to list
+        user = [u for u in user]
+        choco = ["ambr", "mobst", "ljilja", "diego", "kathrin"]
+        for i,u in enumerate(user):
+            if u in choco:
+                user[i] += " <<<<<<"
+        
         self.txt.config(state=tk.NORMAL)
-        self.txt.insert(tk.END, "CPU usage on stallo\n")
+        self.txt.insert(tk.END, "-----------------------------------------------------------------")
+        self.txt.insert(tk.END, "User \t\t Running CPUs \t % of total \t Pending CPUs")
+        self.txt.insert(tk.END, "-----------------------------------------------------------------")
+        
+        for i in range(len(user)):
+            if len(user[i]) > 6:
+                self.txt.insert(tk.END, "{} \t {} \t\t {} \t\t {}".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
+            elif len(user[i]) < 7:
+                self.txt.insert(tk.END, "{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
+            elif len(user[i]) > 16:
+                self.txt.insert(tk.END, "{} \t\t {} \t\t {} \t\t {}".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
+        self.txt.insert(tk.END, "-----------------------------------------------------------------")
+        self.txt.insert(tk.END, "SUM: \t\t {} \t\t {} \t\t {}".format(sum(cpu_running[:num]), str(sum(oftotal[:num]))[0:5], sum(cpu_pending[:num])))
+        self.txt.insert(tk.END, "-----------------------------------------------------------------")
         self.txt.config(state=tk.DISABLED)
-        self.txt.config(font=qfont)
 
     def quepasa(self):
         pass
 
-    def test(self):
-        print(self.user.get())
 
 
 ##########################################################
