@@ -33,7 +33,7 @@ class QueueGui(object):
 
         self.place_widgets()
 
-        self.get_q()
+        self.get_q(self.status)
 
     def place_widgets(self):
         # top frame widgets
