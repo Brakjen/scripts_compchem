@@ -63,8 +63,15 @@ class QueueGui(object):
         self.entry_user = tk.Entry(self.topframe, width=10)
         self.entry_user.grid(row=0, column=0, sticky="ew", pady=5, padx=5)
         self.entry_user.insert(0, self.user.get()) 
-       # self.entry_user.bind("<Return>", self.get_q())
-        
+        self.entry_user.bind("<Return>", self.get_q)
+ 
+
+        yscroll_log = tk.Scrollbar(self.topframe)
+        yscroll_log.grid(row=0, rowspan=2, column=5, pady=2, padx=2, sticky="ns")
+        self.log = tk.Text(self.topframe, yscrollcommand=yscroll_log.set, bg="black", height=7, width=90)
+        self.log.grid(row=0, rowspan=2, column=4, pady=5, padx=5, sticky="nsew")
+        yscroll_log.config(command=self.log.yview)
+
         # mid frame widgets
         yscrollbar = tk.Scrollbar(self.midframe)
         yscrollbar.grid(row=0, column=1, sticky="ns", pady=2, padx=2)
@@ -82,7 +89,7 @@ class QueueGui(object):
         b_killjob = tk.Button(self.botframe, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
         b_killjob.grid(row=0, column=1, pady=5, padx=5)
 
-    def get_q(self):
+    def get_q(self, *args):
         
         self.user.set(self.entry_user.get())
 
@@ -290,7 +297,7 @@ class QueueGui(object):
 # run program
 if __name__ == "__main__":
     master = tk.Tk()
-    master.geometry("1000x500")
+    master.geometry("1200x500")
     master.title("QueueGui")
     app = QueueGui(master)
     master.mainloop()
