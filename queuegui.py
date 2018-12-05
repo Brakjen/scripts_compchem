@@ -108,6 +108,7 @@ class QueueGui(object):
 # run program
 if __name__ == "__main__":
     master = tk.Tk()
+    master.geometry("500x1000")
     master.title("QueueGui")
     app = QueueGui(master)
     master.mainloop()
