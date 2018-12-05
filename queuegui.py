@@ -42,7 +42,7 @@ class QueueGui(object):
         b_refresh.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
 
 
-        self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options, command=self.get_q)
+        self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options)
         self.status_menu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
 
         b_userfilter = tk.Button(self.topframe, text="Filter by user", width=10, font=self.buttonfont)
@@ -73,17 +73,19 @@ class QueueGui(object):
         b_exit.grid(row=0, column=0, pady=5, padx=5)
 
 
-    def get_q(self, stat):
+    def get_q(self):
         
         self.user.set(self.entry_user.get())
-        if self.user.get() == "":
+        self.status.set(self.status_menu.get())
+
+        if user == "":
             cmd = ["squeue", "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
         else:
             cmd = ["squeue", "-u", "{}".format(self.user.get()), "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
-        q_all = process.stdout.read().splitlines()
 
+        q_all = process.stdout.read().splitlines()
         header = q_all[0]
         q_run = filter(lambda x: x.split()[4] == "RUNNING", q_all)
         q_pen = filter(lambda x: x.split()[4] == "PENDING", q_all)
@@ -91,14 +93,14 @@ class QueueGui(object):
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         
-        if stat == "All":
+        if self.status.get() == "All":
             for line in q_all:
                 self.txt.insert(tk.END, line + "\n")
-        elif stat == "Running":
+        elif self.status.get() == "Running":
             self.txt.insert(tk.END, header + "\n")
             for line in q_run:
                 self.txt.insert(tk.END, line + "\n")
-        elif stat == "Pending":
+        elif self.status.get() == "Pending":
             self.txt.insert(tk.END, header + "\n")
             for line in q_pen:
                 self.txt.insert(tk.END, line + "\n")
