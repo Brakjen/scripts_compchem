@@ -84,7 +84,7 @@ class QueueGui(object):
         process = sub.Popen(cmd, stdout=sub.PIPE)
         q_all = process.stdout.read().splitlines()
 
-        header = q[0]
+        header = q_all[0]
         q_run = filter(lambda x: x.split()[4] == "RUNNING", q)
         q_pen = filter(lambda x: x.split()[4] == "PENDING", q)
 
@@ -97,9 +97,11 @@ class QueueGui(object):
             for line in q_all:
                 self.txt.insert(tk.END, line + "\n")
         elif self.status == "Running":
+            self.txt.insert(tk.END, header + "\n")
             for line in q_run:
                 self.txt.insert(tk.END, line + "\n")
         elif self.status == "Pending":
+            self.txt.insert(tk.END, header + "\n")
             for line in q_pen:
                 self.txt.insert(tk.END, line + "\n")
 
