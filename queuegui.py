@@ -88,7 +88,7 @@ class QueueGui(object):
         q_run = filter(lambda x: x.split()[4] == "RUNNING", q_all)
         q_pen = filter(lambda x: x.split()[4] == "PENDING", q_all)
 
-        self.status.set(self.statusfilter.get())
+        self.status.set(self.status_menu.get())
 
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
