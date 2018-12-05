@@ -8,8 +8,8 @@ import subprocess as sub
 class QueueGui(object):
     """Docstring"""
 
-    buttonfont = ("Arial", 10)
-    qfont = ("Arial", 8)
+    buttonfont = tk.Font(family="Arial", size=10)
+    qfont = tk.Font(family="Arial", size=8)
 
     def __init__(self, master):
         self.master = master
@@ -89,7 +89,7 @@ class QueueGui(object):
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         for line in q:
-            self.txt.insert(tk.END, line + "\n". font=self.qfont)
+            self.txt.insert(tk.END, line + "\n")
         self.txt.config(state=tk.DISABLED)
 
     def cpu_usage(self):
@@ -97,6 +97,7 @@ class QueueGui(object):
         self.txt.config(state=tk.NORMAL)
         self.txt.insert(tk.END, "CPU usage on stallo\n")
         self.txt.config(state=tk.DISABLED)
+        self.txt.config(font=qfont)
 
     def quepasa(self):
         pass
