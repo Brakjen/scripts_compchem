@@ -46,7 +46,7 @@ class QueueGui(object):
         b_userfilter = tk.Button(self.topframe, text="Filter by user", width=10)
         b_userfilter.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
 
-        b_cpu = tk.Button(self.topframe, text="Check CPU usage", command=self.cpu_usage)
+        b_cpu = tk.Button(self.topframe, text="Check CPU usage", command=self.test)
         b_cpu.grid(row=1, column=3, sticky="ew", pady=5, padx=5)
         
         b_statusfilter = tk.Button(self.topframe, text="Filter by status")
@@ -73,7 +73,8 @@ class QueueGui(object):
 
     def get_q(self):
         
-        if len(self.user.get()) == 0:
+        self.user.set(self.entry_user.get())
+        if self.user.get() == "":
             cmd = ["squeue", "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
         else:
             cmd = ["squeue", "-u", "{}".format(self.user.get()), "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
@@ -96,6 +97,9 @@ class QueueGui(object):
 
     def quepasa(self):
         pass
+
+    def test(self):
+        print(self.user.get())
 
 
 ##########################################################
