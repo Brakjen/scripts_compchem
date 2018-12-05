@@ -74,7 +74,7 @@ class QueueGui(object):
     def get_q(self):
         cmd = ["squeue", "-u", "{}", "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R".format(self.user.get())]
         process = sub.Popen(cmd, stdout=sub.PIPE)
-        q = process.stdout.read().splitlines
+        q = process.stdout.read().splitlines()
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         for line in q:
