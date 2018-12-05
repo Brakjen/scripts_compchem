@@ -149,7 +149,7 @@ class QueueGui(object):
         # unzipping
         user, cpu_running, cpu_pending = zip(*zipped)
         # get ratio of running cpus to stallo's total
-        oftotal = map(lambda x: float(x) / cpu_stallo_total * 100, cpu_running)
+        oftotal = map(lambda x: str(float(x) / cpu_stallo_total * 100)[0:5], cpu_running)
         
         # adding arrow to username.. First convert from tuple to list
         user = [u for u in user]
@@ -164,12 +164,24 @@ class QueueGui(object):
         self.txt.insert(tk.END, "User Running CPUs % of total Pending CPUs\n")
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
         
+
+        maxlen = (max(len(x) for x in user) , max(len(str(x)) for x in cpu_running), max(len(str(x)) for x in oftotal), max(len(str(x)) for x in cpu_pending))
         for i in range(len(user)):
-                self.txt.insert(tk.END, "{} {} {} {}\n".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
+                self.txt.insert(tk.END, "{} {} {} {} {} {} {}\n".format(user[i], 
+                                                                 (maxlen[0] - len(user[i])) * " ",
+                                                                 cpu_running[i],
+                                                                 (maxlen[1] - len(cpu_running[i])) * " ",
+                                                                 oftotal[i],
+                                                                 (maxlen[2] - len(oftotal[i])) * " ",
+                                                                 cpu_pending[i]))
+                
                 self.txt.insert(tk.END, "{} {} {} {}\n".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
                 self.txt.insert(tk.END, "{} {} {} {}\n".format(user[i], cpu_running[i], str(oftotal[i])[0:5], cpu_pending[i]))
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
-        self.txt.insert(tk.END, "SUM: {} {} {}\n".format(sum(cpu_running), str(sum(oftotal))[0:5], sum(cpu_pending)))
+        
+        # convert back to floats for the summation
+        oftotal = map(float, oftotal)
+        self.txt.insert(tk.END, "SUM: {} {} {}\n".format(sum(cpu_running), sum(oftotal), sum(cpu_pending)))
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
         self.txt.config(state=tk.DISABLED)
 
