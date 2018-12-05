@@ -76,7 +76,7 @@ class QueueGui(object):
         if self.user.get() == "":
             cmd = ["squeue", "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
         else:
-            cmd = ["squeue", "-S", "-u", "{}".format(self.user.get()), "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
+            cmd = ["squeue", "-u", "{}".format(self.user.get()), "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
         q = process.stdout.read().splitlines()
