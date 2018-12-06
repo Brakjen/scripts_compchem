@@ -5,6 +5,7 @@ import tkFileDialog
 import subprocess as sub
 import glob
 from datetime import datetime
+import os
 
 class QueueGui(object):
     """Docstring"""
@@ -47,14 +48,20 @@ class QueueGui(object):
     def place_widgets(self):
         # top frame widgets
 
-        b_refresh = tk.Button(self.topframe, text="Update Queue", width=10, command=self.get_q, font=self.buttonfont)
+        b_refresh = tk.Button(self.topframe, text="Update Queue", command=self.get_q, font=self.buttonfont)
         b_refresh.grid(row=1, column=0, sticky="ew", pady=5, padx=5)
 
-        b_openoutput = tk.Button(self.topframe, text="Open Output", width=10, command=self.open_output, font=self.buttonfont)
+        b_openoutput = tk.Button(self.topframe, text="Output file", command=self.open_output, font=self.buttonfont)
         b_openoutput.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
 
-        b_openinput = tk.Button(self.topframe, text="Open Input", width=10, command=self.open_input, font=self.buttonfont)
+        b_openinput = tk.Button(self.topframe, text="Input File", command=self.open_input, font=self.buttonfont)
         b_openinput.grid(row=1, column=2, sticky="ew", pady=5, padx=5)
+
+        b_showsubmitscript = tk.Button(self.topframe, text="Submit Script", command=self.open_submitscript, font=self.buttonfont)
+        b_showsubmitscript.grid(row=2, column=0)
+
+        b_showjobinfo = tk.Button(self.topframe, text="Job Info", command=self.open_jobinfo, font=self.buttonfont)
+        b_showjobinfo.grid(row=2, column=1)
 
         self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options)
         self.status_menu.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
@@ -75,9 +82,9 @@ class QueueGui(object):
  
 
         yscroll_log = tk.Scrollbar(self.topframe)
-        yscroll_log.grid(row=0, rowspan=2, column=5, pady=2, padx=2, sticky="ns")
+        yscroll_log.grid(row=0, rowspan=3, column=5, pady=2, padx=2, sticky="ns")
         self.log = tk.Text(self.topframe, yscrollcommand=yscroll_log.set, bg="black", fg="white", height=7, width=90)
-        self.log.grid(row=0, rowspan=2, column=4, pady=5, padx=5, sticky="nsew")
+        self.log.grid(row=0, rowspan=3, column=4, pady=5, padx=5, sticky="nsew")
         yscroll_log.config(command=self.log.yview)
 
         # mid frame widgets
@@ -97,7 +104,7 @@ class QueueGui(object):
         b_killjob = tk.Button(self.botframe, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
         b_killjob.grid(row=0, column=1, pady=5, padx=5)
 
-    def get_q(self, *args):
+    def get_q(self, *args): # *args needed for binding the function to <Return> entry user field
         
         self.user.set(self.entry_user.get())
 
@@ -216,7 +223,11 @@ class QueueGui(object):
         self.txt.config(state=tk.DISABLED)
 
     def open_output(self):
-        outputfile = self.eval_workfile("out")
+        outputfile = self.eval_workfile("output")
+        if "ErrorCode_" in outputfile:
+            self.log_update(outputfile)
+            return outputfile
+
         f = open(outputfile, "r")
         lines = f.readlines()
         f.close()
@@ -228,7 +239,11 @@ class QueueGui(object):
         self.txt.config(state=tk.DISABLED)
 
     def open_input(self):
-        inputfile = self.eval_workfile("com")
+        inputfile = self.eval_workfile("input")
+        if "ErrorCode_" in inputfile:
+            self.log_update(inputfile)
+            return inputfile
+
         f = open(inputfile, "r")
         lines = f.readlines()
         f.close()
@@ -240,16 +255,20 @@ class QueueGui(object):
         self.txt.config(state=tk.DISABLED)
 
     def quepasa(self):
-        outputfile = self.eval_workfile("out")
-        if outputfile == "error":
-            return "error"
+        outputfile = self.eval_workfile("output")
+        if "ErrorCode_" in outputfile:
+            self.log_update(outputfile)
+            return outputfile
+
         self.log_update("Que Pasa? {}".format(outputfile))
         sub.call(["bash", "/home/ambr/bin/gaussian_howsitgoing.sh", "{}".format(outputfile)])
 
     def molden_output(self):
-        outputfile = self.eval_workfile("out")
-        if outputfile == "error":
-            return "error"
+        outputfile = self.eval_workfile("output")
+        if "ErrorCode_" in outputfile:
+            self.log_update(outputfile)
+            return outputfile
+
         self.log_update("molden {}".format(outputfile))
         sub.call(["molden", "{}".format(outputfile)])
 
@@ -257,35 +276,72 @@ class QueueGui(object):
         if self.txt.tag_ranges(tk.SEL):
             return self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
         else:
-            self.log_update("No PID selected. Please select a job PID with the cursor.")
-            return "error"
+            self.log_update("No PID selected. ErrorCode_las02")
+            return "ErrorCode_las02"
 
-    def eval_workfile(self,ext):
+    def eval_workfile(self,filetype):
         pid = self.select_text()
-        workdir = "/global/work/{}/{}".format(self.user.get(), pid)
-        f = glob.glob("{}/*.{}".format(workdir, ext))
+        try: # check that the selected text is a valid pid
+            int(pid)
+        except ValueError:
+            self.log_update("PID must be an integer. ErrorCode_xal49")
+            return "ErrorCode_xal49"
 
-        if len(f) > 1: # might be several files with relevant extension in workdir
-            self.log_update("More than one {} file found in work dir. I don't know which one to use.".format(ext))
-            return "error"
+        # define the workdir. using user variable to access other users files
+        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
+        # getting jobname from the scontrol command
+        jobname = self.get_jobname(pid)
 
+        # determine which extension to use
+        if filetype == "output":
+            ext = [".out"]
+        elif filetype == "input":
+            ext = [".com", ".inp"]
+        else:
+            self.log_update("Filetype '{}' not supported. ErrorCode_tot91".format(filetype))
+            return "ErrorCode_tot91"
+
+        usefile = None
+        for x in ext:
+            f = workdir + jobname + x
+            if os.path.isfile(f):
+                usefile = f
+                break # a useable file was found, so we break out of the loop. no need to evaluate other extensions
+
+        # make sure some file actually was found by checking that the initial value of 'usefile' did not change from None
+        if usefile == None:
+            self.log_update("No file found. ErrorCode_tyr86")
+            return "ErrorCode_tyr86"
+
+        # now we attempt to open the found file
+        try:
+            s = open(usefile, "r")
+            s.close()
+            self.log_update("Using this file: {}".format(usefile))
+            return usefile # return the fill path to the file, to be used by subsequent methods
+        except IOError:
+            self.log_update("File not found: {}. ErrorCode_poz32".format(usefile))
+            return "ErrorCode_poz32"
+
+    def get_jobname(self, pid):
         try:
             int(pid)
         except ValueError:
-            self.log_update("Selected PID not valid. PID must be integer.")
-            return "error"
+            self.log_update("PID must be an integer. ErrorCode_mel73")
+            return "ErrorCode_mel73"
 
-        try:
-            s = open(f[0], "r")
-            s.close()
-            return f[0]
-        except (IOError, IndexError):
-            self.log_update("File not found!")
-            return "error"
+        cmd = ["scontrol", "show", "jobid", pid]
 
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        return process.stdout.read().splitlines()[0].split()[1].split("=")[1]
+        
+    
     def kill_job(self):
         pid = self.select_text()
-        sub.call(["scancel", "{}".format(pid)])
+        cmd = ["scancel", pid]
+        self.log_update(" ".join(cmd))
+        sub.call(cmd)
+        self.get_q()
 
     def clear_log(self):
         self.log.config(state=tk.NORMAL)
@@ -300,6 +356,45 @@ class QueueGui(object):
         self.log.config(state=tk.DISABLED)
         self.log.see("end")
         return None
+
+    def open_submitscript(self):
+        pid = self.select_text()
+        try:
+            int(pid)
+        except ValueError:
+            self.log_update("PID must be an integer. ErrorCode_toj60")
+            return ErrorCode_toj60
+
+        cmd = ["scontrol", "show", "jobid", "-dd", pid]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        subscript = process.stdout.read().split("BatchScript=\n")[1]
+       
+        self.log_update(" ".join(cmd))
+        self.txt.config(state=tk.NORMAL)
+        self.txt.delete(1.0, tk.END)
+        for line in subscript:
+            self.txt.insert(tk.END, line)
+        self.txt.config(state=tk.DISABLED)
+
+    def open_jobinfo(self):
+        pid = self.select_text()
+        try:
+            int(pid)
+        except ValueError:
+            self.log_update("PID must be an integer. ErrorCode_toj60")
+            return ErrorCode_toj60
+
+        cmd = ["scontrol", "show", "jobid", pid]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        jobinfo = process.stdout.read().split()
+
+        self.log_update(" ".join(cmd))
+        self.txt.config(state=tk.NORMAL)
+        self.txt.delete(1.0, tk.END)
+        for line in jobinfo:
+            self.txt.insert(tk.END, line + "\n")
+        self.txt.config(state=tk.DISABLED)
+       
 
 
 ##########################################################
