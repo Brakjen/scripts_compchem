@@ -27,12 +27,15 @@ class QueueGui(object):
         self.botframe = tk.Frame()
         self.botframe.pack(side="top", fill="both", expand=False)
 
-        self.status_options = ("All jobs", "Running jobs", "Pending jobs")
+        self.status_options = ("All jobs", "Running jobs", "Pending jobs", "Completed Jobs", "Timeouted Jobs", "Cancelled Jobs")
         self.status = tk.StringVar()
         self.status.set(self.status_options[0]) # set default value to "All"
 
         self.user = tk.StringVar()
         self.user.set("ambr") # set default user to "ambr"
+
+        self.job_starttime = tk.StringVar()
+        self.job_starttime.set(datetime.now().date()) # default option will be the current date
 
         self.place_widgets()
 
@@ -62,6 +65,9 @@ class QueueGui(object):
 
         b_showjobinfo = tk.Button(self.topframe, text="Job Info", command=self.open_jobinfo, font=self.buttonfont)
         b_showjobinfo.grid(row=2, column=1)
+
+        b_jobhis = tk.Button(self.topframe, text="Job History", command=self.open_jobhis, font=self.buttonfont)
+        b_jobhis.grid(row=2, column=2)
 
         self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options)
         self.status_menu.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
@@ -108,7 +114,7 @@ class QueueGui(object):
         
         self.user.set(self.entry_user.get())
 
-        if self.user.get().strip() == "":
+        if self.user.get().strip() == "" or self.user.get() == "all":
             cmd = ["squeue", "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
         else:
             cmd = ["squeue", "-u", "{}".format(self.user.get()), "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
@@ -394,7 +400,25 @@ class QueueGui(object):
         for line in jobinfo:
             self.txt.insert(tk.END, line + "\n")
         self.txt.config(state=tk.DISABLED)
+
+    def open_jobhis(self):
+        # sacct --starttime $TODAY --format=User%4,JobID,Jobname%50,state,time,nnodes%2,ncpus%3,CPUTime,elapsed,Start
+        self.user.set(self.entry_user.get())
+        if self.user.get().strip() == "" or self.user.get().strip() == "all":
+            cmd = ["sacct", "-a", "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state,time,nnodes%2,CPUTime,elapsed,Start"]
+        else:
+            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state,time,nnodes%2,CPUTime,elapsed,Start"]
+
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        jh = process.stdout.readlines()
        
+        self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
+        self.txt.config(state=tk.NORMAL)
+        self.txt.delete(1.0, tk.END)
+        for line in jh:
+            self.txt.insert(tk.END, line + "\n")
+        self.txt.config(state=tk.DISABLED)
+
 
 
 ##########################################################
