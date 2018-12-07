@@ -4,7 +4,7 @@ import Tkinter as tk
 import tkFileDialog
 import subprocess as sub
 import glob
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 from collections import OrderedDict
 
@@ -15,18 +15,22 @@ class QueueGui(object):
     qfont = ("Arial", 8)
 
     def __init__(self, master):
-        self.master = master
+        #master.geometry("1200x500")
+        master.title("QueueGui")
 
-        self.topframe = tk.Frame()
-        self.topframe.pack(side="top", fill="both", expand=False)
+        self.topframeleft = tk.Frame(master)
+        self.topframeleft.grid(row=0, column=0, sticky="nsew")
 
-        self.midframe = tk.Frame()
-        self.midframe.pack(side="top", fill="both", expand=True)
+        self.topframeright = tk.Frame(master)
+        self.topframeright.grid(row=0, column=1, sticky="nsew")
+
+        self.midframe = tk.Frame(master)
+        self.midframe.grid(row=1, column=0, columnspan=2, sticky="nsew")
         self.midframe.grid_columnconfigure(0, weight=1)
         self.midframe.grid_rowconfigure(0, weight=1)
 
-        self.botframe = tk.Frame()
-        self.botframe.pack(side="top", fill="both", expand=False)
+        self.botframe = tk.Frame(master)
+        self.botframe.grid(row=2, column=0, sticky="nsew")
 
         self.status_options = OrderedDict()
         self.status_options["All Jobs"] = "all"
@@ -36,12 +40,14 @@ class QueueGui(object):
         self.status_options["Cancelled Jobs"] = "ca"
         self.status_options["Timeouted Jobs"] = "to"
 
+        
         self.status = tk.StringVar()
         self.status.set(self.status_options.keys()[0]) # set default value to "All"
 
         self.user = tk.StringVar()
         self.user.set("ambr") # set default user to "ambr"
 
+        self.job_starttime_options = [datetime.now().date() - timedelta(days=i) for i in range(14)]
         self.job_starttime = tk.StringVar()
         self.job_starttime.set(datetime.now().date()) # default option will be the current date
 
@@ -52,52 +58,51 @@ class QueueGui(object):
         self.log_update("Welcome to QueueGui!")
 
 
-
-
-
-
     def place_widgets(self):
         # top frame widgets
 
-        b_refresh = tk.Button(self.topframe, text="Update Queue", command=self.get_q, font=self.buttonfont)
+        b_refresh = tk.Button(self.topframeleft, text="Update Queue", command=self.get_q, font=self.buttonfont)
         b_refresh.grid(row=1, column=0, sticky="ew", pady=5, padx=5)
 
-        b_openoutput = tk.Button(self.topframe, text="Output file", command=self.open_output, font=self.buttonfont)
+        b_openoutput = tk.Button(self.topframeleft, text="Output file", command=self.open_output, font=self.buttonfont)
         b_openoutput.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
 
-        b_openinput = tk.Button(self.topframe, text="Input File", command=self.open_input, font=self.buttonfont)
+        b_openinput = tk.Button(self.topframeleft, text="Input File", command=self.open_input, font=self.buttonfont)
         b_openinput.grid(row=1, column=2, sticky="ew", pady=5, padx=5)
 
-        b_showsubmitscript = tk.Button(self.topframe, text="Submit Script", command=self.open_submitscript, font=self.buttonfont)
+        b_showsubmitscript = tk.Button(self.topframeleft, text="Submit Script", command=self.open_submitscript, font=self.buttonfont)
         b_showsubmitscript.grid(row=2, column=0)
 
-        b_showjobinfo = tk.Button(self.topframe, text="Job Info", command=self.open_jobinfo, font=self.buttonfont)
+        optionmenu_jobhis_starttime = tk.OptionMenu(self.topframeleft, self.job_starttime, *self.job_starttime_options)
+        optionmenu_jobhis_starttime.grid(row=2, column=3, sticky="ew")
+
+        b_showjobinfo = tk.Button(self.topframeleft, text="Job Info", command=self.open_jobinfo, font=self.buttonfont)
         b_showjobinfo.grid(row=2, column=1)
 
-        b_jobhis = tk.Button(self.topframe, text="Job History", command=self.open_jobhis, font=self.buttonfont)
+        b_jobhis = tk.Button(self.topframeleft, text="Job History", command=self.open_jobhis, font=self.buttonfont)
         b_jobhis.grid(row=2, column=2)
 
-        self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options.keys())
-        self.status_menu.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
+        status_menu = tk.OptionMenu(self.topframeleft, self.status, *self.status_options.keys())
+        status_menu.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
 
-        b_cpu = tk.Button(self.topframe, text="Check CPU Usage", command=self.cpu_usage, font=self.buttonfont)
+        b_cpu = tk.Button(self.topframeleft, text="Check CPU Usage", command=self.cpu_usage, font=self.buttonfont)
         b_cpu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
         
-        b_quepasa = tk.Button(self.topframe, text="Que Pasa?", command=self.quepasa, font=self.buttonfont)
+        b_quepasa = tk.Button(self.topframeleft, text="Que Pasa?", command=self.quepasa, font=self.buttonfont)
         b_quepasa.grid(row=1, column=3, sticky="ew", pady=5, padx=5)
         
-        b_moldenout = tk.Button(self.topframe, text="Molden Output", command=self.molden_output, font=self.buttonfont)
+        b_moldenout = tk.Button(self.topframeleft, text="Molden Output", command=self.molden_output, font=self.buttonfont)
         b_moldenout.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
         
-        self.entry_user = tk.Entry(self.topframe, width=10)
+        self.entry_user = tk.Entry(self.topframeleft, width=10)
         self.entry_user.grid(row=0, column=0, sticky="ew", pady=5, padx=5)
         self.entry_user.insert(0, self.user.get()) 
         self.entry_user.bind("<Return>", self.get_q)
  
 
-        yscroll_log = tk.Scrollbar(self.topframe)
+        yscroll_log = tk.Scrollbar(self.topframeright)
         yscroll_log.grid(row=0, rowspan=3, column=5, pady=2, padx=2, sticky="ns")
-        self.log = tk.Text(self.topframe, yscrollcommand=yscroll_log.set, bg="black", fg="white", height=7, width=90)
+        self.log = tk.Text(self.topframeright, yscrollcommand=yscroll_log.set, bg="black", fg="white", height=7, width=90)
         self.log.grid(row=0, rowspan=3, column=4, pady=5, padx=5, sticky="nsew")
         yscroll_log.config(command=self.log.yview)
 
@@ -112,7 +117,7 @@ class QueueGui(object):
         yscrollbar.config(command=self.txt.yview)
 
         # bottom frame widgets
-        b_exit = tk.Button(self.botframe, text="Quit", bg="black", fg="red", command=self.master.destroy, font=self.buttonfont)
+        b_exit = tk.Button(self.botframe, text="Quit", bg="black", fg="red", command=master.destroy, font=self.buttonfont)
         b_exit.grid(row=0, column=0, pady=5, padx=5)
 
         b_killjob = tk.Button(self.botframe, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
@@ -402,7 +407,6 @@ class QueueGui(object):
 
     def open_jobhis(self):
         self.user.set(self.entry_user.get())
-
         self.status.set(self.status_options[self.status.get()])
 
         if self.user.get().strip() == "":
@@ -440,13 +444,9 @@ class QueueGui(object):
                 self.status.set(stat)
                 break
 
-
-
 ##########################################################
 # run program
 if __name__ == "__main__":
     master = tk.Tk()
-    master.geometry("1200x500")
-    master.title("QueueGui")
     app = QueueGui(master)
     master.mainloop()
