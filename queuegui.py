@@ -416,7 +416,7 @@ class QueueGui(object):
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
         jh = process.stdout.readlines()
-        header = jh[:3]
+        header = jh[:2]
        
         self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
       
