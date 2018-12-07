@@ -6,6 +6,7 @@ import subprocess as sub
 import glob
 from datetime import datetime
 import os
+from collections import OrderedDict
 
 class QueueGui(object):
     """Docstring"""
@@ -27,9 +28,16 @@ class QueueGui(object):
         self.botframe = tk.Frame()
         self.botframe.pack(side="top", fill="both", expand=False)
 
-        self.status_options = ("All jobs", "Running jobs", "Pending jobs", "Completed Jobs", "Timeouted Jobs", "Cancelled Jobs")
+        self.status_options = OrderedDict()
+        self.status_options["All Jobs"] = "all"
+        self.status_options["Running Jobs"] = "r"
+        self.status_options["Pending Jobs"] = "pd"
+        self.status_options["Completed Jobs"] = "cd"
+        self.status_options["Cancelled Jobs"] = "ca"
+        self.status_options["Timeouted Jobs"] = "to"
+
         self.status = tk.StringVar()
-        self.status.set(self.status_options[0]) # set default value to "All"
+        self.status.set(self.status_options.keys()[0]) # set default value to "All"
 
         self.user = tk.StringVar()
         self.user.set("ambr") # set default user to "ambr"
@@ -69,7 +77,7 @@ class QueueGui(object):
         b_jobhis = tk.Button(self.topframe, text="Job History", command=self.open_jobhis, font=self.buttonfont)
         b_jobhis.grid(row=2, column=2)
 
-        self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options)
+        self.status_menu = tk.OptionMenu(self.topframe, self.status, *self.status_options.keys())
         self.status_menu.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
 
         b_cpu = tk.Button(self.topframe, text="Check CPU Usage", command=self.cpu_usage, font=self.buttonfont)
@@ -113,36 +121,27 @@ class QueueGui(object):
     def get_q(self, *args): # *args needed for binding the function to <Return> entry user field
         
         self.user.set(self.entry_user.get())
+        self.status.set(self.status_options[self.status.get()])
 
         if self.user.get().strip() == "" or self.user.get() == "all":
             cmd = ["squeue", "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
         else:
-            cmd = ["squeue", "-u", "{}".format(self.user.get()), "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
+            cmd = ["squeue", "-u", self.user.get(), "-t", self.status.get() , "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
 
-        q_all = process.stdout.read().splitlines()
-        header = q_all[0]
-        q_run = filter(lambda x: x.split()[4] == "RUNNING", q_all)
-        q_pen = filter(lambda x: x.split()[4] == "PENDING", q_all)
+        q = process.stdout.read()
 
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
-        
-        if self.status.get() == "All jobs":
-            for line in q_all:
-                self.txt.insert(tk.END, line + "\n")
-        elif self.status.get() == "Running jobs":
-            self.txt.insert(tk.END, header + "\n")
-            for line in q_run:
-                self.txt.insert(tk.END, line + "\n")
-        elif self.status.get() == "Pending jobs":
-            self.txt.insert(tk.END, header + "\n")
-            for line in q_pen:
-                self.txt.insert(tk.END, line + "\n")
-
-
+        self.txt.insert(tk.END, q)
         self.txt.config(state=tk.DISABLED)
+
+        # now make sure the current status shown in the drop down menu corresponds to the same status used for the last job history command
+        for stat, opt in self.status_options.items():
+            if self.status.get() == opt:
+                self.status.set(stat)
+                break
 
     def cpu_usage(self):
         cmd = ["squeue", "-o", "%u %C %t"]
@@ -402,22 +401,34 @@ class QueueGui(object):
         self.txt.config(state=tk.DISABLED)
 
     def open_jobhis(self):
-        # sacct --starttime $TODAY --format=User%4,JobID,Jobname%50,state,time,nnodes%2,ncpus%3,CPUTime,elapsed,Start
         self.user.set(self.entry_user.get())
-        if self.user.get().strip() == "" or self.user.get().strip() == "all":
-            cmd = ["sacct", "-a", "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state,time,nnodes%2,CPUTime,elapsed,Start"]
+
+        self.status.set(self.status_options[self.status.get()])
+
+        if self.user.get().strip() == "":
+            self.log_update("No user selected. ErrorCode_hus284")
+            return "ErrorCode_hus284"
+
+        if self.status.get() == self.status_options["All Jobs"]:
+            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start"]
         else:
-            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state,time,nnodes%2,CPUTime,elapsed,Start"]
+            cmd = ["sacct", "-u", self.user.get(), "-s", self.status.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start"]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
-        jh = process.stdout.readlines()
+        jh = process.stdout.read()
        
         self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
+      
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
-        for line in jh:
-            self.txt.insert(tk.END, line + "\n")
+        self.txt.insert(tk.END, jh)
         self.txt.config(state=tk.DISABLED)
+
+        # now make sure the current status shown in the drop down menu corresponds to the same status used for the last job history command
+        for stat, opt in self.status_options.items():
+            if self.status.get() == opt:
+                self.status.set(stat)
+                break
 
 
 
