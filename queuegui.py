@@ -113,6 +113,9 @@ class QueueGui(object):
         self.txt = tk.Text(self.midframe, wrap=tk.NONE, yscrollcommand=yscrollbar.set, bg="black", fg="white")
         self.txt.grid(row=0, column=0, sticky="nsew", pady=5, padx=5)
         self.txt.config(state=tk.DISABLED)
+        self.txt.tag_configure("even_line", background="#13001a")
+        self.txt.tag_configure("odd_line", background="#001a00")
+        self.txt.tag_raise(tk.SEL)
 
         yscrollbar.config(command=self.txt.yview)
 
@@ -135,11 +138,16 @@ class QueueGui(object):
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
 
-        q = process.stdout.read()
+        q = process.stdout.readlines()
 
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
-        self.txt.insert(tk.END, q)
+        for i, job in enumerate(q):
+            if i % 2 == 0:
+                self.txt.insert(tk.END, job, "even_line")
+            else:
+                self.txt.insert(tk.END, job, "odd_line")
+
         self.txt.config(state=tk.DISABLED)
 
         # now make sure the current status shown in the drop down menu corresponds to the same status used for the last job history command
@@ -420,21 +428,26 @@ class QueueGui(object):
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
         jh = process.stdout.readlines()
-        header = jh[:2]
+
+        # now get rid of useless lines in the history
+        history = [jh[0]] # start with the header present in the list
+        for line in jh:
+            try:
+                int(line.split()[1])
+            except ValueError:
+                continue
+            history.append(line)
        
         self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
       
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
 
-        for h in header:
-            self.txt.insert(tk.END, h)
-        for line in jh:
-            try:
-                int(line.split()[1])
-            except ValueError:
-                continue
-            self.txt.insert(tk.END, line)
+        for i, line in enumerate(history):
+            if i % 2 == 0:
+                self.txt.insert(tk.END, line, "even_line")
+            else:
+                self.txt.insert(tk.END, line, "odd_line")
         
         self.txt.config(state=tk.DISABLED)
 
