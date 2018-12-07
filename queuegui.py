@@ -386,8 +386,8 @@ class QueueGui(object):
         try:
             int(pid)
         except ValueError:
-            self.log_update("PID must be an integer. ErrorCode_toj60")
-            return ErrorCode_toj60
+            self.log_update("PID must be an integer. ErrorCode_toj66")
+            return ErrorCode_toj66
 
         cmd = ["scontrol", "show", "jobid", pid]
         process = sub.Popen(cmd, stdout=sub.PIPE)
@@ -406,8 +406,8 @@ class QueueGui(object):
         self.status.set(self.status_options[self.status.get()])
 
         if self.user.get().strip() == "":
-            self.log_update("No user selected. ErrorCode_hus284")
-            return "ErrorCode_hus284"
+            self.log_update("No user selected. ErrorCode_hus28")
+            return "ErrorCode_hus28"
 
         if self.status.get() == self.status_options["All Jobs"]:
             cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start"]
@@ -415,13 +415,23 @@ class QueueGui(object):
             cmd = ["sacct", "-u", self.user.get(), "-s", self.status.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start"]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
-        jh = process.stdout.read()
+        jh = process.stdout.readlines()
+        header = jh[:3]
        
         self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
       
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
-        self.txt.insert(tk.END, jh)
+
+        for h in header:
+            self.txt.insert(tk.END, h)
+        for line in jh:
+            try:
+                int(line.split()[1])
+            except ValueError:
+                continue
+            self.txt.insert(tk.END, line)
+        
         self.txt.config(state=tk.DISABLED)
 
         # now make sure the current status shown in the drop down menu corresponds to the same status used for the last job history command
