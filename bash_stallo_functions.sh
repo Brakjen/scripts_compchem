@@ -198,6 +198,7 @@ for file in $(find $DIR/* -name "*.py" -or -name "*.sh"); do
         unlink $HOME/bin/$(basename $file)
     fi
     ln -s $HOME/$file $HOME/bin/$(basename $file)
+    echo $HOME/$file" "$HOME/bin/$(basename $file)
     chmod +x $HOME/bin/$(basename $file)
 done
 }
