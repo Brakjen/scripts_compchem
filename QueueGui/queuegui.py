@@ -15,22 +15,25 @@ class QueueGui(object):
     qfont = ("Arial", 8)
 
     def __init__(self, master):
-        #master.geometry("1200x500")
+#        master.geometry("1200x500")
         master.title("QueueGui")
+        #master.columnconfigure(0, weight=1)
+        master.columnconfigure(1, weight=1)
+
 
         self.topframeleft = tk.Frame(master)
-        self.topframeleft.grid(row=0, column=0, sticky="nsew")
+        self.topframeleft.grid(row=0, column=0, sticky="w")
 
         self.topframeright = tk.Frame(master)
         self.topframeright.grid(row=0, column=1, sticky="nsew")
+        self.topframeright.columnconfigure(0, weight=1)
 
-        self.midframe = tk.Frame(master)
+        self.midframe = tk.Frame(master, width=1500)
         self.midframe.grid(row=1, column=0, columnspan=2, sticky="nsew")
-        self.midframe.grid_columnconfigure(0, weight=1)
-        self.midframe.grid_rowconfigure(0, weight=1)
+        self.midframe.columnconfigure(0, weight=1)
 
         self.botframe = tk.Frame(master)
-        self.botframe.grid(row=2, column=0, sticky="nsew")
+        self.botframe.grid(row=2, column=0, columnspan=2, sticky="w")
 
         self.status_options = OrderedDict()
         self.status_options["All Jobs"] = "all"
@@ -101,9 +104,10 @@ class QueueGui(object):
  
 
         yscroll_log = tk.Scrollbar(self.topframeright)
-        yscroll_log.grid(row=0, rowspan=3, column=5, pady=2, padx=2, sticky="ns")
+        yscroll_log.grid(row=0, rowspan=3, column=1, pady=2, padx=2, sticky="ns")
         self.log = tk.Text(self.topframeright, yscrollcommand=yscroll_log.set, bg="black", fg="white", height=7, width=90)
-        self.log.grid(row=0, rowspan=3, column=4, pady=5, padx=5, sticky="nsew")
+        self.log.grid(row=0, rowspan=3, column=0, pady=5, padx=5, sticky="nsew")
+        self.log.columnconfigure(0, weight=1)
         yscroll_log.config(command=self.log.yview)
 
         # mid frame widgets
@@ -112,6 +116,7 @@ class QueueGui(object):
 
         self.txt = tk.Text(self.midframe, wrap=tk.NONE, yscrollcommand=yscrollbar.set, bg="black", fg="white")
         self.txt.grid(row=0, column=0, sticky="nsew", pady=5, padx=5)
+        self.txt.columnconfigure(0, weight=1)
         self.txt.config(state=tk.DISABLED)
         self.txt.tag_configure("even_line", background="#13001a")
         self.txt.tag_configure("odd_line", background="#001a00")
@@ -128,6 +133,7 @@ class QueueGui(object):
 
         b_convertme = tk.Button(self.botframe, text="Launch ConvertMe", bg="blue", fg="white", command=self.launch_convertme, font=self.buttonfont)
         b_convertme.grid(row=0, column=2, pady=5, padx=5)
+
 
     def get_q(self, *args): # *args needed for binding the function to <Return> entry user field
         
@@ -425,9 +431,9 @@ class QueueGui(object):
             return "ErrorCode_hus28"
 
         if self.status.get() == self.status_options["All Jobs"]:
-            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start"]
+            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start,End"]
         else:
-            cmd = ["sacct", "-u", self.user.get(), "-s", self.status.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start"]
+            cmd = ["sacct", "-u", self.user.get(), "-s", self.status.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start,End"]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
         jh = process.stdout.readlines()
