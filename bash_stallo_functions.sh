@@ -197,7 +197,7 @@ for file in $(find $DIR/* -name "*.py" -or -name "*.sh"); do
     if [ -L $HOME/bin/$(basename $file) ]; then
         unlink $HOME/bin/$(basename $file)
     fi
-    ln -s $$HOME/$file $HOME/bin/$(basename $file)
+    ln -s $HOME/$file $HOME/bin/$(basename $file)
     chmod +x $HOME/bin/$(basename $file)
 done
 }
