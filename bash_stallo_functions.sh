@@ -182,6 +182,8 @@ job=$(echo $1 | cut -d"." -f1)
 ls $job* | egrep '.*\.[0-9]{2,}'
 }
 
+
+
 # Do git pull in order to update the local git repo on stallo, and then make symlinks to bin
 function updatescripts() {
 DIR=$HOME/scripts_compchem
@@ -190,7 +192,8 @@ cd $DIR
 git checkout .
 git pull origin master
 cd $CURR_DIR
-for file in $DIR/*.py $DIR/*.sh; do
+
+for file in $(find $DIR/* -name *".py" -or -name "*.sh")
     if [ -L $HOME/bin/$(basename $file) ]; then
         unlink $HOME/bin/$(basename $file)
     fi
@@ -198,3 +201,12 @@ for file in $DIR/*.py $DIR/*.sh; do
     chmod +x $HOME/bin/$(basename $file)
 done
 }
+
+
+
+
+
+
+
+
+
