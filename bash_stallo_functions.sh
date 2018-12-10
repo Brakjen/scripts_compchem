@@ -193,7 +193,7 @@ git checkout .
 git pull origin master
 cd $CURR_DIR
 
-for file in $(find $DIR/* -name *".py" -or -name "*.sh")
+for file in $(find $DIR/* -name "*.py" -or -name "*.sh")
     if [ -L $HOME/bin/$(basename $file) ]; then
         unlink $HOME/bin/$(basename $file)
     fi
