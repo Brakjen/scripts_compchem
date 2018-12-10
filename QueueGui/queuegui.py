@@ -126,6 +126,9 @@ class QueueGui(object):
         b_killjob = tk.Button(self.botframe, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
         b_killjob.grid(row=0, column=1, pady=5, padx=5)
 
+        b_convertme = tk.Button(self.botframe, text="Launch ConvertMe", bg="blue", fg="white", command=self.launch_convertme, font=self.buttonfont)
+        b_convertme.grid(row=0, column=2, pady=5, padx=5)
+
     def get_q(self, *args): # *args needed for binding the function to <Return> entry user field
         
         self.user.set(self.entry_user.get())
@@ -456,6 +459,9 @@ class QueueGui(object):
             if self.status.get() == opt:
                 self.status.set(stat)
                 break
+
+    def launch_convertme(self):
+        sub.call(["python", "/home/ambr/bin/convertme.py"])
 
 ##########################################################
 # run program
