@@ -95,7 +95,7 @@ class ConvertMe(object):
         # get rid of special characters such as tabs and newlines
         coords = map(lambda x: ' '.join(x.strip().split()), inlines)
 
-        with open(job+"_test.com","w") as o:
+        with open(job+".com","w") as o:
             o.write("#\n")
             o.write("\n")
             o.write("Number of atoms: {}\n".format(len(coords)))
@@ -129,7 +129,7 @@ class ConvertMe(object):
         # get rid of special characters such as tabs and newlines
         coords = map(lambda x: ' '.join(x.strip().split()), coords)
 
-        with open(job+"_test.xyz", "w") as o:
+        with open(job+".xyz", "w") as o:
             o.write("{}\n".format(len(coords)))
             o.write("\n")
             for atom in coords:
