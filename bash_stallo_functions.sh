@@ -200,8 +200,8 @@ for file in $(find $DIR/* -name "*.py" -or -name "*.sh"); do
     echo "code 0"
     echo $HOME/$file $HOME/bin/$(basename $file)
     ln -s $HOME/$file $HOME/bin/$(basename $file)
-    chmod +x $HOME/bin/$(basename $file)
 done
+chmod +x $HOME/bin/*
 }
 
 
