@@ -199,7 +199,7 @@ for file in $(find $DIR/* -name "*.py" -or -name "*.sh"); do
     fi
     echo "code 0"
     echo $HOME/$file $HOME/bin/$(basename $file)
-    ln -s $HOME/$file $HOME/bin/$(basename $file)
+    ln -s $file $HOME/bin/$(basename $file)
 done
 }
 
