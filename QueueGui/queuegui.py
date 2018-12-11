@@ -12,12 +12,10 @@ class QueueGui(object):
     """Docstring"""
 
     buttonfont = ("Arial", 10)
-    qfont = ("Arial", 8)
 
     def __init__(self, master):
 #        master.geometry("1200x500")
         master.title("QueueGui")
-        #master.columnconfigure(0, weight=1)
         master.columnconfigure(1, weight=1)
 
 
@@ -120,7 +118,10 @@ class QueueGui(object):
         self.txt.config(state=tk.DISABLED)
         self.txt.tag_configure("even_line", background="#13001a")
         self.txt.tag_configure("odd_line", background="#001a00")
+        self.txt.tag_configure("inchoco", foreground="#FF0000")
+        self.txt.tag_configure("ambr", foreground="#00FF00")
         self.txt.tag_raise(tk.SEL)
+
 
         yscrollbar.config(command=self.txt.yview)
 
@@ -212,12 +213,9 @@ class QueueGui(object):
         # get ratio of running cpus to stallo's total
         oftotal = map(lambda x: str(float(x) / cpu_stallo_total * 100)[0:5], cpu_running)
         
-        # adding arrow to username.. First convert from tuple to list
+        # defining the computational choco members
         user = [u for u in user]
         choco = ["ambr", "mobst", "ljilja", "diego", "kathrin"]
-        for i,u in enumerate(user):
-            if u in choco:
-                user[i] += " <<<<<<"
         
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
@@ -227,14 +225,18 @@ class QueueGui(object):
         
 
         maxlen = (max(len(x) for x in user) , max(len(str(x)) for x in cpu_running), max(len(str(x)) for x in oftotal), max(len(str(x)) for x in cpu_pending))
-        for i in range(len(user)):
-                self.txt.insert(tk.END, "{} {} {} {} {} {} {}\n".format(user[i], 
-                                                                 (maxlen[0] - len(user[i])) * " ",
-                                                                 cpu_running[i],
-                                                                 (maxlen[1] - len(str(cpu_running[i]))) * " ",
-                                                                 oftotal[i],
-                                                                 (maxlen[2] - len(oftotal[i])) * " ",
-                                                                 cpu_pending[i]))
+        for i,u in enumerate(user):
+            self.txt.insert(tk.END, "{} {} {} {} {} {} {}\n".format(u, 
+                                                                   (maxlen[0] - len(user[i])) * " ",
+                                                                   cpu_running[i],
+                                                                   (maxlen[1] - len(str(cpu_running[i]))) * " ",
+                                                                   oftotal[i],
+                                                                   (maxlen[2] - len(oftotal[i])) * " ",
+                                                                   cpu_pending[i]))
+            if u in choco: # make choco members red
+                self.txt.tag_add("inchoco", "{}.0".format(i+4), "{}.{}".format(i+4, tk.END))
+                if u == "ambr": # make my name green
+                    self.txt.tag_add("ambr", "{}.0".format(i+4), "{}.{}".format(i+4, tk.END))
                 
         self.txt.insert(tk.END, "-----------------------------------------------------------------\n")
         
