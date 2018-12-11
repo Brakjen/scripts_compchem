@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import Tkinter as tk
+import tkFont
 import tkFileDialog
 import subprocess as sub
 import glob
@@ -11,12 +12,11 @@ from collections import OrderedDict
 class QueueGui(object):
     """Docstring"""
 
-    buttonfont = ("Arial", 10)
-
     def __init__(self, master):
-#        master.geometry("1200x500")
         master.title("QueueGui")
         master.columnconfigure(1, weight=1)
+
+        self.buttonfont = tkFont.Font(family="Arial", size=10)
 
 
         self.topframeleft = tk.Frame(master)
@@ -48,7 +48,7 @@ class QueueGui(object):
         self.user = tk.StringVar()
         self.user.set("ambr") # set default user to "ambr"
 
-        self.job_starttime_options = [datetime.now().date() - timedelta(days=i) for i in range(14)]
+        self.job_starttime_options = [datetime.now().date() - timedelta(days=i) for i in range(31)]
         self.job_starttime = tk.StringVar()
         self.job_starttime.set(datetime.now().date()) # default option will be the current date
 
@@ -112,18 +112,27 @@ class QueueGui(object):
         yscrollbar = tk.Scrollbar(self.midframe)
         yscrollbar.grid(row=0, column=1, sticky="ns", pady=2, padx=2)
 
-        self.txt = tk.Text(self.midframe, wrap=tk.NONE, yscrollcommand=yscrollbar.set, bg="black", fg="white")
+        xscrollbar = tk.Scrollbar(self.midframe, orient="horizontal")
+        xscrollbar.grid(row=1, column=0, sticky="ew", pady=2, padx=2)
+        
+        self.txt = tk.Text(self.midframe, wrap=tk.NONE, xscrollcommand=xscrollbar.set, yscrollcommand=yscrollbar.set, bg="black", fg="white")
         self.txt.grid(row=0, column=0, sticky="nsew", pady=5, padx=5)
         self.txt.columnconfigure(0, weight=1)
         self.txt.config(state=tk.DISABLED)
+        
+        yscrollbar.config(command=self.txt.yview)
+        xscrollbar.config(command=self.txt.xview)
+        
         self.txt.tag_configure("even_line", background="#13001a")
         self.txt.tag_configure("odd_line", background="#001a00")
         self.txt.tag_configure("inchoco", foreground="#FF0000")
         self.txt.tag_configure("ambr", foreground="#00FF00")
+        self.txt.tag_configure("job_completed", foreground="#ffc6c6")
+        self.txt.tag_configure("job_pending", foreground="#fdbf2c")
+        self.txt.tag_configure("job_running", foreground="#34ffcc")
+        self.txt.tag_configure("job_timeout", foreground="#FF0000")
+        self.txt.tag_configure("job_cancelled", foreground="#e52de5")
         self.txt.tag_raise(tk.SEL)
-
-
-        yscrollbar.config(command=self.txt.yview)
 
         # bottom frame widgets
         b_exit = tk.Button(self.botframe, text="Quit", bg="black", fg="red", command=master.destroy, font=self.buttonfont)
@@ -141,10 +150,20 @@ class QueueGui(object):
         self.user.set(self.entry_user.get())
         self.status.set(self.status_options[self.status.get()])
 
+        # obtain the length of the job with the longest name
+        cmd = ["squeue", "-u", self.user.get(), "-o", "%.300j"]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        q = process.stdout.readlines()
+        
+        namelengths = []
+        for job in q:
+            namelengths.append(len(job.strip()))
+        maxname = max(namelengths)
+
         if self.user.get().strip() == "" or self.user.get() == "all":
-            cmd = ["squeue", "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
+            cmd = ["squeue", "-S", "i", "-o", "%.40j %.7i %.9P %.8T %.8u %.10M %.9l %.6D %R"]
         else:
-            cmd = ["squeue", "-u", self.user.get(), "-t", self.status.get() , "-S", "i", "-o", "%.18i %.9P %.40j %.8u %.8T %.10M %.9l %.6D %R"]
+            cmd = ["squeue", "-u", self.user.get(), "-t", self.status.get() , "-S", "i", "-o", "%.{}j %.7i %.9P %.8T %.8u %.10M %.9l %.6D %R".format(maxname+1)]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
 
@@ -154,9 +173,20 @@ class QueueGui(object):
         self.txt.delete(1.0, tk.END)
         for i, job in enumerate(q):
             if i % 2 == 0:
-                self.txt.insert(tk.END, job, "even_line")
+                self.txt.insert(tk.END, job)
             else:
-                self.txt.insert(tk.END, job, "odd_line")
+                self.txt.insert(tk.END, job)
+
+            if "RUNN" in job.split()[3]:
+                self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "PEND" in job.split()[3]:
+                self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "TIME" in job.split()[3]:
+                self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "COMPL" in job.split()[3]:
+                self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "CANCEL" in job.split()[3]:
+                self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
 
         self.txt.config(state=tk.DISABLED)
 
@@ -428,14 +458,24 @@ class QueueGui(object):
         self.user.set(self.entry_user.get())
         self.status.set(self.status_options[self.status.get()])
 
+        # obtain the length of the job with the longest name
+        cmd = ["squeue", "-u", self.user.get(), "-o", "%.300j"]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        q = process.stdout.readlines()
+        
+        namelengths = []
+        for job in q:
+            namelengths.append(len(job.strip()))
+        maxname = max(namelengths)
+
         if self.user.get().strip() == "":
             self.log_update("No user selected. ErrorCode_hus28")
             return "ErrorCode_hus28"
 
         if self.status.get() == self.status_options["All Jobs"]:
-            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start,End"]
+            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=Jobname%{},JobID%7,User,state%10,time,nnodes%3,CPUTime,elapsed,Start,End".format(maxname+1)]
         else:
-            cmd = ["sacct", "-u", self.user.get(), "-s", self.status.get(), "--starttime", self.job_starttime.get(), "--format=User,JobID,Jobname%50,state%20,time,nnodes%2,CPUTime,elapsed,Start,End"]
+            cmd = ["sacct", "-u", self.user.get(), "-s", self.status.get(), "--starttime", self.job_starttime.get(), "--format=Jobname%{},JobID%7,User,state%10,time,nnodes%3,CPUTime,elapsed,Start,End".format(maxname+1)]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
         jh = process.stdout.readlines()
@@ -456,9 +496,20 @@ class QueueGui(object):
 
         for i, line in enumerate(history):
             if i % 2 == 0:
-                self.txt.insert(tk.END, line, "even_line")
+                self.txt.insert(tk.END, line)
             else:
-                self.txt.insert(tk.END, line, "odd_line")
+                self.txt.insert(tk.END, line)
+
+            if "RUNN" in line.split()[3]:
+                self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "PENDI" in line.split()[3]:
+                self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "TIMEO" in line.split()[3]:
+                self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "COMPLE" in line.split()[3]:
+                self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "CANCEL" in line.split()[3]:
+                self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
         
         self.txt.config(state=tk.DISABLED)
 
