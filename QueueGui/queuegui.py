@@ -127,7 +127,7 @@ class QueueGui(object):
         self.txt.tag_configure("odd_line", background="#001a00")
         self.txt.tag_configure("inchoco", foreground="#FF0000")
         self.txt.tag_configure("ambr", foreground="#00FF00")
-        self.txt.tag_configure("job_completed", foreground="#ffc6c6")
+        self.txt.tag_configure("job_completed", foreground="#59aeff")
         self.txt.tag_configure("job_pending", foreground="#fdbf2c")
         self.txt.tag_configure("job_running", foreground="#34ffcc")
         self.txt.tag_configure("job_timeout", foreground="#FF0000")
