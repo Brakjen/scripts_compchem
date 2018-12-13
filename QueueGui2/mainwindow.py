@@ -1,5 +1,5 @@
 import Tkinter as tk
-import tkFont, tkFileDialog
+import tkFont, tkFileDialog, tkMessageBox
 import subprocess as sub
 from glob import glob
 from datetime import datetime, timedelta
@@ -24,6 +24,8 @@ class MainWindow(tk.Frame):
         self["bg"] = self.maincolor
 
         self.buttonfont = tkFont.Font(family="Arial", size=10)
+
+        self.killjobanswer = False # default option False. Safety from killing jobs by accident
 
         # define default options
         self.status_options = OrderedDict()
@@ -292,7 +294,6 @@ class MainWindow(tk.Frame):
     def open_output(self):
         outputfile = self.eval_workfile("output")
         if "ErrorCode_" in outputfile:
-            self.log_update(outputfile)
             return outputfile
 
         f = open(outputfile, "r")
@@ -308,7 +309,6 @@ class MainWindow(tk.Frame):
     def open_input(self):
         inputfile = self.eval_workfile("input")
         if "ErrorCode_" in inputfile:
-            self.log_update(inputfile)
             return inputfile
 
         f = open(inputfile, "r")
@@ -324,7 +324,6 @@ class MainWindow(tk.Frame):
     def quepasa(self):
         outputfile = self.eval_workfile("output")
         if "ErrorCode_" in outputfile:
-            self.log_update(outputfile)
             return outputfile
 
         self.log_update("Que Pasa? {}".format(outputfile))
@@ -333,18 +332,16 @@ class MainWindow(tk.Frame):
     def molden_output(self):
         outputfile = self.eval_workfile("output")
         if "ErrorCode_" in outputfile:
-            self.log_update(outputfile)
             return outputfile
 
         self.log_update("molden {}".format(outputfile))
         sub.call(["molden", "{}".format(outputfile)])
 
     def select_text(self):
-        if self.txt.tag_ranges(tk.SEL):
+        try:
             return self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
-        else:
-            self.log_update("No PID selected. ErrorCode_las02")
-            return "ErrorCode_las02"
+        except:
+            return "ErrorCode_pol98"
 
     def eval_workfile(self, filetype):
         pid = self.select_text()
@@ -406,14 +403,20 @@ class MainWindow(tk.Frame):
     def kill_job(self):
         pid = self.select_text()
         cmd = ["scancel", pid]
-        self.log_update(" ".join(cmd))
-        sub.call(cmd)
-        self.get_q()
+
+        result = tkMessageBox.askyesno("Queue-Gui", "Are you sure you want to kill JobID {}?".format(pid))
+        
+        if result is True:
+            self.log_update(" ".join(cmd))
+            sub.call(cmd)
+            self.get_q()
+        else:
+            return
 
     def clear_log(self):
         self.log.config(state=tk.NORMAL)
         self.log.delete(1.0, tk.END)
-        self.log_update("Welcome to QueueGui!")
+        self.log_update("Welcome to Queue-Gui!")
         return None
 
     def log_update(self, msg):
@@ -527,12 +530,39 @@ class MainWindow(tk.Frame):
                 self.status.set(stat)
                 break
 
+    def get_submitdir(self):
+        pid = self.select_text()
+        cmd = ["scontrol", "show", "jobid", pid]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        s = process.stdout.readlines()
+        
+        for line in s:
+            if "Invalid job id specified" in s:
+                self.log_update("Specified JobID not valid. ErrorCode_hyr85")
+                return "ErrorCode_hyr85"
+            elif "WorkDir=/" in line:
+                return line.split("=")[1].strip()
+        self.log_update("Work directory not found. ErrorCode_kod47")
+        return "ErrorCode_kod47"
+                
+
     def launch_convertme(self):
-        convertme = ConvertMe(self)
+        pid = self.select_text()
+        workdir = self.get_submitdir()
+
+        if "ErrorCode_" in pid:
+            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+        elif workdir.strip() == "":
+            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+        elif "ErrorCode_" in workdir:
+            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+        elif self.user.get() not in workdir:
+            self.log_update("Suspicious-looking directory...")
+            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+
+        convertme = ConvertMe(self, workdir)
+        print(workdir)
 
     def launch_toolbox(self):
-        convertme = ConvertMe(self)
-
-
-
+        pass
 
