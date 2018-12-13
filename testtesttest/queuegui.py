@@ -1,33 +1,38 @@
+#!/usr/bin/env python
+
 import Tkinter as tk
-import tkFont, tkFileDialog, tkMessageBox
+import tkFont
+import tkFileDialog
 import subprocess as sub
-from glob import glob
+import glob
 from datetime import datetime, timedelta
 import os
 from collections import OrderedDict
-from convertme import ConvertMe
-from toolbox import ToolBox
 
-class MainWindow(tk.Frame):
-    
-    def __init__(self, application): # 'application' here is a reference to 'self' in the main QueueGui application.
-        tk.Frame.__init__(self, application)
-        self.application = application
+class QueueGui(object):
+    """Docstring"""
 
-        self.application.columnconfigure(0, weight=1)
-        self.application.rowconfigure(0, weight=1)
-        self.grid(row=0, column=0, sticky="nsew")
-        self.columnconfigure(1, weight=1)
-        self.rowconfigure(1, weight=1)
-
-        self.maincolor = "dark slate gray"
-        self["bg"] = self.maincolor
+    def __init__(self, master):
+        master.title("QueueGui")
+        master.columnconfigure(1, weight=1)
 
         self.buttonfont = tkFont.Font(family="Arial", size=10)
 
-        self.killjobanswer = False # default option False. Safety from killing jobs by accident
 
-        # define default options
+        self.topframeleft = tk.Frame(master)
+        self.topframeleft.grid(row=0, column=0, sticky="w")
+
+        self.topframeright = tk.Frame(master)
+        self.topframeright.grid(row=0, column=1, sticky="nsew")
+        self.topframeright.columnconfigure(0, weight=1)
+
+        self.midframe = tk.Frame(master, width=1500)
+        self.midframe.grid(row=1, column=0, columnspan=2, sticky="nsew")
+        self.midframe.columnconfigure(0, weight=1)
+
+        self.botframe = tk.Frame(master)
+        self.botframe.grid(row=2, column=0, columnspan=2, sticky="w")
+
         self.status_options = OrderedDict()
         self.status_options["All Jobs"] = "all"
         self.status_options["Running Jobs"] = "r"
@@ -35,6 +40,7 @@ class MainWindow(tk.Frame):
         self.status_options["Completed Jobs"] = "cd"
         self.status_options["Cancelled Jobs"] = "ca"
         self.status_options["Timeouted Jobs"] = "to"
+
         
         self.status = tk.StringVar()
         self.status.set(self.status_options.keys()[0]) # set default value to "All"
@@ -46,85 +52,72 @@ class MainWindow(tk.Frame):
         self.job_starttime = tk.StringVar()
         self.job_starttime.set(datetime.now().date()) # default option will be the current date
 
-        # place widgets in grids
         self.place_widgets()
-        self.log_update("Welcome to Queue-Gui!")
-        # generate queue at start up
+
         self.get_q()
+
+        self.log_update("Welcome to QueueGui!")
 
 
     def place_widgets(self):
-
-        # generate frames in grid
-        self.topleft = tk.Frame(self, bg=self.maincolor)
-        self.topright = tk.Frame(self, bg=self.maincolor)
-        self.mid = tk.Frame(self, bg=self.maincolor)
-        self.bot = tk.Frame(self, bg=self.maincolor)
-
-        self.topleft.grid(row=0, column=0, sticky="w")
-        self.topright.grid(row=0, column=1, sticky="nsew")
-        self.mid.grid(row=1, column=0, columnspan=2, sticky="nsew")
-        self.bot.grid(row=2, column=0, columnspan=2, sticky="sw")
-
-        self.topright.columnconfigure(0, weight=1)
-        self.mid.columnconfigure(0, weight=1)
-        self.mid.rowconfigure(0, weight=1)
-
         # top frame widgets
-        b_refresh = tk.Button(self.topleft, text="Update Queue", command=self.get_q, font=self.buttonfont)
+
+        b_refresh = tk.Button(self.topframeleft, text="Update Queue", command=self.get_q, font=self.buttonfont)
         b_refresh.grid(row=1, column=0, sticky="ew", pady=5, padx=5)
 
-        b_openoutput = tk.Button(self.topleft, text="Output file", command=self.open_output, font=self.buttonfont)
+        b_openoutput = tk.Button(self.topframeleft, text="Output file", command=self.open_output, font=self.buttonfont)
         b_openoutput.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
 
-        b_openinput = tk.Button(self.topleft, text="Input File", command=self.open_input, font=self.buttonfont)
+        b_openinput = tk.Button(self.topframeleft, text="Input File", command=self.open_input, font=self.buttonfont)
         b_openinput.grid(row=1, column=2, sticky="ew", pady=5, padx=5)
 
-        b_showsubmitscript = tk.Button(self.topleft, text="Submit Script", command=self.open_submitscript, font=self.buttonfont)
+        b_showsubmitscript = tk.Button(self.topframeleft, text="Submit Script", command=self.open_submitscript, font=self.buttonfont)
         b_showsubmitscript.grid(row=2, column=0)
 
-        optionmenu_jobhis_starttime = tk.OptionMenu(self.topleft, self.job_starttime, *self.job_starttime_options)
+        optionmenu_jobhis_starttime = tk.OptionMenu(self.topframeleft, self.job_starttime, *self.job_starttime_options)
         optionmenu_jobhis_starttime.grid(row=2, column=3, sticky="ew")
 
-        b_showjobinfo = tk.Button(self.topleft, text="Job Info", command=self.open_jobinfo, font=self.buttonfont)
+        b_showjobinfo = tk.Button(self.topframeleft, text="Job Info", command=self.open_jobinfo, font=self.buttonfont)
         b_showjobinfo.grid(row=2, column=1)
 
-        b_jobhis = tk.Button(self.topleft, text="Job History", command=self.open_jobhis, font=self.buttonfont)
+        b_jobhis = tk.Button(self.topframeleft, text="Job History", command=self.open_jobhis, font=self.buttonfont)
         b_jobhis.grid(row=2, column=2)
 
-        status_menu = tk.OptionMenu(self.topleft, self.status, *self.status_options.keys())
+        status_menu = tk.OptionMenu(self.topframeleft, self.status, *self.status_options.keys())
         status_menu.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
 
-        b_cpu = tk.Button(self.topleft, text="Check CPU Usage", command=self.cpu_usage, font=self.buttonfont)
+        b_cpu = tk.Button(self.topframeleft, text="Check CPU Usage", command=self.cpu_usage, font=self.buttonfont)
         b_cpu.grid(row=0, column=2, sticky="ew", pady=5, padx=5)
         
-        b_quepasa = tk.Button(self.topleft, text="Que Pasa?", command=self.quepasa, font=self.buttonfont)
+        b_quepasa = tk.Button(self.topframeleft, text="Que Pasa?", command=self.quepasa, font=self.buttonfont)
         b_quepasa.grid(row=1, column=3, sticky="ew", pady=5, padx=5)
         
-        b_moldenout = tk.Button(self.topleft, text="Molden Output", command=self.molden_output, font=self.buttonfont)
+        b_moldenout = tk.Button(self.topframeleft, text="Molden Output", command=self.molden_output, font=self.buttonfont)
         b_moldenout.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
         
-        self.entry_user = tk.Entry(self.topleft, width=10)
+        self.entry_user = tk.Entry(self.topframeleft, width=10)
         self.entry_user.grid(row=0, column=0, sticky="ew", pady=5, padx=5)
         self.entry_user.insert(0, self.user.get()) 
         self.entry_user.bind("<Return>", self.get_q)
  
 
-        yscroll_log = tk.Scrollbar(self.topright, relief=tk.SUNKEN)
+        yscroll_log = tk.Scrollbar(self.topframeright)
         yscroll_log.grid(row=0, rowspan=3, column=1, pady=2, padx=2, sticky="ns")
-        self.log = tk.Text(self.topright, yscrollcommand=yscroll_log.set, bg="black", fg="white", height=7, width=90)
+        self.log = tk.Text(self.topframeright, yscrollcommand=yscroll_log.set, bg="black", fg="white", height=7, width=90)
         self.log.grid(row=0, rowspan=3, column=0, pady=5, padx=5, sticky="nsew")
+        self.log.columnconfigure(0, weight=1)
         yscroll_log.config(command=self.log.yview)
 
         # mid frame widgets
-        yscrollbar = tk.Scrollbar(self.mid)
+        yscrollbar = tk.Scrollbar(self.midframe)
         yscrollbar.grid(row=0, column=1, sticky="ns", pady=2, padx=2)
 
-        xscrollbar = tk.Scrollbar(self.mid, orient="horizontal")
+        xscrollbar = tk.Scrollbar(self.midframe, orient="horizontal")
         xscrollbar.grid(row=1, column=0, sticky="ew", pady=2, padx=2)
         
-        self.txt = tk.Text(self.mid, wrap=tk.NONE, xscrollcommand=xscrollbar.set, yscrollcommand=yscrollbar.set, bg="black", fg="white")
+        self.txt = tk.Text(self.midframe, wrap=tk.NONE, xscrollcommand=xscrollbar.set, yscrollcommand=yscrollbar.set, bg="black", fg="white")
         self.txt.grid(row=0, column=0, sticky="nsew", pady=5, padx=5)
+        self.txt.columnconfigure(0, weight=1)
         self.txt.config(state=tk.DISABLED)
         
         yscrollbar.config(command=self.txt.yview)
@@ -142,21 +135,18 @@ class MainWindow(tk.Frame):
         self.txt.tag_raise(tk.SEL)
 
         # bottom frame widgets
-        b_exit = tk.Button(self.bot, text="Quit", bg="black", fg="red", command=self.application.destroy, font=self.buttonfont)
+        b_exit = tk.Button(self.botframe, text="Quit", bg="black", fg="red", command=master.destroy, font=self.buttonfont)
         b_exit.grid(row=0, column=0, pady=5, padx=5)
 
-        b_killjob = tk.Button(self.bot, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
+        b_killjob = tk.Button(self.botframe, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
         b_killjob.grid(row=0, column=1, pady=5, padx=5)
 
-        b_convertme = tk.Button(self.bot, text="Convert Me!", bg="blue", fg="white", command=self.launch_convertme, font=self.buttonfont)
+        b_convertme = tk.Button(self.botframe, text="Launch ConvertMe", bg="blue", fg="white", command=self.launch_convertme, font=self.buttonfont)
         b_convertme.grid(row=0, column=2, pady=5, padx=5)
 
-        b_toolbox = tk.Button(self.bot, text="Open ToolBox", bg="blue", fg="white", command=self.launch_toolbox, font=self.buttonfont)
-        b_toolbox.grid(row=0, column=3, pady=5, padx=5)
 
-
-
-    def get_q(self, *args):
+    def get_q(self, *args): # *args needed for binding the function to <Return> entry user field
+        
         self.user.set(self.entry_user.get())
         self.status.set(self.status_options[self.status.get()])
 
@@ -294,6 +284,7 @@ class MainWindow(tk.Frame):
     def open_output(self):
         outputfile = self.eval_workfile("output")
         if "ErrorCode_" in outputfile:
+            self.log_update(outputfile)
             return outputfile
 
         f = open(outputfile, "r")
@@ -309,6 +300,7 @@ class MainWindow(tk.Frame):
     def open_input(self):
         inputfile = self.eval_workfile("input")
         if "ErrorCode_" in inputfile:
+            self.log_update(inputfile)
             return inputfile
 
         f = open(inputfile, "r")
@@ -324,6 +316,7 @@ class MainWindow(tk.Frame):
     def quepasa(self):
         outputfile = self.eval_workfile("output")
         if "ErrorCode_" in outputfile:
+            self.log_update(outputfile)
             return outputfile
 
         self.log_update("Que Pasa? {}".format(outputfile))
@@ -332,18 +325,20 @@ class MainWindow(tk.Frame):
     def molden_output(self):
         outputfile = self.eval_workfile("output")
         if "ErrorCode_" in outputfile:
+            self.log_update(outputfile)
             return outputfile
 
         self.log_update("molden {}".format(outputfile))
         sub.call(["molden", "{}".format(outputfile)])
 
     def select_text(self):
-        try:
+        if self.txt.tag_ranges(tk.SEL):
             return self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
-        except:
-            return "ErrorCode_pol98"
+        else:
+            self.log_update("No PID selected. ErrorCode_las02")
+            return "ErrorCode_las02"
 
-    def eval_workfile(self, filetype):
+    def eval_workfile(self,filetype):
         pid = self.select_text()
         try: # check that the selected text is a valid pid
             int(pid)
@@ -387,7 +382,6 @@ class MainWindow(tk.Frame):
             self.log_update("File not found: {}. ErrorCode_poz32".format(usefile))
             return "ErrorCode_poz32"
 
-
     def get_jobname(self, pid):
         try:
             int(pid)
@@ -399,24 +393,19 @@ class MainWindow(tk.Frame):
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
         return process.stdout.read().splitlines()[0].split()[1].split("=")[1]
-
+        
+    
     def kill_job(self):
         pid = self.select_text()
         cmd = ["scancel", pid]
-
-        result = tkMessageBox.askyesno("Queue-Gui", "Are you sure you want to kill JobID {}?".format(pid))
-        
-        if result is True:
-            self.log_update(" ".join(cmd))
-            sub.call(cmd)
-            self.get_q()
-        else:
-            return
+        self.log_update(" ".join(cmd))
+        sub.call(cmd)
+        self.get_q()
 
     def clear_log(self):
         self.log.config(state=tk.NORMAL)
         self.log.delete(1.0, tk.END)
-        self.log_update("Welcome to Queue-Gui!")
+        self.log_update("Welcome to QueueGui!")
         return None
 
     def log_update(self, msg):
@@ -530,39 +519,12 @@ class MainWindow(tk.Frame):
                 self.status.set(stat)
                 break
 
-    def get_submitdir(self):
-        pid = self.select_text()
-        cmd = ["scontrol", "show", "jobid", pid]
-        process = sub.Popen(cmd, stdout=sub.PIPE)
-        s = process.stdout.readlines()
-        
-        for line in s:
-            if "Invalid job id specified" in s:
-                self.log_update("Specified JobID not valid. ErrorCode_hyr85")
-                return "ErrorCode_hyr85"
-            elif "WorkDir=/" in line:
-                return line.split("=")[1].strip()
-        self.log_update("Work directory not found. ErrorCode_kod47")
-        return "ErrorCode_kod47"
-                
-
     def launch_convertme(self):
-        pid = self.select_text()
-        workdir = self.get_submitdir()
+        sub.call(["python", "/home/ambr/bin/convertme.py"])
 
-        if "ErrorCode_" in pid:
-            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
-        elif workdir.strip() == "":
-            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
-        elif "ErrorCode_" in workdir:
-            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
-        elif self.user.get() not in workdir:
-            self.log_update("Suspicious-looking directory...")
-            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
-
-        convertme = ConvertMe(self, workdir)
-        print(workdir)
-
-    def launch_toolbox(self):
-        pass
-
+##########################################################
+# run program
+if __name__ == "__main__":
+    master = tk.Tk()
+    app = QueueGui(master)
+    master.mainloop()
