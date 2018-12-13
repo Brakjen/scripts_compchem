@@ -146,8 +146,11 @@ class MainWindow(tk.Frame):
         b_killjob = tk.Button(self.bot, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
         b_killjob.grid(row=0, column=1, pady=5, padx=5)
 
-        b_convertme = tk.Button(self.bot, text="Launch ConvertMe", bg="blue", fg="white", command=self.launch_convertme, font=self.buttonfont)
+        b_convertme = tk.Button(self.bot, text="Convert Me!", bg="blue", fg="white", command=self.launch_convertme, font=self.buttonfont)
         b_convertme.grid(row=0, column=2, pady=5, padx=5)
+
+        b_toolbox = tk.Button(self.bot, text="Open ToolBox", bg="blue", fg="white", command=self.launch_toolbox, font=self.buttonfont)
+        b_toolbox.grid(row=0, column=3, pady=5, padx=5)
 
 
 
@@ -525,7 +528,10 @@ class MainWindow(tk.Frame):
                 break
 
     def launch_convertme(self):
-        convertme = ConvertMe()
+        convertme = ConvertMe(self)
+
+    def launch_toolbox(self):
+        convertme = ConvertMe(self)
 
 
 
