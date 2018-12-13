@@ -4,14 +4,19 @@ import os
 from datetime import datetime
 
 class ConvertMe(tk.Toplevel):
-    def __init__(self, parent): # here 'parent' is a reference to the class MainWindow, from which ConvertMe is called
+    def __init__(self, parent, workdir): # here 'parent' is a reference to the class MainWindow, from which ConvertMe is called
         tk.Toplevel.__init__(self, parent)
         self.parent = parent
         self.title("Convert-Me")
+        self.workdir = workdir
 
         self["bg"] = self.parent.maincolor
 
         self.place_widgets()
+            
+        # move into the directory provided
+        os.chdir(self.workdir)
+        
         self.log_update("Welcome to Convert-Me!")
         self.log_update("You are in {}".format(os.getcwd()))
 
@@ -215,4 +220,4 @@ class ConvertMe(tk.Toplevel):
                   ("Gaussian input files", "*.com")]
 
         self.entry_file.delete(0, tk.END)
-        self.entry_file.insert(0, tkFileDialog.askopenfilenames(parent=self, title = "Select File", filetypes=ftypes))
+        self.entry_file.insert(0, tkFileDialog.askopenfilenames(initialdir=self.workdir, parent=self, title ="Select File", filetypes=ftypes))
