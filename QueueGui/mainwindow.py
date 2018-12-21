@@ -7,6 +7,7 @@ import os
 from collections import OrderedDict
 from convertme import ConvertMe
 from toolbox import ToolBox
+from notepad import NotePad
 
 class MainWindow(tk.Frame):
     
@@ -154,7 +155,8 @@ class MainWindow(tk.Frame):
         b_toolbox = tk.Button(self.bot, text="Open ToolBox", bg="blue", fg="white", command=self.launch_toolbox, font=self.buttonfont)
         b_toolbox.grid(row=0, column=3, pady=5, padx=5)
 
-
+        b_notepad = tk.Button(self.bot, text="NotePad", bg="blue", fg="white", command=self.launch_notepad, font=self.buttonfont)
+        b_notepad.grid(row=0, column=4, pady=5, padx=5)
 
     def get_q(self, *args):
         self.user.set(self.entry_user.get())
@@ -561,8 +563,22 @@ class MainWindow(tk.Frame):
             workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
 
         convertme = ConvertMe(self, workdir)
-        print(workdir)
 
     def launch_toolbox(self):
-        pass
+        pid = self.select_text()
+        workdir = self.get_submitdir()
 
+        if "ErrorCode_" in pid:
+            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+        elif workdir.strip() == "":
+            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+        elif "ErrorCode_" in workdir:
+            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+        elif self.user.get() not in workdir:
+            self.log_update("Suspicious-looking directory...")
+            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+
+        toolbox = ToolBox(self, workdir)
+
+    def launch_notepad(self):
+        notepad = NotePad(self)

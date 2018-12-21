@@ -60,7 +60,7 @@ class ConvertMe(tk.Toplevel):
         yscrollbar = tk.Scrollbar(self.top)
         yscrollbar.grid(row=1, column=4, pady=2, padx=2, sticky="ns")
         
-        self.log = tk.Text(self.top, height=10, yscrollcommand=yscrollbar.set, wrap=tk.NONE, bg="black", fg="white")
+        self.log = tk.Text(self.top, height=10, yscrollcommand=yscrollbar.set, bg="black", fg="white")
         self.log.grid(row=1, columnspan=2, pady=5, padx=5, sticky="ew")
 
         yscrollbar.config(command=self.log.yview)
