@@ -14,6 +14,7 @@ if option == "help":
     print("| where <val> is the menu number.")
     print("|---------------------------------------|")
     print("| 1: Get ORCA optimized geometry \t|")
+    print("| 2: Get Gaussian optimized geometry \t|")
     print("| 3: Get normalmodes from .hess \t|")
     print("| 5: Convert .xyz to .com \t\t|")
     print("| 6: Convert .com to .xyz \t\t|")
@@ -24,6 +25,10 @@ filename = sys.argv[2]
 
 if option == "1":
     get_optgeom_orca(filename)
+    sys.exit()
+
+if option == "2":
+    get_opt_geom_gaussian(filename)
     sys.exit()
     
 if option == "3":
