@@ -43,6 +43,9 @@ class MainWindow(tk.Frame):
         self.user = tk.StringVar()
         self.user.set("ambr") # set default user to "ambr"
 
+        self.jobhisfilter = tk.StringVar()
+        self.jobhisfilter.set("") # setting default value to empty string
+
         self.job_starttime_options = [datetime.now().date() - timedelta(days=i) for i in range(31)]
         self.job_starttime = tk.StringVar()
         self.job_starttime.set(datetime.now().date()) # default option will be the current date
@@ -109,7 +112,14 @@ class MainWindow(tk.Frame):
         self.entry_user.grid(row=0, column=0, sticky="ew", pady=5, padx=5)
         self.entry_user.insert(0, self.user.get()) 
         self.entry_user.bind("<Return>", self.get_q)
- 
+
+        self.entry_filter = tk.Entry(self.topleft, width=10)
+        self.entry_filter.grid(row=3, column=1, columnspan=2, sticky="ew", pady=5, padx=5)
+        self.entry_filter.insert(0, self.jobhisfilter.get())
+        self.entry_filter.bind("<Return>", self.open_jobhis)
+
+        l_jobhisfilter = tk.Label(self.topleft, text="Filter Job history:", bg=self.maincolor)
+        l_jobhisfilter.grid(row=3, column=0, sticky="ew", pady=5, padx=5)
 
         yscroll_log = tk.Scrollbar(self.topright, relief=tk.SUNKEN)
         yscroll_log.grid(row=0, rowspan=3, column=1, pady=2, padx=2, sticky="ns")
@@ -467,9 +477,12 @@ class MainWindow(tk.Frame):
             self.txt.insert(tk.END, line + "\n")
         self.txt.config(state=tk.DISABLED)
 
-    def open_jobhis(self):
+    def open_jobhis(self, *args):
         self.user.set(self.entry_user.get())
         self.status.set(self.status_options[self.status.get()])
+        self.jobhisfilter.set(self.entry_filter.get())
+        
+        self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
 
         # obtain the length of the job with the longest name
         cmd = ["squeue", "-u", self.user.get(), "-o", "%.300j"]
@@ -502,27 +515,34 @@ class MainWindow(tk.Frame):
                 continue
             history.append(line)
        
-        self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
       
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
 
-        for i, line in enumerate(history):
-            if i % 2 == 0:
-                self.txt.insert(tk.END, line)
-            else:
-                self.txt.insert(tk.END, line)
+        # make sure the header will be printed regardless  of filter options
+        self.txt.insert(tk.END, history[0])
 
-            if "RUNN" in line.split()[3]:
-                self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-            elif "PENDI" in line.split()[3]:
-                self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-            elif "TIMEO" in line.split()[3]:
-                self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-            elif "COMPLE" in line.split()[3]:
-                self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-            elif "CANCEL" in line.split()[3]:
-                self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+        for i, line in enumerate(history):
+            if i > 0: # exclude header, as it has already been inserted
+                # if entry filter is empty 
+                if self.jobhisfilter.get().strip() == "":
+                    self.txt.insert(tk.END, line)
+                # if filter is to be applied
+                else:
+                    for f in self.jobhisfilter.get().strip().split():
+                        if f in line:
+                            self.txt.insert(tk.END, line)
+
+                if "RUNN" in line.split()[3]:
+                    self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "PENDI" in line.split()[3]:
+                    self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "TIMEO" in line.split()[3]:
+                    self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "COMPLE" in line.split()[3]:
+                    self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "CANCEL" in line.split()[3]:
+                    self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
         
         self.txt.config(state=tk.DISABLED)
 
