@@ -69,7 +69,8 @@ class ToolBox(tk.Toplevel):
 
     def get_optimized_geometry(self):
         self.thefile.set(self.entry.get())
-    
+        gaussian, orca = False, False
+
         # determine if file is from Gaussian or from ORCA
         try:
             output = G.GaussianOut(self.thefile.get())
@@ -95,4 +96,19 @@ class ToolBox(tk.Toplevel):
             self.log_update("File not found. ErrorCode_cax18")
             return
 
+        if gaussian == False and orca == False:
+            self.log_update("Neither Gaussian or ORCA file type was detected. ErrorCode_xud25")
+            return
+
+        if gaussian:
+            self.log_update("Getting Gaussian optimized geometry.")
+        if orca:
+            self.log_update("Getting ORCA optimized geometry.")
+
+
         
+
+
+
+
+
