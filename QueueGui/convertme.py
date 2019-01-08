@@ -211,7 +211,7 @@ class ConvertMe(tk.Toplevel):
     def clear_log(self):
         self.log.config(state=tk.NORMAL)
         self.log.delete(1.0, tk.END)
-        self.log_update("Welcome to ConvertMe!")
+        self.log_update("Welcome to Convert-Me!")
         self.log_update("You are in {}".format(os.getcwd()))
 
     def browse_file(self):
