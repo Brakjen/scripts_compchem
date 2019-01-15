@@ -485,12 +485,14 @@ class MainWindow(tk.Frame):
         self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
 
         # obtain the length of the job with the longest name
-        cmd = ["squeue", "-u", self.user.get(), "-o", "%.300j"]
+        cmd = ["sacct", "-u", self.user.get(), "--format=Jobname%300", "--starttime", self.job_starttime.get()]
         process = sub.Popen(cmd, stdout=sub.PIPE)
-        q = process.stdout.readlines()
+        jobhis = process.stdout.readlines()
         
         namelengths = []
-        for job in q:
+        for i,job in enumerate(jobhis):
+            if i < 2:
+                continue
             namelengths.append(len(job.strip()))
         maxname = max(namelengths)
 
