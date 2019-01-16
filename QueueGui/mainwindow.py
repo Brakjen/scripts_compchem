@@ -173,19 +173,22 @@ class MainWindow(tk.Frame):
         self.status.set(self.status_options[self.status.get()])
 
         # obtain the length of the job with the longest name
-        cmd = ["squeue", "-u", self.user.get(), "-o", "%.300j"]
+        cmd = ["squeue", "-u", self.user.get(), "-o", "%.300j, %20i"]
         process = sub.Popen(cmd, stdout=sub.PIPE)
         q = process.stdout.readlines()
         
         namelengths = []
+        pidlengths = []
         for job in q:
-            namelengths.append(len(job.strip()))
+            namelengths.append(len(job.split()[0].strip()))
+            pidlengths.append(len(job.split()[1].strip()))
         maxname = max(namelengths)
+        maxpid = max(pidlengths)
 
         if self.user.get().strip() == "" or self.user.get() == "all":
-            cmd = ["squeue", "-S", "i", "-o", "%.40j %.7i %.9P %.8T %.8u %.10M %.9l %.6D %R"]
+            cmd = ["squeue", "-S", "i", "-o", "%.40j %.{}i %.9P %.8T %.8u %.10M %.9l %.6D %R".format(maxpid+1)]
         else:
-            cmd = ["squeue", "-u", self.user.get(), "-t", self.status.get() , "-S", "i", "-o", "%.{}j %.7i %.9P %.8T %.8u %.10M %.9l %.6D %R".format(maxname+1)]
+            cmd = ["squeue", "-u", self.user.get(), "-t", self.status.get() , "-S", "i", "-o", "%.{}j %.{}i %.9P %.8T %.8u %.10M %.9l %.6D %R".format(maxname+1, maxpid+1)]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
 
@@ -485,25 +488,33 @@ class MainWindow(tk.Frame):
         self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
 
         # obtain the length of the job with the longest name
-        cmd = ["sacct", "-u", self.user.get(), "--format=Jobname%300", "--starttime", self.job_starttime.get()]
+        cmd = ["sacct", "-u", self.user.get(), "--format=Jobname%300, JobID%20", "--starttime", self.job_starttime.get()]
         process = sub.Popen(cmd, stdout=sub.PIPE)
         jobhis = process.stdout.readlines()
         
         namelengths = []
+        pidlengths = []
         for i,job in enumerate(jobhis):
             if i < 2:
                 continue
-            namelengths.append(len(job.strip()))
+            namelengths.append(len(job.split()[0].strip()))
+            if "proxy" not in job.split()[0] and ".batch" not in job.split()[1]:
+                pidlengths.append(len(job.split()[1].strip()))
+        print(pidlengths)
+        if len(namelengths) == 0:
+            self.log_update("Job history is empty. Try selecting an earlier start time in the drop down menu. ErrorCode_hyx916")
+            return "ErrorCode_hyx916"
         maxname = max(namelengths)
+        maxpid = max(pidlengths)
 
         if self.user.get().strip() == "":
             self.log_update("No user selected. ErrorCode_hus28")
             return "ErrorCode_hus28"
 
         if self.status.get() == self.status_options["All Jobs"]:
-            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=Jobname%{},JobID%7,User,state%10,time,nnodes%3,CPUTime,elapsed,Start,End".format(maxname+1)]
+            cmd = ["sacct", "-u", self.user.get(), "--starttime", self.job_starttime.get(), "--format=Jobname%{},JobID%{},User,state%10,time,nnodes%3,CPUTime,elapsed,Start,End".format(maxname+1, maxpid+1)]
         else:
-            cmd = ["sacct", "-u", self.user.get(), "-s", self.status.get(), "--starttime", self.job_starttime.get(), "--format=Jobname%{},JobID%7,User,state%10,time,nnodes%3,CPUTime,elapsed,Start,End".format(maxname+1)]
+            cmd = ["sacct", "-u", self.user.get(), "-s", self.status.get(), "--starttime", self.job_starttime.get(), "--format=Jobname%{},JobID%{},User,state%10,time,nnodes%3,CPUTime,elapsed,Start,End".format(maxname+1, maxpid+1)]
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
         jh = process.stdout.readlines()
