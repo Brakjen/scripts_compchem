@@ -8,6 +8,7 @@ from collections import OrderedDict
 from convertme import ConvertMe
 from toolbox import ToolBox
 from notepad import NotePad
+from MRChem import MrchemOut
 
 class MainWindow(tk.Frame):
     
@@ -107,6 +108,9 @@ class MainWindow(tk.Frame):
         
         b_moldenout = tk.Button(self.topleft, text="Molden Output", command=self.molden_output, font=self.buttonfont)
         b_moldenout.grid(row=0, column=3, sticky="ew", pady=5, padx=5)
+
+        b_mrc_convergence = tk.Button(self.topleft, text="MRChem conv.", command=self.mrchem_plot_convergence, font=self.buttonfont)
+        b_mrc_convergence.grid(row=3, column=3, pady=5, padx=5, sticky="ew")
         
         self.entry_user = tk.Entry(self.topleft, width=10)
         self.entry_user.grid(row=0, column=0, sticky="ew", pady=5, padx=5)
@@ -500,7 +504,7 @@ class MainWindow(tk.Frame):
             namelengths.append(len(job.split()[0].strip()))
             if "proxy" not in job.split()[0] and ".batch" not in job.split()[1]:
                 pidlengths.append(len(job.split()[1].strip()))
-        print(pidlengths)
+        
         if len(namelengths) == 0:
             self.log_update("Job history is empty. Try selecting an earlier start time in the drop down menu. ErrorCode_hyx916")
             return "ErrorCode_hyx916"
@@ -615,3 +619,39 @@ class MainWindow(tk.Frame):
 
     def launch_notepad(self):
         notepad = NotePad(self)
+
+    def get_slurmarray_child_pid(self):
+        pid_parent = self.select_text()
+        cmd = ["scontrol", "show", "jobid", pid_parent]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        s = process.stdout.readlines()
+        pid_child = int(s[0].split()[0].split("=")[1])
+
+        filename = None
+        for line in s:
+            if line.strip().startswith("StdOut=/"):
+                filename = os.path.basename(line.split("=")[1].strip()).split(".")[0]
+        return pid_child, filename
+
+    def mrchem_plot_convergence(self):
+        pid = self.select_text()
+        self.jobhisfilter.set(self.entry_filter.get())
+        self.user.set(self.entry_user.get())
+
+        if "array" in self.jobhisfilter.get():
+            array = True
+        else:
+            array = False
+
+        if array:
+            pid, filename = self.get_slurmarray_child_pid()
+
+            workdir = "/global/work/{}/MRCHEM-{}".format(self.user.get(), pid)
+            outputfile = MrchemOut(os.path.join(workdir, filename+".out"))
+            outputfile.plot_scf_energy()
+            return None
+            
+            
+        else:
+            self.log_update("Not yet implemented for non-array jobs.")
+            return None
