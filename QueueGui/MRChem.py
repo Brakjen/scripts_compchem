@@ -108,7 +108,36 @@ class MrchemOut(object):
     #@timeit
     def plot_scf_energy(self):
         """Return a graph plotting the potential energies"""
-        return plt.show(plt.plot(self.scf_energy()))
+        
+        # define the energies, energy_change x values, and orbital convergence threshold
+        e = self.scf_energy()
+        x_e = range(1, len(e)+1)
+        x_delta_e = x_e[0:-1]
+        t = [self.orbital_threshold() for i in range(len(e) - 1)]
+        t_plus  = self.orbital_threshold() + 10*self.orbital_threshold()
+        t_minus = -1*self.orbital_threshold() - 10*self.orbital_threshold()
+
+        delta_e = []
+        for i, energy in enumerate(e):
+            if i == 0:
+                continue
+            delta_e.append(e[i] - e[i-1])
+
+        fig = plt.figure(figsize=(12,5), dpi=50)
+        plt.subplots_adjust(wspace=0.27)
+
+        plt.subplot(1, 2, 1)
+        plt.plot(x_e, e, "black", linewidth=2)
+        plt.ylabel("Total Energy [a.u]")
+        plt.xlabel("SCF iteration")
+
+        plt.subplot(1, 2, 2)
+        plt.plot(x_delta_e, delta_e, "black", x_delta_e, map(lambda x: -1*x, t), "r--", x_delta_e, t, "r--", linewidth=2.0)
+        plt.ylabel("Energy Change [a.u]")
+        plt.xlabel("SCF iteration")
+        plt.ylim(t_minus, t_plus)
+
+        return plt.show()
 
     #@timeit
     def walltime(self):
@@ -120,4 +149,15 @@ class MrchemOut(object):
         return w
 
 
+    #@timeit
+    def orbital_threshold(self):
+        """Return the orbital convergence threshold as a float"""
+        t = filter(lambda x: x.strip().startswith("Orbital threshold"), self.content())[0].split()[2]
+        return float(t)
 
+    #@timeit
+    def property_threshold(self):
+        """Return the property convergence threshold as a float"""
+        t = filter(lambda x: x.strip().startswith("Property threshold"), self.content())[0].split()[2]
+        return float(t)
+        
