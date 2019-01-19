@@ -31,11 +31,8 @@ class MrchemOut(object):
         """This method evaluates whether the job
         terminated normally, and returns a Boolean:
         True if termination was notmal, False if not."""
-        try:
-            if "Exiting MRChem" in list(self.content())[-7]:
-                return True
-        except IndexError:
-            return False
+        if "Exiting MRChem" in list(self.content())[-7]:
+            return True
         return False
 
 
@@ -116,9 +113,9 @@ class MrchemOut(object):
         e = self.scf_energy()
         x_e = range(1, len(e)+1)
         x_delta_e = x_e[0:-1]
-        t = [self.orbital_threshold() for i in range(len(e) - 1)]
-        t_plus  = self.orbital_threshold() + 10*self.orbital_threshold()
-        t_minus = -1*self.orbital_threshold() - 10*self.orbital_threshold()
+        t = [self.property_threshold() for i in range(len(e) - 1)]
+        t_plus  = t[0] + 10*t[0] #reusing the threshold from variable "t"
+        t_minus = -1*t[0] - 10*t[0]
 
         delta_e = []
         for i, energy in enumerate(e):
@@ -160,7 +157,7 @@ class MrchemOut(object):
 
     #@timeit
     def property_threshold(self):
-        """Return the property convergence threshold as a float"""
+        """Return the property convergence threshold as a float. This is the energy convergence threshold."""
         t = filter(lambda x: x.strip().startswith("Property threshold"), self.content())[0].split()[2]
         return float(t)
         
