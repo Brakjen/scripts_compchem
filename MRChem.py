@@ -31,8 +31,11 @@ class MrchemOut(object):
         """This method evaluates whether the job
         terminated normally, and returns a Boolean:
         True if termination was notmal, False if not."""
-        if "Exiting MRChem" in list(self.content())[-7]:
-            return True
+        try:
+            if "Exiting MRChem" in list(self.content())[-7]:
+                return True
+        except IndexError:
+            return False
         return False
 
 
