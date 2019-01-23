@@ -314,9 +314,8 @@ class MainWindow(tk.Frame):
         self.txt.config(state=tk.DISABLED)
 
     def open_output(self):
-        outputfile = self.eval_workfile("output")
-        if "ErrorCode_" in outputfile:
-            return outputfile
+        pid = self.select_text()
+        outputfile = self.locate_output_file(pid)
 
         f = open(outputfile, "r")
         lines = f.readlines()
@@ -329,9 +328,7 @@ class MainWindow(tk.Frame):
         self.txt.config(state=tk.DISABLED)
 
     def open_input(self):
-        inputfile = self.eval_workfile("input")
-        if "ErrorCode_" in inputfile:
-            return inputfile
+        inputfile = self.locate_input_file()
 
         f = open(inputfile, "r")
         lines = f.readlines()
@@ -678,3 +675,126 @@ class MainWindow(tk.Frame):
         else:
             self.log_update("Not yet implemented for non-array jobs.")
             return None
+
+    def locate_output_file(self, pid):
+        """Return the absolute path to the output file for the specified job id, as string."""
+        self.user.set(self.entry_user.get())
+
+        scratch_location = "/global/work/{}".format(self.user.get())
+
+        # first determine whether the job is "normal" or "array". we do this by inspecting the 'scontrol show jobid <pid>' stdout
+        cmd = ["scontrol", "show", "jobid", pid]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        try:
+            scontrolout = process.stdout.readlines()[0].split() # the jobid info is always contained in the first element of the output
+        except:
+            self.log_update("PID not valid. ErrorCode_bud821")
+            return "ErrorCode_bud821"
+
+        scontrolout = [i.split("=") for i in scontrolout] # getting a format similar to a zipped list of tuples
+
+        entryfields = []
+        for el in scontrolout:
+            entryfields.append(el[0])
+        if "Array" in ''.join(entryfields):
+            array = True
+            self.log_update("Array job detected")
+        else:
+            array = False
+            self.log_update("Non-array job detected")
+        #########################################
+
+        # now locate the output file. We get botht the child pid and the child jobname from the scontrol output above
+        if array:
+            pid_child = scontrolout[0][1]
+    
+            all_scratch_dirs = os.listdir(scratch_location)
+            scratchdir_child = None
+            for scratch in all_scratch_dirs:
+                if scratch.endswith(pid_child):
+                    scratchdir_child = os.path.join(scratch_location, scratch)
+                    break
+            if scratchdir_child == None:
+                self.log_update("Scratch directory for job id {} not found. ErrorCode_hoq999".format(pid_child))
+                return "ErrorCode_hoq999"
+
+            outputfile = glob("{}/*.out".format(scratchdir_child))
+            if len(outputfile) > 1:
+                self.log_update("Warning: Multiple files with extension '.out' found, attempting to use the first one: {}".format(outputfile[0]))
+            
+            # make sure the file exists by trying to open it
+            try:
+                f = open(outputfile[0])
+                f.close()
+            except IOError:
+                self.log_update("The file {} does not exist. ErrorCode_mud813".format(outputfile[0]))
+                return "ErrorCode_mud813"
+            return outputfile[0]
+
+        else:
+            all_scratch_dirs = os.listdir(scratch_location)
+            scratchdir_job = None
+            for scratch in all_scratch_dirs:
+                if scratch.endswith(pid):
+                    scratchdir_job = os.path.join(scratch_location, scratch)
+                    break
+            if scratchdir_job == None:
+                self.log_update("Scratch directory for job id {} not found. ErrorCode_hoq998".format(pid))
+                return "ErrorCode_hoq998"
+
+            outputfile = glob("{}/*.out".format(scratchdir_job))
+            if len(outputfile) > 1:
+                self.log_update("Warning: Multiple files with extension '.out' found, attempting to use the first one: {}".format(outputfile[0]))
+            
+            # make sure the file exists by trying to open it
+            try:
+                f = open(outputfile[0])
+                f.close()
+            except IOError:
+                self.log_update("The file {} does not exist. ErrorCode_mud812".format(outputfile[0]))
+                return "ErrorCode_mud812"
+            return outputfile[0]
+
+    def locate_input_file(self):
+        """"""
+        self.user.set(self.entry_user.get())
+        pid = self.select_text()
+        outputfile = self.locate_output_file(pid)
+
+        scratch_directory = os.path.dirname(outputfile)
+
+        # determine whether the job is of Gaussian type, ORCA type, or MRChem type
+        with open(outputfile, "r") as f:
+            content = f.read()
+
+        gaussian, orca, mrchem = False, False, False
+        if "Entering Gaussian System" in content:
+            gaussian = True
+        elif "An Ab Initio, DFT and Semiempirical electronic structure package" in content:
+            orca = True
+        elif "Stig Rune Jensen" in content:
+            mrchem = True
+
+        if not gaussian and not orca and not mrchem:
+            self.log_update("File type not recognized. ErrorCode_jur213")
+            return "ErrorCode_jur213"
+        ################################################################
+
+        # Now we know the job type, so we can deduce the naming of the input file
+        if mrchem:
+            inputfile = os.path.join(scratch_directory, "mrchem.inp")
+        elif gaussian:
+            inputfile = os.path.join(scratch_directory, os.path.basename(outputfile).replace(".out", ".com"))
+            # since some users used the .inp extension, we perform a quick test to make sure we got it right. If not, then we
+            # change the extension to .inp
+            try:
+                o = open(inputfile, "r")
+                o.close()
+            except IOError:
+                inputfile = inputfile.replace(".com", ".inp")
+        elif orca:
+            inputfile = os.path.join(scratch_directory, os.path.basename(outputfile).replace(",out", ".inp"))
+
+        print(inputfile)
+        return inputfile
+
