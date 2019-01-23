@@ -163,14 +163,17 @@ class MainWindow(tk.Frame):
         b_killjob = tk.Button(self.bot, text="Kill Selected Job", bg="black", fg="red", command=self.kill_job, font=self.buttonfont)
         b_killjob.grid(row=0, column=1, pady=5, padx=5)
 
+        b_killalljobs = tk.Button(self.bot, text="Kill All Jobs", bg="black", fg="red", command=self.kill_all_jobs, font=self.buttonfont)
+        b_killalljobs.grid(row=0, column=2, pady=5, padx=5)
+
         b_convertme = tk.Button(self.bot, text="Convert-Me!", bg="blue", fg="white", command=self.launch_convertme, font=self.buttonfont)
-        b_convertme.grid(row=0, column=2, pady=5, padx=5)
+        b_convertme.grid(row=0, column=3, pady=5, padx=5)
 
         b_toolbox = tk.Button(self.bot, text="The ToolBox", bg="blue", fg="white", command=self.launch_toolbox, font=self.buttonfont)
-        b_toolbox.grid(row=0, column=3, pady=5, padx=5)
+        b_toolbox.grid(row=0, column=4, pady=5, padx=5)
 
         b_notepad = tk.Button(self.bot, text="NotePad", bg="blue", fg="white", command=self.launch_notepad, font=self.buttonfont)
-        b_notepad.grid(row=0, column=4, pady=5, padx=5)
+        b_notepad.grid(row=0, column=5, pady=5, padx=5)
 
     def get_q(self, *args):
         self.user.set(self.entry_user.get())
@@ -431,6 +434,21 @@ class MainWindow(tk.Frame):
             self.get_q()
         else:
             return
+
+    def kill_all_jobs(self):
+        self.user.set(self.entry_user.get())
+        cmd = ["scancel", "-u", self.user.get()]
+
+        result = tkMessageBox.askyesno("Queue-Gui", "Are you sure you want to kill all jobs for user {}".format(self.user.get()))
+        result2 = tkMessageBox.askyesno("Queue-Gui", "Are you mad?")
+
+        if result and result2:
+            self.log_update(" ".join(cmd))
+            sub.call(cmd)
+            self.get_q()
+        else:
+            return
+
 
     def clear_log(self):
         self.log.config(state=tk.NORMAL)
