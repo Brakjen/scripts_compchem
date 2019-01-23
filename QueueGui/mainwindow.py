@@ -440,7 +440,8 @@ class MainWindow(tk.Frame):
         cmd = ["scancel", "-u", self.user.get()]
 
         result = tkMessageBox.askyesno("Queue-Gui", "Are you sure you want to kill all jobs for user {}".format(self.user.get()))
-        result2 = tkMessageBox.askyesno("Queue-Gui", "Are you mad?")
+        if result:
+            result2 = tkMessageBox.askyesno("Queue-Gui", "Are you mad?")
 
         if result and result2:
             self.log_update(" ".join(cmd))
@@ -510,15 +511,13 @@ class MainWindow(tk.Frame):
         self.log_update("Showing job history for {} starting from {}".format(self.user.get(), self.job_starttime.get()))
 
         # obtain the length of the job with the longest name
-        cmd = ["sacct", "-u", self.user.get(), "--format=Jobname%300, JobID%20", "--starttime", self.job_starttime.get()]
+        cmd = ["sacct", "-u", self.user.get(), "--format=JobName%300, JobID%40", "--starttime", self.job_starttime.get()]
         process = sub.Popen(cmd, stdout=sub.PIPE)
         jobhis = process.stdout.readlines()
         
         namelengths = []
         pidlengths = []
-        for i,job in enumerate(jobhis):
-            if i < 2:
-                continue
+        for job in jobhis[2:]:
             namelengths.append(len(job.split()[0].strip()))
             if "proxy" not in job.split()[0] and ".batch" not in job.split()[1]:
                 pidlengths.append(len(job.split()[1].strip()))
@@ -546,10 +545,17 @@ class MainWindow(tk.Frame):
         for line in jh:
             try:
                 int(line.split()[1])
+                history.append(line)
             except ValueError:
-                continue
-            history.append(line)
-       
+                if "." in line.split()[1]:
+                    continue
+                elif "proxy" in line.split()[0]:
+                    continue
+                elif "batch" in line.split()[0]:
+                    continue
+                else:
+                    history.append(line)
+                
       
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
@@ -557,27 +563,26 @@ class MainWindow(tk.Frame):
         # make sure the header will be printed regardless  of filter options
         self.txt.insert(tk.END, history[0])
 
-        for i, line in enumerate(history):
-            if i > 0: # exclude header, as it has already been inserted
-                # if entry filter is empty 
-                if self.jobhisfilter.get().strip() == "":
-                    self.txt.insert(tk.END, line)
-                # if filter is to be applied
-                else:
-                    for f in self.jobhisfilter.get().strip().split():
-                        if f in line:
-                            self.txt.insert(tk.END, line)
+        for i, line in enumerate(history[1:]):
+            # if entry filter is empty 
+            if self.jobhisfilter.get().strip() == "":
+                self.txt.insert(tk.END, line)
+            # if filter is to be applied
+            else:
+                for f in self.jobhisfilter.get().strip().split():
+                    if f in line:
+                        self.txt.insert(tk.END, line)
 
-                if "RUNN" in line.split()[3]:
-                    self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-                elif "PENDI" in line.split()[3]:
-                    self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-                elif "TIMEO" in line.split()[3]:
-                    self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-                elif "COMPLE" in line.split()[3]:
-                    self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-                elif "CANCEL" in line.split()[3]:
-                    self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            if "RUNN" in line.split()[3]:
+                self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "PENDI" in line.split()[3]:
+                self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "TIMEO" in line.split()[3]:
+                self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "COMPLE" in line.split()[3]:
+                self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            elif "CANCEL" in line.split()[3]:
+                self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
         
         self.txt.config(state=tk.DISABLED)
 
