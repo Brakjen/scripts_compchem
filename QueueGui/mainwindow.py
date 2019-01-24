@@ -120,10 +120,12 @@ class MainWindow(tk.Frame):
         self.entry_filter = tk.Entry(self.topleft, width=10)
         self.entry_filter.grid(row=3, column=1, columnspan=2, sticky="ew", pady=5, padx=5)
         self.entry_filter.insert(0, self.jobhisfilter.get())
-        self.entry_filter.bind("<Return>", self.open_jobhis)
+        self.entry_filter.bind("<Return>", self.update_textbox)
 
-        l_jobhisfilter = tk.Label(self.topleft, text="Filter Job history:", bg=self.maincolor)
+        l_jobhisfilter = tk.Label(self.topleft, text="Multi-purpose filter:", bg=self.maincolor)
         l_jobhisfilter.grid(row=3, column=0, sticky="ew", pady=5, padx=5)
+
+        
 
         yscroll_log = tk.Scrollbar(self.topright, relief=tk.SUNKEN)
         yscroll_log.grid(row=0, rowspan=3, column=1, pady=2, padx=2, sticky="ns")
@@ -204,10 +206,7 @@ class MainWindow(tk.Frame):
         self.txt.config(state=tk.NORMAL)
         self.txt.delete(1.0, tk.END)
         for i, job in enumerate(q):
-            if i % 2 == 0:
-                self.txt.insert(tk.END, job)
-            else:
-                self.txt.insert(tk.END, job)
+            self.txt.insert(tk.END, job)
 
             if "RUNN" in job.split()[3]:
                 self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
@@ -316,6 +315,8 @@ class MainWindow(tk.Frame):
     def open_output(self):
         pid = self.select_text()
         outputfile = self.locate_output_file(pid)
+        if "ErrorCode_" in outputfile:
+            return outputfile
 
         f = open(outputfile, "r")
         lines = f.readlines()
@@ -329,6 +330,8 @@ class MainWindow(tk.Frame):
 
     def open_input(self):
         inputfile = self.locate_input_file()
+        if "ErrorCode_" in inputfile:
+            return inputfile
 
         f = open(inputfile, "r")
         lines = f.readlines()
@@ -341,15 +344,15 @@ class MainWindow(tk.Frame):
         self.txt.config(state=tk.DISABLED)
 
     def quepasa(self):
-        outputfile = self.eval_workfile("output")
-        if "ErrorCode_" in outputfile:
+        outputfile = self.locate_output_file(self.select_text())
+        if "ErrorCode_"in outputfile:
             return outputfile
 
         self.log_update("Que Pasa? {}".format(outputfile))
         sub.call(["bash", "/home/ambr/bin/gaussian_howsitgoing.sh", "{}".format(outputfile)])
 
     def molden_output(self):
-        outputfile = self.eval_workfile("output")
+        outputfile = self.locate_output_file(self.select_text())
         if "ErrorCode_" in outputfile:
             return outputfile
 
@@ -361,51 +364,6 @@ class MainWindow(tk.Frame):
             return self.txt.get(tk.SEL_FIRST, tk.SEL_LAST)
         except:
             return "ErrorCode_pol98"
-
-    def eval_workfile(self, filetype):
-        pid = self.select_text()
-        try: # check that the selected text is a valid pid
-            int(pid)
-        except ValueError:
-            self.log_update("PID must be an integer. ErrorCode_xal49")
-            return "ErrorCode_xal49"
-
-        # define the workdir. using user variable to access other users files
-        workdir = "/global/work/{}/{}/".format(self.user.get(), pid)
-        # getting jobname from the scontrol command
-        jobname = self.get_jobname(pid)
-
-        # determine which extension to use
-        if filetype == "output":
-            ext = [".out"]
-        elif filetype == "input":
-            ext = [".com", ".inp"]
-        else:
-            self.log_update("Filetype '{}' not supported. ErrorCode_tot91".format(filetype))
-            return "ErrorCode_tot91"
-
-        usefile = None
-        for x in ext:
-            f = workdir + jobname + x
-            if os.path.isfile(f):
-                usefile = f
-                break # a useable file was found, so we break out of the loop. no need to evaluate other extensions
-
-        # make sure some file actually was found by checking that the initial value of 'usefile' did not change from None
-        if usefile == None:
-            self.log_update("No file found. ErrorCode_tyr86")
-            return "ErrorCode_tyr86"
-
-        # now we attempt to open the found file
-        try:
-            s = open(usefile, "r")
-            s.close()
-            self.log_update("Using this file: {}".format(usefile))
-            return usefile # return the fill path to the file, to be used by subsequent methods
-        except IOError:
-            self.log_update("File not found: {}. ErrorCode_poz32".format(usefile))
-            return "ErrorCode_poz32"
-
 
     def get_jobname(self, pid):
         try:
@@ -560,7 +518,7 @@ class MainWindow(tk.Frame):
         # make sure the header will be printed regardless  of filter options
         self.txt.insert(tk.END, history[0])
 
-        for i, line in enumerate(history[1:]):
+        for i, line in enumerate(history[2:]):
             # if entry filter is empty 
             if self.jobhisfilter.get().strip() == "":
                 self.txt.insert(tk.END, line)
@@ -570,6 +528,7 @@ class MainWindow(tk.Frame):
                     if f in line:
                         self.txt.insert(tk.END, line)
 
+        for i,line in enumerate(self.txt.get(1.0, tk.END).splitlines()):
             if "RUNN" in line.split()[3]:
                 self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
             elif "PENDI" in line.split()[3]:
@@ -798,3 +757,36 @@ class MainWindow(tk.Frame):
         print(inputfile)
         return inputfile
 
+    def update_textbox(self, *args):
+        # get the filter variables
+        self.jobhisfilter.set(self.entry_filter.get())
+        if self.jobhisfilter.get().strip() == "":
+            self.log_update("The filter is empty")
+            return
+
+        # Collect whatever is currently in the textbox, and loop over it to filter
+        current = self.txt.get(1.0, tk.END).splitlines()
+        new = current[:2]
+        for line in current:
+            for f in self.jobhisfilter.get().strip().split():
+                if f in line:
+                    new.append(line)
+        self.txt.config(state=tk.NORMAL)
+        self.txt.delete(1.0, tk.END)
+
+        for i, line in enumerate(new):
+            self.txt.insert(tk.END, line+"\n")
+            try:
+                if "RUNN" in line.split()[3]:
+                    self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "PEND" in line.split()[3]:
+                    self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "TIME" in line.split()[3]:
+                    self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "COMPL" in line.split()[3]:
+                    self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "CANCEL" in line.split()[3]:
+                    self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            except IndexError:
+                continue
+        self.txt.config(state=tk.DISABLED)
