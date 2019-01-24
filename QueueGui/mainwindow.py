@@ -529,16 +529,19 @@ class MainWindow(tk.Frame):
                         self.txt.insert(tk.END, line)
 
         for i,line in enumerate(self.txt.get(1.0, tk.END).splitlines()):
-            if "RUNN" in line.split()[3]:
-                self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-            elif "PENDI" in line.split()[3]:
-                self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-            elif "TIMEO" in line.split()[3]:
-                self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-            elif "COMPLE" in line.split()[3]:
-                self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
-            elif "CANCEL" in line.split()[3]:
-                self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            try:
+                if "RUNN" in line.split()[3]:
+                    self.txt.tag_add("job_running", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "PENDI" in line.split()[3]:
+                    self.txt.tag_add("job_pending", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "TIMEO" in line.split()[3]:
+                    self.txt.tag_add("job_timeout", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "COMPLE" in line.split()[3]:
+                    self.txt.tag_add("job_completed", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+                elif "CANCEL" in line.split()[3]:
+                    self.txt.tag_add("job_cancelled", "{}.0".format(i+1), "{}.{}".format(i+1, tk.END))
+            except IndexError:
+                continue
         
         self.txt.config(state=tk.DISABLED)
 
