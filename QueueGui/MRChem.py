@@ -32,7 +32,7 @@ class MrchemOut(object):
     def source(self, cutoff):
         """Return entire file contents as a string."""
         with open(self.filename, "r") as f:
-                return f.read())
+                return f.read()
 
     def normaltermination(self):
         """This method evaluates whether the job
