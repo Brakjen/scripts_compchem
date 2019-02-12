@@ -20,12 +20,19 @@ class MrchemOut(object):
     
             return result
         return timed
+
     #@timeit
     def content(self):
         """Return a generator that yields the lines of the output file"""
         with open(self.filename, "r") as f:
             while True:
                 yield f.next()
+
+    #@timeit
+    def source(self, cutoff):
+        """Return entire file contents as a string."""
+        with open(self.filename, "r") as f:
+                return f.read())
 
     def normaltermination(self):
         """This method evaluates whether the job
@@ -144,11 +151,11 @@ class MrchemOut(object):
 
     #@timeit
     def walltime(self):
-        """This function returns the total walltime for the job (float) in seconds"""
+        """Return the total walltime for the job (float) in seconds"""
         w = None
         for line in self.content():
             if ' '.join(line.strip().split()).startswith("*** Wall time"):
-                w_tot = float(line.strip().split()[3])
+                w = float(line.strip().split()[3])
         return w
 
 
