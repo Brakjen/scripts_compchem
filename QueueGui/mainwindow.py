@@ -635,7 +635,9 @@ class MainWindow(tk.Frame):
             
             
         else:
-            self.log_update("Not yet implemented for non-array jobs.")
+            workdir = "/global/work/{}/MRCHEM-{}".format(self.user.get(), pid)
+            outputfile = MrchemOut(self.locate_output_file(pid))
+            outputfile.plot_scf_energy()
             return None
 
     def locate_output_file(self, pid):
