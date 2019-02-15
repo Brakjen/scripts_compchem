@@ -8,6 +8,7 @@ from collections import OrderedDict
 from convertme import ConvertMe
 from toolbox import ToolBox
 from notepad import NotePad
+from logbook import LogBook
 from MRChem import MrchemOut
 
 class MainWindow(tk.Frame):
@@ -176,6 +177,9 @@ class MainWindow(tk.Frame):
 
         b_notepad = tk.Button(self.bot, text="NotePad", bg="blue", fg="white", command=self.launch_notepad, font=self.buttonfont)
         b_notepad.grid(row=0, column=5, pady=5, padx=5)
+
+        b_logbook = tk.Button(self.bot, text="LogBook", bg="blue", fg="white", command=self.launch_logbook, font=self.buttonfont)
+        b_logbook.grid(row=0, column=6, pady=5, padx=5)
 
     def get_q(self, *args):
         self.user.set(self.entry_user.get())
@@ -601,6 +605,9 @@ class MainWindow(tk.Frame):
 
     def launch_notepad(self):
         notepad = NotePad(self)
+
+    def launch_logbook(self):
+        logbook = LogBook(self)
 
     def get_slurmarray_child_pid(self):
         pid_parent = self.select_text()
