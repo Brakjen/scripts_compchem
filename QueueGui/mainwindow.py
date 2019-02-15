@@ -380,6 +380,29 @@ class MainWindow(tk.Frame):
 
         process = sub.Popen(cmd, stdout=sub.PIPE)
         return process.stdout.read().splitlines()[0].split()[1].split("=")[1]
+    
+    def get_jobstatus(self, pid):
+        try:
+            int(pid)
+        except ValueError:
+            self.log_update("PID must be an integer. ErrorCode_mel74")
+            return "ErrorCode_mel74"
+
+        cmd = ["scontrol", "show", "jobid", pid]
+        process = sub.Popen(cmd, stdout=sub.PIPE)
+        output = process.stdout.read().splitlines()
+       
+        status = None
+        for line in output:
+            for el in line.split():
+                if "JobState" in el:
+                    status = el.split("=")[1]
+        if status == None:
+            self.log_update("Job Status not found. ErrorCode_mel34")
+            return "ErrorCode_mel34"
+        else:
+            return status
+
 
     def kill_job(self):
         pid = self.select_text()
@@ -726,48 +749,90 @@ class MainWindow(tk.Frame):
                 return "ErrorCode_mud812"
             return outputfile[0]
 
+    def get_workdir(self, pid):
+        process = sub.Popen(["scontrol", "show", "jobid", pid], stdout=sub.PIPE)
+        output = process.stdout.read().splitlines()
+
+        workdir = None
+        for line in output:
+            if line.strip().startswith("WorkDir"):
+                workdir = line.split("=")[1]
+        if workdir == None:
+                self.log_update("WorkDir not found. ErrorCode_nut62")
+                return "ErrorCode_nut62"
+        else:
+            return workdir
+
+
     def locate_input_file(self):
         """"""
         self.user.set(self.entry_user.get())
         pid = self.select_text()
-        outputfile = self.locate_output_file(pid)
 
-        scratch_directory = os.path.dirname(outputfile)
+        if self.get_jobstatus(pid) == "PENDING":
+            jobname = self.get_jobname(pid)
+            workdir = self.get_workdir(pid)
 
-        # determine whether the job is of Gaussian type, ORCA type, or MRChem type
-        with open(outputfile, "r") as f:
-            content = f.read()
-
-        gaussian, orca, mrchem = False, False, False
-        if "Entering Gaussian System" in content:
-            gaussian = True
-        elif "An Ab Initio, DFT and Semiempirical electronic structure package" in content:
-            orca = True
-        elif "Stig Rune Jensen" in content:
-            mrchem = True
-
-        if not gaussian and not orca and not mrchem:
-            self.log_update("File type not recognized. ErrorCode_jur213")
-            return "ErrorCode_jur213"
-        ################################################################
-
-        # Now we know the job type, so we can deduce the naming of the input file
-        if mrchem:
-            inputfile = os.path.join(scratch_directory, "mrchem.inp")
-        elif gaussian:
-            inputfile = os.path.join(scratch_directory, os.path.basename(outputfile).replace(".out", ".com"))
-            # since some users used the .inp extension, we perform a quick test to make sure we got it right. If not, then we
-            # change the extension to .inp
+            # Determine the origin of input file
+            inp, com = False, False
             try:
-                o = open(inputfile, "r")
-                o.close()
+                f = open(os.path.join(workdir, jobname+".inp"), "r")
+                content = f.read()
+                inp = True
+                f.close()
             except IOError:
-                inputfile = inputfile.replace(".com", ".inp")
-        elif orca:
-            inputfile = os.path.join(scratch_directory, os.path.basename(outputfile).replace(",out", ".inp"))
+                try:
+                    f = open(os.path.join(workdir, jobname+".com"), "r")
+                    content = f.read()
+                    com = True
+                    f.close()
+                except IOError:
+                    self.log_update("Input file not found. ErrorCode_juq81")
+                    return "ErrorCode_juq81"
+            if inp:
+                return os.path.join(workdir, jobname+".inp")
+            elif com:
+                return os.path.join(workdir, jobname+".com")
 
-        print(inputfile)
-        return inputfile
+        
+        else:
+            outputfile = self.locate_output_file(pid)
+
+            scratch_directory = os.path.dirname(outputfile)
+
+            # determine whether the job is of Gaussian type, ORCA type, or MRChem type
+            with open(outputfile, "r") as f:
+                content = f.read()
+
+            gaussian, orca, mrchem = False, False, False
+            if "Entering Gaussian System" in content:
+                gaussian = True
+            elif "An Ab Initio, DFT and Semiempirical electronic structure package" in content:
+                orca = True
+            elif "Stig Rune Jensen" in content:
+                mrchem = True
+
+            if not gaussian and not orca and not mrchem:
+                self.log_update("File type not recognized. ErrorCode_jur213")
+                return "ErrorCode_jur213"
+            ################################################################
+
+            # Now we know the job type, so we can deduce the naming of the input file
+            if mrchem:
+                inputfile = os.path.join(scratch_directory, "mrchem.inp")
+            elif gaussian:
+                inputfile = os.path.join(scratch_directory, os.path.basename(outputfile).replace(".out", ".com"))
+                # since some users used the .inp extension, we perform a quick test to make sure we got it right. If not, then we
+                # change the extension to .inp
+                try:
+                    o = open(inputfile, "r")
+                    o.close()
+                except IOError:
+                    inputfile = inputfile.replace(".com", ".inp")
+            elif orca:
+                inputfile = os.path.join(scratch_directory, os.path.basename(outputfile).replace(",out", ".inp"))
+
+            return inputfile
 
     def update_textbox(self, *args):
         # get the filter variables
