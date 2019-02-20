@@ -795,7 +795,7 @@ class MainWindow(tk.Frame):
                 return os.path.join(workdir, jobname+".com")
 
         
-        else:
+        elif self.get_jobstatus(pid) == "RUNNING":
             outputfile = self.locate_output_file(pid)
 
             scratch_directory = os.path.dirname(outputfile)
@@ -830,7 +830,8 @@ class MainWindow(tk.Frame):
                 except IOError:
                     inputfile = inputfile.replace(".com", ".inp")
             elif orca:
-                inputfile = os.path.join(scratch_directory, os.path.basename(outputfile).replace(",out", ".inp"))
+                inputfile = os.path.join(scratch_directory, os.path.basename(outputfile).replace(".out", ".inp"))
+                self.log_update(inputfile)
 
             return inputfile
 
