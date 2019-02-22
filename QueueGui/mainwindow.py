@@ -615,14 +615,14 @@ class MainWindow(tk.Frame):
         workdir = self.get_submitdir()
 
         if "ErrorCode_" in pid:
-            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+            workdir = "/home/ambr/projects"
         elif workdir.strip() == "":
-            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+            workdir = "/home/ambr/projects"
         elif "ErrorCode_" in workdir:
-            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+            workdir = "/home/ambr/projects"
         elif self.user.get() not in workdir:
             self.log_update("Suspicious-looking directory...")
-            workdir = "/home/ambr/projects/5hz2/phb-synth/pbe/model-10/redo-with-Gaussian"
+            workdir = "/home/ambr/projects"
 
         toolbox = ToolBox(self, workdir)
 
