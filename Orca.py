@@ -31,6 +31,18 @@ class OrcaOut(object):
                 yield f.next()
     
     #@timeit
+    def geometry_trajectory(self):
+        """Return list of all geometry steps from a geometry optimization. The last step is the optimized geometry"""
+        output = list(self.content())
+        traj = []
+        for i, line in enumerate(output):
+            if line.strip().startswith("CARTESIAN COORDINATES (ANGSTROEM)"):
+                traj.append(output[i+2:i+self.no_atoms()+2])
+        # Strip all white space and newilne characters in traj
+        traj = [map(lambda x: ' '.join(x.strip().split()), geom) for geom in traj]
+        return traj
+
+    #@timeit
     def source(self):
         """Return the file content as a string."""
         with open(self.filename, "r") as f:
@@ -77,16 +89,10 @@ class OrcaOut(object):
                 break
         return int(natoms)
              
-
-    #@timeit
-    def geometry_trajectory(self):
-        """Return list of all geometry steps from a geometry optimization. The last step is the optimized geometry"""
-        pass
-
     #@timeit
     def no_geomcycles(self):
         """Return the number of geometry cycles needed for convergence. Return an integer."""
-        return len(geometry_trjectory(self))
+        return len(self.geometry_trjectory())
     
     #@timeit
     def no_basisfunctions(self):
