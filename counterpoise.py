@@ -17,7 +17,7 @@
 # unless the fourth argument is used to specify the name.
 # -----------------------------------------------------------------------------
 # Call the script like this:
-# python counterpoise.py <fragment1.xyz> <fragment2.xyz> <inputfile.inp>
+# python counterpoise.py <fragment1.xyz> <fragment2.xyz> <inputfile.inp> [filename]
 # -----------------------------------------------------------------------------
 # The counterpoise-corrected energy should be computed as follows:
 
