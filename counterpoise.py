@@ -149,7 +149,7 @@ with open(jobname, "w") as f:
     f.write("\tRead SP4 = SCF_ENERGY[4] End\n\n")
 
 
-    f.write("\tAssign COUNTERPOISE_CORRECTION_AU = SP2 - SP1 + SP4 - SP3 End\n")
+    f.write("\tAssign COUNTERPOISE_CORRECTION_AU = -(SP2 - SP1 + SP4 - SP3) End\n")
     f.write("\tAssign COUNTERPOISE_CORRECTION_KCALMOL = 627.509 * COUNTERPOISE_CORRECTION_AU End\n")
 
     f.write("End\n")
