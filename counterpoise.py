@@ -38,9 +38,6 @@
 ################################################################################
 
 import sys
-import os
-
-root = os.getcwd()
 
 # Separate the arguments
 fragment1 = sys.argv[1]
