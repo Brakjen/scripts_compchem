@@ -11,4 +11,4 @@ if [ $(echo $PWD | cut -d"/" -f2) == "/cluster" ]; then
     alias queuegui="python $HOME/scripts_compchem/QueueGui-fram/queuegui.py"
 else
     alias queuegui="python $HOME/scripts_compchem/QueueGui/queuegui.py"
-
+fi
