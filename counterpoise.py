@@ -62,13 +62,6 @@ fragment2_coord = [i.strip() for i in fragment2_coord]
 fragment1_coord_complexbasis = fragment1_coord + map(lambda x: x.split()[0]+" : "+' '.join(x.split()[1:]), fragment2_coord)
 fragment2_coord_complexbasis = fragment2_coord + map(lambda x: x.split()[0]+" : "+' '.join(x.split()[1:]), fragment1_coord)
 
-# detect the computational method in input file
-# If, for some reason, no keywords are detected, then a placeholder will be inserted
-keywords = []
-for line in inputfile_lines:
-    if line.strip().startswith("!"):
-        keywords.append(line.strip())
-
 # Now we are ready to start making the input file.
 with open(jobname, "w") as f:
     # We need an arbitrary initial structure for the Compound method to work.
