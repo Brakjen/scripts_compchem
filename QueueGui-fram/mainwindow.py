@@ -673,7 +673,7 @@ class MainWindow(tk.Frame):
         """Return the absolute path to the output file for the specified job id, as string."""
         self.user.set(self.entry_user.get())
 
-        scratch_location = "/cluster/work/users/{}".format(self.user.get())
+        scratch_location = "/cluster/work/jobs"
 
         # first determine whether the job is "normal" or "array". we do this by inspecting the 'scontrol show jobid <pid>' stdout
         cmd = ["scontrol", "show", "jobid", pid]
