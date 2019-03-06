@@ -32,7 +32,7 @@
 # -----------------------------------------------------------------------------
 # Author:
 # Anders Brakestad
-# University of Tromsø - The Arctic University of Norway
+# University of Tromso - The Arctic University of Norway
 # PhD Candidate in Computational Chemistry
 # -----------------------------------------------------------------------------
 # Last edit: 2019-03-06
