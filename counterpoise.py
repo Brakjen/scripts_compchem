@@ -79,7 +79,7 @@ with open(jobname, "w") as f:
 
     f.write("\t# Calculation 1: fragment 1 @ complex geom with fragment 1 basis\n")
     f.write("\tNew_Step\n")
-    f.write("\t\t!keywords")
+    f.write("\t\t!keywords\n")
     f.write("\t\t%Pal NProcs 16 End\n")
     f.write("\t\t* xyz charge multiplicity\n")
     for atom in fragment1_coord:
@@ -91,7 +91,7 @@ with open(jobname, "w") as f:
 
     f.write("\t# Calculation 2: fragment 1 @ complex geom with complex basis\n")
     f.write("\tNew_Step\n")
-    f.write("\t\t!keywords")
+    f.write("\t\t!keywords\n")
     f.write("\t\t%Pal NProcs 16 End\n")
     f.write("\t\t* xyz charge multiplicity\n")
     for atom in fragment1_coord_complexbasis:
@@ -103,7 +103,7 @@ with open(jobname, "w") as f:
 
     f.write("\t# Calculation 3: fragment 2 @ complex geom with fragment 2 basis\n")
     f.write("\tNew_Step\n")
-    f.write("\t\t!keywords")
+    f.write("\t\t!keywords\n")
     f.write("\t\t%Pal NProcs 16 End\n")
     f.write("\t\t* xyz charge multiplicity\n")
     for atom in fragment2_coord:
@@ -115,7 +115,7 @@ with open(jobname, "w") as f:
 
     f.write("\t# Calculation 4: fragment 2 @ complex geom with complex basis\n")
     f.write("\tNew_Step\n")
-    f.write("\t\t!keywords")
+    f.write("\t\t!keywords\n")
     f.write("\t\t%Pal NProcs 16 End\n")
     f.write("\t\t* xyz charge multiplicity\n")
     for atom in fragment2_coord_complexbasis:
