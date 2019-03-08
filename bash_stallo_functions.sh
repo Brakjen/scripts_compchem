@@ -201,12 +201,6 @@ for file in $(find $DIR/* -name "*.py" -or -name "*.sh"); do
 done
 chmod +x $HOME/bin*
 }
-
-
-
-
-
-
-
-
-
+function prio {
+scontrol show jobid $1 | grep 'Priority' | head -1 | cut -d'N' -f1 | cut -d'=' -f2
+}
