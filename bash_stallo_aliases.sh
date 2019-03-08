@@ -12,4 +12,4 @@ if [ $(echo $PWD | cut -d"/" -f2) == "cluster" ]; then
 else
     alias queuegui="python $HOME/scripts_compchem/QueueGui/queuegui.py"
 fi
-alias prio="scontrol show jobid $1 | grep Priority | head -1 | cut -d"N" -f1 | cut -d"=" -f2"
+alias prio="scontrol show jobid $1 | grep Priority | head -1 | cut -d'N' -f1 | cut -d'=' -f2"
