@@ -78,8 +78,20 @@ class MrchemOut(object):
         vec = None
         for i, line in enumerate(content):
             if line.strip().startswith("Length of vector"):
-                vec = content[i+5].split()
-                break
+                # different version of MRChem show different dipole moment data.
+                # so first determine the correct way to extract the vector info
+                if "--- Total ---" in content[i+3]:
+                    vec = content[i+5]
+                    # we need to get rid of brackets and commas
+                    while "," in vec or "[" in vec or "]" in vec:
+                        spec_char = ",[]"
+                        for c in spec_char:
+                            vec = ''.join(vec.split(c))
+                    vec = vec.split()
+                    break
+                else:
+                    vec = content[i+5].split()
+                    break
 
         return map(float, vec)
 
