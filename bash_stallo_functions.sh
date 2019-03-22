@@ -204,3 +204,6 @@ chmod +x $HOME/bin*
 function prio {
 scontrol show jobid $1 | grep 'Priority' | head -1 | cut -d'N' -f1 | cut -d'=' -f2
 }
+function strip_ext() {
+echo $1 | -d"." -f1
+}
