@@ -211,7 +211,7 @@ function dudir() {
 for i in ./*; do
     if [ -d $i ]; then
         echo $i
-        du -sh $1
+        du -sh $i
     fi
 done
 }
