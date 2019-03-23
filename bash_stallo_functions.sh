@@ -210,7 +210,6 @@ echo $1 | cut -d"." -f1
 function dudir() {
 for i in ./*; do
     if [ -d $i ]; then
-        echo $i
         du -sh $i
     fi
 done
