@@ -207,3 +207,12 @@ scontrol show jobid $1 | grep 'Priority' | head -1 | cut -d'N' -f1 | cut -d'=' -
 function strip_ext() {
 echo $1 | cut -d"." -f1
 }
+function dudir() {
+for i in ./*; do
+    if [ -d $i ]; then
+        echo $i
+        du -sh $1
+    fi
+done
+}
+
