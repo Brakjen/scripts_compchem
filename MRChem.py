@@ -95,6 +95,34 @@ class MrchemOut(object):
 
         return map(float, vec)
 
+    def polarizability_tensor(self):
+        """Return a list of the polarizability tensor, in a.u."""
+        content = list(self.content())
+        tensor = None
+        for i, line in enumerate(content):
+            if "--- Tensor ---" in line:
+                tensor = content[i+2:i+5]
+                # Now get rid of brackets and commas in the tensor
+                for j, el in enumerate(tensor):
+                    while "," in tensor[j] or "[" in tensor[j] or "]" in tensor[j]:
+                        chars = ",[]"
+                        for c in chars:
+                            tensor[j] = ''.join(tensor[j].split(c))
+                break
+        tensor = map(lambda x: x.strip(), tensor)
+        tensor = [el.split() for el in tensor]
+        tensor = [map(float, el) for el in tensor]
+        return tensor
+
+    def polarizability_diagonal(self):
+        """Return the diagonal elements of the polarizability tensor as a list of floats"""
+        tensor = self.polarizability_tensor()
+        diag = []
+        for i, line in enumerate(tensor):
+            for j, el in enumerate(line):
+                if i==j:
+                    diag.append(el)
+        return diag
 
     #@timeit
     def final_energy_pot(self):
