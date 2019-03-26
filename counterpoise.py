@@ -20,9 +20,10 @@
 # -----------------------------------------------------------------------------
 # The counterpoise-corrected energy should be computed as follows:
 
-# E = E_complex - E_fragment1 - E_fragment2 + E_counterpoise
+# E = Delta_E + E_counterpoise
 
-# where E_counterpoise is the energy obtained from running this job.
+# where E_counterpoise is the energy obtained from running this job, and Delta_E
+# is the dissociation or association energy.
 # -----------------------------------------------------------------------------
 # IMPORTANT!!!
 # -------------
