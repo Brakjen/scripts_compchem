@@ -454,18 +454,24 @@ class MainWindow(tk.Frame):
         jobname = self.get_jobname(pid)
         workdir = self.get_workdir(pid)
 
-        try:
-            f = open(os.path.join(workdir, jobname+".job"), "r")
-            content = f.read()
-            f.close()
+        # Locate the submit script file. Common extensions are "job" and "launch"
+        slurmscript_extensions = [".job", ".launch"]
+        for ext in slurmscript_extensions:
+            try:
+                f = open(os.path.join(workdir, jobname+ext), "r")
+                content = f.read()
+                f.close()
 
-            self.txt.configure(state=tk.NORMAL)
-            self.txt.delete(1.0, tk.END)
-            self.txt.insert(1.0, content)
-            self.txt.configure(state=tk.DISABLED)
-        except IOError:
-            self.log_update("Submit script file not found. ErrorCode_juq91")
-            return "ErrorCode_juq91"
+                self.txt.configure(state=tk.NORMAL)
+                self.txt.delete(1.0, tk.END)
+                self.txt.insert(1.0, content)
+                self.txt.configure(state=tk.DISABLED)
+            except IOError:
+                if ext == slurmscript_extensions[-1]:
+                    self.log_update("Submit script file not found. ErrorCode_juq91")
+                    return "ErrorCode_juq91"
+                else:
+                    pass
 
     def open_jobinfo(self):
         pid = self.select_text()
