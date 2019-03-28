@@ -378,9 +378,12 @@ class MainWindow(tk.Frame):
 
         cmd = ["scontrol", "show", "jobid", pid]
 
-        process = sub.Popen(cmd, stdout=sub.PIPE)
-        return process.stdout.read().splitlines()[0].split()[1].split("=")[1]
-    
+        info = sub.Popen(cmd, stdout=sub.PIPE).stdout.read().splitlines()
+        jobname = None
+        for line in info:
+            if line.strip().startswith("Command"):
+                return os.path.basename(line.split("=")[1]).split(".")[0]
+
     def get_jobstatus(self, pid):
         try:
             int(pid)
@@ -454,20 +457,26 @@ class MainWindow(tk.Frame):
         jobname = self.get_jobname(pid)
         workdir = self.get_workdir(pid)
 
-        try:
-            f = open(os.path.join(workdir, jobname+".job"), "r")
-            content = f.read()
-            f.close()
-            
-            self.txt.configure(state=tk.NORMAL)
-            self.txt.delete(1.0, tk.END)
-            self.txt.insert(1.0, content)
-            self.txt.configure(state=tk.DISABLED)
+        # Locate the submit script file. Common extensions are "job" and "launch"
+        slurmscript_extensions = [".job", ".launch"]
+        for ext in slurmscript_extensions:
+            try:
+                f = open(os.path.join(workdir, jobname+ext), "r")
+                content = f.read()
+                f.close()
 
-        except IOError:
-            self.log_update("Submit script file file not found. ErrorCode_juq91")
-            return "ErrorCode_juq91"
+                self.txt.configure(state=tk.NORMAL)
+                self.txt.delete(1.0, tk.END)
+                self.txt.insert(1.0, content)
+                self.txt.configure(state=tk.DISABLED)
 
+            except IOError:
+                self.log_update(os.path.join(workdir, jobname+ext))
+                if ext == slurmscript_extensions[-1]:
+                    self.log_update("Submit script file not found. ErrorCode_juq91")
+                    return "ErrorCode_juq91"
+                else:
+                    pass
 
     def open_jobinfo(self):
         pid = self.select_text()
