@@ -378,8 +378,11 @@ class MainWindow(tk.Frame):
 
         cmd = ["scontrol", "show", "jobid", pid]
 
-        process = sub.Popen(cmd, stdout=sub.PIPE)
-        return process.stdout.read().splitlines()[0].split()[1].split("=")[1]
+        info = sub.Popen(cmd, stdout=sub.PIPE).stdout.read().splitlines()
+        jobname = None
+        for line in info:
+            if line.strip().startswith("Command"):
+                return os.path.basename(line.split("=")[1]).split(".")[0]
     
     def get_jobstatus(self, pid):
         try:
