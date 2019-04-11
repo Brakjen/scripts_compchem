@@ -212,7 +212,7 @@ class MrchemOut(object):
         
     def no_orbitals(self):
         """Return an integer value of the number of orbitals used in the calculation"""
-        for line in self.output():
+        for line in self.content():
             if line.strip().startswith("OrbitalVector"):
                 return int(line.split()[1])
         return
