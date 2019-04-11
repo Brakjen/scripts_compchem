@@ -192,11 +192,10 @@ class MrchemOut(object):
     #@timeit
     def walltime(self):
         """Return the total walltime for the job (float) in seconds"""
-        w = None
         for line in self.content():
             if ' '.join(line.strip().split()).startswith("*** Wall time"):
-                w = float(line.strip().split()[3])
-        return w
+                return float(line.strip().split()[3])
+        return
 
 
     #@timeit
