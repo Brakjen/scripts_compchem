@@ -211,3 +211,9 @@ class MrchemOut(object):
         t = filter(lambda x: x.strip().startswith("Property threshold"), self.content())[0].split()[2]
         return float(t)
         
+    def no_orbitals(self):
+        """Return an integer value of the number of orbitals used in the calculation"""
+        for line in self.output():
+            if line.strip().startswith("OrbitalVector"):
+                return int(line.split()[1])
+        return
