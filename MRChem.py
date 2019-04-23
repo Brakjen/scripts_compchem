@@ -126,7 +126,7 @@ class MrchemOut(object):
         if unit == "au" or unit == "bohr":
             return diag
         elif unit == "angstrom":
-            return map(lambda x: 1.8897162**3 * x, diag)
+            return map(lambda x: 1.8897162**3 / x, diag)
 
     #@timeit
     def final_energy_pot(self):
