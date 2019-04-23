@@ -114,15 +114,19 @@ class MrchemOut(object):
         tensor = [map(float, el) for el in tensor]
         return tensor
 
-    def polarizability_diagonal(self):
+    def polarizability_diagonal(self, unit="au"):
         """Return the diagonal elements of the polarizability tensor as a list of floats"""
+
         tensor = self.polarizability_tensor()
         diag = []
         for i, line in enumerate(tensor):
             for j, el in enumerate(line):
                 if i==j:
                     diag.append(el)
-        return diag
+        if unit == "au" or unit == "bohr":
+            return diag
+        elif unit == "angstrom":
+            return map(lambda x: 1.8897162 ^3 * x)
 
     #@timeit
     def final_energy_pot(self):
