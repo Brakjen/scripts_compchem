@@ -3,11 +3,8 @@ import shutil
 from glob import glob
 import sys
 
-root = "/Users/abr121/iCloudDrive/Education/PhD/prosjekt/mrchem/benchmark/field0001/dataanalysis"
-
-outputdir = os.path.join(root,"datafiles_highprec")
-
-outputfiles = glob("{}/*.out".format(outputdir))
+root = os.getcwd()
+outputfiles = glob("{}/*.out".format(root))
 
 for f in outputfiles:
     if "_000." in f:
