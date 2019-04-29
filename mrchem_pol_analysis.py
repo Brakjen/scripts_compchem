@@ -6,6 +6,7 @@ import glob
 import pandas as pd
 import os
 import numpy as np
+import shutil
 
 # We will need a function that converts a string into a float. Example: "00025" -> 0.0025
 def decimal(s):
@@ -14,18 +15,17 @@ def decimal(s):
     elif "Zero" in s:
         return "0"
 
-root = "/Users/abr121/Library/Mobile Documents/com~apple~CloudDocs/Education/PhD/prosjekt/mrchem/benchmark/field0001/dataanalysis"
 #//////////////////////////////////////////////////////////////////////////////////////
-suffix = "highprec" # Used to define the naming for the particular job
+suffix = sys.argv[1] # Used to define the naming for the particular job
 #//////////////////////////////////////////////////////////////////////////////////////
 
-try:
-    if sys.argv[1] == "--debug":
-        outputdir = os.path.join(root, "outputfiles_debug")
-        datafiledir = os.path.join(root, "datafiles_debug")
-except:
-    #outputdir = os.path.join(root, "")
-    datafiledir = os.path.join(root, "datafiles_{}".format(suffix))
+root = os.getcwd()
+datafiledir = os.path.join(root, "datafiles_{}".format(suffix))
+os.mkdir(datafiledir)
+# Must copy all necessary files into datafiledir
+for f in glob.glob("{}/*.out *.inp".format(root)):
+    shutil.copyfile(f, os.path.join(datafiledir, ps.path.basename(f)))
+
 
 # Get all relevant output files in a list
 print("Aqcuiring output files...")
