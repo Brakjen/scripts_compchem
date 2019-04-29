@@ -1,100 +1,191 @@
-#!/usr/bin/env python
-
+import sys
+sys.path.append("/Users/abr121/Documents/github/computational_chemistry")
+import os
 from MRChem import MrchemOut
 import glob
-import sys
 import pandas as pd
+import os
+import numpy as np
+
+# We will need a function that converts a string into a float. Example: "00025" -> 0.0025
+def decimal(s):
+    if "+" in s or "-" in s:
+        return s[0] + s[1:2] + "." + s[2:]
+    elif "Zero" in s:
+        return "0"
+
+root = "/Users/abr121/Library/Mobile Documents/com~apple~CloudDocs/Education/PhD/prosjekt/mrchem/benchmark/field0001/dataanalysis"
+#//////////////////////////////////////////////////////////////////////////////////////
+suffix = "highprec" # Used to define the naming for the particular job
+#//////////////////////////////////////////////////////////////////////////////////////
+
+try:
+    if sys.argv[1] == "--debug":
+        outputdir = os.path.join(root, "outputfiles_debug")
+        datafiledir = os.path.join(root, "datafiles_debug")
+except:
+    #outputdir = os.path.join(root, "")
+    datafiledir = os.path.join(root, "datafiles_{}".format(suffix))
 
 # Get all relevant output files in a list
-files = glob.glob("*_*_*_*.out")
+print("Aqcuiring output files...")
+files = glob.glob("{}/*_*_*_*.out".format(datafiledir))
+molecules = set(map(lambda x: os.path.basename(x).split("_")[0], files))
+functionals = set(map(lambda x: os.path.basename(x).split("_")[1], files))
+
 error_files = filter(lambda f: not MrchemOut(f).normaltermination(), files)
-# Get rid of extension
-filenames = map(lambda x: x.split(".")[0], files)
 
 #Test if all jobs terminated normally
-assert len(error_files) == 0, "Error! These {} job(s) did not terminate normally: {}".format(len(error_files), ' '.join([MrchemOut(f).filename for f in files if not MrchemOut(f).normaltermination()]))
+#print("Asserting...")
+#assert len(error_files) == 0, "Error! These {} job(s) did not terminate normally: \n{}".format(len(error_files), '\n'.join([os.path.basename(MrchemOut(f).filename) for f in files if not MrchemOut(f).normaltermination()]))
 
-print("All jobs terminated normally")
+#print(">>> All jobs terminated normally")
+print("Initializing data structure...")
 
 # now we construct the dict and fill with information from filenames
 # this dict will contain the raw data for each calculation
+skip_molecules = ["ps", "sh", "s2", "ch3o"] # Skip these molecules (perhaps not all jobs are converged yet?)
+
 rawdata = {}
-rawdata["molecule"] =    [f.split("_")[0] for f in filenames]
-rawdata["functional"] = [f.split("_")[1] for f in filenames]
-rawdata["field"] =       [f.split("_")[3] for f in filenames]
-rawdata["direction"] = [f.split("_")[4] for f in filenames]
+rawdata["molecule"] =    [os.path.basename(f).split("_")[0] for f in files if os.path.basename(f).split("_")[0] not in skip_molecules]
+rawdata["functional"] = [os.path.basename(f).split("_")[1] for f in files if os.path.basename(f).split("_")[0] not in skip_molecules]
+rawdata["direction"] =       [os.path.basename(f).split("_")[3].split(".")[0] for f in files if os.path.basename(f).split("_")[0] not in skip_molecules]
+rawdata["field"] = [decimal(os.path.basename(f).split("_")[2]) for f in files if os.path.basename(f).split("_")[0] not in skip_molecules]
 rawdata["energy"] = []
-rawdata["dipole"] = []
+rawdata["u_norm"] = []
+rawdata["u_x"] = []
+rawdata["u_y"] = []
+rawdata["u_z"] = []
 rawdata["filename"] = []
 rawdata["precision"] = []
+rawdata["no_scf_cycles"] = []
+rawdata["walltime"] = []
+rawdata["property_threshold"] = []
+rawdata["orbital_threshold"] = []
+
 
 # now collect the energies, dipoles, filenames, and precisions from output 
 # and add them to the dict
 for f in files:
+    if os.path.basename(f).split("_")[0] in skip_molecules:
+        continue
     output = MrchemOut(f)
     rawdata["energy"].append(output.final_energy_pot())
-    rawdata["dipole"].append(output.dipole_vector())
-    rawdata["filename"].append(output.filename)
+    rawdata["u_norm"].append(output.dipole_norm_au())
+    rawdata["u_x"].append(output.dipole_vector()[0])
+    rawdata["u_y"].append(output.dipole_vector()[1])
+    rawdata["u_z"].append(output.dipole_vector()[2])
+    rawdata["filename"].append(os.path.basename(output.filename))
     rawdata["precision"].append(output.precision())
+    rawdata["no_scf_cycles"].append(output.no_scfcycles())
+    rawdata["walltime"].append(output.walltime())
+    rawdata["property_threshold"].append(output.property_threshold())
+    rawdata["orbital_threshold"].append(output.orbital_threshold())
     
+print(">>> Done!")
+
 # now write raw data to CSV file using a useful pandas command
-pd.DataFrame(rawdata).to_csv("rawdata.csv")
+print"Writing raw data to CSV,,,"
+pd.DataFrame(rawdata).to_csv("rawdata_{}.csv".format(suffix))
+print(">>>> Done!")
 
 
-# We will need a function that converts a string into a float. Example: "00025" -> 0.0025
-def decimal(s):
-    return s[0:1] + "." + s[1:]
+####################################################
+### NOW MAKE NICE OUTPUT TO BE COPIED INTO EXCEL ###
+####################################################
 
-# now collect the jobs on same molecule with same functional at same precision, but with fields of opposite signs
-# appending filenames and absolute value of field strength
-triplet = []
-for f in filter(lambda f: f.split("_")[3] == "-001", files):
-    for g in filter(lambda f: f.split("_")[3] == "+001", files):
-        if f.split("_")[0] == g.split("_")[0] and f.split("_")[1] == g.split("_")[1] and f.split("_")[2] == g.split("_")[2] and f.split("_")[4] == g.split("_")[4]:
-            triplet.append([f, g, decimal(f.split("_")[3][1:])])
+# we need to collect those files that will be part of the same calculation.
+# get a tuple of the form:
+# (molecule    functional    strength    direction    u+    u-    u0)
 
-for i, trip in enumerate([el for trip in triplet for el in trip if "+" in el]):
-    triplet[i].append(trip.split("_")[0])
-    triplet[i].append(trip.split("_")[1])
-    triplet[i].append(str(MrchemOut(trip).precision()))
-    triplet[i].append(trip.split("_")[4].split(".")[0])
+os.chdir(datafiledir)
 
-# first unzip the sorted list (the order has been triple checked)
-minus, plus, field, mol, func, prec, direction = (zip(*sorted(triplet)))
+# Initializing data list
+data = []
+skipped_molecules = [] # use as a control
+for f in files:
+    for mol in molecules:
+        if mol in skip_molecules:
+            skipped_molecules.append(mol)
+            continue
+        for func in functionals:
+            if mol == os.path.basename(f).split("_")[0] and func == os.path.basename(f).split("_")[1]:
+                
+                # Get the multiplicity the input file
+                with open(f.replace(".out", ".inp"), "r") as ipf:
+                    lines = ipf.readlines()
+                for line in lines:
+                    if line.strip().startswith("multiplicity") or line.strip().startswith("Multiplicity"):
+                        mult = line.strip().split()[-1]
+                        break
+                
+                print("Generating nice data for: {}".format(os.path.basename(f)))
+                if "_x.out" in f:
+                    if "_Zero_" in f:
+                        continue
+                    else:
+                        null  = "{}_{}_{}_{}.out".format(mol, func, "000", "x")
+                        plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", "x")
+                        minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", "x")
+                        if [mol, func, "x", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)] not in data:
+                            data.append([mol, func, "x", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)])
 
-# then map the energy/diple moment to the list, and convert to string
-#plus = map(str, map(lambda f: MrchemOut(f).dipole_au(), plus))
-#minus = map(str, map(lambda f: MrchemOut(f).dipole_au(), minus))
+                elif "_y.out" in f:
+                    if "_Zero_" in f:
+                        continue
+                    else:
+                        null = "{}_{}_{}_{}.out".format(mol, func, "000", "y")
+                        plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", "y")
+                        minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", "y")
+                        if [mol, func, "y", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)] not in data:
+                            data.append([mol, func, "y", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)])
 
-# First comvert tuple to list
-plus = [x for x in plus]
-minus = [x for x in minus]
+                elif "_z.out" in f:
+                    if "_Zero_" in f:
+                        continue
+                    else:
+                        null = "{}_{}_{}_{}.out".format(mol, func, "000", "z")
+                        plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", "z")
+                        minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", "z")
+                        if [mol, func, "z", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)] not in data:
+                            data.append([mol, func, "z", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)])
+print(">>> Done!")
+# Now replace the file names with the values
+for i, el in enumerate(data):
+    print("Extracting dipole vector data for: {}".format(' '.join(el[:3])))
 
-# Now replace filename with the correct dipole component
-for i, f in enumerate(plus):
-    if "x" in f:
-        plus[i] = str(MrchemOut(f).dipole_vector()[0])
-    elif "y" in f:
-        plus[i] = str(MrchemOut(f).dipole_vector()[1])
-    elif "z" in f:
-        plus[i] = str(MrchemOut(f).dipole_vector()[2])
-for i, f in enumerate(minus):
-    if "x" in f:
-        minus[i] = str(MrchemOut(f).dipole_vector()[0])
-    elif "y" in f:
-        minus[i] = str(MrchemOut(f).dipole_vector()[1])
-    elif "z" in f:
-        minus[i] = str(MrchemOut(f).dipole_vector()[2])
+    if el[2] == "x":
+        index = 0
+    elif el[2] == "y": 
+        index = 1
+    elif el[2] == "z":
+        index = 2
 
-# then zip back
-triplet = zip(mol, func, prec, field, direction, plus, minus)
+    data[i][4] = MrchemOut(data[i][4]).dipole_vector()[index]
 
-# now insert header
-triplet.insert(0, ("molecule", "functional", "precision", "field_strength", "direction", "u+", "u-"))
+    data[i][5] = MrchemOut(data[i][5]).dipole_vector()[index]
 
-# finally print to terminal in a format easily copied to Excel
-for i in triplet:
-    print(' '.join(i))
+    data[i][6] = MrchemOut(data[i][6]).dipole_vector()[index]
 
+print(">>> Done!")
 
+fieldstrength = 0.001
+bohr_to_ang = 1.8897162
 
+# Now append the static polarizabilities
+for job in data:
+    job.append((job[5] - job[6]) / (2*fieldstrength) / (bohr_to_ang**3))
+
+# map everything to strings for simpler writing to file
+data = [map(str, i) for i in data]
+
+os.chdir(root)
+print("Writing nice data to file...")
+
+header = "Molecule,Functional,Field Direction,Multiplicity,u_0,u_+,u_-,alpha (A^3)"
+with open("nicedata_{}.csv".format(suffix), "w") as f:
+    f.write(header + "\n")
+    for job in data:
+        f.write(','.join(job) + "\n")
+print(">>> Done!")
+print("These molecules were skipped: {}".format(', '.join(set(skipped_molecules))))
