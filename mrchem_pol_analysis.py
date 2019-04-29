@@ -23,7 +23,7 @@ root = os.getcwd()
 datafiledir = os.path.join(root, "datafiles_{}".format(suffix))
 os.mkdir(datafiledir)
 # Must copy all necessary files into datafiledir
-for f in glob.glob("{}/*.out *.inp".format(root)):
+for f in glob.glob("{}/*.out".format(root)) + glob.glob("{}/*.inp".format(root)):
     shutil.copyfile(f, os.path.join(datafiledir, ps.path.basename(f)))
 
 
@@ -44,7 +44,7 @@ print("Initializing data structure...")
 
 # now we construct the dict and fill with information from filenames
 # this dict will contain the raw data for each calculation
-skip_molecules = ["ps", "sh", "s2", "ch3o"] # Skip these molecules (perhaps not all jobs are converged yet?)
+skip_molecules = sys.argv[-1].split("=")[-1].split(",") # Skip these molecules (perhaps not all jobs are converged yet?)
 
 rawdata = {}
 rawdata["molecule"] =    [os.path.basename(f).split("_")[0] for f in files if os.path.basename(f).split("_")[0] not in skip_molecules]
