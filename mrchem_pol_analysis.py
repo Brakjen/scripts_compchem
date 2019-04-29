@@ -21,10 +21,15 @@ suffix = sys.argv[1] # Used to define the naming for the particular job
 
 root = os.getcwd()
 datafiledir = os.path.join(root, "datafiles_{}".format(suffix))
-os.mkdir(datafiledir)
+if os.path.isdir(datafiledir):
+    shutil.rmtree(datafiledir)
+    os.mkdir(datafiledir)
+else:
+    os.mkdir(datafiledir)
+
 # Must copy all necessary files into datafiledir
 for f in glob.glob("{}/*.out".format(root)) + glob.glob("{}/*.inp".format(root)):
-    shutil.copyfile(f, os.path.join(datafiledir, ps.path.basename(f)))
+    shutil.copyfile(f, os.path.join(datafiledir, os.path.basename(f)))
 
 
 # Get all relevant output files in a list
