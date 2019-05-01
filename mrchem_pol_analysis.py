@@ -5,7 +5,6 @@ from MRChem import MrchemOut
 import glob
 import pandas as pd
 import os
-import numpy as np
 import shutil
 
 # We will need a function that converts a string into a float. Example: "00025" -> 0.0025
@@ -18,6 +17,10 @@ def decimal(s):
 #//////////////////////////////////////////////////////////////////////////////////////
 suffix = sys.argv[1] # Used to define the naming for the particular job
 #//////////////////////////////////////////////////////////////////////////////////////
+fieldstrength = 0.001
+bohr_to_ang = 1.8897162
+#//////////////////////////////////////////////////////////////////////////////////////
+
 
 root = os.getcwd()
 datafiledir = os.path.join(root, "datafiles_{}".format(suffix))
@@ -48,9 +51,14 @@ error_files = filter(lambda f: not MrchemOut(f).normaltermination(), files)
 print("Initializing data structure...")
 
 # now we construct the dict and fill with information from filenames
-# this dict will contain the raw data for each calculation
-skip_molecules = sys.argv[-1].split("=")[-1].split(",") # Skip these molecules (perhaps not all jobs are converged yet?)
+# this dict will contain the raw data for each calculation MRChem calculation
 
+# Skip these molecules (perhaps not all jobs are converged yet?)
+# give the molecules to skip in the following format:
+# skip=mol1,mol2,mol3     (no spaces!)
+#///////////////////////////////////////////////////////////
+skip_molecules = sys.argv[-1].split("=")[-1].split(",") 
+#///////////////////////////////////////////////////////////
 rawdata = {}
 rawdata["molecule"] =    [os.path.basename(f).split("_")[0] for f in files if os.path.basename(f).split("_")[0] not in skip_molecules]
 rawdata["functional"] = [os.path.basename(f).split("_")[1] for f in files if os.path.basename(f).split("_")[0] not in skip_molecules]
@@ -69,7 +77,7 @@ rawdata["property_threshold"] = []
 rawdata["orbital_threshold"] = []
 
 
-# now collect the energies, dipoles, filenames, and precisions from output 
+# now collect the remaining information
 # and add them to the dict
 for f in files:
     if os.path.basename(f).split("_")[0] in skip_molecules:
@@ -99,22 +107,21 @@ print(">>>> Done!")
 ### NOW MAKE NICE OUTPUT TO BE COPIED INTO EXCEL ###
 ####################################################
 
-# we need to collect those files that will be part of the same calculation.
+# we need to collect those files that will be part of the same Finite-Difference calculation.
 # get a tuple of the form:
-# (molecule    functional    strength    direction    u+    u-    u0)
+# (molecule, functional, field_dir, multiplicity, filename_zerofield, filename_+field, filename_-field)
+# Then replace the filenames with the dipole data later
 
 os.chdir(datafiledir)
-
 # Initializing data list
 data = []
-skipped_molecules = [] # use as a control
 for f in files:
     for mol in molecules:
         if mol in skip_molecules:
-            skipped_molecules.append(mol)
             continue
         for func in functionals:
             if mol == os.path.basename(f).split("_")[0] and func == os.path.basename(f).split("_")[1]:
+                print("Generating nice data for: {}".format(os.path.basename(f)))
                 
                 # Get the multiplicity the input file
                 with open(f.replace(".out", ".inp"), "r") as ipf:
@@ -124,36 +131,20 @@ for f in files:
                         mult = line.strip().split()[-1]
                         break
                 
-                print("Generating nice data for: {}".format(os.path.basename(f)))
-                if "_x.out" in f:
-                    if "_Zero_" in f:
-                        continue
-                    else:
-                        null  = "{}_{}_{}_{}.out".format(mol, func, "000", "x")
-                        plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", "x")
-                        minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", "x")
-                        if [mol, func, "x", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)] not in data:
-                            data.append([mol, func, "x", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)])
+                # Get the data
+                components = ["x", "y", "z"]
+                for comp in components:
+                    if "_{}.out".format(comp) in f:
+                        if "_Zero_" in f:
+                            continue
+                        else:
+                            null  = "{}_{}_{}_{}.out".format(mol, func, "000", comp)
+                            plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", comp)
+                            minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", comp)
+                            comp_data = [mol, func, comp, mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)]
+                            if comp_data not in data: # to avoid duplicates
+                                data.append(comp_data)
 
-                elif "_y.out" in f:
-                    if "_Zero_" in f:
-                        continue
-                    else:
-                        null = "{}_{}_{}_{}.out".format(mol, func, "000", "y")
-                        plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", "y")
-                        minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", "y")
-                        if [mol, func, "y", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)] not in data:
-                            data.append([mol, func, "y", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)])
-
-                elif "_z.out" in f:
-                    if "_Zero_" in f:
-                        continue
-                    else:
-                        null = "{}_{}_{}_{}.out".format(mol, func, "000", "z")
-                        plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", "z")
-                        minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", "z")
-                        if [mol, func, "z", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)] not in data:
-                            data.append([mol, func, "z", mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)])
 print(">>> Done!")
 # Now replace the file names with the values
 for i, el in enumerate(data):
@@ -167,15 +158,10 @@ for i, el in enumerate(data):
         index = 2
 
     data[i][4] = MrchemOut(data[i][4]).dipole_vector()[index]
-
     data[i][5] = MrchemOut(data[i][5]).dipole_vector()[index]
-
     data[i][6] = MrchemOut(data[i][6]).dipole_vector()[index]
 
 print(">>> Done!")
-
-fieldstrength = 0.001
-bohr_to_ang = 1.8897162
 
 # Now append the static polarizabilities
 for job in data:
