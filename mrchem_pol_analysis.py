@@ -112,71 +112,71 @@ print(">>>> Done!")
 # (molecule, functional, field_dir, multiplicity, filename_zerofield, filename_+field, filename_-field)
 # Then replace the filenames with the dipole data later
 
-os.chdir(datafiledir)
-# Initializing data list
-data = []
-for f in files:
-    for mol in molecules:
-        if mol in skip_molecules:
-            continue
-        for func in functionals:
-            if mol == os.path.basename(f).split("_")[0] and func == os.path.basename(f).split("_")[1]:
-                print("Generating nice data for: {}".format(os.path.basename(f)))
-                
-                # Get the multiplicity the input file
-                with open(f.replace(".out", ".inp"), "r") as ipf:
-                    lines = ipf.readlines()
-                for line in lines:
-                    if line.strip().startswith("multiplicity") or line.strip().startswith("Multiplicity"):
-                        mult = line.strip().split()[-1]
-                        break
-                
-                # Get the data
-                components = ["x", "y", "z"]
-                for comp in components:
-                    if "_{}.out".format(comp) in f:
-                        if "_Zero_" in f:
-                            continue
-                        else:
-                            null  = "{}_{}_{}_{}.out".format(mol, func, "000", comp)
-                            plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", comp)
-                            minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", comp)
-                            comp_data = [mol, func, comp, mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)]
-                            if comp_data not in data: # to avoid duplicates
-                                data.append(comp_data)
-
-print(">>> Done!")
-# Now replace the file names with the values
-for i, el in enumerate(data):
-    print("Extracting dipole vector data for: {}".format(' '.join(el[:3])))
-
-    if el[2] == "x":
-        index = 0
-    elif el[2] == "y": 
-        index = 1
-    elif el[2] == "z":
-        index = 2
-
-    data[i][4] = MrchemOut(data[i][4]).dipole_vector()[index]
-    data[i][5] = MrchemOut(data[i][5]).dipole_vector()[index]
-    data[i][6] = MrchemOut(data[i][6]).dipole_vector()[index]
-
-print(">>> Done!")
-
-# Now append the static polarizabilities
-for job in data:
-    job.append((job[5] - job[6]) / (2*fieldstrength) / (bohr_to_ang**3))
-
-# map everything to strings for simpler writing to file
-data = [map(str, i) for i in data]
-
-os.chdir(root)
-print("Writing nice data to file...")
-
-header = "Molecule,Functional,Field Direction,Multiplicity,u_0,u_+,u_-,alpha (A^3)"
-with open("nicedata_{}.csv".format(suffix), "w") as f:
-    f.write(header + "\n")
-    for job in data:
-        f.write(','.join(job) + "\n")
-print(">>> Done!")
-print("These molecules were skipped: {}".format(', '.join(set(skipped_molecules))))
+#os.chdir(datafiledir)
+## Initializing data list
+#data = []
+#for f in files:
+#    for mol in molecules:
+#        if mol in skip_molecules:
+#            continue
+#        for func in functionals:
+#            if mol == os.path.basename(f).split("_")[0] and func == os.path.basename(f).split("_")[1]:
+#                print("Generating nice data for: {}".format(os.path.basename(f)))
+#                
+#                # Get the multiplicity the input file
+#                with open(f.replace(".out", ".inp"), "r") as ipf:
+#                    lines = ipf.readlines()
+#                for line in lines:
+#                    if line.strip().startswith("multiplicity") or line.strip().startswith("Multiplicity"):
+#                        mult = line.strip().split()[-1]
+#                        break
+#                
+#                # Get the data
+#                components = ["x", "y", "z"]
+#                for comp in components:
+#                    if "_{}.out".format(comp) in f:
+#                        if "_Zero_" in f:
+#                            continue
+#                        else:
+#                            null  = "{}_{}_{}_{}.out".format(mol, func, "000", comp)
+#                            plus  = "{}_{}_{}_{}.out".format(mol, func, "+0001", comp)
+#                            minus = "{}_{}_{}_{}.out".format(mol, func, "-0001", comp)
+#                            comp_data = [mol, func, comp, mult, os.path.basename(null), os.path.basename(plus), os.path.basename(minus)]
+#                            if comp_data not in data: # to avoid duplicates
+#                                data.append(comp_data)
+#
+#print(">>> Done!")
+## Now replace the file names with the values
+#for i, el in enumerate(data):
+#    print("Extracting dipole vector data for: {}".format(' '.join(el[:3])))
+#
+#    if el[2] == "x":
+#        index = 0
+#    elif el[2] == "y": 
+#        index = 1
+#    elif el[2] == "z":
+#        index = 2
+#
+#    data[i][4] = MrchemOut(data[i][4]).dipole_vector()[index]
+#    data[i][5] = MrchemOut(data[i][5]).dipole_vector()[index]
+#    data[i][6] = MrchemOut(data[i][6]).dipole_vector()[index]
+#
+#print(">>> Done!")
+#
+## Now append the static polarizabilities
+#for job in data:
+#    job.append((job[5] - job[6]) / (2*fieldstrength) / (bohr_to_ang**3))
+#
+## map everything to strings for simpler writing to file
+#data = [map(str, i) for i in data]
+#
+#os.chdir(root)
+#print("Writing nice data to file...")
+#
+#header = "Molecule,Functional,Field Direction,Multiplicity,u_0,u_+,u_-,alpha (A^3)"
+#with open("nicedata_{}.csv".format(suffix), "w") as f:
+#    f.write(header + "\n")
+#    for job in data:
+#        f.write(','.join(job) + "\n")
+#print(">>> Done!")
+#print("These molecules were skipped: {}".format(', '.join(set(skipped_molecules))))
