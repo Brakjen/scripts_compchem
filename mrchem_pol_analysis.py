@@ -1,11 +1,11 @@
 import sys
-sys.path.append("/Users/abr121/Documents/github/computational_chemistry")
+sys.path.append("/home/ambr/scripts_compchem")
 import os
 from MRChem import MrchemOut
 import glob
-import pandas as pd
 import os
 import shutil
+from pprint import pprint
 
 # We will need a function that converts a string into a float. Example: "00025" -> 0.0025
 def decimal(s):
@@ -99,7 +99,9 @@ print(">>> Done!")
 
 # now write raw data to CSV file using a useful pandas command
 print"Writing raw data to CSV,,,"
-pd.DataFrame(rawdata).to_csv("rawdata_{}.csv".format(suffix))
+
+pprint(rawdata)
+
 print(">>>> Done!")
 
 
