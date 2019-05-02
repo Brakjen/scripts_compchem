@@ -33,6 +33,7 @@ data = {}
 IDS = []
 for mol in molecules:
     data[mol] = {}
+    data[mol]["spin"] = ""
     for func in functionals:
         data[mol][func] = ["", "", ""]
 
@@ -40,23 +41,16 @@ for mol in molecules:
         for field in fields:
             for dirr in directions:
                 ID = "_".join([mol, func, field, dirr]) + ".out"
-                if "-" in ID:
+                if "-0001" in ID:
                     continue
                 else:
                     ID2 = ID.replace("+", "-" )
 
                 for i, job in enumerate(jobs):
                     if ID == job[index["filename"]] and "_x" in ID:
-                        print(jobs[i][index["filename"]], jobs[i+1][index["filename"]])
-                        print(jobs[i][index["u_x"]], jobs[i+1][index["u_x"]])
-                        #data[mol][func][0] = (float(jobs[i][index["u_x"]]) - float(jobs[i+1][index["u_x"]])) / 2 / fieldstrength / bohr_to_ang**3
+                        data[mol][func][0] = (float(jobs[i][index["u_x"]]) - float(jobs[i+1][index["u_x"]])) / 2 / fieldstrength / bohr_to_ang**3
                     elif ID == job[index["filename"]] and "_y" in ID:
-                        print(jobs[i][index["filename"]], jobs[i+1][index["filename"]])
-                        print(jobs[i][index["u_y"]], jobs[i+1][index["u_y"]])
-                        #data[mol][func][1] = (float(jobs[i+2][index["u_y"]]) - float(jobs[i+3][index["u_y"]])) / 2 / fieldstrength / bohr_to_ang**3
+                        data[mol][func][1] = (float(jobs[i][index["u_y"]]) - float(jobs[i+1][index["u_y"]])) / 2 / fieldstrength / bohr_to_ang**3
                     elif ID == job[index["filename"]] and "_z" in ID:
-                        print(jobs[i][index["filename"]], jobs[i+1][index["filename"]])
-                        print(jobs[i][index["u_z"]], jobs[i+1][index["u_z"]])
-                        print("")
-                        #data[mol][func][2] = (float(jobs[i+4][index["u_z"]]) - float(jobs[i+5][index["u_z"]])) / 2 / fieldstrength / bohr_to_ang**3
-pprint(data["alf"])
+                        data[mol][func][2] = (float(jobs[i][index["u_z"]]) - float(jobs[i+1][index["u_z"]])) / 2 / fieldstrength / bohr_to_ang**3
+pprint(data)
