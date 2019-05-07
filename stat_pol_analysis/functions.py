@@ -33,7 +33,6 @@ def get_HG_data(datafile):
             # Initialize sub-dict
             molecule = mol[0].lower()
             data[molecule] = {}
-            data[molecule]["id"] = molecule
             
     
             # Insert the data we want
@@ -172,7 +171,6 @@ def make_nice_data(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
     for mol in molecules:
         data[mol] = {}
         data[mol]["multiplicity"] = ""
-        data[mol]["id"] = mol
         for func in functionals:
             data[mol][func] = {"diagonal": ["", "", ""],
                                "mean": ""}
