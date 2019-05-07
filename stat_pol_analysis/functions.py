@@ -39,7 +39,7 @@ def get_HG_data(datafile):
             # Insert the data we want
             data[molecule]["spin"] = mol[1]
             for func, idx in indeces.items():
-                data[molecule][func] = {"diagonal": [], "trace": ""}
+                data[molecule][func] = {"diagonal": [], "mean": ""}
                 data[molecule][func]["diagonal"] = map(float, mol[idx+1:idx+4])
                 data[molecule][func]["mean"] = sum(data[molecule][func]["diagonal"]) / 3
 
@@ -130,7 +130,7 @@ def get_pol_data(datadir):
     
     # now write raw data to CSV file using a useful pandas command
     pandas.DataFrame(rawdata).to_csv("rawdata.csv")
-    return "rawdata.csv"
+    return "mw_rawdata.csv"
    
 
 def make_nice_data(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
@@ -203,7 +203,7 @@ def make_nice_data(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
             # Now store the mean of the polarizability tensor diagonal
             data[mol][func]["mean"] = sum(data[mol][func]["diagonal"]) / 3
     # Now write the data to yaml file format
-    with open("poldata.yaml", "w") as f:
+    with open("mw_data.yaml", "w") as f:
         yaml.dump(data, f, default_flow_style=False)
     return data
     

@@ -5,21 +5,18 @@ alf:
     - 6.156
     - 5.412
     mean: 5.908
-    trace: ''
   b97:
     diagonal:
     - 6.299
     - 6.299
     - 5.439
     mean: 6.012333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.971
     - 5.971
     - 5.132
     mean: 5.691333333333333
-    trace: ''
   id: alf
   pbe:
     diagonal:
@@ -27,28 +24,24 @@ alf:
     - 6.292
     - 5.656
     mean: 6.079999999999999
-    trace: ''
   pbe0:
     diagonal:
     - 6.248
     - 6.248
     - 5.378
     mean: 5.958000000000001
-    trace: ''
   scan:
     diagonal:
     - 6.31
     - 6.31
     - 5.411
     mean: 6.010333333333333
-    trace: ''
   slater:
     diagonal:
     - 6.648
     - 6.648
     - 6.092
     mean: 6.462666666666666
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -56,14 +49,12 @@ alf:
     - 6.154
     - 5.59
     mean: 5.966
-    trace: ''
   tpss:
     diagonal:
     - 6.381
     - 6.381
     - 5.598
     mean: 6.12
-    trace: ''
 ar:
   b3lyp:
     diagonal:
@@ -71,21 +62,18 @@ ar:
     - 1.728
     - 1.728
     mean: 1.728
-    trace: ''
   b97:
     diagonal:
     - 1.713
     - 1.713
     - 1.713
     mean: 1.713
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.634
     - 1.634
     - 1.634
     mean: 1.6339999999999997
-    trace: ''
   id: ar
   pbe:
     diagonal:
@@ -93,28 +81,24 @@ ar:
     - 1.769
     - 1.769
     mean: 1.769
-    trace: ''
   pbe0:
     diagonal:
     - 1.693
     - 1.693
     - 1.693
     mean: 1.6930000000000003
-    trace: ''
   scan:
     diagonal:
     - 1.688
     - 1.688
     - 1.688
     mean: 1.688
-    trace: ''
   slater:
     diagonal:
     - 1.889
     - 1.889
     - 1.889
     mean: 1.889
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -122,14 +106,12 @@ ar:
     - 1.779
     - 1.779
     mean: 1.779
-    trace: ''
   tpss:
     diagonal:
     - 1.732
     - 1.732
     - 1.732
     mean: 1.732
-    trace: ''
 be:
   b3lyp:
     diagonal:
@@ -137,21 +119,18 @@ be:
     - 6.454
     - 6.454
     mean: 6.454
-    trace: ''
   b97:
     diagonal:
     - 6.406
     - 6.406
     - 6.406
     mean: 6.406
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.622
     - 5.622
     - 5.622
     mean: 5.622
-    trace: ''
   id: be
   pbe:
     diagonal:
@@ -159,28 +138,24 @@ be:
     - 6.411
     - 6.411
     mean: 6.410999999999999
-    trace: ''
   pbe0:
     diagonal:
     - 6.417
     - 6.417
     - 6.417
     mean: 6.416999999999999
-    trace: ''
   scan:
     diagonal:
     - 6.63
     - 6.63
     - 6.63
     mean: 6.63
-    trace: ''
   slater:
     diagonal:
     - 7.075
     - 7.075
     - 7.075
     mean: 7.075
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -188,14 +163,12 @@ be:
     - 6.551
     - 6.551
     mean: 6.550999999999999
-    trace: ''
   tpss:
     diagonal:
     - 6.436
     - 6.436
     - 6.436
     mean: 6.436
-    trace: ''
 beh:
   b3lyp:
     diagonal:
@@ -203,21 +176,18 @@ beh:
     - 5.542
     - 4.152
     mean: 5.078666666666667
-    trace: ''
   b97:
     diagonal:
     - 5.727
     - 5.727
     - 4.294
     mean: 5.249333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.395
     - 5.395
     - 3.825
     mean: 4.871666666666666
-    trace: ''
   id: beh
   pbe:
     diagonal:
@@ -225,28 +195,24 @@ beh:
     - 5.736
     - 4.362
     mean: 5.278
-    trace: ''
   pbe0:
     diagonal:
     - 5.629
     - 5.629
     - 4.135
     mean: 5.130999999999999
-    trace: ''
   scan:
     diagonal:
     - 5.689
     - 5.689
     - 4.119
     mean: 5.165666666666667
-    trace: ''
   slater:
     diagonal:
     - 6.19
     - 6.19
     - 4.871
     mean: 5.750333333333334
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -254,14 +220,12 @@ beh:
     - 5.876
     - 4.517
     mean: 5.423000000000001
-    trace: ''
   tpss:
     diagonal:
     - 5.714
     - 5.714
     - 4.29
     mean: 5.239333333333334
-    trace: ''
 beh2:
   b3lyp:
     diagonal:
@@ -269,21 +233,18 @@ beh2:
     - 3.028
     - 3.107
     mean: 3.0543333333333336
-    trace: ''
   b97:
     diagonal:
     - 3.053
     - 3.053
     - 3.087
     mean: 3.0643333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.913
     - 2.913
     - 2.974
     mean: 2.9333333333333336
-    trace: ''
   id: beh2
   pbe:
     diagonal:
@@ -291,28 +252,24 @@ beh2:
     - 3.197
     - 3.218
     mean: 3.204
-    trace: ''
   pbe0:
     diagonal:
     - 3.058
     - 3.058
     - 3.087
     mean: 3.0676666666666663
-    trace: ''
   scan:
     diagonal:
     - 3.112
     - 3.112
     - 3.098
     mean: 3.107333333333333
-    trace: ''
   slater:
     diagonal:
     - 3.514
     - 3.514
     - 3.539
     mean: 3.5223333333333335
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -320,14 +277,12 @@ beh2:
     - 3.276
     - 3.295
     mean: 3.2823333333333333
-    trace: ''
   tpss:
     diagonal:
     - 3.097
     - 3.097
     - 3.075
     mean: 3.0896666666666666
-    trace: ''
 bf:
   b3lyp:
     diagonal:
@@ -335,21 +290,18 @@ bf:
     - 3.185
     - 2.823
     mean: 3.0643333333333334
-    trace: ''
   b97:
     diagonal:
     - 3.175
     - 3.175
     - 2.808
     mean: 3.0526666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.95
     - 2.95
     - 2.686
     mean: 2.862
-    trace: ''
   id: bf
   pbe:
     diagonal:
@@ -357,28 +309,24 @@ bf:
     - 3.271
     - 2.974
     mean: 3.172
-    trace: ''
   pbe0:
     diagonal:
     - 3.159
     - 3.159
     - 2.78
     mean: 3.032666666666666
-    trace: ''
   scan:
     diagonal:
     - 3.195
     - 3.195
     - 2.798
     mean: 3.0626666666666664
-    trace: ''
   slater:
     diagonal:
     - 3.603
     - 3.603
     - 3.27
     mean: 3.4920000000000004
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -386,14 +334,12 @@ bf:
     - 3.315
     - 2.991
     mean: 3.2070000000000003
-    trace: ''
   tpss:
     diagonal:
     - 3.192
     - 3.192
     - 2.871
     mean: 3.0850000000000004
-    trace: ''
 bh2:
   b3lyp:
     diagonal:
@@ -401,21 +347,18 @@ bh2:
     - 3.333
     - 3.073
     mean: 3.130666666666667
-    trace: ''
   b97:
     diagonal:
     - 3.015
     - 3.326
     - 3.06
     mean: 3.1336666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.832
     - 3.019
     - 2.914
     mean: 2.921666666666667
-    trace: ''
   id: bh2
   pbe:
     diagonal:
@@ -423,28 +366,24 @@ bh2:
     - 3.545
     - 3.177
     mean: 3.272
-    trace: ''
   pbe0:
     diagonal:
     - 2.977
     - 3.271
     - 3.037
     mean: 3.095
-    trace: ''
   scan:
     diagonal:
     - 2.945
     - 3.249
     - 3.025
     mean: 3.073
-    trace: ''
   slater:
     diagonal:
     - 3.374
     - 4.144
     - 3.476
     mean: 3.6646666666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -452,14 +391,12 @@ bh2:
     - 3.648
     - 3.239
     mean: 3.353
-    trace: ''
   tpss:
     diagonal:
     - 2.999
     - 3.343
     - 3.07
     mean: 3.1373333333333338
-    trace: ''
 bh2cl:
   b3lyp:
     diagonal:
@@ -467,21 +404,18 @@ bh2cl:
     - 4.203
     - 5.684
     mean: 4.5183333333333335
-    trace: ''
   b97:
     diagonal:
     - 3.652
     - 4.178
     - 5.658
     mean: 4.4959999999999996
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.548
     - 4.044
     - 5.488
     mean: 4.36
-    trace: ''
   id: bh2cl
   pbe:
     diagonal:
@@ -489,28 +423,24 @@ bh2cl:
     - 4.302
     - 5.893
     mean: 4.646
-    trace: ''
   pbe0:
     diagonal:
     - 3.627
     - 4.15
     - 5.622
     mean: 4.466333333333334
-    trace: ''
   scan:
     diagonal:
     - 3.628
     - 4.16
     - 5.656
     mean: 4.481333333333333
-    trace: ''
   slater:
     diagonal:
     - 4.014
     - 4.624
     - 6.266
     mean: 4.968
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -518,14 +448,12 @@ bh2cl:
     - 4.351
     - 5.967
     mean: 4.700666666666667
-    trace: ''
   tpss:
     diagonal:
     - 3.665
     - 4.207
     - 5.754
     mean: 4.542
-    trace: ''
 bh2f:
   b3lyp:
     diagonal:
@@ -533,21 +461,18 @@ bh2f:
     - 2.772
     - 2.718
     mean: 2.5509999999999997
-    trace: ''
   b97:
     diagonal:
     - 2.164
     - 2.762
     - 2.711
     mean: 2.545666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.083
     - 2.648
     - 2.62
     mean: 2.4503333333333335
-    trace: ''
   id: bh2f
   pbe:
     diagonal:
@@ -555,28 +480,24 @@ bh2f:
     - 2.885
     - 2.86
     mean: 2.6663333333333328
-    trace: ''
   pbe0:
     diagonal:
     - 2.154
     - 2.747
     - 2.692
     mean: 2.531
-    trace: ''
   scan:
     diagonal:
     - 2.173
     - 2.775
     - 2.729
     mean: 2.559
-    trace: ''
   slater:
     diagonal:
     - 2.425
     - 3.127
     - 3.049
     mean: 2.8669999999999995
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -584,14 +505,12 @@ bh2f:
     - 2.922
     - 2.889
     mean: 2.6986666666666665
-    trace: ''
   tpss:
     diagonal:
     - 2.189
     - 2.8
     - 2.783
     mean: 2.590666666666667
-    trace: ''
 bh3:
   b3lyp:
     diagonal:
@@ -599,21 +518,18 @@ bh3:
     - 2.851
     - 2.17
     mean: 2.624
-    trace: ''
   b97:
     diagonal:
     - 2.84
     - 2.84
     - 2.172
     mean: 2.6173333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.73
     - 2.73
     - 2.099
     mean: 2.5196666666666667
-    trace: ''
   id: bh3
   pbe:
     diagonal:
@@ -621,28 +537,24 @@ bh3:
     - 2.942
     - 2.242
     mean: 2.7086666666666672
-    trace: ''
   pbe0:
     diagonal:
     - 2.836
     - 2.836
     - 2.171
     mean: 2.614333333333333
-    trace: ''
   scan:
     diagonal:
     - 2.846
     - 2.846
     - 2.169
     mean: 2.6203333333333334
-    trace: ''
   slater:
     diagonal:
     - 3.21
     - 3.21
     - 2.43
     mean: 2.9499999999999997
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -650,14 +562,12 @@ bh3:
     - 3.005
     - 2.294
     mean: 2.7680000000000002
-    trace: ''
   tpss:
     diagonal:
     - 2.853
     - 2.853
     - 2.173
     mean: 2.6263333333333336
-    trace: ''
 bhf2:
   b3lyp:
     diagonal:
@@ -665,21 +575,18 @@ bhf2:
     - 2.706
     - 2.624
     mean: 2.488
-    trace: ''
   b97:
     diagonal:
     - 2.133
     - 2.697
     - 2.614
     mean: 2.481333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.048
     - 2.603
     - 2.504
     mean: 2.385
-    trace: ''
   id: bhf2
   pbe:
     diagonal:
@@ -687,28 +594,24 @@ bhf2:
     - 2.879
     - 2.772
     mean: 2.6316666666666664
-    trace: ''
   pbe0:
     diagonal:
     - 2.114
     - 2.671
     - 2.585
     mean: 2.4566666666666666
-    trace: ''
   scan:
     diagonal:
     - 2.149
     - 2.705
     - 2.63
     mean: 2.494666666666667
-    trace: ''
   slater:
     diagonal:
     - 2.401
     - 3.048
     - 2.962
     mean: 2.8036666666666665
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -716,14 +619,12 @@ bhf2:
     - 2.896
     - 2.782
     mean: 2.6453333333333333
-    trace: ''
   tpss:
     diagonal:
     - 2.185
     - 2.801
     - 2.697
     mean: 2.5610000000000004
-    trace: ''
 bn:
   b3lyp:
     diagonal:
@@ -731,21 +632,18 @@ bn:
     - 3.384
     - 4.407
     mean: 3.725
-    trace: ''
   b97:
     diagonal:
     - 3.38
     - 3.38
     - 4.374
     mean: 3.7113333333333336
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.144
     - 3.144
     - 4.15
     mean: 3.4793333333333334
-    trace: ''
   id: bn
   pbe:
     diagonal:
@@ -753,28 +651,24 @@ bn:
     - 3.386
     - 4.548
     mean: 3.7733333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 3.242
     - 3.242
     - 4.184
     mean: 3.5559999999999996
-    trace: ''
   scan:
     diagonal:
     - 2.602
     - 2.602
     - 4.233
     mean: 3.1456666666666666
-    trace: ''
   slater:
     diagonal:
     - 3.534
     - 3.534
     - 4.629
     mean: 3.8989999999999996
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -782,14 +676,12 @@ bn:
     - 3.405
     - 4.663
     mean: 3.824333333333333
-    trace: ''
   tpss:
     diagonal:
     - 3.409
     - 3.409
     - 4.446
     mean: 3.7546666666666666
-    trace: ''
 bo:
   b3lyp:
     diagonal:
@@ -797,21 +689,18 @@ bo:
     - 2.379
     - 2.898
     mean: 2.552
-    trace: ''
   b97:
     diagonal:
     - 2.385
     - 2.385
     - 2.941
     mean: 2.570333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.246
     - 2.246
     - 2.797
     mean: 2.4296666666666664
-    trace: ''
   id: bo
   pbe:
     diagonal:
@@ -819,28 +708,24 @@ bo:
     - 2.456
     - 3.039
     mean: 2.6503333333333337
-    trace: ''
   pbe0:
     diagonal:
     - 2.326
     - 2.326
     - 2.841
     mean: 2.497666666666667
-    trace: ''
   scan:
     diagonal:
     - 2.357
     - 2.357
     - 2.879
     mean: 2.531
-    trace: ''
   slater:
     diagonal:
     - 2.548
     - 2.548
     - 3.134
     mean: 2.7433333333333336
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -848,14 +733,12 @@ bo:
     - 2.476
     - 3.045
     mean: 2.6656666666666666
-    trace: ''
   tpss:
     diagonal:
     - 2.433
     - 2.433
     - 3.007
     mean: 2.624333333333333
-    trace: ''
 bs:
   b3lyp:
     diagonal:
@@ -863,21 +746,18 @@ bs:
     - 4.579
     - 6.537
     mean: 5.2316666666666665
-    trace: ''
   b97:
     diagonal:
     - 4.559
     - 4.559
     - 6.504
     mean: 5.207333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.341
     - 4.341
     - 6.28
     mean: 4.987333333333333
-    trace: ''
   id: bs
   pbe:
     diagonal:
@@ -885,28 +765,24 @@ bs:
     - 4.599
     - 6.632
     mean: 5.276666666666666
-    trace: ''
   pbe0:
     diagonal:
     - 4.469
     - 4.469
     - 6.421
     mean: 5.119666666666667
-    trace: ''
   scan:
     diagonal:
     - 4.475
     - 4.475
     - 6.379
     mean: 5.109666666666667
-    trace: ''
   slater:
     diagonal:
     - 4.87
     - 4.87
     - 6.893
     mean: 5.544333333333333
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -914,14 +790,12 @@ bs:
     - 4.644
     - 6.674
     mean: 5.320666666666667
-    trace: ''
   tpss:
     diagonal:
     - 4.539
     - 4.539
     - 6.534
     mean: 5.204
-    trace: ''
 c2h:
   b3lyp:
     diagonal:
@@ -929,21 +803,18 @@ c2h:
     - 3.911
     - 4.099
     mean: 3.9736666666666665
-    trace: ''
   b97:
     diagonal:
     - 4.502
     - 4.502
     - 4.228
     mean: 4.410666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.02
     - 3.02
     - 3.871
     mean: 3.3036666666666665
-    trace: ''
   id: c2h
   pbe:
     diagonal:
@@ -951,28 +822,24 @@ c2h:
     - 3.817
     - 4.144
     mean: 3.926
-    trace: ''
   pbe0:
     diagonal:
     - 3.329
     - 3.329
     - 4.04
     mean: 3.5660000000000003
-    trace: ''
   scan:
     diagonal:
     - 3.257
     - 3.257
     - 4.039
     mean: 3.517666666666667
-    trace: ''
   slater:
     diagonal:
     - 3.508
     - 3.508
     - 4.325
     mean: 3.7803333333333335
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -980,14 +847,12 @@ c2h:
     - 3.807
     - 4.153
     mean: 3.922333333333333
-    trace: ''
   tpss:
     diagonal:
     - 3.769
     - 3.769
     - 4.108
     mean: 3.882
-    trace: ''
 c2h2:
   b3lyp:
     diagonal:
@@ -995,21 +860,18 @@ c2h2:
     - 2.945
     - 4.722
     mean: 3.537333333333333
-    trace: ''
   b97:
     diagonal:
     - 2.934
     - 2.934
     - 4.7
     mean: 3.5226666666666673
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.758
     - 2.758
     - 4.501
     mean: 3.339
-    trace: ''
   id: c2h2
   pbe:
     diagonal:
@@ -1017,28 +879,24 @@ c2h2:
     - 2.981
     - 4.741
     mean: 3.5676666666666663
-    trace: ''
   pbe0:
     diagonal:
     - 2.891
     - 2.891
     - 4.662
     mean: 3.481333333333333
-    trace: ''
   scan:
     diagonal:
     - 2.902
     - 2.902
     - 4.656
     mean: 3.486666666666667
-    trace: ''
   slater:
     diagonal:
     - 3.247
     - 3.247
     - 4.957
     mean: 3.817
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -1046,14 +904,12 @@ c2h2:
     - 2.976
     - 4.743
     mean: 3.565
-    trace: ''
   tpss:
     diagonal:
     - 2.948
     - 2.948
     - 4.721
     mean: 3.539
-    trace: ''
 c2h3:
   b3lyp:
     diagonal:
@@ -1061,21 +917,18 @@ c2h3:
     - 5.29
     - 3.318
     mean: 4.069
-    trace: ''
   b97:
     diagonal:
     - 3.577
     - 5.258
     - 3.298
     mean: 4.044333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.435
     - 4.998
     - 3.132
     mean: 3.855
-    trace: ''
   id: c2h3
   pbe:
     diagonal:
@@ -1083,28 +936,24 @@ c2h3:
     - 5.381
     - 3.359
     mean: 4.150333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 3.534
     - 5.205
     - 3.252
     mean: 3.997
-    trace: ''
   scan:
     diagonal:
     - 3.542
     - 5.22
     - 3.268
     mean: 4.010000000000001
-    trace: ''
   slater:
     diagonal:
     - 4.036
     - 5.718
     - 3.677
     mean: 4.476999999999999
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -1112,14 +961,12 @@ c2h3:
     - 5.441
     - 3.376
     mean: 4.194333333333334
-    trace: ''
   tpss:
     diagonal:
     - 3.619
     - 5.293
     - 3.31
     mean: 4.074000000000001
-    trace: ''
 c2h4:
   b3lyp:
     diagonal:
@@ -1127,21 +974,18 @@ c2h4:
     - 3.844
     - 5.378
     mean: 4.221666666666667
-    trace: ''
   b97:
     diagonal:
     - 3.422
     - 3.826
     - 5.349
     mean: 4.199000000000001
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.25
     - 3.701
     - 5.069
     mean: 4.006666666666667
-    trace: ''
   id: c2h4
   pbe:
     diagonal:
@@ -1149,28 +993,24 @@ c2h4:
     - 3.914
     - 5.389
     mean: 4.258333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 3.383
     - 3.796
     - 5.323
     mean: 4.167333333333334
-    trace: ''
   scan:
     diagonal:
     - 3.396
     - 3.821
     - 5.437
     mean: 4.218
-    trace: ''
   slater:
     diagonal:
     - 3.805
     - 4.181
     - 5.67
     mean: 4.5520000000000005
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -1178,14 +1018,12 @@ c2h4:
     - 3.949
     - 5.412
     mean: 4.280666666666666
-    trace: ''
   tpss:
     diagonal:
     - 3.427
     - 3.863
     - 5.354
     mean: 4.214666666666667
-    trace: ''
 ch2-t:
   b3lyp:
     diagonal:
@@ -1193,21 +1031,18 @@ ch2-t:
     - 2.436
     - 2.203
     mean: 2.323333333333333
-    trace: ''
   b97:
     diagonal:
     - 2.293
     - 2.412
     - 2.168
     mean: 2.291
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.106
     - 2.301
     - 2.023
     mean: 2.143333333333333
-    trace: ''
   id: ch2-t
   pbe:
     diagonal:
@@ -1215,28 +1050,24 @@ ch2-t:
     - 2.509
     - 2.316
     mean: 2.4339999999999997
-    trace: ''
   pbe0:
     diagonal:
     - 2.265
     - 2.388
     - 2.149
     mean: 2.2673333333333336
-    trace: ''
   scan:
     diagonal:
     - 2.267
     - 2.383
     - 2.149
     mean: 2.2663333333333333
-    trace: ''
   slater:
     diagonal:
     - 2.763
     - 2.677
     - 2.542
     mean: 2.6606666666666663
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -1244,14 +1075,12 @@ ch2-t:
     - 2.538
     - 2.348
     mean: 2.4616666666666664
-    trace: ''
   tpss:
     diagonal:
     - 2.367
     - 2.443
     - 2.225
     mean: 2.345
-    trace: ''
 ch2bh:
   b3lyp:
     diagonal:
@@ -1259,21 +1088,18 @@ ch2bh:
     - 3.745
     - 5.993
     mean: 4.7170000000000005
-    trace: ''
   b97:
     diagonal:
     - 4.391
     - 3.734
     - 5.96
     mean: 4.695
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.117
     - 3.61
     - 5.762
     mean: 4.496333333333333
-    trace: ''
   id: ch2bh
   pbe:
     diagonal:
@@ -1281,28 +1107,24 @@ ch2bh:
     - 3.822
     - 6.05
     mean: 4.783333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 4.324
     - 3.704
     - 5.916
     mean: 4.648000000000001
-    trace: ''
   scan:
     diagonal:
     - 4.37
     - 3.722
     - 5.965
     mean: 4.685666666666667
-    trace: ''
   slater:
     diagonal:
     - 5.024
     - 4.126
     - 6.409
     mean: 5.186333333333334
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -1310,14 +1132,12 @@ ch2bh:
     - 3.858
     - 6.074
     mean: 4.7973333333333334
-    trace: ''
   tpss:
     diagonal:
     - 4.439
     - 3.757
     - 5.992
     mean: 4.729333333333333
-    trace: ''
 ch2f:
   b3lyp:
     diagonal:
@@ -1325,21 +1145,18 @@ ch2f:
     - 2.664
     - 2.437
     mean: 2.5050000000000003
-    trace: ''
   b97:
     diagonal:
     - 2.404
     - 2.654
     - 2.428
     mean: 2.4953333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.233
     - 2.55
     - 2.32
     mean: 2.3676666666666666
-    trace: ''
   id: ch2f
   pbe:
     diagonal:
@@ -1347,28 +1164,24 @@ ch2f:
     - 2.806
     - 2.546
     mean: 2.656
-    trace: ''
   pbe0:
     diagonal:
     - 2.356
     - 2.616
     - 2.398
     mean: 2.4566666666666666
-    trace: ''
   scan:
     diagonal:
     - 2.365
     - 2.633
     - 2.412
     mean: 2.47
-    trace: ''
   slater:
     diagonal:
     - 3.039
     - 3.002
     - 2.752
     mean: 2.9309999999999996
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -1376,14 +1189,12 @@ ch2f:
     - 2.826
     - 2.569
     mean: 2.6833333333333336
-    trace: ''
   tpss:
     diagonal:
     - 2.477
     - 2.736
     - 2.479
     mean: 2.564
-    trace: ''
 ch2nh:
   b3lyp:
     diagonal:
@@ -1391,21 +1202,18 @@ ch2nh:
     - 2.61
     - 4.425
     mean: 3.4563333333333333
-    trace: ''
   b97:
     diagonal:
     - 3.318
     - 2.594
     - 4.4
     mean: 3.4373333333333336
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.211
     - 2.523
     - 4.03
     mean: 3.2546666666666666
-    trace: ''
   id: ch2nh
   pbe:
     diagonal:
@@ -1413,28 +1221,24 @@ ch2nh:
     - 2.653
     - 4.514
     mean: 3.537333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 3.282
     - 2.57
     - 4.364
     mean: 3.4053333333333335
-    trace: ''
   scan:
     diagonal:
     - 3.33
     - 2.58
     - 4.427
     mean: 3.4456666666666664
-    trace: ''
   slater:
     diagonal:
     - 3.712
     - 2.872
     - 4.816
     mean: 3.7999999999999994
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -1442,14 +1246,12 @@ ch2nh:
     - 2.67
     - 4.533
     mean: 3.556666666666667
-    trace: ''
   tpss:
     diagonal:
     - 3.387
     - 2.608
     - 4.458
     mean: 3.4843333333333333
-    trace: ''
 ch2ph:
   b3lyp:
     diagonal:
@@ -1457,21 +1259,18 @@ ch2ph:
     - 5.117
     - 5.829
     mean: 6.267333333333333
-    trace: ''
   b97:
     diagonal:
     - 7.807
     - 5.078
     - 5.784
     mean: 6.223
-    trace: ''
   ccsd(t):
     diagonal:
     - 7.611
     - 4.929
     - 5.641
     mean: 6.0603333333333325
-    trace: ''
   id: ch2ph
   pbe:
     diagonal:
@@ -1479,28 +1278,24 @@ ch2ph:
     - 5.131
     - 5.91
     mean: 6.302333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 7.782
     - 5.045
     - 5.758
     mean: 6.195
-    trace: ''
   scan:
     diagonal:
     - 7.802
     - 5.04
     - 5.766
     mean: 6.202666666666666
-    trace: ''
   slater:
     diagonal:
     - 8.309
     - 5.578
     - 6.348
     mean: 6.745
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -1508,14 +1303,12 @@ ch2ph:
     - 5.151
     - 5.977
     mean: 6.338333333333334
-    trace: ''
   tpss:
     diagonal:
     - 7.795
     - 5.056
     - 5.803
     mean: 6.218
-    trace: ''
 ch3:
   b3lyp:
     diagonal:
@@ -1523,21 +1316,18 @@ ch3:
     - 2.453
     - 2.541
     mean: 2.482333333333333
-    trace: ''
   b97:
     diagonal:
     - 2.437
     - 2.437
     - 2.513
     mean: 2.462333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.341
     - 2.341
     - 2.341
     mean: 2.341
-    trace: ''
   id: ch3
   pbe:
     diagonal:
@@ -1545,28 +1335,24 @@ ch3:
     - 2.525
     - 2.688
     mean: 2.579333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 2.414
     - 2.414
     - 2.464
     mean: 2.4306666666666668
-    trace: ''
   scan:
     diagonal:
     - 2.412
     - 2.412
     - 2.442
     mean: 2.422
-    trace: ''
   slater:
     diagonal:
     - 2.741
     - 2.741
     - 3.123
     mean: 2.8683333333333336
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -1574,14 +1360,12 @@ ch3:
     - 2.569
     - 2.749
     mean: 2.629
-    trace: ''
   tpss:
     diagonal:
     - 2.463
     - 2.463
     - 2.559
     mean: 2.495
-    trace: ''
 ch3bh2:
   b3lyp:
     diagonal:
@@ -1589,21 +1373,18 @@ ch3bh2:
     - 5.1
     - 4.407
     mean: 4.439333333333333
-    trace: ''
   b97:
     diagonal:
     - 3.804
     - 5.098
     - 4.39
     mean: 4.430666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.698
     - 4.867
     - 4.251
     mean: 4.271999999999999
-    trace: ''
   id: ch3bh2
   pbe:
     diagonal:
@@ -1611,28 +1392,24 @@ ch3bh2:
     - 5.357
     - 4.526
     mean: 4.598333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 3.788
     - 5.073
     - 4.372
     mean: 4.4110000000000005
-    trace: ''
   scan:
     diagonal:
     - 3.81
     - 5.136
     - 4.407
     mean: 4.451
-    trace: ''
   slater:
     diagonal:
     - 4.207
     - 5.808
     - 4.88
     mean: 4.965
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -1640,14 +1417,12 @@ ch3bh2:
     - 5.468
     - 4.6
     mean: 4.682666666666667
-    trace: ''
   tpss:
     diagonal:
     - 3.827
     - 5.199
     - 4.425
     mean: 4.483666666666667
-    trace: ''
 ch3cl:
   b3lyp:
     diagonal:
@@ -1655,21 +1430,18 @@ ch3cl:
     - 4.09
     - 5.585
     mean: 4.588333333333334
-    trace: ''
   b97:
     diagonal:
     - 4.064
     - 4.064
     - 5.557
     mean: 4.5616666666666665
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.93
     - 3.93
     - 5.39
     mean: 4.416666666666667
-    trace: ''
   id: ch3cl
   pbe:
     diagonal:
@@ -1677,28 +1449,24 @@ ch3cl:
     - 4.184
     - 5.688
     mean: 4.685333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 4.028
     - 4.028
     - 5.513
     mean: 4.523
-    trace: ''
   scan:
     diagonal:
     - 4.058
     - 4.058
     - 5.529
     mean: 4.548333333333333
-    trace: ''
   slater:
     diagonal:
     - 4.496
     - 4.496
     - 6.012
     mean: 5.001333333333334
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -1706,14 +1474,12 @@ ch3cl:
     - 4.226
     - 5.728
     mean: 4.726666666666667
-    trace: ''
   tpss:
     diagonal:
     - 4.108
     - 4.108
     - 5.617
     mean: 4.611
-    trace: ''
 ch3f:
   b3lyp:
     diagonal:
@@ -1721,21 +1487,18 @@ ch3f:
     - 2.476
     - 2.657
     mean: 2.5363333333333333
-    trace: ''
   b97:
     diagonal:
     - 2.468
     - 2.468
     - 2.646
     mean: 2.5273333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.371
     - 2.371
     - 2.562
     mean: 2.4346666666666668
-    trace: ''
   id: ch3f
   pbe:
     diagonal:
@@ -1743,28 +1506,24 @@ ch3f:
     - 2.569
     - 2.77
     mean: 2.6359999999999997
-    trace: ''
   pbe0:
     diagonal:
     - 2.448
     - 2.448
     - 2.625
     mean: 2.507
-    trace: ''
   scan:
     diagonal:
     - 2.476
     - 2.476
     - 2.645
     mean: 2.5323333333333333
-    trace: ''
   slater:
     diagonal:
     - 2.757
     - 2.757
     - 2.933
     mean: 2.8156666666666665
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -1772,14 +1531,12 @@ ch3f:
     - 2.594
     - 2.78
     mean: 2.656
-    trace: ''
   tpss:
     diagonal:
     - 2.517
     - 2.517
     - 2.719
     mean: 2.5843333333333334
-    trace: ''
 ch3nh2:
   b3lyp:
     diagonal:
@@ -1787,21 +1544,18 @@ ch3nh2:
     - 3.765
     - 3.629
     mean: 3.8973333333333335
-    trace: ''
   b97:
     diagonal:
     - 4.284
     - 3.744
     - 3.611
     mean: 3.879666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.108
     - 3.609
     - 3.511
     mean: 3.7426666666666666
-    trace: ''
   id: ch3nh2
   pbe:
     diagonal:
@@ -1809,28 +1563,24 @@ ch3nh2:
     - 3.939
     - 3.724
     mean: 4.0473333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 4.24
     - 3.699
     - 3.582
     mean: 3.8403333333333336
-    trace: ''
   scan:
     diagonal:
     - 4.302
     - 3.763
     - 3.619
     mean: 3.8946666666666663
-    trace: ''
   slater:
     diagonal:
     - 4.835
     - 4.343
     - 3.985
     mean: 4.387666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -1838,14 +1588,12 @@ ch3nh2:
     - 3.981
     - 3.763
     mean: 4.086
-    trace: ''
   tpss:
     diagonal:
     - 4.398
     - 3.842
     - 3.668
     mean: 3.9693333333333336
-    trace: ''
 ch3o:
   b3lyp:
     diagonal:
@@ -1853,21 +1601,18 @@ ch3o:
     - 2.875
     - 3.627
     mean: 3.6793333333333336
-    trace: ''
   b97:
     diagonal:
     - 4.544
     - 2.87
     - 3.619
     mean: 3.6776666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.181
     - 2.77
     - 3.399
     mean: 3.4500000000000006
-    trace: ''
   id: ch3o
   pbe:
     diagonal:
@@ -1875,28 +1620,24 @@ ch3o:
     - 2.982
     - 3.895
     mean: 3.9286666666666665
-    trace: ''
   pbe0:
     diagonal:
     - 4.433
     - 2.838
     - 3.546
     mean: 3.6056666666666666
-    trace: ''
   scan:
     diagonal:
     - 4.611
     - 2.891
     - 3.637
     mean: 3.7129999999999996
-    trace: ''
   slater:
     diagonal:
     - 5.296
     - 3.248
     - 4.212
     mean: 4.252
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -1904,14 +1645,12 @@ ch3o:
     - 3.008
     - 3.997
     mean: 4.043
-    trace: ''
   tpss:
     diagonal:
     - 4.699
     - 2.923
     - 3.755
     mean: 3.792333333333333
-    trace: ''
 ch3oh:
   b3lyp:
     diagonal:
@@ -1919,21 +1658,18 @@ ch3oh:
     - 3.538
     - 3.038
     mean: 3.2279999999999998
-    trace: ''
   b97:
     diagonal:
     - 3.094
     - 3.523
     - 3.025
     mean: 3.214
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.998
     - 3.398
     - 2.917
     mean: 3.1043333333333334
-    trace: ''
   id: ch3oh
   pbe:
     diagonal:
@@ -1941,28 +1677,24 @@ ch3oh:
     - 3.691
     - 3.172
     mean: 3.3563333333333336
-    trace: ''
   pbe0:
     diagonal:
     - 3.068
     - 3.489
     - 2.995
     mean: 3.1839999999999997
-    trace: ''
   scan:
     diagonal:
     - 3.107
     - 3.534
     - 3.041
     mean: 3.2273333333333336
-    trace: ''
   slater:
     diagonal:
     - 3.426
     - 3.948
     - 3.444
     mean: 3.6060000000000003
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -1970,14 +1702,12 @@ ch3oh:
     - 3.708
     - 3.203
     mean: 3.3823333333333334
-    trace: ''
   tpss:
     diagonal:
     - 3.154
     - 3.628
     - 3.101
     mean: 3.294333333333333
-    trace: ''
 ch3sh:
   b3lyp:
     diagonal:
@@ -1985,21 +1715,18 @@ ch3sh:
     - 5.171
     - 5.211
     mean: 5.637333333333333
-    trace: ''
   b97:
     diagonal:
     - 6.502
     - 5.137
     - 5.171
     mean: 5.603333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 6.285
     - 4.984
     - 4.981
     mean: 5.416666666666667
-    trace: ''
   id: ch3sh
   pbe:
     diagonal:
@@ -2007,28 +1734,24 @@ ch3sh:
     - 5.275
     - 5.344
     mean: 5.7620000000000005
-    trace: ''
   pbe0:
     diagonal:
     - 6.451
     - 5.097
     - 5.12
     mean: 5.556
-    trace: ''
   scan:
     diagonal:
     - 6.474
     - 5.124
     - 5.158
     mean: 5.585333333333334
-    trace: ''
   slater:
     diagonal:
     - 7.109
     - 5.683
     - 5.865
     mean: 6.219
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2036,14 +1759,12 @@ ch3sh:
     - 5.335
     - 5.403
     mean: 5.821333333333333
-    trace: ''
   tpss:
     diagonal:
     - 6.572
     - 5.179
     - 5.228
     mean: 5.659666666666666
-    trace: ''
 ch4:
   b3lyp:
     diagonal:
@@ -2051,21 +1772,18 @@ ch4:
     - 2.523
     - 2.523
     mean: 2.523
-    trace: ''
   b97:
     diagonal:
     - 2.512
     - 2.512
     - 2.512
     mean: 2.512
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.426
     - 2.426
     - 2.426
     mean: 2.426
-    trace: ''
   id: ch4
   pbe:
     diagonal:
@@ -2073,28 +1791,24 @@ ch4:
     - 2.59
     - 2.59
     mean: 2.59
-    trace: ''
   pbe0:
     diagonal:
     - 2.499
     - 2.499
     - 2.499
     mean: 2.499
-    trace: ''
   scan:
     diagonal:
     - 2.514
     - 2.514
     - 2.514
     mean: 2.514
-    trace: ''
   slater:
     diagonal:
     - 2.797
     - 2.797
     - 2.797
     mean: 2.797
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2102,14 +1816,12 @@ ch4:
     - 2.636
     - 2.636
     mean: 2.636
-    trace: ''
   tpss:
     diagonal:
     - 2.535
     - 2.535
     - 2.535
     mean: 2.535
-    trace: ''
 cl2:
   b3lyp:
     diagonal:
@@ -2117,21 +1829,18 @@ cl2:
     - 3.819
     - 6.33
     mean: 4.656
-    trace: ''
   b97:
     diagonal:
     - 3.788
     - 3.788
     - 6.282
     mean: 4.6193333333333335
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.666
     - 3.666
     - 6.174
     mean: 4.502
-    trace: ''
   id: cl2
   pbe:
     diagonal:
@@ -2139,28 +1848,24 @@ cl2:
     - 3.908
     - 6.363
     mean: 4.726333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 3.748
     - 3.748
     - 6.241
     mean: 4.579
-    trace: ''
   scan:
     diagonal:
     - 3.767
     - 3.767
     - 6.239
     mean: 4.591
-    trace: ''
   slater:
     diagonal:
     - 4.194
     - 4.194
     - 6.654
     mean: 5.014
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2168,14 +1873,12 @@ cl2:
     - 3.931
     - 6.378
     mean: 4.746666666666667
-    trace: ''
   tpss:
     diagonal:
     - 3.824
     - 3.824
     - 6.303
     mean: 4.650333333333333
-    trace: ''
 clcn:
   b3lyp:
     diagonal:
@@ -2183,21 +1886,18 @@ clcn:
     - 3.489
     - 6.934
     mean: 4.637333333333333
-    trace: ''
   b97:
     diagonal:
     - 3.47
     - 3.47
     - 6.913
     mean: 4.6176666666666675
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.385
     - 3.385
     - 6.644
     mean: 4.471333333333333
-    trace: ''
   id: clcn
   pbe:
     diagonal:
@@ -2205,28 +1905,24 @@ clcn:
     - 3.544
     - 7.135
     mean: 4.741
-    trace: ''
   pbe0:
     diagonal:
     - 3.437
     - 3.437
     - 6.847
     mean: 4.573666666666667
-    trace: ''
   scan:
     diagonal:
     - 3.444
     - 3.444
     - 6.932
     mean: 4.6066666666666665
-    trace: ''
   slater:
     diagonal:
     - 3.764
     - 3.764
     - 7.419
     mean: 4.982333333333333
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2234,14 +1930,12 @@ clcn:
     - 3.554
     - 7.138
     mean: 4.748666666666666
-    trace: ''
   tpss:
     diagonal:
     - 3.488
     - 3.488
     - 7.052
     mean: 4.675999999999999
-    trace: ''
 clf:
   b3lyp:
     diagonal:
@@ -2249,21 +1943,18 @@ clf:
     - 2.482
     - 3.392
     mean: 2.7853333333333334
-    trace: ''
   b97:
     diagonal:
     - 2.466
     - 2.466
     - 3.37
     mean: 2.767333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.356
     - 2.356
     - 3.337
     mean: 2.683
-    trace: ''
   id: clf
   pbe:
     diagonal:
@@ -2271,28 +1962,24 @@ clf:
     - 2.573
     - 3.431
     mean: 2.859
-    trace: ''
   pbe0:
     diagonal:
     - 2.437
     - 2.437
     - 3.349
     mean: 2.7409999999999997
-    trace: ''
   scan:
     diagonal:
     - 2.456
     - 2.456
     - 3.354
     mean: 2.755333333333333
-    trace: ''
   slater:
     diagonal:
     - 2.773
     - 2.773
     - 3.567
     mean: 3.0376666666666665
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2300,14 +1987,12 @@ clf:
     - 2.579
     - 3.42
     mean: 2.8593333333333333
-    trace: ''
   tpss:
     diagonal:
     - 2.512
     - 2.512
     - 3.404
     mean: 2.8093333333333335
-    trace: ''
 cn:
   b3lyp:
     diagonal:
@@ -2315,21 +2000,18 @@ cn:
     - 2.834
     - 4.017
     mean: 3.2283333333333335
-    trace: ''
   b97:
     diagonal:
     - 2.889
     - 2.889
     - 3.957
     mean: 3.2449999999999997
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.405
     - 2.405
     - 3.782
     mean: 2.8639999999999994
-    trace: ''
   id: cn
   pbe:
     diagonal:
@@ -2337,28 +2019,24 @@ cn:
     - 2.582
     - 3.986
     mean: 3.0500000000000003
-    trace: ''
   pbe0:
     diagonal:
     - 2.696
     - 2.696
     - 3.924
     mean: 3.1053333333333337
-    trace: ''
   scan:
     diagonal:
     - 2.636
     - 2.636
     - 3.894
     mean: 3.0553333333333335
-    trace: ''
   slater:
     diagonal:
     - 2.642
     - 2.642
     - 4.279
     mean: 3.1876666666666664
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -2366,14 +2044,12 @@ cn:
     - 2.519
     - 3.975
     mean: 3.0043333333333333
-    trace: ''
   tpss:
     diagonal:
     - 2.633
     - 2.633
     - 3.971
     mean: 3.079
-    trace: ''
 co:
   b3lyp:
     diagonal:
@@ -2381,21 +2057,18 @@ co:
     - 1.801
     - 2.299
     mean: 1.9669999999999999
-    trace: ''
   b97:
     diagonal:
     - 1.789
     - 1.789
     - 2.291
     mean: 1.9563333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.753
     - 1.753
     - 2.283
     mean: 1.9296666666666666
-    trace: ''
   id: co
   pbe:
     diagonal:
@@ -2403,28 +2076,24 @@ co:
     - 1.856
     - 2.363
     mean: 2.025
-    trace: ''
   pbe0:
     diagonal:
     - 1.778
     - 1.778
     - 2.274
     mean: 1.9433333333333334
-    trace: ''
   scan:
     diagonal:
     - 1.79
     - 1.79
     - 2.278
     mean: 1.9526666666666668
-    trace: ''
   slater:
     diagonal:
     - 1.993
     - 1.993
     - 2.49
     mean: 2.158666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2432,14 +2101,12 @@ co:
     - 1.872
     - 2.358
     mean: 2.0340000000000003
-    trace: ''
   tpss:
     diagonal:
     - 1.811
     - 1.811
     - 2.326
     mean: 1.9826666666666668
-    trace: ''
 co2:
   b3lyp:
     diagonal:
@@ -2447,21 +2114,18 @@ co2:
     - 1.927
     - 3.874
     mean: 2.576
-    trace: ''
   b97:
     diagonal:
     - 1.92
     - 1.92
     - 3.852
     mean: 2.564
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.891
     - 1.891
     - 3.954
     mean: 2.578666666666667
-    trace: ''
   id: co2
   pbe:
     diagonal:
@@ -2469,28 +2133,24 @@ co2:
     - 1.982
     - 3.965
     mean: 2.6430000000000002
-    trace: ''
   pbe0:
     diagonal:
     - 1.9
     - 1.9
     - 3.822
     mean: 2.5406666666666666
-    trace: ''
   scan:
     diagonal:
     - 1.912
     - 1.912
     - 3.817
     mean: 2.547
-    trace: ''
   slater:
     diagonal:
     - 2.088
     - 2.088
     - 4.107
     mean: 2.7610000000000006
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2498,14 +2158,12 @@ co2:
     - 1.976
     - 3.967
     mean: 2.639666666666667
-    trace: ''
   tpss:
     diagonal:
     - 1.953
     - 1.953
     - 3.918
     mean: 2.608
-    trace: ''
 cs:
   b3lyp:
     diagonal:
@@ -2513,21 +2171,18 @@ cs:
     - 3.606
     - 5.678
     mean: 4.296666666666667
-    trace: ''
   b97:
     diagonal:
     - 3.58
     - 3.58
     - 5.65
     mean: 4.2700000000000005
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.507
     - 3.507
     - 5.608
     mean: 4.207333333333334
-    trace: ''
   id: cs
   pbe:
     diagonal:
@@ -2535,28 +2190,24 @@ cs:
     - 3.635
     - 5.796
     mean: 4.355333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 3.554
     - 3.554
     - 5.616
     mean: 4.241333333333333
-    trace: ''
   scan:
     diagonal:
     - 3.539
     - 3.539
     - 5.62
     mean: 4.232666666666667
-    trace: ''
   slater:
     diagonal:
     - 3.906
     - 3.906
     - 6.152
     mean: 4.6546666666666665
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2564,14 +2215,12 @@ cs:
     - 3.658
     - 5.804
     mean: 4.373333333333334
-    trace: ''
   tpss:
     diagonal:
     - 3.572
     - 3.572
     - 5.698
     mean: 4.280666666666667
-    trace: ''
 cso:
   b3lyp:
     diagonal:
@@ -2579,21 +2228,18 @@ cso:
     - 3.885
     - 7.615
     mean: 5.128333333333333
-    trace: ''
   b97:
     diagonal:
     - 3.861
     - 3.861
     - 7.561
     mean: 5.094333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.781
     - 3.781
     - 7.778
     mean: 5.113333333333333
-    trace: ''
   id: cso
   pbe:
     diagonal:
@@ -2601,28 +2247,24 @@ cso:
     - 3.929
     - 7.681
     mean: 5.179666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 3.825
     - 3.825
     - 7.526
     mean: 5.058666666666666
-    trace: ''
   scan:
     diagonal:
     - 3.817
     - 3.817
     - 7.477
     mean: 5.037
-    trace: ''
   slater:
     diagonal:
     - 4.206
     - 4.206
     - 7.957
     mean: 5.456333333333333
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2630,14 +2272,12 @@ cso:
     - 3.93
     - 7.69
     mean: 5.183333333333334
-    trace: ''
   tpss:
     diagonal:
     - 3.869
     - 3.869
     - 7.604
     mean: 5.114
-    trace: ''
 f2:
   b3lyp:
     diagonal:
@@ -2645,21 +2285,18 @@ f2:
     - 0.981
     - 1.928
     mean: 1.2966666666666666
-    trace: ''
   b97:
     diagonal:
     - 0.976
     - 0.976
     - 1.91
     mean: 1.2873333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 0.946
     - 0.946
     - 1.839
     mean: 1.2436666666666667
-    trace: ''
   id: f2
   pbe:
     diagonal:
@@ -2667,28 +2304,24 @@ f2:
     - 1.047
     - 1.891
     mean: 1.3283333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 0.963
     - 0.963
     - 1.91
     mean: 1.2786666666666666
-    trace: ''
   scan:
     diagonal:
     - 0.977
     - 0.977
     - 1.936
     mean: 1.2966666666666666
-    trace: ''
   slater:
     diagonal:
     - 1.116
     - 1.116
     - 1.935
     mean: 1.389
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -2696,14 +2329,12 @@ f2:
     - 1.044
     - 1.869
     mean: 1.319
-    trace: ''
   tpss:
     diagonal:
     - 1.019
     - 1.019
     - 1.9
     mean: 1.3126666666666666
-    trace: ''
 fcn:
   b3lyp:
     diagonal:
@@ -2711,21 +2342,18 @@ fcn:
     - 2.247
     - 3.841
     mean: 2.7783333333333338
-    trace: ''
   b97:
     diagonal:
     - 2.243
     - 2.243
     - 3.829
     mean: 2.7716666666666665
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.162
     - 2.162
     - 3.723
     mean: 2.6823333333333337
-    trace: ''
   id: fcn
   pbe:
     diagonal:
@@ -2733,28 +2361,24 @@ fcn:
     - 2.301
     - 3.968
     mean: 2.856666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 2.216
     - 2.216
     - 3.794
     mean: 2.7420000000000004
-    trace: ''
   scan:
     diagonal:
     - 2.23
     - 2.23
     - 3.827
     mean: 2.762333333333333
-    trace: ''
   slater:
     diagonal:
     - 2.443
     - 2.443
     - 4.116
     mean: 3.000666666666666
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2762,14 +2386,12 @@ fcn:
     - 2.296
     - 3.959
     mean: 2.8503333333333334
-    trace: ''
   tpss:
     diagonal:
     - 2.267
     - 2.267
     - 3.926
     mean: 2.8200000000000003
-    trace: ''
 fco:
   b3lyp:
     diagonal:
@@ -2777,21 +2399,18 @@ fco:
     - 2.501
     - 2.105
     mean: 2.6649999999999996
-    trace: ''
   b97:
     diagonal:
     - 3.371
     - 2.491
     - 2.094
     mean: 2.6519999999999997
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.32
     - 2.404
     - 2.027
     mean: 2.583666666666667
-    trace: ''
   id: fco
   pbe:
     diagonal:
@@ -2799,28 +2418,24 @@ fco:
     - 2.646
     - 2.204
     mean: 2.7936666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 3.332
     - 2.464
     - 2.068
     mean: 2.621333333333333
-    trace: ''
   scan:
     diagonal:
     - 3.352
     - 2.474
     - 2.073
     mean: 2.6330000000000005
-    trace: ''
   slater:
     diagonal:
     - 3.702
     - 2.88
     - 2.378
     mean: 2.986666666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -2828,14 +2443,12 @@ fco:
     - 2.629
     - 2.217
     mean: 2.7886666666666664
-    trace: ''
   tpss:
     diagonal:
     - 3.465
     - 2.573
     - 2.135
     mean: 2.7243333333333335
-    trace: ''
 fh-oh:
   b3lyp:
     diagonal:
@@ -2843,21 +2456,18 @@ fh-oh:
     - 1.693
     - 2.502
     mean: 2.0613333333333332
-    trace: ''
   b97:
     diagonal:
     - 1.978
     - 1.682
     - 2.496
     mean: 2.052
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.886
     - 1.602
     - 2.28
     mean: 1.9226666666666665
-    trace: ''
   id: fh-oh
   pbe:
     diagonal:
@@ -2865,28 +2475,24 @@ fh-oh:
     - 1.811
     - 3.832
     mean: 2.5869999999999997
-    trace: ''
   pbe0:
     diagonal:
     - 1.948
     - 1.655
     - 2.413
     mean: 2.005333333333333
-    trace: ''
   scan:
     diagonal:
     - 1.993
     - 1.698
     - 2.598
     mean: 2.0963333333333334
-    trace: ''
   slater:
     diagonal:
     - 2.284
     - 1.964
     - 4.621
     mean: 2.9563333333333333
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -2894,14 +2500,12 @@ fh-oh:
     - 1.823
     - 5.013
     mean: 2.9913333333333334
-    trace: ''
   tpss:
     diagonal:
     - 2.066
     - 1.754
     - 3.067
     mean: 2.295666666666667
-    trace: ''
 fno:
   b3lyp:
     diagonal:
@@ -2909,21 +2513,18 @@ fno:
     - 2.478
     - 1.78
     mean: 2.559
-    trace: ''
   b97:
     diagonal:
     - 3.402
     - 2.465
     - 1.769
     mean: 2.5453333333333332
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.445
     - 2.465
     - 1.747
     mean: 2.5523333333333333
-    trace: ''
   id: fno
   pbe:
     diagonal:
@@ -2931,28 +2532,24 @@ fno:
     - 2.58
     - 1.849
     mean: 2.6513333333333335
-    trace: ''
   pbe0:
     diagonal:
     - 3.373
     - 2.44
     - 1.752
     mean: 2.521666666666667
-    trace: ''
   scan:
     diagonal:
     - 3.397
     - 2.46
     - 1.76
     mean: 2.5389999999999997
-    trace: ''
   slater:
     diagonal:
     - 3.669
     - 2.735
     - 1.975
     mean: 2.7929999999999997
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -2960,14 +2557,12 @@ fno:
     - 2.568
     - 1.854
     mean: 2.6439999999999997
-    trace: ''
   tpss:
     diagonal:
     - 3.478
     - 2.53
     - 1.805
     mean: 2.6043333333333334
-    trace: ''
 h:
   b3lyp:
     diagonal:
@@ -2975,21 +2570,18 @@ h:
     - 0.787
     - 0.787
     mean: 0.787
-    trace: ''
   b97:
     diagonal:
     - 0.78
     - 0.78
     - 0.78
     mean: 0.7799999999999999
-    trace: ''
   ccsd(t):
     diagonal:
     - 0.667
     - 0.667
     - 0.667
     mean: 0.6670000000000001
-    trace: ''
   id: h
   pbe:
     diagonal:
@@ -2997,28 +2589,24 @@ h:
     - 0.829
     - 0.829
     mean: 0.8290000000000001
-    trace: ''
   pbe0:
     diagonal:
     - 0.775
     - 0.775
     - 0.775
     mean: 0.775
-    trace: ''
   scan:
     diagonal:
     - 0.769
     - 0.769
     - 0.769
     mean: 0.769
-    trace: ''
   slater:
     diagonal:
     - 0.958
     - 0.958
     - 0.958
     mean: 0.9579999999999999
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3026,14 +2614,12 @@ h:
     - 0.902
     - 0.902
     mean: 0.902
-    trace: ''
   tpss:
     diagonal:
     - 0.787
     - 0.787
     - 0.787
     mean: 0.787
-    trace: ''
 h2:
   b3lyp:
     diagonal:
@@ -3041,21 +2627,18 @@ h2:
     - 0.727
     - 1.008
     mean: 0.8206666666666665
-    trace: ''
   b97:
     diagonal:
     - 0.721
     - 0.721
     - 0.997
     mean: 0.8130000000000001
-    trace: ''
   ccsd(t):
     diagonal:
     - 0.678
     - 0.678
     - 0.948
     mean: 0.7680000000000001
-    trace: ''
   id: h2
   pbe:
     diagonal:
@@ -3063,28 +2646,24 @@ h2:
     - 0.751
     - 1.029
     mean: 0.8436666666666666
-    trace: ''
   pbe0:
     diagonal:
     - 0.724
     - 0.724
     - 0.998
     mean: 0.8153333333333332
-    trace: ''
   scan:
     diagonal:
     - 0.723
     - 0.723
     - 1.001
     mean: 0.8156666666666667
-    trace: ''
   slater:
     diagonal:
     - 0.848
     - 0.848
     - 1.134
     mean: 0.9433333333333334
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3092,14 +2671,12 @@ h2:
     - 0.784
     - 1.066
     mean: 0.8780000000000001
-    trace: ''
   tpss:
     diagonal:
     - 0.72
     - 0.72
     - 0.993
     mean: 0.8109999999999999
-    trace: ''
 h2cn:
   b3lyp:
     diagonal:
@@ -3107,21 +2684,18 @@ h2cn:
     - 2.879
     - 3.825
     mean: 3.0150000000000006
-    trace: ''
   b97:
     diagonal:
     - 2.329
     - 2.864
     - 3.808
     mean: 3.0003333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.262
     - 2.773
     - 3.657
     mean: 2.8973333333333335
-    trace: ''
   id: h2cn
   pbe:
     diagonal:
@@ -3129,28 +2703,24 @@ h2cn:
     - 2.99
     - 3.949
     mean: 3.109666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 2.306
     - 2.832
     - 3.767
     mean: 2.9683333333333333
-    trace: ''
   scan:
     diagonal:
     - 2.311
     - 2.856
     - 3.78
     mean: 2.982333333333333
-    trace: ''
   slater:
     diagonal:
     - 2.581
     - 3.241
     - 4.214
     mean: 3.345333333333334
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -3158,14 +2728,12 @@ h2cn:
     - 3.025
     - 3.991
     mean: 3.141666666666666
-    trace: ''
   tpss:
     diagonal:
     - 2.346
     - 2.912
     - 3.865
     mean: 3.0410000000000004
-    trace: ''
 h2o:
   b3lyp:
     diagonal:
@@ -3173,21 +2741,18 @@ h2o:
     - 1.515
     - 1.479
     mean: 1.482
-    trace: ''
   b97:
     diagonal:
     - 1.442
     - 1.504
     - 1.467
     mean: 1.471
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.362
     - 1.46
     - 1.406
     mean: 1.4093333333333333
-    trace: ''
   id: h2o
   pbe:
     diagonal:
@@ -3195,28 +2760,24 @@ h2o:
     - 1.572
     - 1.564
     mean: 1.5716666666666665
-    trace: ''
   pbe0:
     diagonal:
     - 1.412
     - 1.485
     - 1.444
     mean: 1.447
-    trace: ''
   scan:
     diagonal:
     - 1.462
     - 1.507
     - 1.485
     mean: 1.4846666666666666
-    trace: ''
   slater:
     diagonal:
     - 1.771
     - 1.669
     - 1.703
     mean: 1.7143333333333333
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3224,14 +2785,12 @@ h2o:
     - 1.572
     - 1.572
     mean: 1.5746666666666667
-    trace: ''
   tpss:
     diagonal:
     - 1.527
     - 1.554
     - 1.529
     mean: 1.5366666666666664
-    trace: ''
 h2o-li:
   b3lyp:
     diagonal:
@@ -3239,21 +2798,18 @@ h2o-li:
     - 28.403
     - 42.436
     mean: 34.567
-    trace: ''
   b97:
     diagonal:
     - 36.037
     - 31.284
     - 38.696
     mean: 35.339
-    trace: ''
   ccsd(t):
     diagonal:
     - 38.527
     - 33.527
     - 43.727
     mean: 38.59366666666667
-    trace: ''
   id: h2o-li
   pbe:
     diagonal:
@@ -3261,28 +2817,24 @@ h2o-li:
     - 28.455
     - 39.923
     mean: 33.838
-    trace: ''
   pbe0:
     diagonal:
     - 35.518
     - 30.786
     - 39.913
     mean: 35.40566666666667
-    trace: ''
   scan:
     diagonal:
     - 35.795
     - 30.571
     - 46.513
     mean: 37.62633333333333
-    trace: ''
   slater:
     diagonal:
     - 37.138
     - 31.917
     - 46.878
     mean: 38.644333333333336
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -3290,14 +2842,12 @@ h2o-li:
     - 27.835
     - 43.226
     mean: 34.568333333333335
-    trace: ''
   tpss:
     diagonal:
     - 34.89
     - 30.006
     - 37.088
     mean: 33.99466666666667
-    trace: ''
 hbo:
   b3lyp:
     diagonal:
@@ -3305,21 +2855,18 @@ hbo:
     - 2.171
     - 3.195
     mean: 2.512333333333333
-    trace: ''
   b97:
     diagonal:
     - 2.169
     - 2.169
     - 3.182
     mean: 2.5066666666666664
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.1
     - 2.1
     - 3.171
     mean: 2.4570000000000003
-    trace: ''
   id: hbo
   pbe:
     diagonal:
@@ -3327,28 +2874,24 @@ hbo:
     - 2.247
     - 3.295
     mean: 2.5963333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 2.148
     - 2.148
     - 3.152
     mean: 2.482666666666667
-    trace: ''
   scan:
     diagonal:
     - 2.167
     - 2.167
     - 3.171
     mean: 2.5016666666666665
-    trace: ''
   slater:
     diagonal:
     - 2.395
     - 2.395
     - 3.451
     mean: 2.747
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3356,14 +2899,12 @@ hbo:
     - 2.246
     - 3.296
     mean: 2.596
-    trace: ''
   tpss:
     diagonal:
     - 2.209
     - 2.209
     - 3.246
     mean: 2.5546666666666664
-    trace: ''
 hbs:
   b3lyp:
     diagonal:
@@ -3371,21 +2912,18 @@ hbs:
     - 4.389
     - 6.763
     mean: 5.1803333333333335
-    trace: ''
   b97:
     diagonal:
     - 4.365
     - 4.365
     - 6.727
     mean: 5.152333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.211
     - 4.211
     - 6.678
     mean: 5.033333333333334
-    trace: ''
   id: hbs
   pbe:
     diagonal:
@@ -3393,28 +2931,24 @@ hbs:
     - 4.418
     - 6.829
     mean: 5.221666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 4.321
     - 4.321
     - 6.681
     mean: 5.107666666666667
-    trace: ''
   scan:
     diagonal:
     - 4.302
     - 4.302
     - 6.643
     mean: 5.082333333333334
-    trace: ''
   slater:
     diagonal:
     - 4.76
     - 4.76
     - 7.158
     mean: 5.559333333333334
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3422,14 +2956,12 @@ hbs:
     - 4.434
     - 6.853
     mean: 5.240333333333333
-    trace: ''
   tpss:
     diagonal:
     - 4.352
     - 4.352
     - 6.744
     mean: 5.149333333333334
-    trace: ''
 hcccl:
   b3lyp:
     diagonal:
@@ -3437,21 +2969,18 @@ hcccl:
     - 4.161
     - 8.665
     mean: 5.662333333333333
-    trace: ''
   b97:
     diagonal:
     - 4.142
     - 4.142
     - 8.634
     mean: 5.639333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.98
     - 3.98
     - 8.157
     mean: 5.372333333333334
-    trace: ''
   id: hcccl
   pbe:
     diagonal:
@@ -3459,28 +2988,24 @@ hcccl:
     - 4.219
     - 8.849
     mean: 5.762333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 4.091
     - 4.091
     - 8.549
     mean: 5.577000000000001
-    trace: ''
   scan:
     diagonal:
     - 4.103
     - 4.103
     - 8.613
     mean: 5.606333333333333
-    trace: ''
   slater:
     diagonal:
     - 4.532
     - 4.532
     - 9.251
     mean: 6.1049999999999995
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3488,14 +3013,12 @@ hcccl:
     - 4.226
     - 8.868
     mean: 5.773333333333333
-    trace: ''
   tpss:
     diagonal:
     - 4.157
     - 4.157
     - 8.754
     mean: 5.689333333333333
-    trace: ''
 hccf:
   b3lyp:
     diagonal:
@@ -3503,21 +3026,18 @@ hccf:
     - 2.928
     - 5.003
     mean: 3.619666666666667
-    trace: ''
   b97:
     diagonal:
     - 2.928
     - 2.928
     - 4.988
     mean: 3.614666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.748
     - 2.748
     - 4.774
     mean: 3.4233333333333333
-    trace: ''
   id: hccf
   pbe:
     diagonal:
@@ -3525,28 +3045,24 @@ hccf:
     - 2.994
     - 5.123
     mean: 3.703666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 2.88
     - 2.88
     - 4.94
     mean: 3.5666666666666664
-    trace: ''
   scan:
     diagonal:
     - 2.905
     - 2.905
     - 4.963
     mean: 3.5909999999999997
-    trace: ''
   slater:
     diagonal:
     - 3.242
     - 3.242
     - 5.325
     mean: 3.9363333333333337
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3554,14 +3070,12 @@ hccf:
     - 2.979
     - 5.119
     mean: 3.6923333333333335
-    trace: ''
   tpss:
     diagonal:
     - 2.951
     - 2.951
     - 5.078
     mean: 3.66
-    trace: ''
 hcho:
   b3lyp:
     diagonal:
@@ -3569,21 +3083,18 @@ hcho:
     - 2.774
     - 3.4
     mean: 2.7163333333333335
-    trace: ''
   b97:
     diagonal:
     - 1.964
     - 2.763
     - 3.381
     mean: 2.702666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.912
     - 2.633
     - 3.288
     mean: 2.611
-    trace: ''
   id: hcho
   pbe:
     diagonal:
@@ -3591,28 +3102,24 @@ hcho:
     - 2.92
     - 3.513
     mean: 2.818
-    trace: ''
   pbe0:
     diagonal:
     - 1.95
     - 2.726
     - 3.348
     mean: 2.674666666666667
-    trace: ''
   scan:
     diagonal:
     - 1.957
     - 2.786
     - 3.37
     mean: 2.704333333333333
-    trace: ''
   slater:
     diagonal:
     - 2.165
     - 3.188
     - 3.748
     mean: 3.0336666666666665
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3620,14 +3127,12 @@ hcho:
     - 2.934
     - 3.521
     mean: 2.829333333333333
-    trace: ''
   tpss:
     diagonal:
     - 1.984
     - 2.85
     - 3.457
     mean: 2.763666666666667
-    trace: ''
 hchs:
   b3lyp:
     diagonal:
@@ -3635,21 +3140,18 @@ hchs:
     - 4.812
     - 6.877
     mean: 5.240666666666667
-    trace: ''
   b97:
     diagonal:
     - 4.002
     - 4.769
     - 6.826
     mean: 5.199000000000001
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.891
     - 4.571
     - 6.673
     mean: 5.045
-    trace: ''
   id: hchs
   pbe:
     diagonal:
@@ -3657,28 +3159,24 @@ hchs:
     - 4.92
     - 6.909
     mean: 5.291999999999999
-    trace: ''
   pbe0:
     diagonal:
     - 3.97
     - 4.713
     - 6.791
     mean: 5.158
-    trace: ''
   scan:
     diagonal:
     - 3.956
     - 4.766
     - 6.794
     mean: 5.172
-    trace: ''
   slater:
     diagonal:
     - 4.363
     - 5.409
     - 7.303
     mean: 5.691666666666666
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -3686,14 +3184,12 @@ hchs:
     - 4.948
     - 6.925
     mean: 5.313
-    trace: ''
   tpss:
     diagonal:
     - 3.986
     - 4.822
     - 6.835
     mean: 5.214333333333333
-    trace: ''
 hcl:
   b3lyp:
     diagonal:
@@ -3701,21 +3197,18 @@ hcl:
     - 2.606
     - 2.81
     mean: 2.674
-    trace: ''
   b97:
     diagonal:
     - 2.583
     - 2.583
     - 2.787
     mean: 2.6510000000000002
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.458
     - 2.458
     - 2.709
     mean: 2.5416666666666665
-    trace: ''
   id: hcl
   pbe:
     diagonal:
@@ -3723,28 +3216,24 @@ hcl:
     - 2.677
     - 2.852
     mean: 2.735333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 2.551
     - 2.551
     - 2.763
     mean: 2.6216666666666666
-    trace: ''
   scan:
     diagonal:
     - 2.566
     - 2.566
     - 2.761
     mean: 2.631
-    trace: ''
   slater:
     diagonal:
     - 2.917
     - 2.917
     - 3.028
     mean: 2.954
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3752,14 +3241,12 @@ hcl:
     - 2.699
     - 2.877
     mean: 2.758333333333333
-    trace: ''
   tpss:
     diagonal:
     - 2.613
     - 2.613
     - 2.81
     mean: 2.6786666666666665
-    trace: ''
 hcn:
   b3lyp:
     diagonal:
@@ -3767,21 +3254,18 @@ hcn:
     - 2.149
     - 3.419
     mean: 2.5723333333333334
-    trace: ''
   b97:
     diagonal:
     - 2.139
     - 2.139
     - 3.406
     mean: 2.5613333333333332
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.061
     - 2.061
     - 3.295
     mean: 2.4723333333333333
-    trace: ''
   id: hcn
   pbe:
     diagonal:
@@ -3789,28 +3273,24 @@ hcn:
     - 2.185
     - 3.467
     mean: 2.6123333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 2.117
     - 2.117
     - 3.38
     mean: 2.538
-    trace: ''
   scan:
     diagonal:
     - 2.118
     - 2.118
     - 3.388
     mean: 2.541333333333333
-    trace: ''
   slater:
     diagonal:
     - 2.338
     - 2.338
     - 3.616
     mean: 2.764
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3818,14 +3298,12 @@ hcn:
     - 2.188
     - 3.456
     mean: 2.610666666666667
-    trace: ''
   tpss:
     diagonal:
     - 2.154
     - 2.154
     - 3.445
     mean: 2.5843333333333334
-    trace: ''
 hco:
   b3lyp:
     diagonal:
@@ -3833,21 +3311,18 @@ hco:
     - 2.995
     - 2.0
     mean: 2.583
-    trace: ''
   b97:
     diagonal:
     - 2.738
     - 2.982
     - 1.989
     mean: 2.569666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.633
     - 2.892
     - 1.93
     mean: 2.485
-    trace: ''
   id: hco
   pbe:
     diagonal:
@@ -3855,28 +3330,24 @@ hco:
     - 3.085
     - 2.066
     mean: 2.693
-    trace: ''
   pbe0:
     diagonal:
     - 2.709
     - 2.972
     - 1.97
     mean: 2.550333333333333
-    trace: ''
   scan:
     diagonal:
     - 2.757
     - 3.044
     - 1.978
     mean: 2.593
-    trace: ''
   slater:
     diagonal:
     - 3.244
     - 3.374
     - 2.242
     mean: 2.953333333333333
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -3884,14 +3355,12 @@ hco:
     - 3.066
     - 2.086
     mean: 2.6906666666666665
-    trace: ''
   tpss:
     diagonal:
     - 2.826
     - 3.031
     - 2.008
     mean: 2.6216666666666666
-    trace: ''
 hconh2:
   b3lyp:
     diagonal:
@@ -3899,21 +3368,18 @@ hconh2:
     - 4.266
     - 3.029
     mean: 4.192333333333333
-    trace: ''
   b97:
     diagonal:
     - 5.252
     - 4.247
     - 3.013
     mean: 4.1706666666666665
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.189
     - 4.087
     - 2.967
     mean: 4.081
-    trace: ''
   id: hconh2
   pbe:
     diagonal:
@@ -3921,28 +3387,24 @@ hconh2:
     - 4.543
     - 3.143
     mean: 4.43
-    trace: ''
   pbe0:
     diagonal:
     - 5.172
     - 4.179
     - 2.976
     mean: 4.108999999999999
-    trace: ''
   scan:
     diagonal:
     - 5.261
     - 4.27
     - 3.0
     mean: 4.177
-    trace: ''
   slater:
     diagonal:
     - 6.056
     - 4.962
     - 3.434
     mean: 4.817333333333334
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -3950,14 +3412,12 @@ hconh2:
     - 4.547
     - 3.153
     mean: 4.432666666666667
-    trace: ''
   tpss:
     diagonal:
     - 5.474
     - 4.425
     - 3.073
     mean: 4.324000000000001
-    trace: ''
 hcooh:
   b3lyp:
     diagonal:
@@ -3965,21 +3425,18 @@ hcooh:
     - 3.699
     - 2.466
     mean: 3.4150000000000005
-    trace: ''
   b97:
     diagonal:
     - 4.058
     - 3.681
     - 2.454
     mean: 3.3976666666666664
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.005
     - 3.52
     - 2.401
     mean: 3.308666666666667
-    trace: ''
   id: hcooh
   pbe:
     diagonal:
@@ -3987,28 +3444,24 @@ hcooh:
     - 3.935
     - 2.563
     mean: 3.5933333333333337
-    trace: ''
   pbe0:
     diagonal:
     - 4.008
     - 3.622
     - 2.427
     mean: 3.3523333333333336
-    trace: ''
   scan:
     diagonal:
     - 4.058
     - 3.704
     - 2.456
     mean: 3.406
-    trace: ''
   slater:
     diagonal:
     - 4.552
     - 4.26
     - 2.763
     mean: 3.858333333333333
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -4016,14 +3469,12 @@ hcooh:
     - 3.935
     - 2.571
     mean: 3.594333333333333
-    trace: ''
   tpss:
     diagonal:
     - 4.196
     - 3.838
     - 2.506
     mean: 3.513333333333333
-    trace: ''
 hcp:
   b3lyp:
     diagonal:
@@ -4031,21 +3482,18 @@ hcp:
     - 4.631
     - 7.116
     mean: 5.459333333333333
-    trace: ''
   b97:
     diagonal:
     - 4.596
     - 4.596
     - 7.07
     mean: 5.4206666666666665
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.438
     - 4.438
     - 6.898
     mean: 5.258
-    trace: ''
   id: hcp
   pbe:
     diagonal:
@@ -4053,28 +3501,24 @@ hcp:
     - 4.646
     - 7.128
     mean: 5.473333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 4.559
     - 4.559
     - 7.032
     mean: 5.383333333333333
-    trace: ''
   scan:
     diagonal:
     - 4.535
     - 4.535
     - 7.005
     mean: 5.358333333333333
-    trace: ''
   slater:
     diagonal:
     - 5.016
     - 5.016
     - 7.461
     mean: 5.831
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -4082,14 +3526,12 @@ hcp:
     - 4.65
     - 7.123
     mean: 5.474333333333334
-    trace: ''
   tpss:
     diagonal:
     - 4.584
     - 4.584
     - 7.075
     mean: 5.4143333333333326
-    trace: ''
 he:
   b3lyp:
     diagonal:
@@ -4097,21 +3539,18 @@ he:
     - 0.223
     - 0.223
     mean: 0.223
-    trace: ''
   b97:
     diagonal:
     - 0.221
     - 0.221
     - 0.221
     mean: 0.221
-    trace: ''
   ccsd(t):
     diagonal:
     - 0.205
     - 0.205
     - 0.205
     mean: 0.205
-    trace: ''
   id: he
   pbe:
     diagonal:
@@ -4119,28 +3558,24 @@ he:
     - 0.234
     - 0.234
     mean: 0.234
-    trace: ''
   pbe0:
     diagonal:
     - 0.221
     - 0.221
     - 0.221
     mean: 0.221
-    trace: ''
   scan:
     diagonal:
     - 0.221
     - 0.221
     - 0.221
     mean: 0.221
-    trace: ''
   slater:
     diagonal:
     - 0.261
     - 0.261
     - 0.261
     mean: 0.261
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -4148,14 +3583,12 @@ he:
     - 0.245
     - 0.245
     mean: 0.245
-    trace: ''
   tpss:
     diagonal:
     - 0.223
     - 0.223
     - 0.223
     mean: 0.223
-    trace: ''
 hf:
   b3lyp:
     diagonal:
@@ -4163,21 +3596,18 @@ hf:
     - 0.817
     - 0.976
     mean: 0.87
-    trace: ''
   b97:
     diagonal:
     - 0.811
     - 0.811
     - 0.969
     mean: 0.8636666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 0.762
     - 0.762
     - 0.932
     mean: 0.8186666666666667
-    trace: ''
   id: hf
   pbe:
     diagonal:
@@ -4185,28 +3615,24 @@ hf:
     - 0.881
     - 1.021
     mean: 0.9276666666666666
-    trace: ''
   pbe0:
     diagonal:
     - 0.797
     - 0.797
     - 0.956
     mean: 0.85
-    trace: ''
   scan:
     diagonal:
     - 0.817
     - 0.817
     - 0.974
     mean: 0.8693333333333332
-    trace: ''
   slater:
     diagonal:
     - 0.958
     - 0.958
     - 1.075
     mean: 0.9969999999999999
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -4214,14 +3640,12 @@ hf:
     - 0.879
     - 1.015
     mean: 0.9243333333333332
-    trace: ''
   tpss:
     diagonal:
     - 0.856
     - 0.856
     - 1.008
     mean: 0.9066666666666666
-    trace: ''
 hnc:
   b3lyp:
     diagonal:
@@ -4229,21 +3653,18 @@ hnc:
     - 2.375
     - 3.524
     mean: 2.7580000000000005
-    trace: ''
   b97:
     diagonal:
     - 2.357
     - 2.357
     - 3.511
     mean: 2.741666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.312
     - 2.312
     - 3.475
     mean: 2.699666666666667
-    trace: ''
   id: hnc
   pbe:
     diagonal:
@@ -4251,28 +3672,24 @@ hnc:
     - 2.436
     - 3.639
     mean: 2.8369999999999997
-    trace: ''
   pbe0:
     diagonal:
     - 2.339
     - 2.339
     - 3.479
     mean: 2.719
-    trace: ''
   scan:
     diagonal:
     - 2.352
     - 2.352
     - 3.508
     mean: 2.7373333333333334
-    trace: ''
   slater:
     diagonal:
     - 2.646
     - 2.646
     - 3.842
     mean: 3.0446666666666666
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -4280,14 +3697,12 @@ hnc:
     - 2.459
     - 3.623
     mean: 2.847
-    trace: ''
   tpss:
     diagonal:
     - 2.381
     - 2.381
     - 3.584
     mean: 2.782
-    trace: ''
 hno:
   b3lyp:
     diagonal:
@@ -4295,21 +3710,18 @@ hno:
     - 2.419
     - 2.91
     mean: 2.3266666666666667
-    trace: ''
   b97:
     diagonal:
     - 1.631
     - 2.43
     - 2.875
     mean: 2.312
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.589
     - 2.293
     - 2.77
     mean: 2.2173333333333334
-    trace: ''
   id: hno
   pbe:
     diagonal:
@@ -4317,28 +3729,24 @@ hno:
     - 2.606
     - 3.006
     mean: 2.436666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 1.634
     - 2.345
     - 2.886
     mean: 2.2883333333333336
-    trace: ''
   scan:
     diagonal:
     - 1.652
     - 2.411
     - 2.993
     mean: 2.352
-    trace: ''
   slater:
     diagonal:
     - 1.835
     - 2.895
     - 3.222
     mean: 2.6506666666666665
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -4346,14 +3754,12 @@ hno:
     - 2.635
     - 2.974
     mean: 2.435
-    trace: ''
   tpss:
     diagonal:
     - 1.664
     - 2.515
     - 2.969
     mean: 2.3826666666666667
-    trace: ''
 hns:
   b3lyp:
     diagonal:
@@ -4361,21 +3767,18 @@ hns:
     - 4.076
     - 3.517
     mean: 4.541333333333333
-    trace: ''
   b97:
     diagonal:
     - 5.965
     - 4.061
     - 3.477
     mean: 4.501
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.625
     - 3.921
     - 3.436
     mean: 4.327333333333333
-    trace: ''
   id: hns
   pbe:
     diagonal:
@@ -4383,28 +3786,24 @@ hns:
     - 4.195
     - 3.568
     mean: 4.604666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 5.987
     - 3.97
     - 3.475
     mean: 4.477333333333333
-    trace: ''
   scan:
     diagonal:
     - 6.122
     - 3.996
     - 3.518
     mean: 4.545333333333333
-    trace: ''
   slater:
     diagonal:
     - 6.402
     - 4.618
     - 3.874
     mean: 4.964666666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -4412,14 +3811,12 @@ hns:
     - 4.272
     - 3.555
     mean: 4.608333333333333
-    trace: ''
   tpss:
     diagonal:
     - 6.011
     - 4.08
     - 3.502
     mean: 4.531
-    trace: ''
 ho2:
   b3lyp:
     diagonal:
@@ -4427,21 +3824,18 @@ ho2:
     - 2.776
     - 1.506
     mean: 2.0283333333333333
-    trace: ''
   b97:
     diagonal:
     - 1.796
     - 2.76
     - 1.497
     mean: 2.0176666666666665
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.738
     - 2.702
     - 1.477
     mean: 1.9723333333333333
-    trace: ''
   id: ho2
   pbe:
     diagonal:
@@ -4449,28 +3843,24 @@ ho2:
     - 2.843
     - 1.573
     mean: 2.1133333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 1.766
     - 2.738
     - 1.481
     mean: 1.9949999999999999
-    trace: ''
   scan:
     diagonal:
     - 1.804
     - 2.71
     - 1.492
     mean: 2.0020000000000002
-    trace: ''
   slater:
     diagonal:
     - 2.081
     - 2.992
     - 1.693
     mean: 2.255333333333333
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -4478,14 +3868,12 @@ ho2:
     - 2.811
     - 1.575
     mean: 2.101
-    trace: ''
   tpss:
     diagonal:
     - 1.874
     - 2.823
     - 1.535
     mean: 2.0773333333333333
-    trace: ''
 hocl:
   b3lyp:
     diagonal:
@@ -4493,21 +3881,18 @@ hocl:
     - 2.928
     - 4.314
     mean: 3.4346666666666668
-    trace: ''
   b97:
     diagonal:
     - 3.04
     - 2.907
     - 4.28
     mean: 3.4090000000000003
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.934
     - 2.793
     - 4.21
     mean: 3.3123333333333336
-    trace: ''
   id: hocl
   pbe:
     diagonal:
@@ -4515,28 +3900,24 @@ hocl:
     - 3.046
     - 4.354
     mean: 3.5189999999999997
-    trace: ''
   pbe0:
     diagonal:
     - 3.005
     - 2.87
     - 4.249
     mean: 3.3746666666666663
-    trace: ''
   scan:
     diagonal:
     - 3.036
     - 2.905
     - 4.284
     mean: 3.408333333333333
-    trace: ''
   slater:
     diagonal:
     - 3.385
     - 3.307
     - 4.56
     mean: 3.750666666666666
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -4544,14 +3925,12 @@ hocl:
     - 3.057
     - 4.347
     mean: 3.523666666666667
-    trace: ''
   tpss:
     diagonal:
     - 3.096
     - 2.97
     - 4.329
     mean: 3.465
-    trace: ''
 hof:
   b3lyp:
     diagonal:
@@ -4559,21 +3938,18 @@ hof:
     - 1.396
     - 2.351
     mean: 1.7713333333333334
-    trace: ''
   b97:
     diagonal:
     - 1.56
     - 1.391
     - 2.329
     mean: 1.76
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.516
     - 1.345
     - 2.351
     mean: 1.7373333333333332
-    trace: ''
   id: hof
   pbe:
     diagonal:
@@ -4581,28 +3957,24 @@ hof:
     - 1.504
     - 2.339
     mean: 1.8310000000000002
-    trace: ''
   pbe0:
     diagonal:
     - 1.539
     - 1.369
     - 2.32
     mean: 1.7426666666666666
-    trace: ''
   scan:
     diagonal:
     - 1.567
     - 1.394
     - 2.34
     mean: 1.7670000000000001
-    trace: ''
   slater:
     diagonal:
     - 1.749
     - 1.635
     - 2.421
     mean: 1.9349999999999998
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -4610,14 +3982,12 @@ hof:
     - 1.503
     - 2.317
     mean: 1.822
-    trace: ''
   tpss:
     diagonal:
     - 1.62
     - 1.456
     - 2.343
     mean: 1.8063333333333336
-    trace: ''
 hooh:
   b3lyp:
     diagonal:
@@ -4625,21 +3995,18 @@ hooh:
     - 2.89
     - 1.919
     mean: 2.2916666666666665
-    trace: ''
   b97:
     diagonal:
     - 2.056
     - 2.861
     - 1.91
     mean: 2.2756666666666665
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.006
     - 2.786
     - 1.855
     mean: 2.215666666666667
-    trace: ''
   id: hooh
   pbe:
     diagonal:
@@ -4647,28 +4014,24 @@ hooh:
     - 2.894
     - 2.055
     mean: 2.3729999999999998
-    trace: ''
   pbe0:
     diagonal:
     - 2.028
     - 2.842
     - 1.88
     mean: 2.25
-    trace: ''
   scan:
     diagonal:
     - 2.067
     - 2.882
     - 1.923
     mean: 2.2906666666666666
-    trace: ''
   slater:
     diagonal:
     - 2.312
     - 3.031
     - 2.24
     mean: 2.5276666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -4676,14 +4039,12 @@ hooh:
     - 2.873
     - 2.055
     mean: 2.365
-    trace: ''
   tpss:
     diagonal:
     - 2.131
     - 2.899
     - 1.996
     mean: 2.342
-    trace: ''
 li:
   b3lyp:
     diagonal:
@@ -4691,21 +4052,18 @@ li:
     - 22.38
     - 22.38
     mean: 22.38
-    trace: ''
   b97:
     diagonal:
     - 23.323
     - 23.323
     - 23.323
     mean: 23.322999999999997
-    trace: ''
   ccsd(t):
     diagonal:
     - 24.304
     - 24.304
     - 24.304
     mean: 24.304
-    trace: ''
   id: li
   pbe:
     diagonal:
@@ -4713,28 +4071,24 @@ li:
     - 22.612
     - 22.612
     mean: 22.612
-    trace: ''
   pbe0:
     diagonal:
     - 22.948
     - 22.948
     - 22.948
     mean: 22.947999999999997
-    trace: ''
   scan:
     diagonal:
     - 23.721
     - 23.721
     - 23.721
     mean: 23.721
-    trace: ''
   slater:
     diagonal:
     - 25.293
     - 25.293
     - 25.293
     mean: 25.292999999999996
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -4742,14 +4096,12 @@ li:
     - 23.016
     - 23.016
     mean: 23.016000000000002
-    trace: ''
   tpss:
     diagonal:
     - 22.405
     - 22.405
     - 22.405
     mean: 22.405
-    trace: ''
 li2:
   b3lyp:
     diagonal:
@@ -4757,21 +4109,18 @@ li2:
     - 24.584
     - 37.883
     mean: 29.017
-    trace: ''
   b97:
     diagonal:
     - 25.129
     - 25.129
     - 39.09
     mean: 29.78266666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 24.439
     - 24.439
     - 43.918
     mean: 30.932
-    trace: ''
   id: li2
   pbe:
     diagonal:
@@ -4779,28 +4128,24 @@ li2:
     - 24.966
     - 39.979
     mean: 29.970333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 24.983
     - 24.983
     - 38.756
     mean: 29.574
-    trace: ''
   scan:
     diagonal:
     - 26.028
     - 26.028
     - 40.106
     mean: 30.72066666666667
-    trace: ''
   slater:
     diagonal:
     - 27.955
     - 27.955
     - 43.275
     mean: 33.06166666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -4808,14 +4153,12 @@ li2:
     - 25.249
     - 39.858
     mean: 30.118666666666666
-    trace: ''
   tpss:
     diagonal:
     - 25.375
     - 25.375
     - 40.916
     mean: 30.555333333333333
-    trace: ''
 libh4:
   b3lyp:
     diagonal:
@@ -4823,21 +4166,18 @@ libh4:
     - 4.501
     - 4.931
     mean: 4.644333333333333
-    trace: ''
   b97:
     diagonal:
     - 4.487
     - 4.487
     - 4.908
     mean: 4.6273333333333335
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.298
     - 4.298
     - 4.665
     mean: 4.420333333333333
-    trace: ''
   id: libh4
   pbe:
     diagonal:
@@ -4845,28 +4185,24 @@ libh4:
     - 4.71
     - 5.198
     mean: 4.8726666666666665
-    trace: ''
   pbe0:
     diagonal:
     - 4.476
     - 4.476
     - 4.885
     mean: 4.612333333333333
-    trace: ''
   scan:
     diagonal:
     - 4.521
     - 4.521
     - 4.912
     mean: 4.6513333333333335
-    trace: ''
   slater:
     diagonal:
     - 5.251
     - 5.251
     - 5.77
     mean: 5.4239999999999995
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -4874,14 +4210,12 @@ libh4:
     - 4.824
     - 5.306
     mean: 4.984666666666667
-    trace: ''
   tpss:
     diagonal:
     - 4.518
     - 4.518
     - 4.969
     mean: 4.668333333333333
-    trace: ''
 licl:
   b3lyp:
     diagonal:
@@ -4889,21 +4223,18 @@ licl:
     - 4.093
     - 4.366
     mean: 4.184
-    trace: ''
   b97:
     diagonal:
     - 4.051
     - 4.051
     - 4.303
     mean: 4.135000000000001
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.775
     - 3.775
     - 3.976
     mean: 3.842
-    trace: ''
   id: licl
   pbe:
     diagonal:
@@ -4911,28 +4242,24 @@ licl:
     - 4.312
     - 4.63
     mean: 4.418
-    trace: ''
   pbe0:
     diagonal:
     - 3.956
     - 3.956
     - 4.196
     mean: 4.0360000000000005
-    trace: ''
   scan:
     diagonal:
     - 4.033
     - 4.033
     - 4.242
     mean: 4.102666666666667
-    trace: ''
   slater:
     diagonal:
     - 4.859
     - 4.859
     - 5.138
     mean: 4.952
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -4940,14 +4267,12 @@ licl:
     - 4.31
     - 4.605
     mean: 4.408333333333333
-    trace: ''
   tpss:
     diagonal:
     - 4.183
     - 4.183
     - 4.463
     mean: 4.2763333333333335
-    trace: ''
 licn:
   b3lyp:
     diagonal:
@@ -4955,21 +4280,18 @@ licn:
     - 3.99
     - 3.271
     mean: 3.7343333333333333
-    trace: ''
   b97:
     diagonal:
     - 3.903
     - 3.976
     - 3.254
     mean: 3.711
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.721
     - 3.873
     - 3.15
     mean: 3.5813333333333333
-    trace: ''
   id: licn
   pbe:
     diagonal:
@@ -4977,28 +4299,24 @@ licn:
     - 4.197
     - 3.437
     mean: 3.969333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 3.824
     - 3.918
     - 3.201
     mean: 3.6476666666666664
-    trace: ''
   scan:
     diagonal:
     - 3.869
     - 3.979
     - 3.272
     mean: 3.706666666666667
-    trace: ''
   slater:
     diagonal:
     - 4.801
     - 4.603
     - 3.822
     mean: 4.408666666666666
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5006,14 +4324,12 @@ licn:
     - 4.159
     - 3.431
     mean: 3.930666666666667
-    trace: ''
   tpss:
     diagonal:
     - 4.089
     - 4.093
     - 3.332
     mean: 3.8379999999999996
-    trace: ''
 lih:
   b3lyp:
     diagonal:
@@ -5021,21 +4337,18 @@ lih:
     - 4.543
     - 4.255
     mean: 4.447
-    trace: ''
   b97:
     diagonal:
     - 4.569
     - 4.569
     - 4.188
     mean: 4.442
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.374
     - 4.374
     - 3.81
     mean: 4.186
-    trace: ''
   id: lih
   pbe:
     diagonal:
@@ -5043,28 +4356,24 @@ lih:
     - 5.052
     - 4.788
     mean: 4.9639999999999995
-    trace: ''
   pbe0:
     diagonal:
     - 4.507
     - 4.507
     - 4.042
     mean: 4.351999999999999
-    trace: ''
   scan:
     diagonal:
     - 4.704
     - 4.704
     - 4.085
     mean: 4.4976666666666665
-    trace: ''
   slater:
     diagonal:
     - 6.19
     - 6.19
     - 6.249
     mean: 6.209666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5072,14 +4381,12 @@ lih:
     - 5.195
     - 4.828
     mean: 5.072666666666667
-    trace: ''
   tpss:
     diagonal:
     - 4.674
     - 4.674
     - 4.175
     mean: 4.507666666666666
-    trace: ''
 mg:
   b3lyp:
     diagonal:
@@ -5087,21 +4394,18 @@ mg:
     - 10.711
     - 10.711
     mean: 10.711
-    trace: ''
   b97:
     diagonal:
     - 11.231
     - 11.231
     - 11.231
     mean: 11.231
-    trace: ''
   ccsd(t):
     diagonal:
     - 10.591
     - 10.591
     - 10.591
     mean: 10.591
-    trace: ''
   id: mg
   pbe:
     diagonal:
@@ -5109,28 +4413,24 @@ mg:
     - 10.99
     - 10.99
     mean: 10.99
-    trace: ''
   pbe0:
     diagonal:
     - 11.13
     - 11.13
     - 11.13
     mean: 11.13
-    trace: ''
   scan:
     diagonal:
     - 11.192
     - 11.192
     - 11.192
     mean: 11.192
-    trace: ''
   slater:
     diagonal:
     - 11.534
     - 11.534
     - 11.534
     mean: 11.534
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5138,14 +4438,12 @@ mg:
     - 10.58
     - 10.58
     mean: 10.58
-    trace: ''
   tpss:
     diagonal:
     - 11.475
     - 11.475
     - 11.475
     mean: 11.475
-    trace: ''
 mg2:
   b3lyp:
     diagonal:
@@ -5153,21 +4451,18 @@ mg2:
     - 18.404
     - 33.587
     mean: 23.465000000000003
-    trace: ''
   b97:
     diagonal:
     - 19.215
     - 19.215
     - 36.087
     mean: 24.839
-    trace: ''
   ccsd(t):
     diagonal:
     - 18.401
     - 18.401
     - 32.401
     mean: 23.067666666666668
-    trace: ''
   id: mg2
   pbe:
     diagonal:
@@ -5175,28 +4470,24 @@ mg2:
     - 18.836
     - 35.855
     mean: 24.508999999999997
-    trace: ''
   pbe0:
     diagonal:
     - 19.059
     - 19.059
     - 35.758
     mean: 24.625333333333334
-    trace: ''
   scan:
     diagonal:
     - 19.066
     - 19.066
     - 36.581
     mean: 24.90433333333333
-    trace: ''
   slater:
     diagonal:
     - 19.68
     - 19.68
     - 37.185
     mean: 25.515
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5204,14 +4495,12 @@ mg2:
     - 18.22
     - 34.409
     mean: 23.61633333333333
-    trace: ''
   tpss:
     diagonal:
     - 19.558
     - 19.558
     - 37.934
     mean: 25.683333333333334
-    trace: ''
 n:
   b3lyp:
     diagonal:
@@ -5219,21 +4508,18 @@ n:
     - 1.163
     - 1.163
     mean: 1.163
-    trace: ''
   b97:
     diagonal:
     - 1.143
     - 1.143
     - 1.143
     mean: 1.143
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.077
     - 1.077
     - 1.077
     mean: 1.077
-    trace: ''
   id: n
   pbe:
     diagonal:
@@ -5241,28 +4527,24 @@ n:
     - 1.239
     - 1.239
     mean: 1.239
-    trace: ''
   pbe0:
     diagonal:
     - 1.158
     - 1.158
     - 1.158
     mean: 1.158
-    trace: ''
   scan:
     diagonal:
     - 1.148
     - 1.148
     - 1.148
     mean: 1.148
-    trace: ''
   slater:
     diagonal:
     - 1.322
     - 1.322
     - 1.322
     mean: 1.322
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -5270,14 +4552,12 @@ n:
     - 1.216
     - 1.216
     mean: 1.216
-    trace: ''
   tpss:
     diagonal:
     - 1.215
     - 1.215
     - 1.215
     mean: 1.215
-    trace: ''
 n2:
   b3lyp:
     diagonal:
@@ -5285,21 +4565,18 @@ n2:
     - 1.546
     - 2.257
     mean: 1.7830000000000001
-    trace: ''
   b97:
     diagonal:
     - 1.537
     - 1.537
     - 2.249
     mean: 1.7743333333333335
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.506
     - 1.506
     - 2.184
     mean: 1.732
-    trace: ''
   id: n2
   pbe:
     diagonal:
@@ -5307,28 +4584,24 @@ n2:
     - 1.582
     - 2.286
     mean: 1.8166666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 1.525
     - 1.525
     - 2.236
     mean: 1.7619999999999998
-    trace: ''
   scan:
     diagonal:
     - 1.525
     - 1.525
     - 2.227
     mean: 1.7589999999999997
-    trace: ''
   slater:
     diagonal:
     - 1.684
     - 1.684
     - 2.385
     mean: 1.9176666666666666
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5336,14 +4609,12 @@ n2:
     - 1.591
     - 2.278
     mean: 1.82
-    trace: ''
   tpss:
     diagonal:
     - 1.551
     - 1.551
     - 2.266
     mean: 1.7893333333333334
-    trace: ''
 n2h2:
   b3lyp:
     diagonal:
@@ -5351,21 +4622,18 @@ n2h2:
     - 2.123
     - 3.013
     mean: 2.939
-    trace: ''
   b97:
     diagonal:
     - 3.657
     - 2.107
     - 2.994
     mean: 2.919333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.498
     - 2.068
     - 2.872
     mean: 2.812666666666667
-    trace: ''
   id: n2h2
   pbe:
     diagonal:
@@ -5373,28 +4641,24 @@ n2h2:
     - 2.165
     - 3.163
     mean: 3.0429999999999997
-    trace: ''
   pbe0:
     diagonal:
     - 3.617
     - 2.09
     - 2.953
     mean: 2.8866666666666667
-    trace: ''
   scan:
     diagonal:
     - 3.708
     - 2.092
     - 3.026
     mean: 2.942
-    trace: ''
   slater:
     diagonal:
     - 4.101
     - 2.337
     - 3.467
     mean: 3.301666666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -5402,14 +4666,12 @@ n2h2:
     - 2.186
     - 3.173
     mean: 3.0549999999999997
-    trace: ''
   tpss:
     diagonal:
     - 3.739
     - 2.122
     - 3.09
     mean: 2.9836666666666667
-    trace: ''
 n2h4:
   b3lyp:
     diagonal:
@@ -5417,21 +4679,18 @@ n2h4:
     - 3.903
     - 3.298
     mean: 3.4746666666666663
-    trace: ''
   b97:
     diagonal:
     - 3.203
     - 3.881
     - 3.278
     mean: 3.454
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.121
     - 3.721
     - 3.157
     mean: 3.333
-    trace: ''
   id: n2h4
   pbe:
     diagonal:
@@ -5439,28 +4698,24 @@ n2h4:
     - 4.065
     - 3.495
     mean: 3.6350000000000002
-    trace: ''
   pbe0:
     diagonal:
     - 3.165
     - 3.827
     - 3.226
     mean: 3.406
-    trace: ''
   scan:
     diagonal:
     - 3.21
     - 3.906
     - 3.297
     mean: 3.471
-    trace: ''
   slater:
     diagonal:
     - 3.614
     - 4.4
     - 3.885
     mean: 3.966333333333333
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5468,14 +4723,12 @@ n2h4:
     - 4.068
     - 3.517
     mean: 3.649333333333333
-    trace: ''
   tpss:
     diagonal:
     - 3.289
     - 4.008
     - 3.399
     mean: 3.5653333333333337
-    trace: ''
 na:
   b3lyp:
     diagonal:
@@ -5483,21 +4736,18 @@ na:
     - 21.366
     - 21.366
     mean: 21.366
-    trace: ''
   b97:
     diagonal:
     - 28.125
     - 28.125
     - 28.125
     mean: 28.125
-    trace: ''
   ccsd(t):
     diagonal:
     - 24.32
     - 24.32
     - 24.32
     mean: 24.320000000000004
-    trace: ''
   id: na
   pbe:
     diagonal:
@@ -5505,28 +4755,24 @@ na:
     - 23.898
     - 23.898
     mean: 23.898
-    trace: ''
   pbe0:
     diagonal:
     - 24.964
     - 24.964
     - 24.964
     mean: 24.964
-    trace: ''
   scan:
     diagonal:
     - 21.45
     - 21.45
     - 21.45
     mean: 21.45
-    trace: ''
   slater:
     diagonal:
     - 23.26
     - 23.26
     - 23.26
     mean: 23.26
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -5534,14 +4780,12 @@ na:
     - 20.884
     - 20.884
     mean: 20.884
-    trace: ''
   tpss:
     diagonal:
     - 26.261
     - 26.261
     - 26.261
     mean: 26.261
-    trace: ''
 na2:
   b3lyp:
     diagonal:
@@ -5549,21 +4793,18 @@ na2:
     - 27.692
     - 47.849
     mean: 34.411
-    trace: ''
   b97:
     diagonal:
     - 29.677
     - 29.677
     - 49.288
     mean: 36.214
-    trace: ''
   ccsd(t):
     diagonal:
     - 30.434
     - 30.434
     - 55.115
     mean: 38.661
-    trace: ''
   id: na2
   pbe:
     diagonal:
@@ -5571,28 +4812,24 @@ na2:
     - 29.048
     - 49.271
     mean: 35.788999999999994
-    trace: ''
   pbe0:
     diagonal:
     - 30.15
     - 30.15
     - 50.108
     mean: 36.80266666666666
-    trace: ''
   scan:
     diagonal:
     - 30.711
     - 30.711
     - 52.286
     mean: 37.90266666666667
-    trace: ''
   slater:
     diagonal:
     - 30.899
     - 30.899
     - 52.387
     mean: 38.06166666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -5600,14 +4837,12 @@ na2:
     - 27.441
     - 48.168
     mean: 34.35
-    trace: ''
   tpss:
     diagonal:
     - 32.417
     - 32.417
     - 52.928
     mean: 39.254
-    trace: ''
 nacl:
   b3lyp:
     diagonal:
@@ -5615,21 +4850,18 @@ nacl:
     - 4.605
     - 6.126
     mean: 5.112000000000001
-    trace: ''
   b97:
     diagonal:
     - 4.561
     - 4.561
     - 5.908
     mean: 5.010000000000001
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.181
     - 4.181
     - 4.843
     mean: 4.401666666666666
-    trace: ''
   id: nacl
   pbe:
     diagonal:
@@ -5637,28 +4869,24 @@ nacl:
     - 4.91
     - 6.905
     mean: 5.575
-    trace: ''
   pbe0:
     diagonal:
     - 4.435
     - 4.435
     - 5.622
     mean: 4.830666666666667
-    trace: ''
   scan:
     diagonal:
     - 4.551
     - 4.551
     - 5.564
     mean: 4.8886666666666665
-    trace: ''
   slater:
     diagonal:
     - 5.618
     - 5.618
     - 7.911
     mean: 6.3823333333333325
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5666,14 +4894,12 @@ nacl:
     - 4.904
     - 6.654
     mean: 5.487333333333333
-    trace: ''
   tpss:
     diagonal:
     - 4.733
     - 4.733
     - 6.433
     mean: 5.299666666666666
-    trace: ''
 nacn:
   b3lyp:
     diagonal:
@@ -5681,21 +4907,18 @@ nacn:
     - 4.566
     - 3.635
     mean: 4.324
-    trace: ''
   b97:
     diagonal:
     - 4.732
     - 4.487
     - 3.618
     mean: 4.279000000000001
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.458
     - 4.095
     - 3.467
     mean: 4.006666666666667
-    trace: ''
   id: nacn
   pbe:
     diagonal:
@@ -5703,28 +4926,24 @@ nacn:
     - 5.122
     - 3.868
     mean: 4.7266666666666675
-    trace: ''
   pbe0:
     diagonal:
     - 4.629
     - 4.354
     - 3.548
     mean: 4.1770000000000005
-    trace: ''
   scan:
     diagonal:
     - 4.704
     - 4.398
     - 3.638
     mean: 4.246666666666667
-    trace: ''
   slater:
     diagonal:
     - 5.795
     - 5.861
     - 4.356
     mean: 5.3373333333333335
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5732,14 +4951,12 @@ nacn:
     - 4.977
     - 3.852
     mean: 4.633
-    trace: ''
   tpss:
     diagonal:
     - 4.981
     - 4.804
     - 3.727
     mean: 4.5040000000000004
-    trace: ''
 nah:
   b3lyp:
     diagonal:
@@ -5747,21 +4964,18 @@ nah:
     - 5.577
     - 8.451
     mean: 6.535
-    trace: ''
   b97:
     diagonal:
     - 5.688
     - 5.688
     - 8.308
     mean: 6.561333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.81
     - 5.81
     - 8.169
     mean: 6.596333333333334
-    trace: ''
   id: nah
   pbe:
     diagonal:
@@ -5769,28 +4983,24 @@ nah:
     - 6.137
     - 9.312
     mean: 7.195333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 5.606
     - 5.606
     - 7.912
     mean: 6.374666666666666
-    trace: ''
   scan:
     diagonal:
     - 6.056
     - 6.056
     - 8.557
     mean: 6.889666666666667
-    trace: ''
   slater:
     diagonal:
     - 7.438
     - 7.438
     - 11.269
     mean: 8.715
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5798,14 +5008,12 @@ nah:
     - 6.327
     - 9.69
     mean: 7.448
-    trace: ''
   tpss:
     diagonal:
     - 5.76
     - 5.76
     - 8.217
     mean: 6.579000000000001
-    trace: ''
 nali:
   b3lyp:
     diagonal:
@@ -5813,21 +5021,18 @@ nali:
     - 26.195
     - 43.188
     mean: 31.859333333333336
-    trace: ''
   b97:
     diagonal:
     - 27.361
     - 27.361
     - 44.517
     mean: 33.07966666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 27.512
     - 27.512
     - 50.347
     mean: 35.12366666666667
-    trace: ''
   id: nali
   pbe:
     diagonal:
@@ -5835,28 +5040,24 @@ nali:
     - 26.957
     - 44.726
     mean: 32.88
-    trace: ''
   pbe0:
     diagonal:
     - 27.483
     - 27.483
     - 44.434
     mean: 33.13333333333333
-    trace: ''
   scan:
     diagonal:
     - 28.372
     - 28.372
     - 46.699
     mean: 34.481
-    trace: ''
   slater:
     diagonal:
     - 29.56
     - 29.56
     - 55.261
     mean: 38.127
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -5864,14 +5065,12 @@ nali:
     - 26.42
     - 44.353
     mean: 32.39766666666667
-    trace: ''
   tpss:
     diagonal:
     - 28.598
     - 28.598
     - 46.08
     mean: 34.425333333333334
-    trace: ''
 nco:
   b3lyp:
     diagonal:
@@ -5879,21 +5078,18 @@ nco:
     - 2.316
     - 4.837
     mean: 3.156333333333333
-    trace: ''
   b97:
     diagonal:
     - 2.306
     - 2.306
     - 4.813
     mean: 3.141666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.284
     - 2.284
     - 4.826
     mean: 3.1313333333333326
-    trace: ''
   id: nco
   pbe:
     diagonal:
@@ -5901,28 +5097,24 @@ nco:
     - 2.355
     - 4.913
     mean: 3.207666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 2.287
     - 2.287
     - 4.782
     mean: 3.1186666666666665
-    trace: ''
   scan:
     diagonal:
     - 2.297
     - 2.297
     - 4.849
     mean: 3.1476666666666673
-    trace: ''
   slater:
     diagonal:
     - 2.504
     - 2.504
     - 5.099
     mean: 3.3689999999999998
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -5930,14 +5122,12 @@ nco:
     - 2.362
     - 4.917
     mean: 3.2136666666666667
-    trace: ''
   tpss:
     diagonal:
     - 2.32
     - 2.32
     - 4.865
     mean: 3.168333333333333
-    trace: ''
 ne:
   b3lyp:
     diagonal:
@@ -5945,21 +5135,18 @@ ne:
     - 0.426
     - 0.426
     mean: 0.426
-    trace: ''
   b97:
     diagonal:
     - 0.423
     - 0.423
     - 0.423
     mean: 0.423
-    trace: ''
   ccsd(t):
     diagonal:
     - 0.393
     - 0.393
     - 0.393
     mean: 0.393
-    trace: ''
   id: ne
   pbe:
     diagonal:
@@ -5967,28 +5154,24 @@ ne:
     - 0.455
     - 0.455
     mean: 0.455
-    trace: ''
   pbe0:
     diagonal:
     - 0.417
     - 0.417
     - 0.417
     mean: 0.417
-    trace: ''
   scan:
     diagonal:
     - 0.421
     - 0.421
     - 0.421
     mean: 0.421
-    trace: ''
   slater:
     diagonal:
     - 0.482
     - 0.482
     - 0.482
     mean: 0.482
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -5996,14 +5179,12 @@ ne:
     - 0.452
     - 0.452
     mean: 0.452
-    trace: ''
   tpss:
     diagonal:
     - 0.444
     - 0.444
     - 0.444
     mean: 0.444
-    trace: ''
 nh:
   b3lyp:
     diagonal:
@@ -6011,21 +5192,18 @@ nh:
     - 1.403
     - 1.788
     mean: 1.5313333333333334
-    trace: ''
   b97:
     diagonal:
     - 1.385
     - 1.385
     - 1.776
     mean: 1.5153333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.329
     - 1.329
     - 1.697
     mean: 1.4516666666666669
-    trace: ''
   id: nh
   pbe:
     diagonal:
@@ -6033,28 +5211,24 @@ nh:
     - 1.478
     - 1.859
     mean: 1.6049999999999998
-    trace: ''
   pbe0:
     diagonal:
     - 1.382
     - 1.382
     - 1.751
     mean: 1.505
-    trace: ''
   scan:
     diagonal:
     - 1.41
     - 1.41
     - 1.779
     mean: 1.5330000000000001
-    trace: ''
   slater:
     diagonal:
     - 1.608
     - 1.608
     - 2.044
     mean: 1.7533333333333332
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6062,14 +5236,12 @@ nh:
     - 1.483
     - 1.885
     mean: 1.617
-    trace: ''
   tpss:
     diagonal:
     - 1.429
     - 1.429
     - 1.804
     mean: 1.554
-    trace: ''
 nh2:
   b3lyp:
     diagonal:
@@ -6077,21 +5249,18 @@ nh2:
     - 1.937
     - 2.032
     mean: 1.87
-    trace: ''
   b97:
     diagonal:
     - 1.625
     - 1.923
     - 2.017
     mean: 1.8549999999999998
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.574
     - 1.861
     - 1.918
     mean: 1.7843333333333333
-    trace: ''
   id: nh2
   pbe:
     diagonal:
@@ -6099,28 +5268,24 @@ nh2:
     - 1.996
     - 2.152
     mean: 1.9560000000000002
-    trace: ''
   pbe0:
     diagonal:
     - 1.606
     - 1.901
     - 1.984
     mean: 1.8303333333333331
-    trace: ''
   scan:
     diagonal:
     - 1.615
     - 1.916
     - 2.033
     mean: 1.8546666666666667
-    trace: ''
   slater:
     diagonal:
     - 1.908
     - 2.142
     - 2.419
     mean: 2.156333333333333
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6128,14 +5293,12 @@ nh2:
     - 2.012
     - 2.181
     mean: 1.9823333333333333
-    trace: ''
   tpss:
     diagonal:
     - 1.659
     - 1.971
     - 2.088
     mean: 1.906
-    trace: ''
 nh2cl:
   b3lyp:
     diagonal:
@@ -6143,21 +5306,18 @@ nh2cl:
     - 3.571
     - 5.163
     mean: 4.102
-    trace: ''
   b97:
     diagonal:
     - 3.547
     - 3.546
     - 5.124
     mean: 4.072333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.433
     - 3.428
     - 5.002
     mean: 3.954333333333333
-    trace: ''
   id: nh2cl
   pbe:
     diagonal:
@@ -6165,28 +5325,24 @@ nh2cl:
     - 3.693
     - 5.225
     mean: 4.199333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 3.506
     - 3.503
     - 5.077
     mean: 4.028666666666667
-    trace: ''
   scan:
     diagonal:
     - 3.544
     - 3.545
     - 5.135
     mean: 4.074666666666666
-    trace: ''
   slater:
     diagonal:
     - 3.965
     - 4.0
     - 5.517
     mean: 4.494
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -6194,14 +5350,12 @@ nh2cl:
     - 3.715
     - 5.229
     mean: 4.214666666666667
-    trace: ''
   tpss:
     diagonal:
     - 3.609
     - 3.613
     - 5.189
     mean: 4.137
-    trace: ''
 nh2f:
   b3lyp:
     diagonal:
@@ -6209,21 +5363,18 @@ nh2f:
     - 2.478
     - 2.142
     mean: 2.266
-    trace: ''
   b97:
     diagonal:
     - 2.169
     - 2.462
     - 2.133
     mean: 2.2546666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.092
     - 2.415
     - 2.061
     mean: 2.1893333333333334
-    trace: ''
   id: nh2f
   pbe:
     diagonal:
@@ -6231,28 +5382,24 @@ nh2f:
     - 2.547
     - 2.25
     mean: 2.365
-    trace: ''
   pbe0:
     diagonal:
     - 2.139
     - 2.438
     - 2.105
     mean: 2.2273333333333336
-    trace: ''
   scan:
     diagonal:
     - 2.177
     - 2.452
     - 2.139
     mean: 2.256
-    trace: ''
   slater:
     diagonal:
     - 2.487
     - 2.708
     - 2.42
     mean: 2.5383333333333336
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -6260,14 +5407,12 @@ nh2f:
     - 2.54
     - 2.252
     mean: 2.364
-    trace: ''
   tpss:
     diagonal:
     - 2.247
     - 2.516
     - 2.206
     mean: 2.323
-    trace: ''
 nh2oh:
   b3lyp:
     diagonal:
@@ -6275,21 +5420,18 @@ nh2oh:
     - 3.35
     - 2.563
     mean: 2.889
-    trace: ''
   b97:
     diagonal:
     - 2.74
     - 3.325
     - 2.549
     mean: 2.8713333333333337
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.652
     - 3.235
     - 2.479
     mean: 2.7886666666666664
-    trace: ''
   id: nh2oh
   pbe:
     diagonal:
@@ -6297,28 +5439,24 @@ nh2oh:
     - 3.435
     - 2.691
     mean: 3.013
-    trace: ''
   pbe0:
     diagonal:
     - 2.7
     - 3.288
     - 2.515
     mean: 2.8343333333333334
-    trace: ''
   scan:
     diagonal:
     - 2.753
     - 3.349
     - 2.561
     mean: 2.8876666666666666
-    trace: ''
   slater:
     diagonal:
     - 3.186
     - 3.66
     - 2.913
     mean: 3.253
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -6326,14 +5464,12 @@ nh2oh:
     - 3.425
     - 2.7
     mean: 3.015
-    trace: ''
   tpss:
     diagonal:
     - 2.841
     - 3.412
     - 2.636
     mean: 2.9629999999999996
-    trace: ''
 nh3:
   b3lyp:
     diagonal:
@@ -6341,21 +5477,18 @@ nh3:
     - 2.079
     - 2.392
     mean: 2.1833333333333336
-    trace: ''
   b97:
     diagonal:
     - 2.065
     - 2.065
     - 2.373
     mean: 2.167666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.0
     - 2.0
     - 2.242
     mean: 2.0806666666666667
-    trace: ''
   id: nh3
   pbe:
     diagonal:
@@ -6363,28 +5496,24 @@ nh3:
     - 2.151
     - 2.584
     mean: 2.2953333333333332
-    trace: ''
   pbe0:
     diagonal:
     - 2.041
     - 2.041
     - 2.323
     mean: 2.135
-    trace: ''
   scan:
     diagonal:
     - 2.066
     - 2.066
     - 2.413
     mean: 2.1816666666666666
-    trace: ''
   slater:
     diagonal:
     - 2.322
     - 2.322
     - 2.972
     mean: 2.5386666666666664
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -6392,14 +5521,12 @@ nh3:
     - 2.167
     - 2.605
     mean: 2.313
-    trace: ''
   tpss:
     diagonal:
     - 2.117
     - 2.117
     - 2.489
     mean: 2.241
-    trace: ''
 nh3o:
   b3lyp:
     diagonal:
@@ -6407,21 +5534,18 @@ nh3o:
     - 2.849
     - 4.053
     mean: 3.2503333333333337
-    trace: ''
   b97:
     diagonal:
     - 2.829
     - 2.829
     - 4.024
     mean: 3.2273333333333336
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.664
     - 2.664
     - 3.702
     mean: 3.0100000000000002
-    trace: ''
   id: nh3o
   pbe:
     diagonal:
@@ -6429,28 +5553,24 @@ nh3o:
     - 3.09
     - 4.502
     mean: 3.560666666666666
-    trace: ''
   pbe0:
     diagonal:
     - 2.767
     - 2.767
     - 3.914
     mean: 3.1493333333333333
-    trace: ''
   scan:
     diagonal:
     - 2.874
     - 2.874
     - 4.11
     mean: 3.286
-    trace: ''
   slater:
     diagonal:
     - 3.451
     - 3.451
     - 5.037
     mean: 3.9796666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -6458,14 +5578,12 @@ nh3o:
     - 3.077
     - 4.487
     mean: 3.547
-    trace: ''
   tpss:
     diagonal:
     - 2.999
     - 2.999
     - 4.332
     mean: 3.4433333333333334
-    trace: ''
 'no':
   b3lyp:
     diagonal:
@@ -6473,21 +5591,18 @@ nh3o:
     - 1.562
     - 2.316
     mean: 1.8133333333333332
-    trace: ''
   b97:
     diagonal:
     - 1.557
     - 1.557
     - 2.307
     mean: 1.8069999999999997
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.488
     - 1.488
     - 2.193
     mean: 1.723
-    trace: ''
   id: 'no'
   pbe:
     diagonal:
@@ -6495,28 +5610,24 @@ nh3o:
     - 1.687
     - 2.402
     mean: 1.9253333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 1.536
     - 1.536
     - 2.289
     mean: 1.7870000000000001
-    trace: ''
   scan:
     diagonal:
     - 1.386
     - 1.386
     - 2.302
     mean: 1.6913333333333334
-    trace: ''
   slater:
     diagonal:
     - 1.888
     - 1.888
     - 2.572
     mean: 2.116
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6524,14 +5635,12 @@ nh3o:
     - 1.676
     - 2.379
     mean: 1.9103333333333332
-    trace: ''
   tpss:
     diagonal:
     - 1.617
     - 1.617
     - 2.356
     mean: 1.8633333333333333
-    trace: ''
 nocl:
   b3lyp:
     diagonal:
@@ -6539,21 +5648,18 @@ nocl:
     - 6.93
     - 3.451
     mean: 5.085999999999999
-    trace: ''
   b97:
     diagonal:
     - 4.844
     - 6.874
     - 3.426
     mean: 5.048
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.695
     - 7.051
     - 3.389
     mean: 5.045
-    trace: ''
   id: nocl
   pbe:
     diagonal:
@@ -6561,28 +5667,24 @@ nocl:
     - 7.01
     - 3.508
     mean: 5.1626666666666665
-    trace: ''
   pbe0:
     diagonal:
     - 4.805
     - 6.835
     - 3.397
     mean: 5.012333333333333
-    trace: ''
   scan:
     diagonal:
     - 4.809
     - 6.804
     - 3.389
     mean: 5.000666666666667
-    trace: ''
   slater:
     diagonal:
     - 5.27
     - 7.365
     - 3.774
     mean: 5.469666666666666
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6590,14 +5692,12 @@ nocl:
     - 7.031
     - 3.519
     mean: 5.175666666666666
-    trace: ''
   tpss:
     diagonal:
     - 4.889
     - 6.923
     - 3.441
     mean: 5.084333333333333
-    trace: ''
 np:
   b3lyp:
     diagonal:
@@ -6605,21 +5705,18 @@ np:
     - 3.639
     - 5.504
     mean: 4.260666666666666
-    trace: ''
   b97:
     diagonal:
     - 3.616
     - 3.616
     - 5.471
     mean: 4.234333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.517
     - 3.517
     - 5.422
     mean: 4.152
-    trace: ''
   id: np
   pbe:
     diagonal:
@@ -6627,28 +5724,24 @@ np:
     - 3.679
     - 5.603
     mean: 4.320333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 3.593
     - 3.593
     - 5.435
     mean: 4.207
-    trace: ''
   scan:
     diagonal:
     - 3.587
     - 3.587
     - 5.456
     mean: 4.21
-    trace: ''
   slater:
     diagonal:
     - 3.92
     - 3.92
     - 5.911
     mean: 4.583666666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6656,14 +5749,12 @@ np:
     - 3.673
     - 5.588
     mean: 4.311333333333334
-    trace: ''
   tpss:
     diagonal:
     - 3.627
     - 3.627
     - 5.528
     mean: 4.260666666666666
-    trace: ''
 o2:
   b3lyp:
     diagonal:
@@ -6671,21 +5762,18 @@ o2:
     - 1.242
     - 2.316
     mean: 1.5999999999999999
-    trace: ''
   b97:
     diagonal:
     - 1.234
     - 1.234
     - 2.306
     mean: 1.5913333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.21
     - 1.21
     - 2.263
     mean: 1.561
-    trace: ''
   id: o2
   pbe:
     diagonal:
@@ -6693,28 +5781,24 @@ o2:
     - 1.292
     - 2.322
     mean: 1.6353333333333335
-    trace: ''
   pbe0:
     diagonal:
     - 1.224
     - 1.224
     - 2.313
     mean: 1.587
-    trace: ''
   scan:
     diagonal:
     - 1.223
     - 1.223
     - 2.289
     mean: 1.5783333333333334
-    trace: ''
   slater:
     diagonal:
     - 1.377
     - 1.377
     - 2.439
     mean: 1.7309999999999999
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6722,14 +5806,12 @@ o2:
     - 1.287
     - 2.294
     mean: 1.6226666666666667
-    trace: ''
   tpss:
     diagonal:
     - 1.265
     - 1.265
     - 2.317
     mean: 1.6156666666666666
-    trace: ''
 o3:
   b3lyp:
     diagonal:
@@ -6737,21 +5819,18 @@ o3:
     - 4.52
     - 2.163
     mean: 2.8169999999999997
-    trace: ''
   b97:
     diagonal:
     - 1.759
     - 4.528
     - 2.157
     mean: 2.814666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.745
     - 4.586
     - 2.126
     mean: 2.8190000000000004
-    trace: ''
   id: o3
   pbe:
     diagonal:
@@ -6759,28 +5838,24 @@ o3:
     - 4.658
     - 2.236
     mean: 2.908
-    trace: ''
   pbe0:
     diagonal:
     - 1.739
     - 4.422
     - 2.13
     mean: 2.763666666666667
-    trace: ''
   scan:
     diagonal:
     - 1.749
     - 4.457
     - 2.154
     mean: 2.7866666666666666
-    trace: ''
   slater:
     diagonal:
     - 1.953
     - 4.832
     - 2.401
     mean: 3.062
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6788,14 +5863,12 @@ o3:
     - 4.621
     - 2.228
     mean: 2.892666666666667
-    trace: ''
   tpss:
     diagonal:
     - 1.792
     - 4.638
     - 2.178
     mean: 2.8693333333333335
-    trace: ''
 ocl:
   b3lyp:
     diagonal:
@@ -6803,21 +5876,18 @@ ocl:
     - 2.63
     - 4.269
     mean: 3.1763333333333335
-    trace: ''
   b97:
     diagonal:
     - 2.613
     - 2.613
     - 4.238
     mean: 3.154666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.421
     - 2.421
     - 4.171
     mean: 3.0043333333333333
-    trace: ''
   id: ocl
   pbe:
     diagonal:
@@ -6825,28 +5895,24 @@ ocl:
     - 2.733
     - 4.312
     mean: 3.2593333333333336
-    trace: ''
   pbe0:
     diagonal:
     - 2.582
     - 2.582
     - 4.221
     mean: 3.1283333333333334
-    trace: ''
   scan:
     diagonal:
     - 2.461
     - 2.461
     - 4.141
     mean: 3.0209999999999995
-    trace: ''
   slater:
     diagonal:
     - 2.966
     - 2.966
     - 4.525
     mean: 3.485666666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6854,14 +5920,12 @@ ocl:
     - 2.735
     - 4.291
     mean: 3.2536666666666663
-    trace: ''
   tpss:
     diagonal:
     - 2.665
     - 2.665
     - 4.269
     mean: 3.199666666666667
-    trace: ''
 ocl2:
   b3lyp:
     diagonal:
@@ -6869,21 +5933,18 @@ ocl2:
     - 8.166
     - 4.769
     mean: 5.777333333333334
-    trace: ''
   b97:
     diagonal:
     - 4.366
     - 8.122
     - 4.736
     mean: 5.741333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.21
     - 7.733
     - 4.625
     mean: 5.522666666666666
-    trace: ''
   id: ocl2
   pbe:
     diagonal:
@@ -6891,28 +5952,24 @@ ocl2:
     - 8.522
     - 4.87
     mean: 5.978333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 4.314
     - 8.014
     - 4.691
     mean: 5.672999999999999
-    trace: ''
   scan:
     diagonal:
     - 4.356
     - 8.248
     - 4.72
     mean: 5.774666666666666
-    trace: ''
   slater:
     diagonal:
     - 4.918
     - 8.936
     - 5.187
     mean: 6.347
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -6920,14 +5977,12 @@ ocl2:
     - 8.544
     - 4.89
     mean: 5.999
-    trace: ''
   tpss:
     diagonal:
     - 4.431
     - 8.379
     - 4.785
     mean: 5.864999999999999
-    trace: ''
 of:
   b3lyp:
     diagonal:
@@ -6935,21 +5990,18 @@ of:
     - 1.18
     - 2.098
     mean: 1.486
-    trace: ''
   b97:
     diagonal:
     - 1.178
     - 1.178
     - 2.087
     mean: 1.4809999999999999
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.094
     - 1.094
     - 2.033
     mean: 1.407
-    trace: ''
   id: of
   pbe:
     diagonal:
@@ -6957,28 +6009,24 @@ of:
     - 1.277
     - 2.161
     mean: 1.5716666666666665
-    trace: ''
   pbe0:
     diagonal:
     - 1.157
     - 1.157
     - 2.057
     mean: 1.457
-    trace: ''
   scan:
     diagonal:
     - 1.117
     - 1.117
     - 2.062
     mean: 1.4319999999999997
-    trace: ''
   slater:
     diagonal:
     - 1.393
     - 1.393
     - 2.245
     mean: 1.6770000000000003
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -6986,14 +6034,12 @@ of:
     - 1.276
     - 2.151
     mean: 1.5676666666666665
-    trace: ''
   tpss:
     diagonal:
     - 1.23
     - 1.23
     - 2.14
     mean: 1.5333333333333332
-    trace: ''
 of2:
   b3lyp:
     diagonal:
@@ -7001,21 +6047,18 @@ of2:
     - 3.047
     - 2.026
     mean: 2.1886666666666668
-    trace: ''
   b97:
     diagonal:
     - 1.488
     - 3.024
     - 2.014
     mean: 2.175333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.453
     - 2.953
     - 1.981
     mean: 2.129
-    trace: ''
   id: of2
   pbe:
     diagonal:
@@ -7023,28 +6066,24 @@ of2:
     - 3.13
     - 2.082
     mean: 2.268666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 1.469
     - 2.999
     - 1.997
     mean: 2.155
-    trace: ''
   scan:
     diagonal:
     - 1.493
     - 3.067
     - 2.008
     mean: 2.1893333333333334
-    trace: ''
   slater:
     diagonal:
     - 1.704
     - 3.231
     - 2.183
     mean: 2.3726666666666665
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7052,14 +6091,12 @@ of2:
     - 3.115
     - 2.073
     mean: 2.2603333333333335
-    trace: ''
   tpss:
     diagonal:
     - 1.547
     - 3.107
     - 2.057
     mean: 2.237
-    trace: ''
 oh:
   b3lyp:
     diagonal:
@@ -7067,21 +6104,18 @@ oh:
     - 1.197
     - 1.318
     mean: 1.2373333333333334
-    trace: ''
   b97:
     diagonal:
     - 1.191
     - 1.191
     - 1.309
     mean: 1.2303333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 1.11
     - 1.11
     - 1.258
     mean: 1.1593333333333333
-    trace: ''
   id: oh
   pbe:
     diagonal:
@@ -7089,28 +6123,24 @@ oh:
     - 1.304
     - 1.377
     mean: 1.3283333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 1.166
     - 1.166
     - 1.291
     mean: 1.2076666666666667
-    trace: ''
   scan:
     diagonal:
     - 0.955
     - 0.955
     - 1.311
     mean: 1.0736666666666668
-    trace: ''
   slater:
     diagonal:
     - 1.474
     - 1.474
     - 1.477
     mean: 1.4749999999999999
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7118,14 +6148,12 @@ oh:
     - 1.306
     - 1.379
     mean: 1.3303333333333334
-    trace: ''
   tpss:
     diagonal:
     - 1.257
     - 1.257
     - 1.355
     mean: 1.2896666666666665
-    trace: ''
 p:
   b3lyp:
     diagonal:
@@ -7133,21 +6161,18 @@ p:
     - 4.032
     - 4.032
     mean: 4.032
-    trace: ''
   b97:
     diagonal:
     - 3.964
     - 3.964
     - 3.964
     mean: 3.964
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.705
     - 3.705
     - 3.705
     mean: 3.705
-    trace: ''
   id: p
   pbe:
     diagonal:
@@ -7155,28 +6180,24 @@ p:
     - 4.142
     - 4.142
     mean: 4.142
-    trace: ''
   pbe0:
     diagonal:
     - 3.955
     - 3.955
     - 3.955
     mean: 3.955
-    trace: ''
   scan:
     diagonal:
     - 3.972
     - 3.972
     - 3.972
     mean: 3.972
-    trace: ''
   slater:
     diagonal:
     - 4.533
     - 4.533
     - 4.533
     mean: 4.533
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7184,14 +6205,12 @@ p:
     - 4.161
     - 4.161
     mean: 4.161
-    trace: ''
   tpss:
     diagonal:
     - 4.025
     - 4.025
     - 4.025
     mean: 4.025
-    trace: ''
 p2:
   b3lyp:
     diagonal:
@@ -7199,21 +6218,18 @@ p2:
     - 6.123
     - 10.429
     mean: 7.558333333333334
-    trace: ''
   b97:
     diagonal:
     - 6.078
     - 6.078
     - 10.35
     mean: 7.502
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.923
     - 5.923
     - 10.155
     mean: 7.333666666666666
-    trace: ''
   id: p2
   pbe:
     diagonal:
@@ -7221,28 +6237,24 @@ p2:
     - 6.115
     - 10.458
     mean: 7.562666666666668
-    trace: ''
   pbe0:
     diagonal:
     - 6.034
     - 6.034
     - 10.294
     mean: 7.454000000000001
-    trace: ''
   scan:
     diagonal:
     - 5.96
     - 5.96
     - 10.26
     mean: 7.3933333333333335
-    trace: ''
   slater:
     diagonal:
     - 6.577
     - 6.577
     - 11.035
     mean: 8.063
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7250,14 +6262,12 @@ p2:
     - 6.13
     - 10.458
     mean: 7.572666666666667
-    trace: ''
   tpss:
     diagonal:
     - 6.013
     - 6.013
     - 10.332
     mean: 7.4526666666666666
-    trace: ''
 p2h4:
   b3lyp:
     diagonal:
@@ -7265,21 +6275,18 @@ p2h4:
     - 11.055
     - 7.638
     mean: 8.760333333333334
-    trace: ''
   b97:
     diagonal:
     - 7.532
     - 11.005
     - 7.578
     mean: 8.705
-    trace: ''
   ccsd(t):
     diagonal:
     - 7.388
     - 10.698
     - 7.412
     mean: 8.499333333333333
-    trace: ''
   id: p2h4
   pbe:
     diagonal:
@@ -7287,28 +6294,24 @@ p2h4:
     - 11.264
     - 7.773
     mean: 8.915000000000001
-    trace: ''
   pbe0:
     diagonal:
     - 7.514
     - 10.927
     - 7.554
     mean: 8.665
-    trace: ''
   scan:
     diagonal:
     - 7.515
     - 10.907
     - 7.563
     mean: 8.661666666666667
-    trace: ''
   slater:
     diagonal:
     - 8.285
     - 12.051
     - 8.414
     mean: 9.583333333333334
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -7316,14 +6319,12 @@ p2h4:
     - 11.376
     - 7.896
     mean: 9.033333333333333
-    trace: ''
   tpss:
     diagonal:
     - 7.541
     - 11.068
     - 7.592
     mean: 8.733666666666666
-    trace: ''
 ph:
   b3lyp:
     diagonal:
@@ -7331,21 +6332,18 @@ ph:
     - 4.165
     - 4.573
     mean: 4.301
-    trace: ''
   b97:
     diagonal:
     - 4.105
     - 4.105
     - 4.517
     mean: 4.242333333333334
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.906
     - 3.906
     - 4.364
     mean: 4.058666666666666
-    trace: ''
   id: ph
   pbe:
     diagonal:
@@ -7353,28 +6351,24 @@ ph:
     - 4.262
     - 4.65
     mean: 4.391333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 4.084
     - 4.084
     - 4.499
     mean: 4.222333333333332
-    trace: ''
   scan:
     diagonal:
     - 4.09
     - 4.09
     - 4.486
     mean: 4.222
-    trace: ''
   slater:
     diagonal:
     - 4.707
     - 4.707
     - 5.037
     mean: 4.817
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7382,14 +6376,12 @@ ph:
     - 4.318
     - 4.729
     mean: 4.454999999999999
-    trace: ''
   tpss:
     diagonal:
     - 4.14
     - 4.14
     - 4.523
     mean: 4.267666666666666
-    trace: ''
 ph2:
   b3lyp:
     diagonal:
@@ -7397,21 +6389,18 @@ ph2:
     - 4.57
     - 4.703
     mean: 4.520333333333333
-    trace: ''
   b97:
     diagonal:
     - 4.24
     - 4.528
     - 4.654
     mean: 4.474
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.081
     - 4.411
     - 4.496
     mean: 4.3293333333333335
-    trace: ''
   id: ph2
   pbe:
     diagonal:
@@ -7419,28 +6408,24 @@ ph2:
     - 4.639
     - 4.803
     mean: 4.607666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 4.211
     - 4.517
     - 4.636
     mean: 4.454666666666667
-    trace: ''
   scan:
     diagonal:
     - 4.195
     - 4.5
     - 4.627
     mean: 4.440666666666666
-    trace: ''
   slater:
     diagonal:
     - 4.888
     - 4.993
     - 5.267
     mean: 5.049333333333333
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7448,14 +6433,12 @@ ph2:
     - 4.718
     - 4.895
     mean: 4.6933333333333325
-    trace: ''
   tpss:
     diagonal:
     - 4.248
     - 4.532
     - 4.665
     mean: 4.4816666666666665
-    trace: ''
 ph2oh:
   b3lyp:
     diagonal:
@@ -7463,21 +6446,18 @@ ph2oh:
     - 5.105
     - 5.047
     mean: 5.073
-    trace: ''
   b97:
     diagonal:
     - 5.033
     - 5.083
     - 5.012
     mean: 5.042666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.872
     - 4.949
     - 4.854
     mean: 4.891666666666667
-    trace: ''
   id: ph2oh
   pbe:
     diagonal:
@@ -7485,28 +6465,24 @@ ph2oh:
     - 5.302
     - 5.193
     mean: 5.236666666666666
-    trace: ''
   pbe0:
     diagonal:
     - 5.008
     - 5.05
     - 4.988
     mean: 5.015333333333333
-    trace: ''
   scan:
     diagonal:
     - 5.041
     - 5.089
     - 5.02
     mean: 5.05
-    trace: ''
   slater:
     diagonal:
     - 5.666
     - 5.7
     - 5.64
     mean: 5.668666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -7514,14 +6490,12 @@ ph2oh:
     - 5.323
     - 5.259
     mean: 5.2876666666666665
-    trace: ''
   tpss:
     diagonal:
     - 5.085
     - 5.199
     - 5.064
     mean: 5.116
-    trace: ''
 ph3:
   b3lyp:
     diagonal:
@@ -7529,21 +6503,18 @@ ph3:
     - 4.548
     - 4.84
     mean: 4.645333333333333
-    trace: ''
   b97:
     diagonal:
     - 4.515
     - 4.515
     - 4.794
     mean: 4.608
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.405
     - 4.405
     - 4.616
     mean: 4.475333333333333
-    trace: ''
   id: ph3
   pbe:
     diagonal:
@@ -7551,28 +6522,24 @@ ph3:
     - 4.627
     - 4.972
     mean: 4.742
-    trace: ''
   pbe0:
     diagonal:
     - 4.511
     - 4.511
     - 4.779
     mean: 4.600333333333333
-    trace: ''
   scan:
     diagonal:
     - 4.505
     - 4.505
     - 4.8
     mean: 4.603333333333333
-    trace: ''
   slater:
     diagonal:
     - 4.984
     - 4.984
     - 5.523
     mean: 5.163666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -7580,14 +6547,12 @@ ph3:
     - 4.707
     - 5.073
     mean: 4.829
-    trace: ''
   tpss:
     diagonal:
     - 4.521
     - 4.521
     - 4.813
     mean: 4.618333333333333
-    trace: ''
 ph3o:
   b3lyp:
     diagonal:
@@ -7595,21 +6560,18 @@ ph3o:
     - 4.218
     - 5.028
     mean: 4.4879999999999995
-    trace: ''
   b97:
     diagonal:
     - 4.196
     - 4.196
     - 4.999
     mean: 4.463666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.092
     - 4.092
     - 4.918
     mean: 4.367333333333334
-    trace: ''
   id: ph3o
   pbe:
     diagonal:
@@ -7617,28 +6579,24 @@ ph3o:
     - 4.371
     - 5.268
     mean: 4.670000000000001
-    trace: ''
   pbe0:
     diagonal:
     - 4.175
     - 4.175
     - 4.957
     mean: 4.435666666666666
-    trace: ''
   scan:
     diagonal:
     - 4.203
     - 4.203
     - 5.018
     mean: 4.474666666666667
-    trace: ''
   slater:
     diagonal:
     - 4.7
     - 4.7
     - 5.629
     mean: 5.009666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -7646,14 +6604,12 @@ ph3o:
     - 4.43
     - 5.322
     mean: 4.727333333333333
-    trace: ''
   tpss:
     diagonal:
     - 4.254
     - 4.254
     - 5.139
     mean: 4.5489999999999995
-    trace: ''
 ps:
   b3lyp:
     diagonal:
@@ -7661,21 +6617,18 @@ ps:
     - 5.254
     - 9.516
     mean: 6.674666666666667
-    trace: ''
   b97:
     diagonal:
     - 5.215
     - 5.215
     - 9.438
     mean: 6.622666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.112
     - 5.112
     - 9.373
     mean: 6.532333333333334
-    trace: ''
   id: ps
   pbe:
     diagonal:
@@ -7683,28 +6636,24 @@ ps:
     - 5.277
     - 9.608
     mean: 6.720666666666666
-    trace: ''
   pbe0:
     diagonal:
     - 5.179
     - 5.179
     - 9.382
     mean: 6.580000000000001
-    trace: ''
   scan:
     diagonal:
     - 5.147
     - 5.147
     - 9.353
     mean: 6.5489999999999995
-    trace: ''
   slater:
     diagonal:
     - 5.652
     - 5.652
     - 10.223
     mean: 7.175666666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7712,14 +6661,12 @@ ps:
     - 5.655
     - 9.609
     mean: 6.973
-    trace: ''
   tpss:
     diagonal:
     - 5.183
     - 5.183
     - 9.455
     mean: 6.606999999999999
-    trace: ''
 s2:
   b3lyp:
     diagonal:
@@ -7727,21 +6674,18 @@ s2:
     - 4.79
     - 8.816
     mean: 6.132000000000001
-    trace: ''
   b97:
     diagonal:
     - 4.75
     - 4.75
     - 8.767
     mean: 6.0889999999999995
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.657
     - 4.657
     - 8.686
     mean: 6.0
-    trace: ''
   id: s2
   pbe:
     diagonal:
@@ -7749,28 +6693,24 @@ s2:
     - 4.86
     - 8.803
     mean: 6.174333333333334
-    trace: ''
   pbe0:
     diagonal:
     - 4.709
     - 4.709
     - 8.768
     mean: 6.062
-    trace: ''
   scan:
     diagonal:
     - 4.691
     - 4.691
     - 8.696
     mean: 6.026
-    trace: ''
   slater:
     diagonal:
     - 5.243
     - 5.243
     - 9.296
     mean: 6.594
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7778,14 +6718,12 @@ s2:
     - 4.88
     - 8.756
     mean: 6.172
-    trace: ''
   tpss:
     diagonal:
     - 4.756
     - 4.756
     - 8.718
     mean: 6.076666666666667
-    trace: ''
 s2h2:
   b3lyp:
     diagonal:
@@ -7793,21 +6731,18 @@ s2h2:
     - 8.563
     - 5.825
     mean: 6.747666666666667
-    trace: ''
   b97:
     diagonal:
     - 5.808
     - 8.515
     - 5.778
     mean: 6.700333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.655
     - 8.287
     - 5.626
     mean: 6.522666666666667
-    trace: ''
   id: s2h2
   pbe:
     diagonal:
@@ -7815,28 +6750,24 @@ s2h2:
     - 8.712
     - 5.937
     mean: 6.872
-    trace: ''
   pbe0:
     diagonal:
     - 5.757
     - 8.442
     - 5.727
     mean: 6.642
-    trace: ''
   scan:
     diagonal:
     - 5.772
     - 8.45
     - 5.742
     mean: 6.6546666666666665
-    trace: ''
   slater:
     diagonal:
     - 6.453
     - 9.228
     - 6.425
     mean: 7.368666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -7844,14 +6775,12 @@ s2h2:
     - 8.766
     - 5.997
     mean: 6.9303333333333335
-    trace: ''
   tpss:
     diagonal:
     - 5.842
     - 8.58
     - 5.811
     mean: 6.7443333333333335
-    trace: ''
 scl:
   b3lyp:
     diagonal:
@@ -7859,21 +6788,18 @@ scl:
     - 4.611
     - 7.459
     mean: 5.5603333333333325
-    trace: ''
   b97:
     diagonal:
     - 4.571
     - 4.571
     - 7.409
     mean: 5.5169999999999995
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.389
     - 4.389
     - 7.196
     mean: 5.324666666666666
-    trace: ''
   id: scl
   pbe:
     diagonal:
@@ -7881,28 +6807,24 @@ scl:
     - 4.743
     - 7.599
     mean: 5.695
-    trace: ''
   pbe0:
     diagonal:
     - 4.511
     - 4.511
     - 7.325
     mean: 5.449000000000001
-    trace: ''
   scan:
     diagonal:
     - 4.542
     - 4.542
     - 7.317
     mean: 5.467
-    trace: ''
   slater:
     diagonal:
     - 5.19
     - 5.19
     - 8.0
     mean: 6.126666666666668
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -7910,14 +6832,12 @@ scl:
     - 4.774
     - 7.626
     mean: 5.724666666666667
-    trace: ''
   tpss:
     diagonal:
     - 4.62
     - 4.62
     - 7.486
     mean: 5.575333333333333
-    trace: ''
 scl2:
   b3lyp:
     diagonal:
@@ -7925,21 +6845,18 @@ scl2:
     - 10.376
     - 7.24
     mean: 7.8003333333333345
-    trace: ''
   b97:
     diagonal:
     - 5.743
     - 10.317
     - 7.189
     mean: 7.749666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.582
     - 10.069
     - 7.038
     mean: 7.563
-    trace: ''
   id: scl2
   pbe:
     diagonal:
@@ -7947,28 +6864,24 @@ scl2:
     - 10.645
     - 7.357
     mean: 7.976999999999999
-    trace: ''
   pbe0:
     diagonal:
     - 5.683
     - 10.218
     - 7.129
     mean: 7.676666666666667
-    trace: ''
   scan:
     diagonal:
     - 5.712
     - 10.279
     - 7.122
     mean: 7.7043333333333335
-    trace: ''
   slater:
     diagonal:
     - 6.391
     - 11.164
     - 7.808
     mean: 8.454333333333333
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -7976,14 +6889,12 @@ scl2:
     - 10.706
     - 7.39
     mean: 8.020666666666667
-    trace: ''
   tpss:
     diagonal:
     - 5.794
     - 10.487
     - 7.235
     mean: 7.838666666666666
-    trace: ''
 sf:
   b3lyp:
     diagonal:
@@ -7991,21 +6902,18 @@ sf:
     - 3.45
     - 3.709
     mean: 3.5363333333333333
-    trace: ''
   b97:
     diagonal:
     - 3.422
     - 3.422
     - 3.689
     mean: 3.5110000000000006
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.19
     - 3.19
     - 3.604
     mean: 3.328
-    trace: ''
   id: sf
   pbe:
     diagonal:
@@ -8013,28 +6921,24 @@ sf:
     - 3.616
     - 3.835
     mean: 3.689
-    trace: ''
   pbe0:
     diagonal:
     - 3.369
     - 3.369
     - 3.651
     mean: 3.4629999999999996
-    trace: ''
   scan:
     diagonal:
     - 3.416
     - 3.416
     - 3.672
     mean: 3.501333333333333
-    trace: ''
   slater:
     diagonal:
     - 4.046
     - 4.046
     - 4.03
     mean: 4.040666666666667
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -8042,14 +6946,12 @@ sf:
     - 3.626
     - 3.833
     mean: 3.6950000000000003
-    trace: ''
   tpss:
     diagonal:
     - 3.499
     - 3.499
     - 3.774
     mean: 3.590666666666667
-    trace: ''
 sf2:
   b3lyp:
     diagonal:
@@ -8057,21 +6959,18 @@ sf2:
     - 3.899
     - 3.56
     mean: 3.6186666666666665
-    trace: ''
   b97:
     diagonal:
     - 3.382
     - 3.881
     - 3.543
     mean: 3.6020000000000003
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.173
     - 3.815
     - 3.445
     mean: 3.4776666666666665
-    trace: ''
   id: sf2
   pbe:
     diagonal:
@@ -8079,28 +6978,24 @@ sf2:
     - 4.045
     - 3.699
     mean: 3.7763333333333335
-    trace: ''
   pbe0:
     diagonal:
     - 3.334
     - 3.851
     - 3.51
     mean: 3.565
-    trace: ''
   scan:
     diagonal:
     - 3.406
     - 3.878
     - 3.541
     mean: 3.608333333333334
-    trace: ''
   slater:
     diagonal:
     - 3.978
     - 4.224
     - 3.918
     mean: 4.04
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -8108,14 +7003,12 @@ sf2:
     - 4.033
     - 3.686
     mean: 3.765333333333333
-    trace: ''
   tpss:
     diagonal:
     - 3.47
     - 3.985
     - 3.63
     mean: 3.6950000000000003
-    trace: ''
 sh:
   b3lyp:
     diagonal:
@@ -8123,21 +7016,18 @@ sh:
     - 3.693
     - 3.599
     mean: 3.6616666666666666
-    trace: ''
   b97:
     diagonal:
     - 3.654
     - 3.654
     - 3.566
     mean: 3.6246666666666663
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.438
     - 3.438
     - 3.449
     mean: 3.4416666666666664
-    trace: ''
   id: sh
   pbe:
     diagonal:
@@ -8145,28 +7035,24 @@ sh:
     - 3.811
     - 3.656
     mean: 3.7593333333333336
-    trace: ''
   pbe0:
     diagonal:
     - 3.603
     - 3.603
     - 3.539
     mean: 3.581666666666667
-    trace: ''
   scan:
     diagonal:
     - 2.983
     - 2.983
     - 3.535
     mean: 3.1670000000000003
-    trace: ''
   slater:
     diagonal:
     - 4.277
     - 4.277
     - 3.929
     mean: 4.1610000000000005
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -8174,14 +7060,12 @@ sh:
     - 3.844
     - 3.698
     mean: 3.7953333333333332
-    trace: ''
   tpss:
     diagonal:
     - 3.704
     - 3.704
     - 3.585
     mean: 3.6643333333333334
-    trace: ''
 sh2:
   b3lyp:
     diagonal:
@@ -8189,21 +7073,18 @@ sh2:
     - 3.705
     - 3.711
     mean: 3.766
-    trace: ''
   b97:
     diagonal:
     - 3.842
     - 3.675
     - 3.679
     mean: 3.7319999999999998
-    trace: ''
   ccsd(t):
     diagonal:
     - 3.634
     - 3.57
     - 3.558
     mean: 3.5873333333333335
-    trace: ''
   id: sh2
   pbe:
     diagonal:
@@ -8211,28 +7092,24 @@ sh2:
     - 3.758
     - 3.782
     mean: 3.8476666666666666
-    trace: ''
   pbe0:
     diagonal:
     - 3.792
     - 3.653
     - 3.653
     mean: 3.6993333333333336
-    trace: ''
   scan:
     diagonal:
     - 3.825
     - 3.641
     - 3.667
     mean: 3.711
-    trace: ''
   slater:
     diagonal:
     - 4.49
     - 4.025
     - 4.09
     mean: 4.201666666666667
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -8240,14 +7117,12 @@ sh2:
     - 3.804
     - 3.833
     mean: 3.8936666666666664
-    trace: ''
   tpss:
     diagonal:
     - 3.893
     - 3.692
     - 3.699
     mean: 3.761333333333333
-    trace: ''
 sih3:
   b3lyp:
     diagonal:
@@ -8255,21 +7130,18 @@ sih3:
     - 5.187
     - 5.262
     mean: 5.212
-    trace: ''
   b97:
     diagonal:
     - 5.145
     - 5.145
     - 5.202
     mean: 5.164
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.013
     - 5.012
     - 4.982
     mean: 5.002333333333333
-    trace: ''
   id: sih3
   pbe:
     diagonal:
@@ -8277,28 +7149,24 @@ sih3:
     - 5.326
     - 5.461
     mean: 5.3709999999999996
-    trace: ''
   pbe0:
     diagonal:
     - 5.148
     - 5.148
     - 5.187
     mean: 5.1610000000000005
-    trace: ''
   scan:
     diagonal:
     - 5.125
     - 5.13
     - 5.18
     mean: 5.145
-    trace: ''
   slater:
     diagonal:
     - 5.794
     - 5.794
     - 6.219
     mean: 5.935666666666666
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -8306,14 +7174,12 @@ sih3:
     - 5.45
     - 5.622
     mean: 5.5073333333333325
-    trace: ''
   tpss:
     diagonal:
     - 5.135
     - 5.135
     - 5.19
     mean: 5.153333333333333
-    trace: ''
 sih3cl:
   b3lyp:
     diagonal:
@@ -8321,21 +7187,18 @@ sih3cl:
     - 5.857
     - 7.391
     mean: 6.368333333333333
-    trace: ''
   b97:
     diagonal:
     - 5.825
     - 5.825
     - 7.368
     mean: 6.339333333333333
-    trace: ''
   ccsd(t):
     diagonal:
     - 5.658
     - 5.658
     - 7.164
     mean: 6.16
-    trace: ''
   id: sih3cl
   pbe:
     diagonal:
@@ -8343,28 +7206,24 @@ sih3cl:
     - 6.025
     - 7.664
     mean: 6.571333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 5.811
     - 5.811
     - 7.349
     mean: 6.323666666666667
-    trace: ''
   scan:
     diagonal:
     - 5.818
     - 5.818
     - 7.364
     mean: 6.333333333333333
-    trace: ''
   slater:
     diagonal:
     - 6.493
     - 6.493
     - 8.168
     mean: 7.051333333333333
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -8372,14 +7231,12 @@ sih3cl:
     - 6.141
     - 7.792
     mean: 6.691333333333333
-    trace: ''
   tpss:
     diagonal:
     - 5.844
     - 5.844
     - 7.456
     mean: 6.381333333333334
-    trace: ''
 sih3f:
   b3lyp:
     diagonal:
@@ -8387,21 +7244,18 @@ sih3f:
     - 4.399
     - 3.994
     mean: 4.264
-    trace: ''
   b97:
     diagonal:
     - 4.382
     - 4.382
     - 3.995
     mean: 4.253
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.231
     - 4.231
     - 3.879
     mean: 4.113666666666666
-    trace: ''
   id: sih3f
   pbe:
     diagonal:
@@ -8409,28 +7263,24 @@ sih3f:
     - 4.58
     - 4.188
     mean: 4.449333333333333
-    trace: ''
   pbe0:
     diagonal:
     - 4.381
     - 4.381
     - 3.983
     mean: 4.248333333333334
-    trace: ''
   scan:
     diagonal:
     - 4.399
     - 4.399
     - 4.011
     mean: 4.269666666666667
-    trace: ''
   slater:
     diagonal:
     - 4.969
     - 4.969
     - 4.468
     mean: 4.8020000000000005
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -8438,14 +7288,12 @@ sih3f:
     - 4.685
     - 4.247
     mean: 4.539
-    trace: ''
   tpss:
     diagonal:
     - 4.409
     - 4.409
     - 4.069
     mean: 4.2956666666666665
-    trace: ''
 sih4:
   b3lyp:
     diagonal:
@@ -8453,21 +7301,18 @@ sih4:
     - 4.745
     - 4.745
     mean: 4.745
-    trace: ''
   b97:
     diagonal:
     - 4.729
     - 4.729
     - 4.729
     mean: 4.729
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.589
     - 4.589
     - 4.589
     mean: 4.589
-    trace: ''
   id: sih4
   pbe:
     diagonal:
@@ -8475,28 +7320,24 @@ sih4:
     - 4.917
     - 4.917
     mean: 4.917
-    trace: ''
   pbe0:
     diagonal:
     - 4.74
     - 4.74
     - 4.74
     mean: 4.74
-    trace: ''
   scan:
     diagonal:
     - 4.733
     - 4.733
     - 4.733
     mean: 4.733
-    trace: ''
   slater:
     diagonal:
     - 5.37
     - 5.37
     - 5.37
     mean: 5.37
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -8504,14 +7345,12 @@ sih4:
     - 5.061
     - 5.061
     mean: 5.061
-    trace: ''
   tpss:
     diagonal:
     - 4.72
     - 4.72
     - 4.72
     mean: 4.72
-    trace: ''
 sio:
   b3lyp:
     diagonal:
@@ -8519,21 +7358,18 @@ sio:
     - 4.118
     - 5.094
     mean: 4.443333333333334
-    trace: ''
   b97:
     diagonal:
     - 4.138
     - 4.138
     - 5.079
     mean: 4.451666666666667
-    trace: ''
   ccsd(t):
     diagonal:
     - 4.02
     - 4.02
     - 5.075
     mean: 4.371666666666666
-    trace: ''
   id: sio
   pbe:
     diagonal:
@@ -8541,28 +7377,24 @@ sio:
     - 4.224
     - 5.316
     mean: 4.588
-    trace: ''
   pbe0:
     diagonal:
     - 4.101
     - 4.101
     - 5.013
     mean: 4.405
-    trace: ''
   scan:
     diagonal:
     - 4.157
     - 4.157
     - 5.084
     mean: 4.466
-    trace: ''
   slater:
     diagonal:
     - 4.468
     - 4.468
     - 5.63
     mean: 4.855333333333333
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -8570,14 +7402,12 @@ sio:
     - 4.182
     - 5.274
     mean: 4.546
-    trace: ''
   tpss:
     diagonal:
     - 4.185
     - 4.185
     - 5.23
     mean: 4.533333333333333
-    trace: ''
 so-trip:
   b3lyp:
     diagonal:
@@ -8585,21 +7415,18 @@ so-trip:
     - 3.067
     - 4.422
     mean: 3.518666666666667
-    trace: ''
   b97:
     diagonal:
     - 3.041
     - 3.041
     - 4.397
     mean: 3.493
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.942
     - 2.942
     - 4.351
     mean: 3.4116666666666666
-    trace: ''
   id: so-trip
   pbe:
     diagonal:
@@ -8607,28 +7434,24 @@ so-trip:
     - 3.177
     - 4.478
     mean: 3.610666666666667
-    trace: ''
   pbe0:
     diagonal:
     - 3.018
     - 3.018
     - 4.384
     mean: 3.473333333333333
-    trace: ''
   scan:
     diagonal:
     - 3.025
     - 3.025
     - 4.38
     mean: 3.4766666666666666
-    trace: ''
   slater:
     diagonal:
     - 3.462
     - 3.462
     - 4.721
     mean: 3.8816666666666664
-    trace: ''
   spin: SP
   spw92:
     diagonal:
@@ -8636,14 +7459,12 @@ so-trip:
     - 3.176
     - 4.452
     mean: 3.6013333333333333
-    trace: ''
   tpss:
     diagonal:
     - 3.096
     - 3.096
     - 4.432
     mean: 3.5413333333333337
-    trace: ''
 so2:
   b3lyp:
     diagonal:
@@ -8651,21 +7472,18 @@ so2:
     - 5.004
     - 3.438
     mean: 3.795
-    trace: ''
   b97:
     diagonal:
     - 2.927
     - 4.975
     - 3.422
     mean: 3.7746666666666666
-    trace: ''
   ccsd(t):
     diagonal:
     - 2.892
     - 5.017
     - 3.382
     mean: 3.763666666666667
-    trace: ''
   id: so2
   pbe:
     diagonal:
@@ -8673,28 +7491,24 @@ so2:
     - 5.121
     - 3.581
     mean: 3.9066666666666663
-    trace: ''
   pbe0:
     diagonal:
     - 2.906
     - 4.932
     - 3.387
     mean: 3.741666666666667
-    trace: ''
   scan:
     diagonal:
     - 2.921
     - 4.964
     - 3.422
     mean: 3.769
-    trace: ''
   slater:
     diagonal:
     - 3.205
     - 5.326
     - 3.819
     mean: 4.116666666666666
-    trace: ''
   spin: NSP
   spw92:
     diagonal:
@@ -8702,11 +7516,9 @@ so2:
     - 5.098
     - 3.568
     mean: 3.8943333333333334
-    trace: ''
   tpss:
     diagonal:
     - 2.961
     - 5.071
     - 3.507
     mean: 3.8463333333333334
-    trace: ''

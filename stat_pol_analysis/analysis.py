@@ -5,7 +5,7 @@ import sys, operator
 
 # Get data structures
 hg_data = f.get_HG_data("hg_data.csv")
-mw_data = f.make_nice_data("rawdata.csv")
+mw_data = f.make_nice_data("mw_rawdata.csv")
 
 
 #////////////////////////////////////////////////////////////////////
