@@ -18,6 +18,12 @@ alf:
     - 5.378
     mean: 5.958000000000001
   spin: NSP
+  spw92:
+    diagonal:
+    - 6.154
+    - 6.154
+    - 5.59
+    mean: 5.966
 ar:
   ccsd(t):
     diagonal:
@@ -38,6 +44,12 @@ ar:
     - 1.693
     mean: 1.6930000000000003
   spin: NSP
+  spw92:
+    diagonal:
+    - 1.779
+    - 1.779
+    - 1.779
+    mean: 1.779
 be:
   ccsd(t):
     diagonal:
@@ -58,6 +70,12 @@ be:
     - 6.417
     mean: 6.416999999999999
   spin: SP
+  spw92:
+    diagonal:
+    - 6.551
+    - 6.551
+    - 6.551
+    mean: 6.550999999999999
 beh:
   ccsd(t):
     diagonal:
@@ -78,6 +96,12 @@ beh:
     - 4.135
     mean: 5.130999999999999
   spin: SP
+  spw92:
+    diagonal:
+    - 5.876
+    - 5.876
+    - 4.517
+    mean: 5.423000000000001
 beh2:
   ccsd(t):
     diagonal:
@@ -98,6 +122,12 @@ beh2:
     - 3.087
     mean: 3.0676666666666663
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.276
+    - 3.276
+    - 3.295
+    mean: 3.2823333333333333
 bf:
   ccsd(t):
     diagonal:
@@ -118,6 +148,12 @@ bf:
     - 2.78
     mean: 3.032666666666666
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.315
+    - 3.315
+    - 2.991
+    mean: 3.2070000000000003
 bh2:
   ccsd(t):
     diagonal:
@@ -138,6 +174,12 @@ bh2:
     - 3.037
     mean: 3.095
   spin: SP
+  spw92:
+    diagonal:
+    - 3.172
+    - 3.648
+    - 3.239
+    mean: 3.353
 bh2cl:
   ccsd(t):
     diagonal:
@@ -158,6 +200,12 @@ bh2cl:
     - 5.622
     mean: 4.466333333333334
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.784
+    - 4.351
+    - 5.967
+    mean: 4.700666666666667
 bh2f:
   ccsd(t):
     diagonal:
@@ -178,6 +226,12 @@ bh2f:
     - 2.692
     mean: 2.531
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.285
+    - 2.922
+    - 2.889
+    mean: 2.6986666666666665
 bh3:
   ccsd(t):
     diagonal:
@@ -198,6 +252,12 @@ bh3:
     - 2.171
     mean: 2.614333333333333
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.005
+    - 3.005
+    - 2.294
+    mean: 2.7680000000000002
 bhf2:
   ccsd(t):
     diagonal:
@@ -218,6 +278,12 @@ bhf2:
     - 2.585
     mean: 2.4566666666666666
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.258
+    - 2.896
+    - 2.782
+    mean: 2.6453333333333333
 bn:
   ccsd(t):
     diagonal:
@@ -238,6 +304,12 @@ bn:
     - 4.184
     mean: 3.5559999999999996
   spin: SP
+  spw92:
+    diagonal:
+    - 3.405
+    - 3.405
+    - 4.663
+    mean: 3.824333333333333
 bo:
   ccsd(t):
     diagonal:
@@ -258,6 +330,12 @@ bo:
     - 2.841
     mean: 2.497666666666667
   spin: SP
+  spw92:
+    diagonal:
+    - 2.476
+    - 2.476
+    - 3.045
+    mean: 2.6656666666666666
 bs:
   ccsd(t):
     diagonal:
@@ -278,6 +356,12 @@ bs:
     - 6.421
     mean: 5.119666666666667
   spin: SP
+  spw92:
+    diagonal:
+    - 4.644
+    - 4.644
+    - 6.674
+    mean: 5.320666666666667
 c2h:
   ccsd(t):
     diagonal:
@@ -298,6 +382,12 @@ c2h:
     - 4.04
     mean: 3.5660000000000003
   spin: SP
+  spw92:
+    diagonal:
+    - 3.807
+    - 3.807
+    - 4.153
+    mean: 3.922333333333333
 c2h2:
   ccsd(t):
     diagonal:
@@ -318,6 +408,12 @@ c2h2:
     - 4.662
     mean: 3.481333333333333
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.976
+    - 2.976
+    - 4.743
+    mean: 3.565
 c2h3:
   ccsd(t):
     diagonal:
@@ -338,6 +434,12 @@ c2h3:
     - 3.252
     mean: 3.997
   spin: SP
+  spw92:
+    diagonal:
+    - 3.766
+    - 5.441
+    - 3.376
+    mean: 4.194333333333334
 c2h4:
   ccsd(t):
     diagonal:
@@ -358,6 +460,12 @@ c2h4:
     - 5.323
     mean: 4.167333333333334
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.481
+    - 3.949
+    - 5.412
+    mean: 4.280666666666666
 ch2-t:
   ccsd(t):
     diagonal:
@@ -378,6 +486,12 @@ ch2-t:
     - 2.149
     mean: 2.2673333333333336
   spin: SP
+  spw92:
+    diagonal:
+    - 2.499
+    - 2.538
+    - 2.348
+    mean: 2.4616666666666664
 ch2bh:
   ccsd(t):
     diagonal:
@@ -398,6 +512,12 @@ ch2bh:
     - 5.916
     mean: 4.648000000000001
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.46
+    - 3.858
+    - 6.074
+    mean: 4.7973333333333334
 ch2f:
   ccsd(t):
     diagonal:
@@ -418,6 +538,12 @@ ch2f:
     - 2.398
     mean: 2.4566666666666666
   spin: SP
+  spw92:
+    diagonal:
+    - 2.655
+    - 2.826
+    - 2.569
+    mean: 2.6833333333333336
 ch2nh:
   ccsd(t):
     diagonal:
@@ -438,6 +564,12 @@ ch2nh:
     - 4.364
     mean: 3.4053333333333335
   spin: SP
+  spw92:
+    diagonal:
+    - 3.467
+    - 2.67
+    - 4.533
+    mean: 3.556666666666667
 ch2ph:
   ccsd(t):
     diagonal:
@@ -458,6 +590,12 @@ ch2ph:
     - 5.758
     mean: 6.195
   spin: SP
+  spw92:
+    diagonal:
+    - 7.887
+    - 5.151
+    - 5.977
+    mean: 6.338333333333334
 ch3:
   ccsd(t):
     diagonal:
@@ -478,6 +616,12 @@ ch3:
     - 2.464
     mean: 2.4306666666666668
   spin: SP
+  spw92:
+    diagonal:
+    - 2.569
+    - 2.569
+    - 2.749
+    mean: 2.629
 ch3bh2:
   ccsd(t):
     diagonal:
@@ -498,6 +642,12 @@ ch3bh2:
     - 4.372
     mean: 4.4110000000000005
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.98
+    - 5.468
+    - 4.6
+    mean: 4.682666666666667
 ch3cl:
   ccsd(t):
     diagonal:
@@ -518,6 +668,12 @@ ch3cl:
     - 5.513
     mean: 4.523
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.226
+    - 4.226
+    - 5.728
+    mean: 4.726666666666667
 ch3f:
   ccsd(t):
     diagonal:
@@ -538,6 +694,12 @@ ch3f:
     - 2.625
     mean: 2.507
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.594
+    - 2.594
+    - 2.78
+    mean: 2.656
 ch3nh2:
   ccsd(t):
     diagonal:
@@ -558,6 +720,12 @@ ch3nh2:
     - 3.582
     mean: 3.8403333333333336
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.514
+    - 3.981
+    - 3.763
+    mean: 4.086
 ch3o:
   ccsd(t):
     diagonal:
@@ -578,6 +746,12 @@ ch3o:
     - 3.546
     mean: 3.6056666666666666
   spin: SP
+  spw92:
+    diagonal:
+    - 5.124
+    - 3.008
+    - 3.997
+    mean: 4.043
 ch3oh:
   ccsd(t):
     diagonal:
@@ -598,6 +772,12 @@ ch3oh:
     - 2.995
     mean: 3.1839999999999997
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.236
+    - 3.708
+    - 3.203
+    mean: 3.3823333333333334
 ch3sh:
   ccsd(t):
     diagonal:
@@ -618,6 +798,12 @@ ch3sh:
     - 5.12
     mean: 5.556
   spin: NSP
+  spw92:
+    diagonal:
+    - 6.726
+    - 5.335
+    - 5.403
+    mean: 5.821333333333333
 ch4:
   ccsd(t):
     diagonal:
@@ -638,6 +824,12 @@ ch4:
     - 2.499
     mean: 2.499
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.636
+    - 2.636
+    - 2.636
+    mean: 2.636
 cl2:
   ccsd(t):
     diagonal:
@@ -658,6 +850,12 @@ cl2:
     - 6.241
     mean: 4.579
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.931
+    - 3.931
+    - 6.378
+    mean: 4.746666666666667
 clcn:
   ccsd(t):
     diagonal:
@@ -678,6 +876,12 @@ clcn:
     - 6.847
     mean: 4.573666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.554
+    - 3.554
+    - 7.138
+    mean: 4.748666666666666
 clf:
   ccsd(t):
     diagonal:
@@ -698,6 +902,12 @@ clf:
     - 3.349
     mean: 2.7409999999999997
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.579
+    - 2.579
+    - 3.42
+    mean: 2.8593333333333333
 cn:
   ccsd(t):
     diagonal:
@@ -718,6 +928,12 @@ cn:
     - 3.924
     mean: 3.1053333333333337
   spin: SP
+  spw92:
+    diagonal:
+    - 2.519
+    - 2.519
+    - 3.975
+    mean: 3.0043333333333333
 co:
   ccsd(t):
     diagonal:
@@ -738,6 +954,12 @@ co:
     - 2.274
     mean: 1.9433333333333334
   spin: NSP
+  spw92:
+    diagonal:
+    - 1.872
+    - 1.872
+    - 2.358
+    mean: 2.0340000000000003
 co2:
   ccsd(t):
     diagonal:
@@ -758,6 +980,12 @@ co2:
     - 3.822
     mean: 2.5406666666666666
   spin: NSP
+  spw92:
+    diagonal:
+    - 1.976
+    - 1.976
+    - 3.967
+    mean: 2.639666666666667
 cs:
   ccsd(t):
     diagonal:
@@ -778,6 +1006,12 @@ cs:
     - 5.616
     mean: 4.241333333333333
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.658
+    - 3.658
+    - 5.804
+    mean: 4.373333333333334
 cso:
   ccsd(t):
     diagonal:
@@ -798,6 +1032,12 @@ cso:
     - 7.526
     mean: 5.058666666666666
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.93
+    - 3.93
+    - 7.69
+    mean: 5.183333333333334
 f2:
   ccsd(t):
     diagonal:
@@ -818,6 +1058,12 @@ f2:
     - 1.91
     mean: 1.2786666666666666
   spin: SP
+  spw92:
+    diagonal:
+    - 1.044
+    - 1.044
+    - 1.869
+    mean: 1.319
 fcn:
   ccsd(t):
     diagonal:
@@ -838,6 +1084,12 @@ fcn:
     - 3.794
     mean: 2.7420000000000004
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.296
+    - 2.296
+    - 3.959
+    mean: 2.8503333333333334
 fco:
   ccsd(t):
     diagonal:
@@ -858,6 +1110,12 @@ fco:
     - 2.068
     mean: 2.621333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 3.52
+    - 2.629
+    - 2.217
+    mean: 2.7886666666666664
 fh-oh:
   ccsd(t):
     diagonal:
@@ -878,6 +1136,12 @@ fh-oh:
     - 2.413
     mean: 2.005333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 2.138
+    - 1.823
+    - 5.013
+    mean: 2.9913333333333334
 fno:
   ccsd(t):
     diagonal:
@@ -898,6 +1162,12 @@ fno:
     - 1.752
     mean: 2.521666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.51
+    - 2.568
+    - 1.854
+    mean: 2.6439999999999997
 h:
   ccsd(t):
     diagonal:
@@ -918,6 +1188,12 @@ h:
     - 0.775
     mean: 0.775
   spin: NSP
+  spw92:
+    diagonal:
+    - 0.902
+    - 0.902
+    - 0.902
+    mean: 0.902
 h2:
   ccsd(t):
     diagonal:
@@ -938,6 +1214,12 @@ h2:
     - 0.998
     mean: 0.8153333333333332
   spin: NSP
+  spw92:
+    diagonal:
+    - 0.784
+    - 0.784
+    - 1.066
+    mean: 0.8780000000000001
 h2cn:
   ccsd(t):
     diagonal:
@@ -958,6 +1240,12 @@ h2cn:
     - 3.767
     mean: 2.9683333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 2.409
+    - 3.025
+    - 3.991
+    mean: 3.141666666666666
 h2o:
   ccsd(t):
     diagonal:
@@ -978,6 +1266,12 @@ h2o:
     - 1.444
     mean: 1.447
   spin: NSP
+  spw92:
+    diagonal:
+    - 1.58
+    - 1.572
+    - 1.572
+    mean: 1.5746666666666667
 h2o-li:
   ccsd(t):
     diagonal:
@@ -998,6 +1292,12 @@ h2o-li:
     - 39.913
     mean: 35.40566666666667
   spin: SP
+  spw92:
+    diagonal:
+    - 32.644
+    - 27.835
+    - 43.226
+    mean: 34.568333333333335
 hbo:
   ccsd(t):
     diagonal:
@@ -1018,6 +1318,12 @@ hbo:
     - 3.152
     mean: 2.482666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.246
+    - 2.246
+    - 3.296
+    mean: 2.596
 hbs:
   ccsd(t):
     diagonal:
@@ -1038,6 +1344,12 @@ hbs:
     - 6.681
     mean: 5.107666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.434
+    - 4.434
+    - 6.853
+    mean: 5.240333333333333
 hcccl:
   ccsd(t):
     diagonal:
@@ -1058,6 +1370,12 @@ hcccl:
     - 8.549
     mean: 5.577000000000001
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.226
+    - 4.226
+    - 8.868
+    mean: 5.773333333333333
 hccf:
   ccsd(t):
     diagonal:
@@ -1078,6 +1396,12 @@ hccf:
     - 4.94
     mean: 3.5666666666666664
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.979
+    - 2.979
+    - 5.119
+    mean: 3.6923333333333335
 hcho:
   ccsd(t):
     diagonal:
@@ -1098,6 +1422,12 @@ hcho:
     - 3.348
     mean: 2.674666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.033
+    - 2.934
+    - 3.521
+    mean: 2.829333333333333
 hchs:
   ccsd(t):
     diagonal:
@@ -1118,6 +1448,12 @@ hchs:
     - 6.791
     mean: 5.158
   spin: SP
+  spw92:
+    diagonal:
+    - 4.066
+    - 4.948
+    - 6.925
+    mean: 5.313
 hcl:
   ccsd(t):
     diagonal:
@@ -1138,6 +1474,12 @@ hcl:
     - 2.763
     mean: 2.6216666666666666
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.699
+    - 2.699
+    - 2.877
+    mean: 2.758333333333333
 hcn:
   ccsd(t):
     diagonal:
@@ -1158,6 +1500,12 @@ hcn:
     - 3.38
     mean: 2.538
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.188
+    - 2.188
+    - 3.456
+    mean: 2.610666666666667
 hco:
   ccsd(t):
     diagonal:
@@ -1178,6 +1526,12 @@ hco:
     - 1.97
     mean: 2.550333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 2.92
+    - 3.066
+    - 2.086
+    mean: 2.6906666666666665
 hconh2:
   ccsd(t):
     diagonal:
@@ -1198,6 +1552,12 @@ hconh2:
     - 2.976
     mean: 4.108999999999999
   spin: NSP
+  spw92:
+    diagonal:
+    - 5.598
+    - 4.547
+    - 3.153
+    mean: 4.432666666666667
 hcooh:
   ccsd(t):
     diagonal:
@@ -1218,6 +1578,12 @@ hcooh:
     - 2.427
     mean: 3.3523333333333336
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.277
+    - 3.935
+    - 2.571
+    mean: 3.594333333333333
 hcp:
   ccsd(t):
     diagonal:
@@ -1238,6 +1604,12 @@ hcp:
     - 7.032
     mean: 5.383333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 4.65
+    - 4.65
+    - 7.123
+    mean: 5.474333333333334
 he:
   ccsd(t):
     diagonal:
@@ -1258,6 +1630,12 @@ he:
     - 0.221
     mean: 0.221
   spin: NSP
+  spw92:
+    diagonal:
+    - 0.245
+    - 0.245
+    - 0.245
+    mean: 0.245
 hf:
   ccsd(t):
     diagonal:
@@ -1278,6 +1656,12 @@ hf:
     - 0.956
     mean: 0.85
   spin: NSP
+  spw92:
+    diagonal:
+    - 0.879
+    - 0.879
+    - 1.015
+    mean: 0.9243333333333332
 hnc:
   ccsd(t):
     diagonal:
@@ -1298,6 +1682,12 @@ hnc:
     - 3.479
     mean: 2.719
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.459
+    - 2.459
+    - 3.623
+    mean: 2.847
 hno:
   ccsd(t):
     diagonal:
@@ -1318,6 +1708,12 @@ hno:
     - 2.886
     mean: 2.2883333333333336
   spin: SP
+  spw92:
+    diagonal:
+    - 1.696
+    - 2.635
+    - 2.974
+    mean: 2.435
 hns:
   ccsd(t):
     diagonal:
@@ -1338,6 +1734,12 @@ hns:
     - 3.475
     mean: 4.477333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 5.998
+    - 4.272
+    - 3.555
+    mean: 4.608333333333333
 ho2:
   ccsd(t):
     diagonal:
@@ -1358,6 +1760,12 @@ ho2:
     - 1.481
     mean: 1.9949999999999999
   spin: SP
+  spw92:
+    diagonal:
+    - 1.917
+    - 2.811
+    - 1.575
+    mean: 2.101
 hocl:
   ccsd(t):
     diagonal:
@@ -1378,6 +1786,12 @@ hocl:
     - 4.249
     mean: 3.3746666666666663
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.167
+    - 3.057
+    - 4.347
+    mean: 3.523666666666667
 hof:
   ccsd(t):
     diagonal:
@@ -1398,6 +1812,12 @@ hof:
     - 2.32
     mean: 1.7426666666666666
   spin: SP
+  spw92:
+    diagonal:
+    - 1.646
+    - 1.503
+    - 2.317
+    mean: 1.822
 hooh:
   ccsd(t):
     diagonal:
@@ -1418,6 +1838,12 @@ hooh:
     - 1.88
     mean: 2.25
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.167
+    - 2.873
+    - 2.055
+    mean: 2.365
 li:
   ccsd(t):
     diagonal:
@@ -1438,6 +1864,12 @@ li:
     - 22.948
     mean: 22.947999999999997
   spin: SP
+  spw92:
+    diagonal:
+    - 23.016
+    - 23.016
+    - 23.016
+    mean: 23.016000000000002
 li2:
   ccsd(t):
     diagonal:
@@ -1458,6 +1890,12 @@ li2:
     - 38.756
     mean: 29.574
   spin: SP
+  spw92:
+    diagonal:
+    - 25.249
+    - 25.249
+    - 39.858
+    mean: 30.118666666666666
 libh4:
   ccsd(t):
     diagonal:
@@ -1478,6 +1916,12 @@ libh4:
     - 4.885
     mean: 4.612333333333333
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.824
+    - 4.824
+    - 5.306
+    mean: 4.984666666666667
 licl:
   ccsd(t):
     diagonal:
@@ -1498,6 +1942,12 @@ licl:
     - 4.196
     mean: 4.0360000000000005
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.31
+    - 4.31
+    - 4.605
+    mean: 4.408333333333333
 licn:
   ccsd(t):
     diagonal:
@@ -1518,6 +1968,12 @@ licn:
     - 3.201
     mean: 3.6476666666666664
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.202
+    - 4.159
+    - 3.431
+    mean: 3.930666666666667
 lih:
   ccsd(t):
     diagonal:
@@ -1538,6 +1994,12 @@ lih:
     - 4.042
     mean: 4.351999999999999
   spin: NSP
+  spw92:
+    diagonal:
+    - 5.195
+    - 5.195
+    - 4.828
+    mean: 5.072666666666667
 mg:
   ccsd(t):
     diagonal:
@@ -1558,6 +2020,12 @@ mg:
     - 11.13
     mean: 11.13
   spin: NSP
+  spw92:
+    diagonal:
+    - 10.58
+    - 10.58
+    - 10.58
+    mean: 10.58
 mg2:
   ccsd(t):
     diagonal:
@@ -1578,6 +2046,12 @@ mg2:
     - 35.758
     mean: 24.625333333333334
   spin: NSP
+  spw92:
+    diagonal:
+    - 18.22
+    - 18.22
+    - 34.409
+    mean: 23.61633333333333
 n:
   ccsd(t):
     diagonal:
@@ -1598,6 +2072,12 @@ n:
     - 1.158
     mean: 1.158
   spin: SP
+  spw92:
+    diagonal:
+    - 1.216
+    - 1.216
+    - 1.216
+    mean: 1.216
 n2:
   ccsd(t):
     diagonal:
@@ -1618,6 +2098,12 @@ n2:
     - 2.236
     mean: 1.7619999999999998
   spin: NSP
+  spw92:
+    diagonal:
+    - 1.591
+    - 1.591
+    - 2.278
+    mean: 1.82
 n2h2:
   ccsd(t):
     diagonal:
@@ -1638,6 +2124,12 @@ n2h2:
     - 2.953
     mean: 2.8866666666666667
   spin: SP
+  spw92:
+    diagonal:
+    - 3.806
+    - 2.186
+    - 3.173
+    mean: 3.0549999999999997
 n2h4:
   ccsd(t):
     diagonal:
@@ -1658,6 +2150,12 @@ n2h4:
     - 3.226
     mean: 3.406
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.363
+    - 4.068
+    - 3.517
+    mean: 3.649333333333333
 na:
   ccsd(t):
     diagonal:
@@ -1678,6 +2176,12 @@ na:
     - 24.964
     mean: 24.964
   spin: SP
+  spw92:
+    diagonal:
+    - 20.884
+    - 20.884
+    - 20.884
+    mean: 20.884
 na2:
   ccsd(t):
     diagonal:
@@ -1698,6 +2202,12 @@ na2:
     - 50.108
     mean: 36.80266666666666
   spin: SP
+  spw92:
+    diagonal:
+    - 27.441
+    - 27.441
+    - 48.168
+    mean: 34.35
 nacl:
   ccsd(t):
     diagonal:
@@ -1718,6 +2228,12 @@ nacl:
     - 5.622
     mean: 4.830666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.904
+    - 4.904
+    - 6.654
+    mean: 5.487333333333333
 nacn:
   ccsd(t):
     diagonal:
@@ -1738,6 +2254,12 @@ nacn:
     - 3.548
     mean: 4.1770000000000005
   spin: NSP
+  spw92:
+    diagonal:
+    - 5.07
+    - 4.977
+    - 3.852
+    mean: 4.633
 nah:
   ccsd(t):
     diagonal:
@@ -1758,6 +2280,12 @@ nah:
     - 7.912
     mean: 6.374666666666666
   spin: NSP
+  spw92:
+    diagonal:
+    - 6.327
+    - 6.327
+    - 9.69
+    mean: 7.448
 nali:
   ccsd(t):
     diagonal:
@@ -1778,6 +2306,12 @@ nali:
     - 44.434
     mean: 33.13333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 26.42
+    - 26.42
+    - 44.353
+    mean: 32.39766666666667
 nco:
   ccsd(t):
     diagonal:
@@ -1798,6 +2332,12 @@ nco:
     - 4.782
     mean: 3.1186666666666665
   spin: SP
+  spw92:
+    diagonal:
+    - 2.362
+    - 2.362
+    - 4.917
+    mean: 3.2136666666666667
 ne:
   ccsd(t):
     diagonal:
@@ -1818,6 +2358,12 @@ ne:
     - 0.417
     mean: 0.417
   spin: NSP
+  spw92:
+    diagonal:
+    - 0.452
+    - 0.452
+    - 0.452
+    mean: 0.452
 nh:
   ccsd(t):
     diagonal:
@@ -1838,6 +2384,12 @@ nh:
     - 1.751
     mean: 1.505
   spin: SP
+  spw92:
+    diagonal:
+    - 1.483
+    - 1.483
+    - 1.885
+    mean: 1.617
 nh2:
   ccsd(t):
     diagonal:
@@ -1858,6 +2410,12 @@ nh2:
     - 1.984
     mean: 1.8303333333333331
   spin: SP
+  spw92:
+    diagonal:
+    - 1.754
+    - 2.012
+    - 2.181
+    mean: 1.9823333333333333
 nh2cl:
   ccsd(t):
     diagonal:
@@ -1878,6 +2436,12 @@ nh2cl:
     - 5.077
     mean: 4.028666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.7
+    - 3.715
+    - 5.229
+    mean: 4.214666666666667
 nh2f:
   ccsd(t):
     diagonal:
@@ -1898,6 +2462,12 @@ nh2f:
     - 2.105
     mean: 2.2273333333333336
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.3
+    - 2.54
+    - 2.252
+    mean: 2.364
 nh2oh:
   ccsd(t):
     diagonal:
@@ -1918,6 +2488,12 @@ nh2oh:
     - 2.515
     mean: 2.8343333333333334
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.92
+    - 3.425
+    - 2.7
+    mean: 3.015
 nh3:
   ccsd(t):
     diagonal:
@@ -1938,6 +2514,12 @@ nh3:
     - 2.323
     mean: 2.135
   spin: NSP
+  spw92:
+    diagonal:
+    - 2.167
+    - 2.167
+    - 2.605
+    mean: 2.313
 nh3o:
   ccsd(t):
     diagonal:
@@ -1958,6 +2540,12 @@ nh3o:
     - 3.914
     mean: 3.1493333333333333
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.077
+    - 3.077
+    - 4.487
+    mean: 3.547
 'no':
   ccsd(t):
     diagonal:
@@ -1978,6 +2566,12 @@ nh3o:
     - 2.289
     mean: 1.7870000000000001
   spin: SP
+  spw92:
+    diagonal:
+    - 1.676
+    - 1.676
+    - 2.379
+    mean: 1.9103333333333332
 nocl:
   ccsd(t):
     diagonal:
@@ -1998,6 +2592,12 @@ nocl:
     - 3.397
     mean: 5.012333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 4.977
+    - 7.031
+    - 3.519
+    mean: 5.175666666666666
 np:
   ccsd(t):
     diagonal:
@@ -2018,6 +2618,12 @@ np:
     - 5.435
     mean: 4.207
   spin: SP
+  spw92:
+    diagonal:
+    - 3.673
+    - 3.673
+    - 5.588
+    mean: 4.311333333333334
 o2:
   ccsd(t):
     diagonal:
@@ -2038,6 +2644,12 @@ o2:
     - 2.313
     mean: 1.587
   spin: SP
+  spw92:
+    diagonal:
+    - 1.287
+    - 1.287
+    - 2.294
+    mean: 1.6226666666666667
 o3:
   ccsd(t):
     diagonal:
@@ -2058,6 +2670,12 @@ o3:
     - 2.13
     mean: 2.763666666666667
   spin: SP
+  spw92:
+    diagonal:
+    - 1.829
+    - 4.621
+    - 2.228
+    mean: 2.892666666666667
 ocl:
   ccsd(t):
     diagonal:
@@ -2078,6 +2696,12 @@ ocl:
     - 4.221
     mean: 3.1283333333333334
   spin: SP
+  spw92:
+    diagonal:
+    - 2.735
+    - 2.735
+    - 4.291
+    mean: 3.2536666666666663
 ocl2:
   ccsd(t):
     diagonal:
@@ -2098,6 +2722,12 @@ ocl2:
     - 4.691
     mean: 5.672999999999999
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.563
+    - 8.544
+    - 4.89
+    mean: 5.999
 of:
   ccsd(t):
     diagonal:
@@ -2118,6 +2748,12 @@ of:
     - 2.057
     mean: 1.457
   spin: SP
+  spw92:
+    diagonal:
+    - 1.276
+    - 1.276
+    - 2.151
+    mean: 1.5676666666666665
 of2:
   ccsd(t):
     diagonal:
@@ -2138,6 +2774,12 @@ of2:
     - 1.997
     mean: 2.155
   spin: SP
+  spw92:
+    diagonal:
+    - 1.593
+    - 3.115
+    - 2.073
+    mean: 2.2603333333333335
 oh:
   ccsd(t):
     diagonal:
@@ -2158,6 +2800,12 @@ oh:
     - 1.291
     mean: 1.2076666666666667
   spin: SP
+  spw92:
+    diagonal:
+    - 1.306
+    - 1.306
+    - 1.379
+    mean: 1.3303333333333334
 p:
   ccsd(t):
     diagonal:
@@ -2178,6 +2826,12 @@ p:
     - 3.955
     mean: 3.955
   spin: SP
+  spw92:
+    diagonal:
+    - 4.161
+    - 4.161
+    - 4.161
+    mean: 4.161
 p2:
   ccsd(t):
     diagonal:
@@ -2198,6 +2852,12 @@ p2:
     - 10.294
     mean: 7.454000000000001
   spin: SP
+  spw92:
+    diagonal:
+    - 6.13
+    - 6.13
+    - 10.458
+    mean: 7.572666666666667
 p2h4:
   ccsd(t):
     diagonal:
@@ -2218,6 +2878,12 @@ p2h4:
     - 7.554
     mean: 8.665
   spin: NSP
+  spw92:
+    diagonal:
+    - 7.828
+    - 11.376
+    - 7.896
+    mean: 9.033333333333333
 ph:
   ccsd(t):
     diagonal:
@@ -2238,6 +2904,12 @@ ph:
     - 4.499
     mean: 4.222333333333332
   spin: SP
+  spw92:
+    diagonal:
+    - 4.318
+    - 4.318
+    - 4.729
+    mean: 4.454999999999999
 ph2:
   ccsd(t):
     diagonal:
@@ -2258,6 +2930,12 @@ ph2:
     - 4.636
     mean: 4.454666666666667
   spin: SP
+  spw92:
+    diagonal:
+    - 4.467
+    - 4.718
+    - 4.895
+    mean: 4.6933333333333325
 ph2oh:
   ccsd(t):
     diagonal:
@@ -2278,6 +2956,12 @@ ph2oh:
     - 4.988
     mean: 5.015333333333333
   spin: NSP
+  spw92:
+    diagonal:
+    - 5.281
+    - 5.323
+    - 5.259
+    mean: 5.2876666666666665
 ph3:
   ccsd(t):
     diagonal:
@@ -2298,6 +2982,12 @@ ph3:
     - 4.779
     mean: 4.600333333333333
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.707
+    - 4.707
+    - 5.073
+    mean: 4.829
 ph3o:
   ccsd(t):
     diagonal:
@@ -2318,6 +3008,12 @@ ph3o:
     - 4.957
     mean: 4.435666666666666
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.43
+    - 4.43
+    - 5.322
+    mean: 4.727333333333333
 ps:
   ccsd(t):
     diagonal:
@@ -2338,6 +3034,12 @@ ps:
     - 9.382
     mean: 6.580000000000001
   spin: SP
+  spw92:
+    diagonal:
+    - 5.655
+    - 5.655
+    - 9.609
+    mean: 6.973
 s2:
   ccsd(t):
     diagonal:
@@ -2358,6 +3060,12 @@ s2:
     - 8.768
     mean: 6.062
   spin: SP
+  spw92:
+    diagonal:
+    - 4.88
+    - 4.88
+    - 8.756
+    mean: 6.172
 s2h2:
   ccsd(t):
     diagonal:
@@ -2378,6 +3086,12 @@ s2h2:
     - 5.727
     mean: 6.642
   spin: NSP
+  spw92:
+    diagonal:
+    - 6.028
+    - 8.766
+    - 5.997
+    mean: 6.9303333333333335
 scl:
   ccsd(t):
     diagonal:
@@ -2398,6 +3112,12 @@ scl:
     - 7.325
     mean: 5.449000000000001
   spin: SP
+  spw92:
+    diagonal:
+    - 4.774
+    - 4.774
+    - 7.626
+    mean: 5.724666666666667
 scl2:
   ccsd(t):
     diagonal:
@@ -2418,6 +3138,12 @@ scl2:
     - 7.129
     mean: 7.676666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 5.966
+    - 10.706
+    - 7.39
+    mean: 8.020666666666667
 sf:
   ccsd(t):
     diagonal:
@@ -2438,6 +3164,12 @@ sf:
     - 3.651
     mean: 3.4629999999999996
   spin: SP
+  spw92:
+    diagonal:
+    - 3.626
+    - 3.626
+    - 3.833
+    mean: 3.6950000000000003
 sf2:
   ccsd(t):
     diagonal:
@@ -2458,6 +3190,12 @@ sf2:
     - 3.51
     mean: 3.565
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.577
+    - 4.033
+    - 3.686
+    mean: 3.765333333333333
 sh:
   ccsd(t):
     diagonal:
@@ -2478,6 +3216,12 @@ sh:
     - 3.539
     mean: 3.581666666666667
   spin: SP
+  spw92:
+    diagonal:
+    - 3.844
+    - 3.844
+    - 3.698
+    mean: 3.7953333333333332
 sh2:
   ccsd(t):
     diagonal:
@@ -2498,6 +3242,12 @@ sh2:
     - 3.653
     mean: 3.6993333333333336
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.044
+    - 3.804
+    - 3.833
+    mean: 3.8936666666666664
 sih3:
   ccsd(t):
     diagonal:
@@ -2518,6 +3268,12 @@ sih3:
     - 5.187
     mean: 5.1610000000000005
   spin: SP
+  spw92:
+    diagonal:
+    - 5.45
+    - 5.45
+    - 5.622
+    mean: 5.5073333333333325
 sih3cl:
   ccsd(t):
     diagonal:
@@ -2538,6 +3294,12 @@ sih3cl:
     - 7.349
     mean: 6.323666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 6.141
+    - 6.141
+    - 7.792
+    mean: 6.691333333333333
 sih3f:
   ccsd(t):
     diagonal:
@@ -2558,6 +3320,12 @@ sih3f:
     - 3.983
     mean: 4.248333333333334
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.685
+    - 4.685
+    - 4.247
+    mean: 4.539
 sih4:
   ccsd(t):
     diagonal:
@@ -2578,6 +3346,12 @@ sih4:
     - 4.74
     mean: 4.74
   spin: NSP
+  spw92:
+    diagonal:
+    - 5.061
+    - 5.061
+    - 5.061
+    mean: 5.061
 sio:
   ccsd(t):
     diagonal:
@@ -2598,6 +3372,12 @@ sio:
     - 5.013
     mean: 4.405
   spin: NSP
+  spw92:
+    diagonal:
+    - 4.182
+    - 4.182
+    - 5.274
+    mean: 4.546
 so-trip:
   ccsd(t):
     diagonal:
@@ -2618,6 +3398,12 @@ so-trip:
     - 4.384
     mean: 3.473333333333333
   spin: SP
+  spw92:
+    diagonal:
+    - 3.176
+    - 3.176
+    - 4.452
+    mean: 3.6013333333333333
 so2:
   ccsd(t):
     diagonal:
@@ -2638,3 +3424,9 @@ so2:
     - 3.387
     mean: 3.741666666666667
   spin: NSP
+  spw92:
+    diagonal:
+    - 3.017
+    - 5.098
+    - 3.568
+    mean: 3.8943333333333334
