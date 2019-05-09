@@ -8,6 +8,7 @@ testfiles/
 *.pyc
 *.inp
 *.png
+stat_pol_analysis/analysis.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
