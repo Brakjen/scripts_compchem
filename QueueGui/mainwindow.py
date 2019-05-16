@@ -238,7 +238,7 @@ class MainWindow(tk.Frame):
         
         # Total number of CPU on Stallo, taken from
         # https://www.sigma2.no/content/stallo
-        cpu_stallo_total = float(14116)
+        cpu_stallo_total = float(13796)
         
         # all jobs in queue
         q = map(lambda x: x.split(), q)
