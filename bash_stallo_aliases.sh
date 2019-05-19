@@ -6,7 +6,7 @@ alias bashed="vim ~/.bashrc"
 alias killall="scancel -t PENDING -u ambr; scancel -t RUNNING -u ambr"
 alias vi="vim"
 alias bashsource="source $HOME/.bashrc"
-alias checkout_mrc="for i in *.out; do echo $(normaltermination_mrchem.py $i) $i; done"
+alias checkout_mrc="for i in *.out; do echo $(~/bin/normaltermination_mrchem.py $i) $i; done"
 
 if [ $(echo $PWD | cut -d"/" -f2) == "cluster" ]; then
     alias queuegui="python $HOME/scripts_compchem/QueueGui-fram/queuegui.py"
