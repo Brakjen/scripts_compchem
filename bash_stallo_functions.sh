@@ -215,3 +215,8 @@ for i in ./*; do
 done
 }
 
+function checkout_mrc() {
+for file in *.out; do
+    echo $(normaltermination_mrchem.py $file) $file
+done
+}
