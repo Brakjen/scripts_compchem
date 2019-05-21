@@ -182,6 +182,14 @@ class OrcaOut(object):
                 break
         return v
 
+    def dipole_vector(self):
+        """Return a list of floats containing the dipole vector components"""
+        for line in self.content():
+            if line.strip().startswith("Total Dipole Moment"):
+                return line.split()[4:]
+            else:
+                return None
+
 
 # This class may not be useful for anything.....
 class OrcaIn(object):
