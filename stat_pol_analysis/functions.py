@@ -2,6 +2,7 @@ import sys, os, glob, pandas, operator, yaml, shutil
 from pprint import pprint
 sys.path.append("/Users/{}/Documents/github/computational_chemistry".format(os.getenv("USER")))
 from MRChem import MrchemOut
+from Orca import OrcaOut
 
 def get_HG_data(datafile, functionals=[]):
     """
@@ -190,7 +191,7 @@ def get_mw_pol_fdu(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
                     ID = "_".join([mol, func, field, dirr]) + ".out"
 
                     # Avoid duplicates by making sure 'ID' is only the positive field jobs
-                    if "-0001" in ID:
+                    if fields[1] in ID:
                         continue
    
                     # Now loop over the rawdata and compute the diagonal elements
@@ -200,7 +201,10 @@ def get_mw_pol_fdu(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
                     for i, job in enumerate(jobs):
                         if ID == job[index["filename"]] and "_x" in ID:
                             data[mol][func]["diagonal"][0] = (float(jobs[i][index["u_x"]]) - float(jobs[i+1][index["u_x"]])) / 2 / fieldstrength / bohr_to_ang**3
-                            data[mol]["multiplicity"] = int(jobs[i][index["multiplicity"]])
+                            try:
+                                data[mol]["multiplicity"] = int(jobs[i][index["multiplicity"]])
+                            except KeyError:
+                                data[mol]["multiplicity"] = "na"
                         elif ID == job[index["filename"]] and "_y" in ID:
                             data[mol][func]["diagonal"][1] = (float(jobs[i][index["u_y"]]) - float(jobs[i+1][index["u_y"]])) / 2 / fieldstrength / bohr_to_ang**3
                         elif ID == job[index["filename"]] and "_z" in ID:
@@ -212,7 +216,7 @@ def get_mw_pol_fdu(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
     with open("mw_data.yaml", "w") as f:
         yaml.dump(data, f, default_flow_style=False)
     return data
-    
+
 def get_mw_pol_fde(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
     """
     Extract relavant pol information from rawdata, and construct a dictionary to store
@@ -262,7 +266,7 @@ def get_mw_pol_fde(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
                     ID = "_".join([mol, func, field, dirr]) + ".out"
 
                     # Avoid duplicates by making sure 'ID' is only the positive field jobs
-                    if "-0001" in ID:
+                    if fields[1] in ID:
                         continue
    
                     # Now loop over the rawdata and compute the diagonal elements
@@ -274,7 +278,10 @@ def get_mw_pol_fde(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
                         if ID == job[index["filename"]] and "_x" in ID:
 
                             data[mol][func]["diagonal"][0] = -(float(jobs[i][index["energy"]]) + float(jobs[i+1][index["energy"]]) - 2*float(jobs[i-1][index["energy"]])) / fieldstrength**2 / bohr_to_ang**3
-                            data[mol]["multiplicity"] = int(jobs[i][index["multiplicity"]])
+                            try:
+                                data[mol]["multiplicity"] = int(jobs[i][index["multiplicity"]])
+                            except KeyError:
+                                data[mol]["multiplicity"] = "na"
 
                         elif ID == job[index["filename"]] and "_y" in ID:
                             data[mol][func]["diagonal"][1] = -(float(jobs[i][index["energy"]]) + float(jobs[i+1][index["energy"]]) - 2*float(jobs[i-3][index["energy"]])) / fieldstrength**2 / bohr_to_ang**3
@@ -288,3 +295,88 @@ def get_mw_pol_fde(rawdatafile, fieldstrength=0.001, bohr_to_ang=1.8897162):
         yaml.dump(data, f, default_flow_style=False)
     return data
 
+def get_mw_pol_response(datadir, bohr_to_ang=1.8897162):
+    """
+    Extracts polarizabilities from MRChem output files.
+    
+    Parameters:
+    - datadir        path to directory containing all output files
+    - bohr-to-ang    conversion factor from bohr to angstrom (default: 1.8897162)
+    """
+    
+    outputfiles = glob.glob(datadir+"/"+"*.out")
+    data = {}
+    for job in outputfiles:
+        if not MrchemOut(job).normaltermination():
+            continue
+
+        # Get molecule
+        mol  = os.path.basename(job).split(".")[0]
+        data[mol] = {}
+
+        with open(job.replace(".out", ".inp")) as f: lines = f.readlines()
+
+        for i, line in enumerate(lines):
+            if line.strip().startswith("$functionals"):
+                func = lines[i+1].strip().lower()
+        
+        data[mol][func] = {}
+        data[mol][func]["diagonal"] = map(lambda x: x / bohr_to_ang**3, MrchemOut(job).polarizability_diagonal(unit="au"))
+        data[mol][func]["mean"] = sum(data[mol][func]["diagonal"]) / 3
+        
+    return data
+
+
+def get_pol_data_orca(datadir):
+    """
+    Extract information about each Orca calculation, and store as a CSV file.
+    Return the CSV filename.
+
+    Parameters:
+    datadir       name of dir where output and input files are stored (not full path)
+    """
+    cwd = os.getcwd()
+    # Get all relevant output files in a list
+    datafiles = os.path.join(os.getcwd(), datadir)
+
+    files = glob.glob("{}/*.out".format(datafiles))
+    molecules = set(map(lambda x: os.path.basename(x).split("_")[0], files))
+    functionals = set(map(lambda x: os.path.basename(x).split("_")[1], files))
+    
+    error_files = filter(lambda f: not OrcaOut(f).normaltermination(), files)
+    error_molecules = set(map(lambda x: os.path.basename(x).split("_")[0], error_files))
+    print("Skipping these due to bad termination: {}".format(", ".join(error_molecules)))
+    
+    # now we construct the dict and fill with information from filenames
+    # this dict will contain the raw data for each MRChem calculation
+    rawdata = {}
+    rawdata["molecule"] =    [os.path.basename(f).split("_")[0] for f in files if os.path.basename(f).split("_")[0] not in error_molecules]
+    rawdata["functional"] = [os.path.basename(f).split("_")[1] for f in files if os.path.basename(f).split("_")[0] not in error_molecules]
+    rawdata["direction"] =  [stem(os.path.basename(f)).split("_")[3] if len(stem(os.path.basename(f)).split("_")) == 4 else "non" for f in files if os.path.basename(f).split("_")[0] not in error_molecules]
+    rawdata["field"] = [decimal(stem(os.path.basename(f)).split("_")[2]) for f in files if os.path.basename(f).split("_")[0] not in error_molecules]
+    rawdata["energy"] = []
+    rawdata["u_x"] = []
+    rawdata["u_y"] = []
+    rawdata["u_z"] = []
+    rawdata["filename"] = []
+    rawdata["no_scf_cycles"] = []
+    rawdata["walltime"] = []
+    
+    
+    # now collect the remaining information
+    # and add them to the dict
+    for f in files:
+        if os.path.basename(f).split("_")[0] in error_molecules:
+            continue
+        output = OrcaOut(f)
+        rawdata["energy"].append(output.scf_energy()[-1])
+        rawdata["u_x"].append(output.dipole_vector()[0])
+        rawdata["u_y"].append(output.dipole_vector()[1])
+        rawdata["u_z"].append(output.dipole_vector()[2])
+        rawdata["filename"].append(os.path.basename(output.filename))
+        rawdata["no_scf_cycles"].append(output.no_scfcycles())
+        rawdata["walltime"].append(output.walltime())
+
+    # now write raw data to CSV file using a useful pandas command
+    pandas.DataFrame(rawdata).to_csv(os.path.join(cwd, "orca_rawdata.csv"))
+    return rawdata

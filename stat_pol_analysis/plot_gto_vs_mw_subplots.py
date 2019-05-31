@@ -4,28 +4,30 @@ import matplotlib.pyplot as plt
 import sys, operator
 
 # Get data structures
-hg_data  = f.get_HG_data("hg_data.csv", ["ccsd(t)", "pbe", "spw92"])
-mw_data  = f.get_mw_pol_fdu("mw_rawdata.csv")
+data1 = f.get_HG_data("hg_data.csv", ["pbe", "spw92", "ccsd(t)"])
+data2 = f.get_mw_pol_fdu("mw_rawdata_001.csv", fieldstrength=0.01)
+data3 = f.get_mw_pol_response("datafiles_lda_response")
 
-# Now produce some plots. To make the comparisons easier, we compare the mean polarizabilities for each molecule.
-
-# 4 molecules are missing from the MW dataset, so we base all comparisons on the keys of mw_data
-molecules = [mol for mol in mw_data.keys()]
+# Only use molecules common in both data sets
+skip = []
+molecules = []
+for mol in data1.keys() + data2.keys():
+    if mol in data1.keys() and mol in data2.keys() and mol not in skip and mol not in molecules:
+        molecules.append(mol)
 
 # Define the xticks for the plots
 xticks = range(len(molecules))
 
 # Now extract the data we want: relative errors for the mean polarizability for each molecule
-rel_err = [100 * (hg_data[mol]["spw92"]["mean"] / mw_data[mol]["lda"]["mean"] - 1) for mol in molecules]
-rel_err_mw_cc = [100 * (mw_data[mol]["lda"]["mean"] / hg_data[mol]["ccsd(t)"]["mean"] - 1) for mol in molecules]
-rel_err_gto_cc = [100 * (hg_data[mol]["spw92"]["mean"] / hg_data[mol]["ccsd(t)"]["mean"] - 1) for mol in molecules]
-
+rel_err_mw_gto = [100 * (data1[mol]["pbe"]["mean"] / data2[mol]["pbe"]["mean"] - 1) for mol in molecules]
+rel_err_mw_cc = [100 * (data2[mol]["pbe"]["mean"] / data1[mol]["ccsd(t)"]["mean"] - 1) for mol in molecules]
+rel_err_gto_cc = [100 * (data1[mol]["pbe"]["mean"] / data1[mol]["ccsd(t)"]["mean"] - 1) for mol in molecules]
 
 # Sort data based on the PBE relative error results
-molecules_sorted, rel_err_sorted, rel_err_mw_cc_sorted, rel_err_gto_cc_sorted = zip(*sorted(zip(molecules, rel_err, rel_err_mw_cc, rel_err_gto_cc), reverse=True, key=operator.itemgetter(1)))
+molecules_sorted, rel_err_mw_gto_sorted, rel_err_mw_cc_sorted, rel_err_gto_cc_sorted = zip(*sorted(zip(molecules, rel_err_mw_gto, rel_err_mw_cc, rel_err_gto_cc), reverse=True, key=operator.itemgetter(1)))
 
 # Define edge colors based on spin polarizability
-spin_colors = ["deepskyblue" if hg_data[mol]["spin"] == "NSP" else "crimson" for mol in molecules_sorted]
+spin_colors = ["deepskyblue" if data1[mol]["spin"] == "NSP" else "crimson" for mol in molecules_sorted]
 
 # Set up the figure with subplots
 fontsize = 14
@@ -41,11 +43,7 @@ fig.text(0.01, 0.5, "Relative Error [%]", fontsize=fontsize, rotation=90, ha="ce
 
 # Plot data
 for i in range(len(molecules_sorted)):
-    mult = mw_data[molecules_sorted[i]]["multiplicity"]
-    offset = [0.2 if rel_err_sorted[i] > 0 else -0.2 for mol in molecules_sorted]
-
-    ax1.text(xticks[i], rel_err_sorted[i]+offset[i], str(mult), ha="center", va="center", fontsize=12, rotation=90)
-    ax1.bar(xticks[i], rel_err_sorted[i], color=spin_colors[i], edgecolor="black", width=width)
+    ax1.bar(xticks[i], rel_err_mw_gto_sorted[i], color=spin_colors[i], edgecolor="black", width=width)
 
     # Plot both relative error for gto and mw compared to cc ref.
     ax2.bar(xticks[i], rel_err_gto_cc_sorted[i], color="#264040", edgecolor="black", width=width)

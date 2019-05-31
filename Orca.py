@@ -71,7 +71,7 @@ class OrcaOut(object):
     def no_scfcycles(self):
         """Return a list of floats containing the number of SCF iterations needed for converging each geom step"""
         c = filter(lambda x: ' '.join(x.split()).startswith("* SCF CONVERGED AFTER"), self.content())
-        return map(int, map(lambda x: x.split()[4], c))
+        return map(int, map(lambda x: x.split()[4], c))[0]
 
     #@timeit
     def walltime(self):
@@ -186,9 +186,8 @@ class OrcaOut(object):
         """Return a list of floats containing the dipole vector components"""
         for line in self.content():
             if line.strip().startswith("Total Dipole Moment"):
-                return line.split()[4:]
-            else:
-                return None
+                u = line.split()[4:]
+        return u
 
 
 # This class may not be useful for anything.....
