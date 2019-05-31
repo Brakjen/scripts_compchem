@@ -181,26 +181,6 @@ function lspid() {
 job=$(echo $1 | cut -d"." -f1)
 ls $job* | egrep '.*\.[0-9]{2,}'
 }
-
-
-
-# Do git pull in order to update the local git repo on stallo, and then make symlinks to bin
-function updatescripts() {
-DIR=$HOME/scripts_compchem
-CURR_DIR=$PWD
-cd $DIR
-git checkout .
-git pull origin master
-cd $CURR_DIR
-
-for file in $(find $DIR/* -name "*.py" -or -name "*.sh"); do
-    if [ -L $HOME/bin/$(basename $file) ]; then
-        unlink $HOME/bin/$(basename $file)
-    fi
-    ln -s $file $HOME/bin/$(basename $file)
-done
-chmod +x $HOME/bin*
-}
 function prio {
 scontrol show jobid $1 | grep 'Priority' | head -1 | cut -d'N' -f1 | cut -d'=' -f2
 }
