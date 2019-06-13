@@ -2,6 +2,7 @@
 import sys
 import matplotlib.pyplot as plt
 import time
+import numpy as np
 
 # Define the class MrchemOut, which will be MRChem output files.
 class MrchemOut(object):
@@ -162,35 +163,39 @@ class MrchemOut(object):
     #@timeit
     def plot_scf_energy(self):
         """Return a graph plotting the potential energies"""
-        
-        # define the energies, energy_change x values, and orbital convergence threshold
-        e = self.scf_energy()
-        x_e = range(1, len(e)+1)
-        x_delta_e = x_e[0:-1]
-        t = [self.property_threshold() for i in range(len(e) - 1)]
-        t_plus  = t[0] + 10*t[0] #reusing the threshold from variable "t"
-        t_minus = -1*t[0] - 10*t[0]
 
-        delta_e = []
-        for i, energy in enumerate(e):
-            if i == 0:
-                continue
-            delta_e.append(e[i] - e[i-1])
+        # Determine which of the convergence thresholds that were used for the optimizastion:
+        # orbital_thrs, property_thrs, or both.
+        orb = True if self.orbital_threshold() != -1 else False
+        prop = True if self.property_threshold() != -1 else False
+        prop_thrs = self.property_threshold()
+        orb_thrs = self.orbital_threshold()
 
-        fig = plt.figure(figsize=(12,5), dpi=50)
-        plt.subplots_adjust(wspace=0.27)
+        energies = self.scf_energy()
+        delta_e = [energies[i] - energies[i - 1] for i in range(1, len(energies))]
+        x_delta_e = range(1, len(delta_e) + 1)
 
-        plt.subplot(1, 2, 1)
-        plt.plot(x_e, e, "black", linewidth=2)
-        plt.ylabel("Total Energy [a.u]")
-        plt.xlabel("SCF iteration")
+        orb_err = self.orbital_total_error()
+        x_orb_err = range(1, len(orb_err) + 1)
 
-        plt.subplot(1, 2, 2)
-        plt.plot(x_delta_e, delta_e, "black", x_delta_e, map(lambda x: -1*x, t), "r--", x_delta_e, t, "r--", linewidth=2.0)
-        plt.ylabel("Energy Change [a.u]")
-        plt.xlabel("SCF iteration")
-        plt.ylim(t_minus, t_plus)
+        property_thresholds = np.asarray([prop_thrs for i in range(len(delta_e))])
+        orbital_thrsholds = np.asarray([orb_thrs for i in range(len(orb_err))])
 
+        fig = plt.Figure(figsize=(15, 5), dpi=100)
+        ax = plt.gca()
+        ax.plot(x_delta_e, map(lambda x: abs(x), delta_e), color="red", marker="o", markersize=2, mfc="black", mec="black", label="Energy change")
+        ax.plot(x_orb_err, orb_err, color="blue", marker="o", markersize=2, mfc="black", mec="black", label="Orbital energy error")
+        ax.set_ylabel("Total Energy [a.u]")
+        ax.set_xlabel("SCF iteration")
+        ax.set_yscale("log")
+        if orb:
+            ax.plot(x_orb_err, orbital_thrsholds, color="blue", linestyle="--", linewidth=1, label="orbital_thrs")
+        if prop:
+            ax.plot(x_delta_e, property_thresholds, color="red", linestyle="--", linewidth=1, label="property_thrs")
+
+        ax.legend()
+        plt.grid(axis="both")
+        plt.tight_layout()
         return plt.show()
 
     #@timeit
@@ -201,6 +206,13 @@ class MrchemOut(object):
                 return float(line.strip().split()[3])
         return
 
+    def orbital_total_error(self):
+        """Return a list of floats containing the total error for the orbitals for each SCF iteration."""
+        err = []
+        for i, line in enumerate(self.content()):
+            if line.strip().startswith("Orbitals"):
+                err.append(float(list(self.content())[i + 3 + self.no_orbitals() + 2].split()[2]))
+        return err
 
     #@timeit
     def orbital_threshold(self):
