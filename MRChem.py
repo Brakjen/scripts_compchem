@@ -3,6 +3,7 @@ import sys
 import matplotlib.pyplot as plt
 import time
 import numpy as np
+import os
 
 # Define the class MrchemOut, which will be MRChem output files.
 class MrchemOut(object):
@@ -161,7 +162,7 @@ class MrchemOut(object):
         return map(float, map(lambda x: x.strip().split()[-1], e))
 
     #@timeit
-    def plot_scf_energy(self):
+    def plot_scf_energy(self, title=None):
         """Return a graph plotting the potential energies"""
 
         # Determine which of the convergence thresholds that were used for the optimizastion:
@@ -182,6 +183,7 @@ class MrchemOut(object):
         orbital_thrsholds = np.asarray([orb_thrs for i in range(len(orb_err))])
 
         fig = plt.Figure(figsize=(15, 5), dpi=100)
+        plt.title("Job {}: {}".format(title, os.path.basename(self.filename)))
         ax = plt.gca()
         ax.plot(x_delta_e, map(lambda x: abs(x), delta_e), color="red", marker="o", markersize=2, mfc="black", mec="black", label="Energy change")
         ax.plot(x_orb_err, orb_err, color="blue", marker="o", markersize=2, mfc="black", mec="black", label="Orbital energy error")
