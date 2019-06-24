@@ -71,7 +71,7 @@ class OrcaOut(object):
     def no_scfcycles(self):
         """Return a list of floats containing the number of SCF iterations needed for converging each geom step"""
         c = filter(lambda x: ' '.join(x.split()).startswith("* SCF CONVERGED AFTER"), self.content())
-        return map(int, map(lambda x: x.split()[4], c))[0]
+        return map(int, map(lambda x: x.split()[4], c))
 
     #@timeit
     def walltime(self):
@@ -149,51 +149,90 @@ class OrcaOut(object):
                 tol = float(line.strip().split()[3])
                 break
         return tol
-        pass
 
     #@timeit
     def tol_maxstep(self):
-        """Return the Max Step convergence tolerance as float"""
-        tol = None
+        """Return the Max Step convergence tolerance as float
+        :return: float
+        """
         for line in self.content():
             if line.strip().startswith("MAX step"):
-                tol = float(line.strip().split()[3])
-                break
-        return tol
-        pass
+                return float(line.strip().split()[3])
 
     #@timeit
     def tol_rmsstep(self):
-        """Return the RMSD Step convergence tolerance as float"""
-        tol = None
+        """Return the RMSD Step convergence tolerance as float
+        :return: float
+        """
         for line in self.content():
             if line.strip().startswith("RMS step"):
-                tol = float(line.strip().split()[3])
-                break
-        return tol
-        pass
+                return float(line.strip().split()[3])
 
     #@timeit
     def orcaversion(self):
-        v = None
+        """
+        Return the version of ORCA as printed at the top of the output file
+        :return: str
+        """
         for line in self.content():
             if line.strip().startswith("Program Version"):
-                v = line.strip()
-                break
-        return v
+                return line.strip()
 
-    def dipole_vector(self):
-        """Return a list of floats containing the dipole vector components"""
+    def scf_convergence_tol_e(self):
+        """
+        Return the Energy change SCF convergence tolerance
+        :return: float
+        """
         for line in self.content():
-            if line.strip().startswith("Total Dipole Moment"):
-                u = line.split()[4:]
-        return u
+            if line.split()[:4] == ["Energy", "Change", "TolE", "...."]:
+                return float(line.split()[4])
 
-    def polarizability_diagonal(self):
-        content = list(self.content())
-        for i, line in enumerate(content):
-            if line.strip().startswith("diagonalized tensor:"):
-                return map(float, content[i+1].split())
+    def scf_convergence_1el(self):
+        """
+        Return the 1-Electron energy change SCF convergence tolerance
+        :return: float
+        """
+        for line in self.content():
+            if line.split()[:4] == ["1-El.", "energy", "change", "...."]:
+                return float(line.split()[4])
+
+    def plot_scf_convergence(self):
+        """
+        Plot the SCF convergences.
+        :return: plt.show()
+        """
+
+        pass
+
+    def scf_convergences(self):
+        """
+        Return each set of SCF optimization cycle summaries.
+        :return: list
+        """
+        output = list(self.content())
+        indeces = []
+        for i, line in enumerate(list(self.content())):
+            if line.strip().startswith("SCF ITERATIONS"):
+                start = i + 3
+                for j in xrange(200):
+                    try:
+                        if "***" in output[start+j] and ("Energy Check signals convergence" not in output[start+j] or "convergence achieved" not in output[start+j]):
+                            continue
+                    except IndexError:
+                        pass
+                    try:
+                        int(output[start+j].split()[0])
+                        continue
+                    except (ValueError, IndexError):
+                        stop = start + j - 1
+                        indeces.append({"start": start, "stop": stop})
+                        break
+
+        data = []
+        for index in indeces:
+            data.append(map(lambda x: x.strip(), output[index["start"]:index["stop"]+1]))
+
+        return [[line.strip() for line in cycle if not "***" in line] for cycle in data]
 
 
 # This class may not be useful for anything.....
