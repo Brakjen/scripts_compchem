@@ -234,6 +234,12 @@ class OrcaOut(object):
 
         return [[line.strip() for line in cycle if not "***" in line] for cycle in data]
 
+    def polarizability_diagonal(self):
+        output = list(self.content())
+        for i, line in enumerate(output):
+            if line.strip().startswith("diagonalized tensor:"):
+                return map(float, output[i+1].split())
+
 
 # This class may not be useful for anything.....
 class OrcaIn(object):
