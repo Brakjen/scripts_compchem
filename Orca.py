@@ -236,9 +236,13 @@ class OrcaOut(object):
 
     def polarizability_diagonal(self):
         output = list(self.content())
+        diag = []
         for i, line in enumerate(output):
-            if line.strip().startswith("diagonalized tensor:"):
-                return map(float, output[i+1].split())
+            if line.strip().startswith("The raw cartesian tensor"):
+                diag.append(output[i+1].split()[0])
+                diag.append(output[i+2].split()[1])
+                diag.append(output[i+3].split()[2])
+                return map(float, diag)
 
 
 # This class may not be useful for anything.....
