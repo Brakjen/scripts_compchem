@@ -71,7 +71,10 @@ args = parser.parse_args()
 if args.update:
     optimize()
 else:
-    print("Best account: {}".format(get_best_account()[1]))
+    prio = get_best_account()[1]
+    print("Fairshare points:")
+    for acc, prio in prio.items():
+        print("{}: {}".format(acc, prio))
 
 # Clean up
 for job in test_ids:
