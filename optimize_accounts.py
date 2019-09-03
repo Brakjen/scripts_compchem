@@ -44,7 +44,7 @@ def get_best_account():
         test_jobid = sub.Popen(cmd, stdout=sub.PIPE).stdout.read().split()[-1]
         prio[account] = get_priority(test_jobid)
         test_ids.append(test_jobid)
-    return max(prio, key=prio.get)
+    return max(prio, key=prio.get), prio
 
 def kill(jobid):
     "Kill the job"
@@ -57,7 +57,7 @@ def optimize():
     
     Therefore you can change back to the previous account if
     you want to, without losing priority."""
-    account = get_best_account()
+    account = get_best_account()[0]
     for job in get_id():
         cmd = ["scontrol", "update", "jobid={}".format(job), "account={}".format(account)]
         sub.call(cmd)
@@ -71,7 +71,7 @@ args = parser.parse_args()
 if args.update:
     optimize()
 else:
-    print("Best account: {}".format(get_best_account()))
+    print("Best account: {}".format(get_best_account()[1]))
 
 # Clean up
 for job in test_ids:
