@@ -1,5 +1,6 @@
 import subprocess as sub
 import argparse
+import os
 
 def get_user():
     "Get the current user"
@@ -33,10 +34,13 @@ def get_priority(jobid):
 def get_best_account():
     "Return the account which has the highest initial priority"
     prio = {account: 0 for account in get_user_accounts()}
-    global test_ids
+    global test_ids, test_files
     test_ids = []
+    test_files = []
     for account in prio.keys():
-        filename = "test_{}".format(account)
+        filename = os.path.join(os.getcwd(), "test_{}".format(account))
+        test_files.append(filename)
+
         with open(filename, "w") as f:
                 f.write("#!/bin/bash\n")
                 f.write("#SBATCH --account={}\n".format(account))
@@ -79,3 +83,6 @@ else:
 # Clean up
 for job in test_ids:
     kill(job)
+
+for f in test_files:
+    os.remove(f)
