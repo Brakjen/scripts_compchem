@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import subprocess as sub
 import argparse
 import os
