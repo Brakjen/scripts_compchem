@@ -63,7 +63,8 @@ class OrcaOut(object):
     
     #@timeit
     def scf_energy(self):
-        """Return a list of floats containing the optimized SCF energies"""
+        """Return a list of floats containing the optimized SCF energies.
+        Note that these values INCLUDE the dispersion correction if present."""
         e = filter(lambda x: x.strip().startswith("FINAL SINGLE POINT ENERGY"), self.content())
         return map(float, map(lambda x: x.split()[4], e))
 
@@ -244,6 +245,36 @@ class OrcaOut(object):
                 diag.append(output[i+3].split()[2])
                 return map(float, diag)
 
+    def dispersion_correction(self):
+        """
+        Return the last print statement of the Dispersion correction. If not found,
+        raise NoDispersionCorrection exception.
+        :return:
+        """
+        for line in reversed(list(self.content())):
+            if line.strip().startswith("Dispersion correction  ") and len(line.split()) == 3:
+                return float(line.split()[-1])
+        else:
+            raise NoDispersionCorrection("No dispersion correction found")
+
+    def zero_point_energy_correction(self):
+        """
+        Return the last print statement of the Zero-point energy correction. If not found,
+        raise NoZPECorrection exception.
+        :return:
+        """
+        for line in reversed(list(self.content())):
+            if line.strip().startswith("Non-thermal (ZPE) correction"):
+                return float(line.split()[3])
+        else:
+            raise NoZPECorrection("No ZPE correction found")
+
+
+class NoDispersionCorrection(Exception):
+    pass
+
+class NoZPECorrection(Exception):
+    pass
 
 # This class may not be useful for anything.....
 class OrcaIn(object):
