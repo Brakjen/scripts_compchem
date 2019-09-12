@@ -269,12 +269,26 @@ class OrcaOut(object):
         else:
             raise NoZPECorrection("No ZPE correction found")
 
+    def final_total_energy(self):
+        """
+        Return the final total energy. Note that this value does NOT INCLUDE the D3 correction.
+        :return:
+        """
+        for line in reversed(list(self.content())):
+            if line.strip().startswith("Total Energy"):
+                return float(line.split()[3])
+        else:
+            raise BadTermination("Possibly bad termination. Check output file!")
+
 
 class NoDispersionCorrection(Exception):
     pass
 
 
 class NoZPECorrection(Exception):
+    pass
+
+class BadTermination(Exception):
     pass
 
 
