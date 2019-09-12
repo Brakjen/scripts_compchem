@@ -45,7 +45,7 @@ import sys
 fragment1 = sys.argv[1]
 fragment2 = sys.argv[2]
 try:
-    jobname = sys.argv[3]+".inp"
+    jobname = sys.argv[3]
 except IndexError:
     jobname = "counterpoise.inp"
 
@@ -82,7 +82,7 @@ with open(jobname, "w") as f:
     f.write("\tNew_Step\n")
     f.write("\t\t!keywords\n")
     f.write("\t\t%Pal NProcs 16 End\n")
-    f.write("\t\t* xyz charge multiplicity\n")
+    f.write("\t\t* xyz charge_f1 multiplicity_f1\n")
     for atom in fragment1_coord:
         f.write("\t\t"+atom + "\n")
     f.write("\t\t*\n")
@@ -94,7 +94,7 @@ with open(jobname, "w") as f:
     f.write("\tNew_Step\n")
     f.write("\t\t!keywords\n")
     f.write("\t\t%Pal NProcs 16 End\n")
-    f.write("\t\t* xyz charge multiplicity\n")
+    f.write("\t\t* xyz charge_f1 multiplicity_f1\n")
     for atom in fragment1_coord_complexbasis:
         f.write("\t\t"+atom + "\n")
     f.write("\t\t*\n")
@@ -106,7 +106,7 @@ with open(jobname, "w") as f:
     f.write("\tNew_Step\n")
     f.write("\t\t!keywords\n")
     f.write("\t\t%Pal NProcs 16 End\n")
-    f.write("\t\t* xyz charge multiplicity\n")
+    f.write("\t\t* xyz charge_f2 multiplicity_f2\n")
     for atom in fragment2_coord:
         f.write("\t\t"+atom + "\n")
     f.write("\t\t*\n")
@@ -118,7 +118,7 @@ with open(jobname, "w") as f:
     f.write("\tNew_Step\n")
     f.write("\t\t!keywords\n")
     f.write("\t\t%Pal NProcs 16 End\n")
-    f.write("\t\t* xyz charge multiplicity\n")
+    f.write("\t\t* xyz charge_f2 multiplicity_f2\n")
     for atom in fragment2_coord_complexbasis:
         f.write("\t\t"+atom + "\n")
     f.write("\t\t*\n")
