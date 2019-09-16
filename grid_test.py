@@ -25,9 +25,11 @@ parser.add_argument("--mult_f1", type=int, required=True, metavar="n",
 parser.add_argument("--mult_f2", type=int, required=True, metavar="n",
                     help="Multiplicity of fragment2")
 parser.add_argument("--grids", nargs="+", required=True,
-                    help="Comma-separated list of the grids to use")
+                    help="List of the grids to use")
 parser.add_argument("--keywords", nargs="+", required=True,
-                    help="Comma-separated list of the keywords")
+                    help="List of the keywords")
+parser.add_argument("--root", type=str, metavar="<path>",
+                    help="Root directory of grid test project")
 args = parser.parse_args()
 
 
@@ -35,7 +37,7 @@ class GridTest():
     def __init__(self, complex=args.complex, fragment1=args.fragment1, fragment2=args.fragment2,
                  charge_complex=args.charge_complex, charge_fragment1=args.charge_f1, charge_fragment2=args.charge_f2,
                  mult_complex=args.mult_complex, mult_fragment1=args.mult_f1, mult_fragment2=args.mult_f2,
-                 keywords=args.keywords, grids=args.grids):
+                 keywords=args.keywords, grids=args.grids, root=args.root):
         """
 
         :param complex: path to XYZ file containing optimized coordinates
@@ -49,6 +51,7 @@ class GridTest():
         :param mult_fragment2: multiplicity of fragment 2
         :param keywords: list of keywords to define calculation
         :param grids: list of grids to use in testing
+        :param root: root directory of grid test project
         """
 
         self.complex = complex
@@ -60,7 +63,10 @@ class GridTest():
         self.mult_complex = mult_complex
         self.mult_fragment1 = mult_fragment1
         self.mult_fragment2 = mult_fragment2
-        self.root = os.getcwd()
+        if root == None:
+            self.root = os.getcwd()
+        else:
+            self.root = root
 
         # Get the list arguments. Two possible ways of providing these, so
         # we must take both cases into account
@@ -75,12 +81,16 @@ class GridTest():
             self.keywords = keywords
 
 
-        # Some assertions
+        # Some file type assertions
         assert self.complex.endswith(".xyz"), "File has to be an XYZ file"
         assert self.fragment1.endswith(".xyz"), "File has to be an XYZ file"
         assert self.fragment2.endswith(".xyz"), "File has to be an XYZ file"
 
-        self.make_dirs()
+        # Make the directory structure
+        #self.make_dirs()
+
+        print(self.root)
+
 
     def make_dirs(self):
         """
@@ -101,6 +111,8 @@ class GridTest():
             os.mkdir(os.path.join(self.root, grid, "complex"))
             os.mkdir(os.path.join(self.root, grid, "fragment1"))
             os.mkdir(os.path.join(self.root, grid, "fragment2"))
+            os.mkdir(os.path.join(self.root, grid, "bsse"))
+        return
 
 
     def gen_conf(self):
