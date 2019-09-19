@@ -145,10 +145,8 @@ class MrchemOut(object):
         output = self.content()
         prec = None
         for line in output:
-            if line.strip().startswith("Current precision"):
-                prec = float(line.strip().split()[2])
-                break
-        return prec
+            if line.strip().startswith("Precision"):
+                return float(line.strip().split()[2])
 
     #@timeit
     def no_scfcycles(self):
@@ -158,42 +156,45 @@ class MrchemOut(object):
     #@timeit
     def scf_energy(self):
         """Return a list of floats containing the SCF energies"""
-        e = filter(lambda x: x.strip().startswith("Total energy"), self.content())
-        return map(float, map(lambda x: x.strip().split()[-1], e))
+        # New version
+        e = []
+        content = list(self.content())
+        for i, line in enumerate(content):
+            if line.strip().startswith("Iter"):
+                for cycle in content[i+2:]:
+                    if "---" in cycle or cycle == content[-1]:
+                        return e
+                    else:
+                        e.append((float(cycle.split()[1]), float(cycle.split()[2]), float(cycle.split()[3])))
+        # Old version
+        #else:
+        #    e = filter(lambda x: x.strip().startswith("Total energy"), self.content())
+        #    return map(float, map(lambda x: x.strip().split()[-1], e))
 
     #@timeit
     def plot_scf_energy(self, title=None):
         """Return a graph plotting the potential energies"""
 
-        # Determine which of the convergence thresholds that were used for the optimizastion:
-        # orbital_thrs, property_thrs, or both.
-        orb = True if self.orbital_threshold() != -1 else False
-        prop = True if self.property_threshold() != -1 else False
         prop_thrs = self.property_threshold()
         orb_thrs = self.orbital_threshold()
 
-        energies = self.scf_energy()
-        delta_e = [energies[i] - energies[i - 1] for i in range(1, len(energies))]
-        x_delta_e = range(1, len(delta_e) + 1)
+        mo_residual, energies, updates = zip(*self.scf_energy())
+        xs = range(len(energies))
 
-        orb_err = self.orbital_total_error()
-        x_orb_err = range(1, len(orb_err) + 1)
-
-        property_thresholds = np.asarray([prop_thrs for i in range(len(delta_e))])
-        orbital_thrsholds = np.asarray([orb_thrs for i in range(len(orb_err))])
+        property_thresholds = [prop_thrs for _x in xs]
+        orbital_thresholds = [orb_thrs for _x in xs]
 
         fig = plt.Figure(figsize=(15, 5), dpi=100)
         plt.title("Job {}: {}".format(title, os.path.basename(self.filename)))
         ax = plt.gca()
-        ax.plot(x_delta_e, map(lambda x: abs(x), delta_e), color="red", marker="o", markersize=2, mfc="black", mec="black", label="Energy change")
-        ax.plot(x_orb_err, orb_err, color="blue", marker="o", markersize=2, mfc="black", mec="black", label="Orbital energy error")
-        ax.set_ylabel("Total Energy [a.u]")
+        ax.plot(xs, map(abs, updates), color="red", marker="o", markersize=2, mfc="black", mec="black", label="Energy Update")
+        ax.plot(xs, mo_residual, color="blue", marker="o", markersize=2, mfc="black", mec="black", label="MO Residual")
+        ax.plot(xs, orbital_thresholds, color="blue", linestyle="--", linewidth=1, label="Orbital Threshold")
+        ax.plot(xs, property_thresholds, color="red", linestyle="--", linewidth=1, label="Energy Threshold")
+
+        ax.set_ylabel("Energy [a.u]")
         ax.set_xlabel("SCF iteration")
         ax.set_yscale("log")
-        if orb:
-            ax.plot(x_orb_err, orbital_thrsholds, color="blue", linestyle="--", linewidth=1, label="orbital_thrs")
-        if prop:
-            ax.plot(x_delta_e, property_thresholds, color="red", linestyle="--", linewidth=1, label="property_thrs")
 
         ax.legend()
         plt.grid(axis="both")
@@ -208,24 +209,16 @@ class MrchemOut(object):
                 return float(line.strip().split()[3])
         return
 
-    def orbital_total_error(self):
-        """Return a list of floats containing the total error for the orbitals for each SCF iteration."""
-        err = []
-        for i, line in enumerate(self.content()):
-            if line.strip().startswith("Orbitals"):
-                err.append(float(list(self.content())[i + 3 + self.no_orbitals() + 2].split()[2]))
-        return err
-
     #@timeit
     def orbital_threshold(self):
         """Return the orbital convergence threshold as a float"""
-        t = filter(lambda x: x.strip().startswith("Orbital threshold"), self.content())[0].split()[2]
+        t = filter(lambda x: x.strip().startswith("Orbital threshold"), self.content())[0].split()[3]
         return float(t)
 
     #@timeit
     def property_threshold(self):
         """Return the property convergence threshold as a float. This is the energy convergence threshold."""
-        t = filter(lambda x: x.strip().startswith("Property threshold"), self.content())[0].split()[2]
+        t = filter(lambda x: x.strip().startswith("Energy threshold"), self.content())[0].split()[3]
         return float(t)
         
     def no_orbitals(self):
@@ -234,3 +227,9 @@ class MrchemOut(object):
             if line.strip().startswith("OrbitalVector"):
                 return int(line.split()[1])
         return
+
+    def version(self):
+        """Return the line of output describing the MRChem version"""
+        for line in self.content():
+            if line.split()[1] == "VERSION":
+                return " ".join(line)
