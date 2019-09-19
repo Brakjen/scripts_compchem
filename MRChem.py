@@ -162,14 +162,9 @@ class MrchemOut(object):
         for i, line in enumerate(content):
             if line.strip().startswith("Iter"):
                 for cycle in content[i+2:]:
+                    e.append((float(cycle.split()[1]), float(cycle.split()[2]), float(cycle.split()[3])))
                     if "---" in cycle or cycle == content[-1]:
                         return e
-                    else:
-                        e.append((float(cycle.split()[1]), float(cycle.split()[2]), float(cycle.split()[3])))
-        # Old version
-        #else:
-        #    e = filter(lambda x: x.strip().startswith("Total energy"), self.content())
-        #    return map(float, map(lambda x: x.strip().split()[-1], e))
 
     #@timeit
     def plot_scf_energy(self, title=None):
@@ -179,6 +174,7 @@ class MrchemOut(object):
         orb_thrs = self.orbital_threshold()
 
         mo_residual, energies, updates = zip(*self.scf_energy())
+        energies_kcal = map(lambda x: 627.509*(x - energies[0]), energies)
         xs = range(len(energies))
 
         property_thresholds = [prop_thrs for _x in xs]
@@ -192,11 +188,20 @@ class MrchemOut(object):
         ax.plot(xs, orbital_thresholds, color="blue", linestyle="--", linewidth=1, label="Orbital Threshold")
         ax.plot(xs, property_thresholds, color="red", linestyle="--", linewidth=1, label="Energy Threshold")
 
+        ax2 = ax.twinx()
+        ax2.plot(xs, energies, color="gray", linewidth=3, label="Total Energy", marker="o", markersize=4, mfc="black")
+
         ax.set_ylabel("Energy [a.u]")
+        ax2.set_ylabel("Energy [a.u]")
         ax.set_xlabel("SCF iteration")
         ax.set_yscale("log")
+        ax2.set_yscale("linear")
 
-        ax.legend()
+        # Combine legends for ax and ax2
+        ax_h, ax_l = ax.get_legend_handles_labels()
+        ax2_h, ax2_l = ax2.get_legend_handles_labels()
+
+        plt.legend(ax_h+ax2_h, ax_l+ax2_l, fancybox=True, framealpha=0.5)
         plt.grid(axis="both")
         plt.tight_layout()
         return plt.show()
