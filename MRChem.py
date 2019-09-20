@@ -135,7 +135,7 @@ class MrchemOut(object):
         """This method returns the optimized potential energy (float)"""
         e = None
         for line in self.content():
-            if ' '.join(line.split()).startswith("Total energy (au)"):
+            if ' '.join(line.split()).startswith("Total energy : (au)"):
                 e = float(line.split()[-1].strip())
         return e
     
