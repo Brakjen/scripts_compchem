@@ -40,21 +40,26 @@
 ################################################################################
 
 
-def counterpoise(fragment1, fragment2, jobname="counterpoise.inp"):
+def counterpoise(fragment1, fragment2, jobname="counterpoise.inp", raw_coordinates=False):
     """
 
     :param fragment1:
     :param fragment2:
     :param jobname:
+    :param raw_coordinates:
     :return:
     """
     # Read content of xyz and input files
-    with open(fragment1, "r") as f: fragment1_coord = f.readlines()[2:]
-    with open(fragment2, "r") as f: fragment2_coord = f.readlines()[2:]
+    if raw_coordinates:
+        fragment1_coord = fragment1
+        fragment2_coord = fragment2
+    else:
+        with open(fragment1, "r") as f: fragment1_coord = f.readlines()[2:]
+        with open(fragment2, "r") as f: fragment2_coord = f.readlines()[2:]
 
-    # Convert coordinates to more practical format
-    fragment1_coord = [i.strip() for i in fragment1_coord]
-    fragment2_coord = [i.strip() for i in fragment2_coord]
+        # Convert coordinates to more practical format
+        fragment1_coord = [i.strip() for i in fragment1_coord]
+        fragment2_coord = [i.strip() for i in fragment2_coord]
 
     # Define the coordinate format necessary for the single point calculations
     # of each fragment but with the complex basis set
@@ -135,7 +140,10 @@ if __name__ == "__main__":
     import argparse
 
     epilog = """
+    ~~~~~~~~~~~~~~~~~~~~~~~
     D E S C R I P T I O N
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
     
  This script generates an ORCA compound job that performs the four necessary
  single point calculations in order to get the counterpoise correction to the
@@ -148,6 +156,8 @@ if __name__ == "__main__":
  1) XYZ file of fragment 1
  2) XYZ file of fragment 2
  3) [optional] name for the generated input file (wthout extension)
+ 4) [optional] flag "--raw_coordinates" if you are passing python list of coords
+    directly (good for batch usage of this script)
 
  The input file will be saved with the arbitrary name "counterpoise.inp",
  unless the third argument is used to specify the name.
@@ -186,7 +196,9 @@ if __name__ == "__main__":
                         help="Path to XYZ file for fragment2")
     parser.add_argument("--jobname", type=str, default="counterpoise.inp", metavar="",
                         help="Name of the generated input file")
+    parser.add_argument("--raw_coordinates", action="store_true",
+                        help="You are providing coordinates as python lists directly, and not as XYZ files")
     args = parser.parse_args()
 
     # Generate the input file
-    counterpoise(args.fragment1, args.fragment2, args.jobname)
+    counterpoise(args.fragment1, args.fragment2, args.jobname, args.raw_coordinates)
