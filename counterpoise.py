@@ -155,11 +155,44 @@ components.
 H O W   T O   U S E
 ~~~~~~~~~~~~~~~~~~~~~~~
 Call the script like this:
-    python counterpoise.py --fragment1 <f1.xyz> --fragment2 <f2.xyz> --jobname <filename> etc
+    python counterpoise.py <f1.xyz> <f2.xyz> --jobname <> --charge_1 <> etc...
 
 or import the function into your script with
 
     from counterpoise import counterpoise
+
+and call the function and pass your variables to it, e.g.
+
+    counterpoise(fragment1,
+                 fragment2,
+                 charge_1=0,
+                 charge_2=1,
+                 mult_1=1,
+                 mult_2=2,
+                 jobname="something",
+                 raw_coordinates=True,
+                 keywords="! uks wb97x-v def2-qzvpp d3 grid5 finalgrid6 tightscf")
+                 
+                 
+When using the 'raw_coordinates' option, you need to pass the coordinates in the
+format this script expects. If you are reading a standard XYZ file, then the 
+following code will obtain the coordinates in the format expected:
+
+    with open("my_coordinates.xyz") as f:
+        coords = f.readlines()[2:]
+        
+It is up to you to decide whether you want to generate the fragment XYZ manually
+before using this script, or if you have some way of automatically extracting
+the fragment coordinates from the optimized complex geometry. For example,
+I have been in the situation where fragment2 always was located at the bottom
+of the complex XYZ file. This could be exploited like this:
+
+    natoms_f2 = 6
+    with open("complex.xyz") as f:
+        coords = f.readlines()[2:]
+    
+    f1 = coords[:-natoms_f2]
+    f2 = coords[-natoms_f2:]
     
 ~~~~~~~~~~~~~~~~~~~~~~~
 E N E R G E T I C S
