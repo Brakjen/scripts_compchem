@@ -189,4 +189,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Generate the input file
-    counterpoise(args.fragment1, args.fragment, args.jobname)
+    counterpoise(args.fragment1, args.fragment2, args.jobname)
