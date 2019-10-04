@@ -153,7 +153,7 @@ if __name__ == "__main__":
  unless the third argument is used to specify the name.
  -----------------------------------------------------------------------------
  Call the script like this:
- python counterpoise.py <fragment1.xyz> <fragment2.xyz> <filename>
+ python counterpoise.py --fragment1 <f1.xyz> --fragment2 <f2.xyz> --jobname <filename>
  -----------------------------------------------------------------------------
  The counterpoise-corrected energy should be computed as follows:
 
