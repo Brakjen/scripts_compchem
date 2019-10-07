@@ -87,7 +87,7 @@ def counterpoise(fragment1,
         f.write("\t# Calculation 1: fragment 1 @ complex geom with fragment 1 basis\n")
         f.write("\tNew_Step\n")
         f.write("\t\t{}\n".format(keywords))
-        f.write("\t\t%Pal NProcs 16 End\n")
+        f.write("\t\t%Pal NProcs {} End\n".format(nprocs))
         f.write("\t\t* xyz {} {}\n".format(charge_1, mult_1))
         for atom in fragment1_coord:
             f.write("\t\t"+atom + "\n")
