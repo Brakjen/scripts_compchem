@@ -83,12 +83,9 @@ class OrcaOut(object):
     #@timeit
     def no_atoms(self):
         """Return the number of atoms of the system (integer)"""
-        natoms = None
         for line in self.content():
             if line.strip().startswith("Number of atoms"):
-                natoms = line.strip().split()[-1]
-                break
-        return int(natoms)
+                return int(line.strip().split()[-1])
              
     #@timeit
     def no_geomcycles(self):
