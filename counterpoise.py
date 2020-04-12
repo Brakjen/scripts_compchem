@@ -66,8 +66,11 @@ def counterpoise(fragment1,
     # Define the coordinate format necessary for the single point calculations
     # of each fragment but with the complex basis set
     # The coordinates containing ":" will be treated as dummy atoms by ORCA
-    fragment1_coord_complexbasis = fragment1_coord + map(lambda x: x.split()[0]+" : "+' '.join(x.split()[1:]), fragment2_coord)
-    fragment2_coord_complexbasis = fragment2_coord + map(lambda x: x.split()[0]+" : "+' '.join(x.split()[1:]), fragment1_coord)
+    #fragment1_coord_complexbasis = fragment1_coord + map(lambda x: x.split()[0]+" : "+' '.join(x.split()[1:]), fragment2_coord)
+    #fragment2_coord_complexbasis = fragment2_coord + map(lambda x: x.split()[0]+" : "+' '.join(x.split()[1:]), fragment1_coord)
+
+    fragment1_coord_complexbasis = fragment1_coord + [x.split()[0]+" : "+' '.join(x.split()[1:]) for x in fragment2_coord]
+    fragment2_coord_complexbasis = fragment2_coord + [x.split()[0]+" : "+' '.join(x.split()[1:]) for x in fragment1_coord]
 
     # Now we are ready to start making the input file.
     with open(jobname, "w") as f:
