@@ -18,18 +18,22 @@
 # Call the script like this:
 # python counterpoise.py <fragment1.xyz> <fragment2.xyz> <filename>
 # -----------------------------------------------------------------------------
-# The counterpoise-corrected energy should be computed as follows:
+# The counterpoise-corrected reaction energy should be computed as follows:
 
-# E = Delta_E + E_counterpoise
+# Delta_E(CP) = Delta_E + BSSE
 
-# where E_counterpoise is the energy obtained from running this job, and Delta_E
-# is the dissociation or association energy.
+# where BSSE is the energy obtained from running this job, and Delta_E
+# is the uncorrected reaction energy.
 # -----------------------------------------------------------------------------
 # IMPORTANT!!!
 # -------------
 # The fragment xyz files should contain the coordinates of each fragment at the
 # optimized complex geometry, and NOT the coordinates of each fragment optimized
 # individually
+#
+# ALSO IMPORTANT!!!
+# This script assumes you have used a dispersion correction, and will give error
+# if this is not the case.
 # -----------------------------------------------------------------------------
 # Author:
 # Anders Brakestad
@@ -84,8 +88,9 @@ def counterpoise(fragment1,
         f.write("%Compound\n")
 
         f.write("\tvariable SP1, SP2, SP3, SP4 end\n")
-        f.write("\tvariable COUNTERPOISE_CORRECTION_AU end\n\n")
-        f.write("\tvariable COUNTERPOISE_CORRECTION_KCALMOL end\n\n")
+        f.write("\tvariable D1, D2, D3, D4 end\n")
+        f.write("\tvariable BSSE_AU end\n")
+        f.write("\tvariable BSSE_KCALMOL end\n\n")
 
         f.write("\t# Calculation 1: fragment 1 @ complex geom with fragment 1 basis\n")
         f.write("\tNew_Step\n")
@@ -96,6 +101,7 @@ def counterpoise(fragment1,
             f.write("\t\t"+atom + "\n")
         f.write("\t\t*\n")
         f.write("\tStep_End\n")
+        f.write("\tRead D1 = VDW CORRECTION[1] End\n")
         f.write("\tRead SP1 = SCF_ENERGY[1] End\n\n")
 
 
@@ -108,6 +114,7 @@ def counterpoise(fragment1,
             f.write("\t\t"+atom + "\n")
         f.write("\t\t*\n")
         f.write("\tStep_End\n")
+        f.write("\tRead D2 = VDW CORRECTION[2] End\n")
         f.write("\tRead SP2 = SCF_ENERGY[2] End\n\n")
 
 
@@ -120,6 +127,7 @@ def counterpoise(fragment1,
             f.write("\t\t"+atom + "\n")
         f.write("\t\t*\n")
         f.write("\tStep_End\n")
+        f.write("\tRead D3 = VDW CORRECTION[3] End\n")
         f.write("\tRead SP3 = SCF_ENERGY[3] End\n\n")
 
 
@@ -132,11 +140,12 @@ def counterpoise(fragment1,
             f.write("\t\t"+atom + "\n")
         f.write("\t\t*\n")
         f.write("\tStep_End\n")
+        f.write("\tRead D4 = VDW CORRECTION[4] End\n")
         f.write("\tRead SP4 = SCF_ENERGY[4] End\n\n")
 
 
-        f.write("\tAssign COUNTERPOISE_CORRECTION_AU = -(SP2 - SP1 + SP4 - SP3) End\n")
-        f.write("\tAssign COUNTERPOISE_CORRECTION_KCALMOL = 627.509 * COUNTERPOISE_CORRECTION_AU End\n")
+        f.write("\tAssign BSSE_AU = (SP1 - SP2) + (SP3 - SP4) + (D1 - D2) + (D3 - D4) End\n")
+        f.write("\tAssign BSSE_KCALMOL = 627.509 * BSSE_AU End\n")
 
         f.write("End\n")
 
@@ -201,9 +210,9 @@ of the complex XYZ file. This could be exploited like this:
 E N E R G E T I C S
 ~~~~~~~~~~~~~~~~~~~~~~~
 The counterpoise-corrected energy should be computed as follows:
- E = Delta_E + E_counterpoise
- where E_counterpoise is the energy obtained from running this job, and Delta_E
-is the dissociation or association energy.
+ Delta_E(CP) = Delta_E + BSSE
+ where BSSE is the energy obtained from running this job, and Delta_E
+is the non-corrected reaction energy.
 
 ~~~~~~~~~~~~~~~~~~~~~~~
 I M P O R T A N T ! ! !
@@ -222,7 +231,8 @@ PhD Candidate in Computational Chemistry
 ~~~~~~~~~~~~~~~~~~~~~~~
 L A S T   E D I T
 ~~~~~~~~~~~~~~~~~~~~~~~
-2019-10-04
+2010-04-27: clarified help text, and added dispersion correction to computed BSSE
+2019-10-04: version 1
     """
 
     parser = argparse.ArgumentParser(description="Generate input file for performing a simple Counterpoise correction",
