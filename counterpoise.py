@@ -53,7 +53,8 @@ def counterpoise(fragment1,
                  keywords="!keywords",
                  jobname="counterpoise.inp",
                  raw_coordinates=False,
-                 nprocs=16):
+                 nprocs=16,
+                 memory=800):
 
     # Read content of xyz and input files
     if raw_coordinates:
@@ -96,6 +97,7 @@ def counterpoise(fragment1,
         f.write("\tNew_Step\n")
         f.write("\t\t{}\n".format(keywords))
         f.write("\t\t%Pal NProcs {} End\n".format(nprocs))
+        f.write("\t\t%maxcore {}\n".format(memory))
         f.write("\t\t* xyz {} {}\n".format(charge_1, mult_1))
         for atom in fragment1_coord:
             f.write("\t\t"+atom + "\n")
@@ -109,6 +111,7 @@ def counterpoise(fragment1,
         f.write("\tNew_Step\n")
         f.write("\t\t{}\n".format(keywords))
         f.write("\t\t%Pal NProcs {} End\n".format(nprocs))
+        f.write("\t\t%maxcore {}\n".format(memory))
         f.write("\t\t* xyz {} {}\n".format(charge_1, mult_2))
         for atom in fragment1_coord_complexbasis:
             f.write("\t\t"+atom + "\n")
@@ -122,6 +125,7 @@ def counterpoise(fragment1,
         f.write("\tNew_Step\n")
         f.write("\t\t{}\n".format(keywords))
         f.write("\t\t%Pal NProcs {} End\n".format(nprocs))
+        f.write("\t\t%maxcore {}\n".format(memory))
         f.write("\t\t* xyz {} {}\n".format(charge_2, mult_2))
         for atom in fragment2_coord:
             f.write("\t\t"+atom + "\n")
@@ -135,6 +139,7 @@ def counterpoise(fragment1,
         f.write("\tNew_Step\n")
         f.write("\t\t{}\n".format(keywords))
         f.write("\t\t%Pal NProcs {} End\n".format(nprocs))
+        f.write("\t\t%maxcore {}\n".format(memory))
         f.write("\t\t* xyz {} {}\n".format(charge_2, mult_2))
         for atom in fragment2_coord_complexbasis:
             f.write("\t\t"+atom + "\n")
@@ -255,6 +260,8 @@ L A S T   E D I T
                         help="Multiplicity of fragment 2 (default: 1)")
     parser.add_argument("--nprocs", type=int, default=16, metavar="<int>",
                         help="Number of parallel processes (default: 16)")
+    parser.add_argument("--memory", type=int, default=800, metavar="<int>",
+                        help="Maxcore memory (default: 800MB)")
     parser.add_argument("--keywords", type=str, default="!keywords", metavar="<str>",
                         help="ORCA keywords for defining computational protocol (default: '!keywords')")
 
@@ -270,4 +277,5 @@ L A S T   E D I T
                  mult_1=args.mult_1,
                  mult_2=args.mult_2,
                  nprocs=args.nprocs,
+                 memory=args.memory,
                  keywords=args.keywords)
