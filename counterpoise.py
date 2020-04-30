@@ -89,7 +89,7 @@ def counterpoise(fragment1,
         f.write("%Compound\n")
 
         f.write("\tvariable SP1, SP2, SP3, SP4 end\n")
-        f.write("\tvariable D1, D2, D3, D4 end\n")
+        #f.write("\tvariable D1, D2, D3, D4 end\n")
         f.write("\tvariable BSSE_AU end\n")
         f.write("\tvariable BSSE_KCALMOL end\n\n")
 
@@ -103,7 +103,7 @@ def counterpoise(fragment1,
             f.write("\t\t"+atom + "\n")
         f.write("\t\t*\n")
         f.write("\tStep_End\n")
-        f.write("\tRead D1 = VDW_CORRECTION[1] End\n")
+        #f.write("\tRead D1 = VDW_CORRECTION[1] End\n")
         f.write("\tRead SP1 = SCF_ENERGY[1] End\n\n")
 
 
@@ -117,7 +117,7 @@ def counterpoise(fragment1,
             f.write("\t\t"+atom + "\n")
         f.write("\t\t*\n")
         f.write("\tStep_End\n")
-        f.write("\tRead D2 = VDW_CORRECTION[2] End\n")
+        #f.write("\tRead D2 = VDW_CORRECTION[2] End\n")
         f.write("\tRead SP2 = SCF_ENERGY[2] End\n\n")
 
 
@@ -131,7 +131,7 @@ def counterpoise(fragment1,
             f.write("\t\t"+atom + "\n")
         f.write("\t\t*\n")
         f.write("\tStep_End\n")
-        f.write("\tRead D3 = VDW_CORRECTION[3] End\n")
+        #f.write("\tRead D3 = VDW_CORRECTION[3] End\n")
         f.write("\tRead SP3 = SCF_ENERGY[3] End\n\n")
 
 
@@ -145,11 +145,11 @@ def counterpoise(fragment1,
             f.write("\t\t"+atom + "\n")
         f.write("\t\t*\n")
         f.write("\tStep_End\n")
-        f.write("\tRead D4 = VDW_CORRECTION[4] End\n")
+        #f.write("\tRead D4 = VDW_CORRECTION[4] End\n")
         f.write("\tRead SP4 = SCF_ENERGY[4] End\n\n")
 
 
-        f.write("\tAssign BSSE_AU = (SP1 - SP2) + (SP3 - SP4) + (D1 - D2) + (D3 - D4) End\n")
+        f.write("\tAssign BSSE_AU = (SP1 - SP2) + (SP3 - SP4) # + (D1 - D2) + (D3 - D4) End\n")
         f.write("\tAssign BSSE_KCALMOL = 627.509 * BSSE_AU End\n")
 
         f.write("End\n")
