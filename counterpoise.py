@@ -149,7 +149,7 @@ def counterpoise(fragment1,
         f.write("\tRead SP4 = SCF_ENERGY[4] End\n\n")
 
 
-        f.write("\tAssign BSSE_AU = (SP1 - SP2) + (SP3 - SP4) # + (D1 - D2) + (D3 - D4) End\n")
+        f.write("\tAssign BSSE_AU = (SP1 - SP2) + (SP3 - SP4) End # + (D1 - D2) + (D3 - D4) End\n")
         f.write("\tAssign BSSE_KCALMOL = 627.509 * BSSE_AU End\n")
 
         f.write("End\n")
