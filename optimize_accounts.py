@@ -6,23 +6,23 @@ import os
 
 def get_user():
     "Get the current user"
-    return sub.Popen(["whoami"], stdout=sub.PIPE).stdout.read().strip()
+    return sub.Popen(["whoami"], stdout=sub.PIPE).stdout.read().decode("ascii").strip()
 
 def get_id():
     "Return all pending job ids for user"
     cmd = ["squeue", "-u", get_user(), "-h", "--format=%i,%t"]
-    ids = sub.Popen(cmd, stdout=sub.PIPE).stdout.readlines()
-    ids = map(lambda x: x.split(","), ids)
-    ids = filter(lambda y: y[1] == "PD", [map(lambda x: x.strip(), line) for line in ids])
-    return [x[0] for x in ids]
+    tmp = sub.Popen(cmd, stdout=sub.PIPE).stdout.read().decode("ascii").splitlines()
+    tmp = [[el.strip() for el in x.split(",")] for x in tmp]
+    tmp = [line for line in tmp if line[1] == "PD"]
+    return [x[0] for x in tmp]
 
 def get_user_accounts():
     "Return list of all accounts available to user"
     cmd = ["cost", "-u", get_user()]
-    output = sub.Popen(cmd, stdout=sub.PIPE).stdout.readlines()
-    accounts = filter(lambda x: x.startswith(get_user()), output)
+    output = sub.Popen(cmd, stdout=sub.PIPE).stdout.read().decode("ascii").splitlines()
+    accounts = list(filter(lambda x: x.startswith(get_user()), output))
     accounts = [line.split() for line in accounts]
-    return map(lambda x: x[1], accounts)
+    return [x[1] for x in accounts]
 
 def get_priority(jobid):
     """Return the current priority of a job.
@@ -65,26 +65,28 @@ def optimize():
     you want to, without losing priority."""
     account = get_best_account()[0]
     for job in get_id():
-        cmd = ["scontrol", "update", "jobid={}".format(job), "account={}".format(account)]
+        cmd = ["scontrol", "update", f"jobid={job}", f"account={account}"]
         sub.call(cmd)
-    print("Optimization complete. Best account: {}".format(account))
+    print(f"Optimization complete. Best account: {account}")
 
-parser = argparse.ArgumentParser(description="Determine highest priority account, and update pending jobs.")
-parser.add_argument("-u", "--update", action="store_true", help="Update all pending jobs to highest priority account")
-args = parser.parse_args()
 
-# Run the optimization
-if args.update:
-    optimize()
-else:
-    prio = get_best_account()[1]
-    print("Fairshare points:")
-    for acc, prio in prio.items():
-        print("{}: {}".format(acc, prio))
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Determine highest priority account, and update pending jobs.")
+    parser.add_argument("-u", "--update", action="store_true", help="Update all pending jobs to highest priority account")
+    args = parser.parse_args()
 
-# Clean up
-for job in test_ids:
-    kill(job)
-
-for f in test_files:
-    os.remove(f)
+    # Run the optimization
+    if args.update:
+        optimize()
+    else:
+        prio = get_best_account()[1]
+        print("Fairshare points:")
+        for acc, prio in prio.items():
+            print(f"{acc}: {prio}")
+    
+    # Clean up
+    for job in test_ids:
+        kill(job)
+    
+    for f in test_files:
+        os.remove(f)
